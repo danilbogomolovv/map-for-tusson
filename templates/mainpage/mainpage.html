@@ -19,11 +19,16 @@
             zoom: 6,
         });
 
+        {% for i in terminals %}
+        console.log('{{ i.lat }}')
         var marker = new google.maps.Marker({
             map : map,
-            position : {lat: 53.904789501846196, lng: 27.553534868069242},
-            title : 'hello'
+            position : {lat: parseFloat('{{ i.lat }}'), lng: parseFloat('{{ i.lng }}')},
+            title : '<h3>Ctid</h3> <p>{{ i.ctid }}</p>'
         });
+
+        {% endfor %}
+
         }
     </script>
 

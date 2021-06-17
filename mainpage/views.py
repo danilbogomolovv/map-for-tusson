@@ -20,12 +20,6 @@ def index(request):
                                     ddatan = child[9].text, cname = child[10].text, lat = geocode_result[0]['geometry']['location']['lat'],
                                     lng = geocode_result[0]['geometry']['location']['lng'])
             new_terminal.save()
-#    else:
-#        print(len(Terminal.objects.all()))
-#        gmaps = googlemaps.Client(key='AIzaSyC_CpD9oSCYYDu92Jq8EiIGklCgyelDbiw')
-#        geocode_result = gmaps.geocode('г. Минск, ул. Левкова, 12, пом. 1')
- #       print(geocode_result[0]['geometry']['location']['lat'])
-  #      print(geocode_result[0]['geometry']['location']['lng'])
 
     context['terminals'] = Terminal.objects.all()
     return render(request, 'mainpage/mainpage.html', context)
