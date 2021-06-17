@@ -14,6 +14,8 @@ class Terminal(models.Model):
 	craion = models.CharField(max_length = 50, null = True)
 	ddatan = models.DateField(max_length = 50, null = True)
 	cname = models.CharField(max_length = 70, null = True)
+	lat = models.CharField(max_length = 30, null = True)
+	lng = models.CharField(max_length = 30, null = True)
 
 
 
