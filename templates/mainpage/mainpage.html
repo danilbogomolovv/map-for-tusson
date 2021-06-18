@@ -21,20 +21,31 @@
             {% for i in terminals %}
 
             {% if i.lat != 'exist' and i.lng != 'exist' %}
+            var infoWindow = new google.maps.InfoWindow();
                 var marker = new google.maps.Marker({
                     map : map,
                     position : {lat: parseFloat('{{ i.lat }}'), lng: parseFloat('{{ i.lng }}')},
                     title : '{{ i.ctid }}'
                 });
-
+            var ctid = "{{ i.ctid }}";
+            var cadres = "{{ i.cadres }}";
+            var cname = "{{ i.cname }}"
                 markers.push(marker);
-
-                console.log(marker.getPosition())
-                  marker.addListener("click", () => {
+              (function (marker, ctid, cadres, cname) {
+                        google.maps.event.addListener(marker, "click", function (e) {
+                            //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
+                            infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + '<p>' +  cadres + '</p>' + 
+                                                    '<p>' + ctid + '</p>' + '<p>' + cname + '</p>' + "</div>");
+                            infoWindow.open(map, marker);
+                        });
+                    })(marker, ctid, cadres, cname);
+                
+                //marker.addListener("click"
+                //    , () => {
                   
-                    alert("{{ i.cadres }}")
+                 //   alert("{{ i.cadres }}")
               
-                  });
+                //  });
             {% endif %}
 
             {% endfor %}
