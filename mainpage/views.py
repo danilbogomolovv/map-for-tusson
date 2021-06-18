@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from lxml import etree
 import xml.etree.ElementTree as ET
-from .models import Terminal, ErrorTerminal
+from .models import Terminal, ErrorTerminal, ExistTerminal
 import googlemaps
 
 
@@ -30,10 +30,10 @@ def index(request):
                     print('OK ' + str(count) + str(child[5].text))
                     count = count + 1
                 else:
-                    new_terminal = Terminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
+                    new_exist_terminal = ExistTerminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
                                             cadres = child[5].text, cgorod = child[6].text, cobl = child[7].text, craion = child[8].text,
-                                            ddatan = child[9].text, cname = child[10].text, lat = 'exist', lng = 'exist')
-                    new_terminal.save()   
+                                            ddatan = child[9].text, cname = child[10].text)
+                    new_exist_terminal.save()   
                     print('EXIST ' + str(count) + str(child[5].text))
                     count = count + 1                 
             except Exception as e:
@@ -70,4 +70,5 @@ def index(request):
 #    print('OK ' + str(len(Terminal.objects.all())))
 
     context['terminals'] = Terminal.objects.all()
+    context['existterminals'] = ExistTerminal.objects.all()
     return render(request, 'mainpage/mainpage.html', context)

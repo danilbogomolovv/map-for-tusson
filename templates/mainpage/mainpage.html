@@ -20,45 +20,50 @@
 
             {% for i in terminals %}
 
-            {% if i.lat != 'exist' and i.lng != 'exist' %}
-            var infoWindow = new google.maps.InfoWindow();
-                var marker = new google.maps.Marker({
-                    map : map,
-                    position : {lat: parseFloat('{{ i.lat }}'), lng: parseFloat('{{ i.lng }}')},
-                    title : '{{ i.ctid }}'
-                });
-            var ctid = "{{ i.ctid }}";
-            var cadres = "{{ i.cadres }}";
-            var cname = "{{ i.cname }}"
-                markers.push(marker);
-              (function (marker, ctid, cadres, cname) {
+               // {% if i.lat != 'exist' and i.lng != 'exist' %}
+
+                    var infoWindow = new google.maps.InfoWindow();
+                    var marker = new google.maps.Marker({
+                        map : map,
+                        position : {lat: parseFloat('{{ i.lat }}'), lng: parseFloat('{{ i.lng }}')},
+                        title : '{{ i.ctid }}'
+                    });
+                    markers.push(marker);
+
+                    var infolist = ["<p> " + "{{ i.ctid }}" + " </p> " + "{{ i.cname }}" + "<br> _________________________________"];
+                    var cadres = "{{ i.cadres }}";
+
+                    {% for j in existterminals %}
+
+                        {% if i.cadres == j.cadres %}
+                            infolist.push(" <p> " + "{{ j.ctid }}" + " </p> " + "{{ j.cname }}" + "<br> _________________________________");
+                        {% endif %}
+
+                    {% endfor %}
+
+                    var countterminals = infolist.length;
+
+                    (function (marker, cadres, infolist, countterminals) {
                         google.maps.event.addListener(marker, "click", function (e) {
-                            //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
-                            infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + '<p>' +  cadres + '</p>' + 
-                                                    '<p>' + ctid + '</p>' + '<p>' + cname + '</p>' + "</div>");
+                            infoWindow.setContent("<div style = 'width:250px;min-height:60px'>" + 
+                                '<p> Количество териналов: ' + countterminals + '</p> ' + 
+                                cadres + '<br> _________________________________' + 
+                                infolist.join(' ') +
+                                "</div>");
                             infoWindow.open(map, marker);
                         });
-                    })(marker, ctid, cadres, cname);
-                
-                //marker.addListener("click"
-                //    , () => {
-                  
-                 //   alert("{{ i.cadres }}")
-              
-                //  });
-            {% endif %}
+                        })(marker, cadres, infolist, countterminals);
+                        
+             //   {% endif %}
 
             {% endfor %}
 
             new MarkerClusterer(map, markers, {
-                imagePath:
-                  "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+                gridSize: 25,
+                imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
               });
         }
 
-        function toggleBounce(cname) {
-            console.log(cname)
-      }
     </script>
 
     <script
