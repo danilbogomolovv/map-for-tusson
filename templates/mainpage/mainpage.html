@@ -18,7 +18,9 @@
             zoom: 6,
         });
 
-            {% for i in terminals %} 
+            {% for i in terminals %}
+
+            {% if i.lat != 'exist' and i.lng != 'exist' %}
                 var marker = new google.maps.Marker({
                     map : map,
                     position : {lat: parseFloat('{{ i.lat }}'), lng: parseFloat('{{ i.lng }}')},
@@ -27,11 +29,13 @@
 
                 markers.push(marker);
 
+                console.log(marker.getPosition())
                   marker.addListener("click", () => {
                   
                     alert("{{ i.cadres }}")
               
                   });
+            {% endif %}
 
             {% endfor %}
 

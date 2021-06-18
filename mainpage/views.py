@@ -10,6 +10,8 @@ def index(request):
 
     if len(Terminal.objects.all()) == 0: 
         count = 0
+        lats = []
+        lngs = []
         parser = ET.XMLParser(encoding="windows-1251")
         tree = ET.parse("terminals.xml", parser=parser)
         root = tree.getroot()
@@ -17,19 +19,29 @@ def index(request):
             try:
                 gmaps = googlemaps.Client(key='AIzaSyC_CpD9oSCYYDu92Jq8EiIGklCgyelDbiw')
                 geocode_result = gmaps.geocode(child[5].text)
-                new_terminal = Terminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
-                                        cadres = child[5].text, cgorod = child[6].text, cobl = child[7].text, craion = child[8].text,
-                                        ddatan = child[9].text, cname = child[10].text, lat = geocode_result[0]['geometry']['location']['lat'],
-                                        lng = geocode_result[0]['geometry']['location']['lng'])
-                new_terminal.save()
-                print('OK ' + str(count))
-                count = count + 1
+                if geocode_result[0]['geometry']['location']['lat'] not in lats and geocode_result[0]['geometry']['location']['lng'] not in lngs:
+                    new_terminal = Terminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
+                                            cadres = child[5].text, cgorod = child[6].text, cobl = child[7].text, craion = child[8].text,
+                                            ddatan = child[9].text, cname = child[10].text, lat = geocode_result[0]['geometry']['location']['lat'],
+                                            lng = geocode_result[0]['geometry']['location']['lng'])
+                    new_terminal.save()
+                    lats.append(geocode_result[0]['geometry']['location']['lat'])
+                    lngs.append(geocode_result[0]['geometry']['location']['lng'])
+                    print('OK ' + str(count) + str(child[5].text))
+                    count = count + 1
+                else:
+                    new_terminal = Terminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
+                                            cadres = child[5].text, cgorod = child[6].text, cobl = child[7].text, craion = child[8].text,
+                                            ddatan = child[9].text, cname = child[10].text, lat = 'exist', lng = 'exist')
+                    new_terminal.save()   
+                    print('EXIST ' + str(count) + str(child[5].text))
+                    count = count + 1                 
             except Exception as e:
                 new_error_terminal = ErrorTerminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
                                         cadres = child[5].text, cgorod = child[6].text, cobl = child[7].text, craion = child[8].text,
                                         ddatan = child[9].text, cname = child[10].text)  
                 new_error_terminal.save() 
-                print('ERROR ' + str(count))
+                print('ERROR ' + str(count) + str(child[5].text))
                 count = count + 1 
 
 #    count = 0
