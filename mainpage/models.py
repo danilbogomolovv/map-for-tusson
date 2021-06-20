@@ -44,6 +44,9 @@ class ExistTerminal(models.Model):
 	ddatan = models.DateField(max_length = 50, null = True)
 	cname = models.CharField(max_length = 70, null = True)
 
+class TerminalName(models.Model):
+	terminal_name = models.CharField(max_length = 70, null = True)
+
 
 
 

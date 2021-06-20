@@ -1,13 +1,13 @@
 from django.shortcuts import render
 from lxml import etree
 import xml.etree.ElementTree as ET
-from .models import Terminal, ErrorTerminal, ExistTerminal
+from .models import Terminal, ErrorTerminal, ExistTerminal, TerminalName
 import googlemaps
 
 
-def index(request):
+def index(request, name=""):
     context = {}
-
+    terminal_names = []
     if len(Terminal.objects.all()) == 0: 
         count = 0
         lats = []
@@ -27,6 +27,7 @@ def index(request):
                     new_terminal.save()
                     lats.append(geocode_result[0]['geometry']['location']['lat'])
                     lngs.append(geocode_result[0]['geometry']['location']['lng'])
+
                     print('OK ' + str(count) + str(child[5].text))
                     count = count + 1
                 else:
@@ -35,7 +36,8 @@ def index(request):
                                             ddatan = child[9].text, cname = child[10].text)
                     new_exist_terminal.save()   
                     print('EXIST ' + str(count) + str(child[5].text))
-                    count = count + 1                 
+                    count = count + 1 
+
             except Exception as e:
                 new_error_terminal = ErrorTerminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
                                         cadres = child[5].text, cgorod = child[6].text, cobl = child[7].text, craion = child[8].text,
@@ -43,6 +45,12 @@ def index(request):
                 new_error_terminal.save() 
                 print('ERROR ' + str(count) + str(child[5].text))
                 count = count + 1 
+
+#        for i in terminal_names:
+#
+#            new_terminal_name = TerminalName(terminal_name = i);
+#            new_terminal_name.save()
+
 
 #    count = 0
  
@@ -68,7 +76,24 @@ def index(request):
 #            count = count + 1
 #    print('ERROR ' + str(len(ErrorTerminal.objects.all())))  
 #    print('OK ' + str(len(Terminal.objects.all())))
+    
+    search_terminals = []
 
-    context['terminals'] = Terminal.objects.all()
+    for i in Terminal.objects.all():
+        if i.cname not in terminal_names:
+            terminal_names.append(i.cname)
+
+    search_name = request.GET.get("name", "")
+
+    for i  in Terminal.objects.all():
+        if i.cname == search_name:
+            search_terminals.append(i)
+
+    context['search_name'] = search_name
+    if search_name == "":
+        context['terminals'] = Terminal.objects.all()
+    else:
+        context['terminals'] = search_terminals
     context['existterminals'] = ExistTerminal.objects.all()
+    context['terminal_names'] = terminal_names
     return render(request, 'mainpage/mainpage.html', context)
