@@ -14,6 +14,8 @@ class Terminal(models.Model):
 	craion = models.CharField(max_length = 50, null = True)
 	ddatan = models.DateField(max_length = 50, null = True)
 	cname = models.CharField(max_length = 70, null = True)
+	cparta = models.CharField(max_length = 50, null = True)
+	cots = models.CharField(max_length = 50, null = True)
 	lat = models.CharField(max_length = 30, null = True)
 	lng = models.CharField(max_length = 30, null = True)
 
@@ -29,6 +31,8 @@ class ErrorTerminal(models.Model):
 	craion = models.CharField(max_length = 50, null = True)
 	ddatan = models.DateField(max_length = 50, null = True)
 	cname = models.CharField(max_length = 70, null = True)
+	cparta = models.CharField(max_length = 50, null = True)
+	cots = models.CharField(max_length = 50, null = True)
 
 
 class ExistTerminal(models.Model):
@@ -43,6 +47,8 @@ class ExistTerminal(models.Model):
 	craion = models.CharField(max_length = 50, null = True)
 	ddatan = models.DateField(max_length = 50, null = True)
 	cname = models.CharField(max_length = 70, null = True)
+	cparta = models.CharField(max_length = 50, null = True)
+	cots = models.CharField(max_length = 50, null = True)
 
 class TerminalName(models.Model):
 	terminal_name = models.CharField(max_length = 70, null = True)

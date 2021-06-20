@@ -5,45 +5,45 @@ from .models import Terminal, ErrorTerminal, ExistTerminal, TerminalName
 import googlemaps
 
 
-def index(request, name=""):
+def index(request):
     context = {}
-    terminal_names = []
     if len(Terminal.objects.all()) == 0: 
         count = 0
         lats = []
         lngs = []
         parser = ET.XMLParser(encoding="windows-1251")
-        tree = ET.parse("terminals.xml", parser=parser)
+        tree = ET.parse("terminals4.xml", parser=parser)
         root = tree.getroot()
         for child in root:
             try:
                 gmaps = googlemaps.Client(key='AIzaSyC_CpD9oSCYYDu92Jq8EiIGklCgyelDbiw')
-                geocode_result = gmaps.geocode(child[5].text)
+                geocode_result = gmaps.geocode(child[8].text)
                 if geocode_result[0]['geometry']['location']['lat'] not in lats and geocode_result[0]['geometry']['location']['lng'] not in lngs:
                     new_terminal = Terminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
-                                            cadres = child[5].text, cgorod = child[6].text, cobl = child[7].text, craion = child[8].text,
-                                            ddatan = child[9].text, cname = child[10].text, lat = geocode_result[0]['geometry']['location']['lat'],
+                                            cobl = child[5].text, craion = child[6].text, cgorod = child[7].text, cadres = child[8].text,
+                                            ddatan = child[9].text, cname = child[10].text, cparta = child[11].text, cots = child[12].text,
+                                            lat = geocode_result[0]['geometry']['location']['lat'],
                                             lng = geocode_result[0]['geometry']['location']['lng'])
                     new_terminal.save()
                     lats.append(geocode_result[0]['geometry']['location']['lat'])
                     lngs.append(geocode_result[0]['geometry']['location']['lng'])
 
-                    print('OK ' + str(count) + str(child[5].text))
+                    print('OK ' + str(count) + str(child[8].text))
                     count = count + 1
                 else:
                     new_exist_terminal = ExistTerminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
-                                            cadres = child[5].text, cgorod = child[6].text, cobl = child[7].text, craion = child[8].text,
-                                            ddatan = child[9].text, cname = child[10].text)
+                                            cobl = child[5].text, craion = child[6].text, cgorod = child[7].text, cadres = child[8].text,
+                                            ddatan = child[9].text, cname = child[10].text, cparta = child[11].text, cots = child[12].text)
                     new_exist_terminal.save()   
-                    print('EXIST ' + str(count) + str(child[5].text))
+                    print('EXIST ' + str(count) + str(child[8].text))
                     count = count + 1 
 
             except Exception as e:
                 new_error_terminal = ErrorTerminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
-                                        cadres = child[5].text, cgorod = child[6].text, cobl = child[7].text, craion = child[8].text,
-                                        ddatan = child[9].text, cname = child[10].text)  
+                                        cobl = child[5].text, craion = child[6].text, cgorod = child[7].text, cadres = child[8].text,
+                                        ddatan = child[9].text, cname = child[10].text, cparta = child[11].text, cots = child[12].text)  
                 new_error_terminal.save() 
-                print('ERROR ' + str(count) + str(child[5].text))
+                print('ERROR ' + str(count) + str(child[8].text))
                 count = count + 1 
 
 #        for i in terminal_names:
@@ -58,6 +58,19 @@ def index(request, name=""):
         print(i.cadres)
     print('ERROR ' + str(len(ErrorTerminal.objects.all())))  
     print('OK ' + str(len(Terminal.objects.all()))) 
+
+    terminal_names = []
+    terminal_parts = []
+    for i in Terminal.objects.all():
+        if i.cname not in terminal_names:
+            terminal_names.append(i.cname)
+
+
+    for i in Terminal.objects.all():
+        if i.cparta not in terminal_parts:
+            terminal_parts.append(i.cparta)
+    context['terminal_names'] = terminal_names
+    context['terminal_parts'] = terminal_parts
 #        try:
 #        gmaps = googlemaps.Client(key='AIzaSyC_CpD9oSCYYDu92Jq8EiIGklCgyelDbiw')
 #        geocode_result = gmaps.geocode(i.cadres)
@@ -76,24 +89,59 @@ def index(request, name=""):
 #            count = count + 1
 #    print('ERROR ' + str(len(ErrorTerminal.objects.all())))  
 #    print('OK ' + str(len(Terminal.objects.all())))
-    
-    search_terminals = []
+    context['terminals'] = Terminal.objects.all()
+    context['existterminals'] = ExistTerminal.objects.all()
+    return render(request, 'mainpage/mainpage.html', context)  
 
+
+def search(request, name = "", parta = ""):
+    context = {}
+
+    search_name_terminals = []
+    search_parta_terminals = []
+    search_terminals = []
+    search_name = request.GET.get("name", "")
+    search_parta = request.GET.get("parta", "")
+
+    if search_name != "":
+        for i  in Terminal.objects.all():
+            if i.cname == search_name:
+                search_name_terminals.append(i)
+                
+    if search_parta != "":
+        for i in Terminal.objects.all():
+            if i.cparta == search_parta:
+                search_parta_terminals.append(i)
+
+    if search_name != "" and search_parta != "":
+        for i in Terminal.objects.all():
+            if i.cname == search_name and i.cparta == search_parta:
+                search_terminals.append(i)
+
+    terminal_names = []
+    terminal_parts = []                
     for i in Terminal.objects.all():
         if i.cname not in terminal_names:
             terminal_names.append(i.cname)
 
-    search_name = request.GET.get("name", "")
 
-    for i  in Terminal.objects.all():
-        if i.cname == search_name:
-            search_terminals.append(i)
+    for i in Terminal.objects.all():
+        if i.cparta not in terminal_parts:
+            terminal_parts.append(i.cparta)
+    context['terminal_names'] = terminal_names
+    context['terminal_parts'] = terminal_parts
 
     context['search_name'] = search_name
-    if search_name == "":
+    context['search_parta'] = search_parta
+
+    if search_name == "" and search_parta == "":
         context['terminals'] = Terminal.objects.all()
-    else:
+    elif search_name != "" and search_parta == "":
+        context['terminals'] = search_name_terminals
+    elif search_parta != "" and search_name == "":
+        context['terminals'] = search_parta_terminals
+    elif search_parta != "" and search_name != "":
         context['terminals'] = search_terminals
+
     context['existterminals'] = ExistTerminal.objects.all()
-    context['terminal_names'] = terminal_names
     return render(request, 'mainpage/mainpage.html', context)

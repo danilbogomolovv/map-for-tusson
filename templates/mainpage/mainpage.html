@@ -16,7 +16,8 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+
+        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown" style="width: 0px;">
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -24,12 +25,29 @@
               </a>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                 {% for i in terminal_names %}
-                    <li><a class="dropdown-item" href="?name={{i}}">{{ i }}</a></li>
+                    <li><a class="dropdown-item" href="/search/?name={{i}}">{{ i }}</a></li>
                 {% endfor %}
               </ul>
             </li>
           </ul>
         </div>
+        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Название cparta
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                {% for i in terminal_parts %}
+                    <li><a class="dropdown-item" href="/search/?parta={{i}}">{{ i }}</a></li>
+                {% endfor %}
+              </ul>
+            </li>
+          </ul>
+        </div>
+        {% if search_name != "" or search_parta != "" %}
+            <a class="btn btn-outline-danger" href="/" role="button" >Сбросить </a>
+        {% endif %}
       </div>
     </nav>
 
@@ -52,7 +70,7 @@
                     var marker = new google.maps.Marker({
                         map : map,
                         position : {lat: parseFloat('{{ i.lat }}'), lng: parseFloat('{{ i.lng }}')},
-                        title : '{{ i.ctid }}'
+                        title : '{{ i.cparta }}'
                     });
                     markers.push(marker);
 
