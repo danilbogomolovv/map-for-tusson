@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from lxml import etree
 import xml.etree.ElementTree as ET
 from .models import Terminal, ErrorTerminal, ExistTerminal, TerminalName
@@ -149,3 +150,44 @@ def search(request, name = "", parta = ""):
 
     context['existterminals'] = ExistTerminal.objects.all()
     return render(request, 'mainpage/mainpage.html', context)
+
+def save(request):
+    root = ET.Element('VFPData')
+
+    for i in Terminal.objects.all():
+        level1 = ET.SubElement(root, 'terminals')
+        cimei = ET.SubElement(level1, 'cimei')
+        cimei.text = str(i.cimei)
+        inr = ET.SubElement(level1, 'inr')
+        inr.text = str(i.inr)
+        ctid = ET.SubElement(level1, 'ctid')
+        ctid.text = str(i.ctid)
+        cmid = ET.SubElement(level1, 'cmid')
+        cmid.text = str(i.cmid)
+        cpodr = ET.SubElement(level1, 'cpodr')
+        cpodr.text = str(i.cpodr)
+        cadres = ET.SubElement(level1, 'cadres')
+        cadres.text = str(i.cadres)
+        cgorod = ET.SubElement(level1, 'cgorod')
+        cgorod.text = str(i.cgorod)
+        cobl = ET.SubElement(level1, 'cobl')
+        cobl.text = str(i.cobl)
+        craion = ET.SubElement(level1, 'craion')
+        craion.text = str(i.craion)
+        ddatan = ET.SubElement(level1, 'ddatan')
+        ddatan.text = str(i.ddatan)
+        cname = ET.SubElement(level1, 'cname')
+        cname.text = str(i.cname)
+        cparta = ET.SubElement(level1, 'cparta')
+        cparta.text = str(i.cparta)
+        cots = ET.SubElement(level1, 'cots')
+        cots.text = str(i.cots)
+        lat = ET.SubElement(level1, 'lat')
+        lat.text = str(i.lat)
+        lng = ET.SubElement(level1, 'lng')
+        lng.text = str(i.lng)
+
+    ET.indent(root)
+    tree = ET.ElementTree(root)
+    tree.write('saveterminals.xml', xml_declaration=None, default_namespace=None, method="xml", encoding="Windows-1251") 
+    return HttpResponseRedirect('/')
