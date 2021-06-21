@@ -25,7 +25,7 @@
               </a>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                 {% for i in terminal_names %}
-                    <li><a class="dropdown-item" href="/search/?name={{i}}">{{ i }}</a></li>
+                    <li><a class="dropdown-item" href="javascript:addParam('&name={{i}}','search/?name={{i}}');">{{ i }}</a></li>
                 {% endfor %}
               </ul>
             </li>
@@ -39,7 +39,7 @@
               </a>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                 {% for i in terminal_parts %}
-                    <li><a class="dropdown-item" href="/search/?parta={{i}}">{{ i }}</a></li>
+                    <li><a class="dropdown-item" href="javascript:addParam('&parta={{i}}', 'search/?parta={{i}}');">{{ i }}</a></li>
                 {% endfor %}
               </ul>
             </li>
@@ -107,6 +107,22 @@
                 imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
               });
         }
+
+
+        function addParam(v1, v2) {
+            let url = window.location.href;
+            if (url.includes('?')) {
+               // window.location.search += v1;
+                window.location.href = url + v1;
+                console.log('v1')
+            } else {
+              //  window.location.search += v2;
+                window.location.href = url + v2;
+                console.log('v2')
+            };
+            
+        }
+
 
     </script>
 
