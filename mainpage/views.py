@@ -5,6 +5,34 @@ from .models import Terminal, ErrorTerminal, ExistTerminal, TerminalName
 import googlemaps
 
 
+def sort_terminals_parameters(context):
+    terminal_names = []
+    terminal_parts = []
+    terminal_parts_with_count = {}
+    terminal_names_with_count = {}
+
+    for i in Terminal.objects.all():
+        terminal_names.append(i.cname)
+    for i in terminal_names:
+        count = terminal_names.count(i)
+        terminal_names_with_count[i] = count
+    sort_terminal_names_with_count = sorted(terminal_names_with_count.items(), key=lambda x: x[1])
+    sort_terminal_names_with_count.reverse()
+
+    for i in Terminal.objects.all():
+        terminal_parts.append(i.cparta)
+    for i in terminal_parts:
+        count = terminal_parts.count(i)
+        terminal_parts_with_count[i] = count
+    sort_terminal_parts_with_count = sorted(terminal_parts_with_count.items(), key=lambda x: x[1])
+    sort_terminal_parts_with_count.reverse()
+
+
+    context['terminal_names'] = sort_terminal_names_with_count
+    context['terminal_parts'] = sort_terminal_parts_with_count
+
+
+
 def index(request):
     context = {}
     if len(Terminal.objects.all()) == 0: 
@@ -46,31 +74,11 @@ def index(request):
                 print('ERROR ' + str(count) + str(child[8].text))
                 count = count + 1 
 
-#        for i in terminal_names:
-#
-#            new_terminal_name = TerminalName(terminal_name = i);
-#            new_terminal_name.save()
-
-
-#    count = 0
  
     for i in ErrorTerminal.objects.all():   
         print(i.cadres)
     print('ERROR ' + str(len(ErrorTerminal.objects.all())))  
     print('OK ' + str(len(Terminal.objects.all()))) 
-
-    terminal_names = []
-    terminal_parts = []
-    for i in Terminal.objects.all():
-        if i.cname not in terminal_names:
-            terminal_names.append(i.cname)
-
-
-    for i in Terminal.objects.all():
-        if i.cparta not in terminal_parts:
-            terminal_parts.append(i.cparta)
-    context['terminal_names'] = terminal_names
-    context['terminal_parts'] = terminal_parts
 #        try:
 #        gmaps = googlemaps.Client(key='AIzaSyC_CpD9oSCYYDu92Jq8EiIGklCgyelDbiw')
 #        geocode_result = gmaps.geocode(i.cadres)
@@ -89,8 +97,15 @@ def index(request):
 #            count = count + 1
 #    print('ERROR ' + str(len(ErrorTerminal.objects.all())))  
 #    print('OK ' + str(len(Terminal.objects.all())))
+
+
+    sort_terminals_parameters(context)
     context['terminals'] = Terminal.objects.all()
     context['existterminals'] = ExistTerminal.objects.all()
+    search_name = request.GET.get("name", "")
+    search_parta = request.GET.get("parta", "")
+    context['search_name'] = search_name
+    context['search_parta'] = search_parta
     return render(request, 'mainpage/mainpage.html', context)  
 
 
@@ -118,19 +133,8 @@ def search(request, name = "", parta = ""):
             if i.cname == search_name and i.cparta == search_parta:
                 search_terminals.append(i)
 
-    terminal_names = []
-    terminal_parts = []                
-    for i in Terminal.objects.all():
-        if i.cname not in terminal_names:
-            terminal_names.append(i.cname)
 
-
-    for i in Terminal.objects.all():
-        if i.cparta not in terminal_parts:
-            terminal_parts.append(i.cparta)
-    context['terminal_names'] = terminal_names
-    context['terminal_parts'] = terminal_parts
-
+    sort_terminals_parameters(context)
     context['search_name'] = search_name
     context['search_parta'] = search_parta
 

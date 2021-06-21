@@ -24,27 +24,28 @@
                 Название терминала
               </a>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                {% for i in terminal_names %}
-                    <li><a class="dropdown-item" href="javascript:addParam('&name={{i}}','search/?name={{i}}');">{{ i }}</a></li>
+                {% for key, value in terminal_names %}
+                    <li><a class="dropdown-item" href="javascript:addParam('&name={{key}}','search/?name={{key}}');">{{ key }} : {{ value }}</a></li>
                 {% endfor %}
               </ul>
             </li>
           </ul>
-        </div>
-        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Название cparta
+                Название партнера
               </a>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                {% for i in terminal_parts %}
-                    <li><a class="dropdown-item" href="javascript:addParam('&parta={{i}}', 'search/?parta={{i}}');">{{ i }}</a></li>
+                {% for key, value in terminal_parts %}
+                    <li><a class="dropdown-item" href="javascript:addParam('&parta={{key}}', 'search/?parta={{key}}');">{{ key }} : {{ value }}</a></li>
                 {% endfor %}
               </ul>
             </li>
           </ul>
         </div>
+ 
+
+
         {% if search_name != "" or search_parta != "" %}
             <a class="btn btn-outline-danger" href="/" role="button" >Сбросить </a>
         {% endif %}
@@ -146,4 +147,6 @@
     margin: 0;
     padding: 0;
     }
+
+    .dropdown-menu { overflow-y: scroll; max-height: 350px; }
 </style>
