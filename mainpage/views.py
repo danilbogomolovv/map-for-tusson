@@ -16,22 +16,26 @@ def sort_terminals_parameters(context):
 
     for i in Terminal.objects.all():
         terminal_names.append(i.cname)
+        terminal_parts.append(i.cparta)
+        terminal_zones.append(i.zona_name)
+
+    for i in ExistTerminal.objects.all():
+        terminal_names.append(i.cname)
+        terminal_parts.append(i.cparta)
+        terminal_zones.append(i.zona_name)
+
     for i in terminal_names:
         count = terminal_names.count(i)
         terminal_names_with_count[i] = count
     sort_terminal_names_with_count = sorted(terminal_names_with_count.items(), key=lambda x: x[1])
     sort_terminal_names_with_count.reverse()
-
-    for i in Terminal.objects.all():
-        terminal_parts.append(i.cparta)
+   
     for i in terminal_parts:
         count = terminal_parts.count(i)
         terminal_parts_with_count[i] = count
     sort_terminal_parts_with_count = sorted(terminal_parts_with_count.items(), key=lambda x: x[1])
     sort_terminal_parts_with_count.reverse()
-
-    for i in Terminal.objects.all():
-        terminal_zones.append(i.zona_name)
+    
     for i in terminal_zones:
         count = terminal_zones.count(i)
         terminal_zones_with_count[i] = count
@@ -124,6 +128,7 @@ def search(request, name = "", parta = ""):
     check_p = False
     check_n = False
     check_z = False
+    check_double_param = False
     if search_name != "":
         for i  in Terminal.objects.all():
             if i.cname == search_name:
@@ -144,6 +149,7 @@ def search(request, name = "", parta = ""):
 
 
     if (check_z and check_p) or (check_p and check_n) or (check_z and check_n):
+        check_double_param = True
         for i in search_terminals:
             count = search_terminals.count(i)
             if count == 2:
@@ -161,6 +167,10 @@ def search(request, name = "", parta = ""):
             continue
         else:
             unique.append(i)
+
+    if check_double_param:
+        search_terminals = search_terminals_r
+
     if unique != []:
         search_terminals = unique
 
