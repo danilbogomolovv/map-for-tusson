@@ -25,7 +25,7 @@
               </a>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                 {% for key, value in terminal_names %}
-                    <li><a class="dropdown-item" href="javascript:addParam('{{ key }}', '');">{{ key }} : {{ value }}</a></li>
+                    <li><a class="dropdown-item" href="javascript:addParam('{{ key }}', '','');">{{ key }} : {{ value }}</a></li>
                 {% endfor %}
               </ul>
             </li>
@@ -37,7 +37,19 @@
               </a>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                 {% for key, value in terminal_parts %}
-                    <li><a class="dropdown-item" href="javascript:addParam('','{{key}}');">{{ key }} : {{ value }}</a></li>
+                    <li><a class="dropdown-item" href="javascript:addParam('','{{key}}','');">{{ key }} : {{ value }}</a></li>
+                {% endfor %}
+              </ul>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Название зоны
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                {% for key, value in terminal_zones %}
+                    <li><a class="dropdown-item" href="javascript:addParam('','','{{key}}');">{{ key }} : {{ value }}</a></li>
                 {% endfor %}
               </ul>
             </li>
@@ -46,7 +58,7 @@
  
 
 
-        {% if search_name != "" or search_parta != "" %}
+        {% if search_name != "" or search_parta != "" or search_zone != "" %}
             <a class="btn btn-outline-danger" href="javascript:clearHref();" role="button">Сбросить </a>
         {% endif %}
             <a class="btn btn-outline-success" href="save/" role="button">Сохранить</a>
@@ -112,36 +124,80 @@
 
 
 
-        function addParam(name, parta) {
+        function addParam(name, parta, zone) {
              if (name != '') {
                 localStorage.setItem('name', name);
             };
              if (parta != '') {
                 localStorage.setItem('parta', parta);
             };
+            if (zone != '') {
+                localStorage.setItem('zone', zone);
+            };
              
             let href_name = localStorage.getItem('name');
             let href_parta = localStorage.getItem('parta');
+            let href_zone = localStorage.getItem('zone');
+            window.location.href = '/search/?name=' + href_name + '&parta=' + href_parta + '&zone=' + href_zone;
 
-            if (href_parta == '' && href_name != '')  {
+/*             if (href_parta == '' && href_name != '' && href_zone == '')  {
                 window.location.href = '/search/?name=' + href_name;
             };
 
-            if (href_name == '' && href_parta != '') {
+            if (href_name == '' && href_parta != '' && href_zone == '') {
                 window.location.href = '/search/?parta=' + href_parta;
             };
-           
+
+            if (href_name == '' && href_parta == '' && href_zone != '') {
+                window.location.href = '/search/?zone=' + href_parta;
+            };  
+
             if (href_parta != '' && href_name != '') {
                 window.location.href = '/search/?name=' + href_name + '&parta=' + href_parta;
+            };*/
+
+
+
+
+/*            if (href_name != '')  {
+                if (window.location.href.match(/name\=([a-z0-9%]+)/i) != null) {
+                        var delparam = window.location.href.match(/name\=([a-z0-9%]+)/i) + '';
+                        delparam = delparam.split(',')[0];
+                        alert(delparam)
+                        window.location.replace(delparam);
+                    }
+                
+                if (window.location.href.includes('?')){
+                    window.location.href = window.location.href + '&name=' + href_name;
+                } else {
+                    window.location.href = window.location.href + 'search/?name=' + href_name;
+                }
             };
 
+            if (href_parta != '') {
+                if(window.location.href.includes('?')){
+                    window.location.href = window.location.href + '&parta=' + href_parta;
+                } else {
+                    window.location.href = window.location.href + 'search/?parta=' + href_parta;
+                }
+            };
+           
+            if (href_zone != '') {
+                if(window.location.href.includes('?')){
+                    window.location.href = window.location.href + '&zone=' + href_zone;
+                } else {
+                    window.location.href = window.location.href + 'search/?zone=' + href_zone;
+                }
+            };*/
         }
 
         function clearHref(){
             localStorage.setItem('parta', '');
             localStorage.setItem('name', '');
+            localStorage.setItem('zone', '');
             window.location.href = '/';
         }
+
 
 
     </script>

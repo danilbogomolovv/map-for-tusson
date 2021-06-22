@@ -2,15 +2,17 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from lxml import etree
 import xml.etree.ElementTree as ET
-from .models import Terminal, ErrorTerminal, ExistTerminal, TerminalName
+from .models import *
 import googlemaps
 
 
 def sort_terminals_parameters(context):
     terminal_names = []
     terminal_parts = []
+    terminal_zones = []
     terminal_parts_with_count = {}
     terminal_names_with_count = {}
+    terminal_zones_with_count = {}
 
     for i in Terminal.objects.all():
         terminal_names.append(i.cname)
@@ -28,29 +30,54 @@ def sort_terminals_parameters(context):
     sort_terminal_parts_with_count = sorted(terminal_parts_with_count.items(), key=lambda x: x[1])
     sort_terminal_parts_with_count.reverse()
 
+    for i in Terminal.objects.all():
+        terminal_zones.append(i.zona_name)
+    for i in terminal_zones:
+        count = terminal_zones.count(i)
+        terminal_zones_with_count[i] = count
+    sort_terminal_zones_with_count = sorted(terminal_zones_with_count.items(), key=lambda x: x[1])
+    sort_terminal_zones_with_count.reverse()
 
     context['terminal_names'] = sort_terminal_names_with_count
     context['terminal_parts'] = sort_terminal_parts_with_count
-
+    context['terminal_zones'] = sort_terminal_zones_with_count
 
 
 def index(request):
     context = {}
+
+    if len(Zone.objects.all()) == 0:
+        parser = ET.XMLParser(encoding="windows-1251")
+        tree = ET.parse("szonas.xml", parser = parser)
+        root = tree.getroot()
+        for child in root:
+            new_zone = Zone(zona = child[0].text, name_zona = child[1].text)
+            new_zone.save()
+            print(child[1].text)
+
+
     if len(Terminal.objects.all()) == 0: 
         count = 0
         lats = []
         lngs = []
         parser = ET.XMLParser(encoding="windows-1251")
-        tree = ET.parse("terminals4.xml", parser=parser)
+        tree = ET.parse("terminals5.xml", parser=parser)
         root = tree.getroot()
+
         for child in root:
             try:
                 gmaps = googlemaps.Client(key='AIzaSyC_CpD9oSCYYDu92Jq8EiIGklCgyelDbiw')
                 geocode_result = gmaps.geocode(child[8].text)
+
+                for i in Zone.objects.all():
+                    if child[13].text == i.zona:
+                        zona_name = i.name_zona
+
                 if geocode_result[0]['geometry']['location']['lat'] not in lats and geocode_result[0]['geometry']['location']['lng'] not in lngs:
                     new_terminal = Terminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
                                             cobl = child[5].text, craion = child[6].text, cgorod = child[7].text, cadres = child[8].text,
                                             ddatan = child[9].text, cname = child[10].text, cparta = child[11].text, cots = child[12].text,
+                                            czona = child[13].text, zona_name = zona_name,
                                             lat = geocode_result[0]['geometry']['location']['lat'],
                                             lng = geocode_result[0]['geometry']['location']['lng'])
                     new_terminal.save()
@@ -62,7 +89,8 @@ def index(request):
                 else:
                     new_exist_terminal = ExistTerminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
                                             cobl = child[5].text, craion = child[6].text, cgorod = child[7].text, cadres = child[8].text,
-                                            ddatan = child[9].text, cname = child[10].text, cparta = child[11].text, cots = child[12].text)
+                                            ddatan = child[9].text, cname = child[10].text, cparta = child[11].text, cots = child[12].text,
+                                            czona = child[13].text, zona_name = zona_name)
                     new_exist_terminal.save()   
                     print('EXIST ' + str(count) + str(child[8].text))
                     count = count + 1 
@@ -70,35 +98,11 @@ def index(request):
             except Exception as e:
                 new_error_terminal = ErrorTerminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
                                         cobl = child[5].text, craion = child[6].text, cgorod = child[7].text, cadres = child[8].text,
-                                        ddatan = child[9].text, cname = child[10].text, cparta = child[11].text, cots = child[12].text)  
+                                        ddatan = child[9].text, cname = child[10].text, cparta = child[11].text, cots = child[12].text,
+                                        czona = child[13].text, zona_name = zona_name)  
                 new_error_terminal.save() 
                 print('ERROR ' + str(count) + str(child[8].text))
                 count = count + 1 
-
- 
-#    for i in ErrorTerminal.objects.all():   
-#        print(i.cadres)
-#    print('ERROR ' + str(len(ErrorTerminal.objects.all())))  
-#    print('OK ' + str(len(Terminal.objects.all()))) 
-#        try:
-#        gmaps = googlemaps.Client(key='AIzaSyC_CpD9oSCYYDu92Jq8EiIGklCgyelDbiw')
-#        geocode_result = gmaps.geocode(i.cadres)
-#        if geocode_result != []:
-#            new_terminal = Terminal(cimei = i.cimei, inr = i.inr, ctid = i.ctid, cmid = i.cmid, cpodr = i.cpodr,
-#                                    cadres = i.cadres, cgorod = i.cgorod, cobl = i.cobl, craion = i.craion,
-#                                    ddatan = i.ddatan, cname = i.cname, lat = geocode_result[0]['geometry']['location']['lat'],
-#                                    lng = geocode_result[0]['geometry']['location']['lng'])
-#            new_terminal.save()
-#            print('OK ' + str(count))
-#            count = count + 1
-#            i.delete()
-#        except Exception as e:
-#        else:
-#            print('ERROR ' + str(count))
-#            count = count + 1
-#    print('ERROR ' + str(len(ErrorTerminal.objects.all())))  
-#    print('OK ' + str(len(Terminal.objects.all())))
-
 
     sort_terminals_parameters(context)
     context['terminals'] = Terminal.objects.all()
@@ -112,42 +116,59 @@ def index(request):
 
 def search(request, name = "", parta = ""):
     context = {}
-
-    search_name_terminals = []
-    search_parta_terminals = []
     search_terminals = []
+    search_terminals_r = []
     search_name = request.GET.get("name", "")
     search_parta = request.GET.get("parta", "")
-
+    search_zone = request.GET.get("zone", "")
+    check_p = False
+    check_n = False
+    check_z = False
     if search_name != "":
         for i  in Terminal.objects.all():
             if i.cname == search_name:
-                search_name_terminals.append(i)
+                search_terminals.append(i)
+                check_n = True
                 
     if search_parta != "":
         for i in Terminal.objects.all():
             if i.cparta == search_parta:
-                search_parta_terminals.append(i)
-
-    if search_name != "" and search_parta != "":
-        for i in Terminal.objects.all():
-            if i.cname == search_name and i.cparta == search_parta:
                 search_terminals.append(i)
+                check_p = True
 
+    if search_zone != "":
+        for i in Terminal.objects.all():
+            if i.zona_name == search_zone:
+                search_terminals.append(i)
+                check_z = True
+
+
+    if (check_z and check_p) or (check_p and check_n) or (check_z and check_n):
+        for i in search_terminals:
+            count = search_terminals.count(i)
+            if count == 2:
+                search_terminals_r.append(i)
+
+    if check_n and check_z and check_p:
+        search_terminals_r = []
+        for i in search_terminals:
+            count = search_terminals.count(i)
+            if count == 3:
+                search_terminals_r.append(i)
+    unique = []
+    for i in search_terminals_r:
+        if i in unique:
+            continue
+        else:
+            unique.append(i)
+    if unique != []:
+        search_terminals = unique
 
     sort_terminals_parameters(context)
     context['search_name'] = search_name
     context['search_parta'] = search_parta
-
-    if search_name == "" and search_parta == "":
-        context['terminals'] = Terminal.objects.all()
-    elif search_name != "" and search_parta == "":
-        context['terminals'] = search_name_terminals
-    elif search_parta != "" and search_name == "":
-        context['terminals'] = search_parta_terminals
-    elif search_parta != "" and search_name != "":
-        context['terminals'] = search_terminals
-
+    context['search_zone'] = search_zone
+    context['terminals'] = search_terminals
     context['existterminals'] = ExistTerminal.objects.all()
     return render(request, 'mainpage/mainpage.html', context)
 
@@ -191,3 +212,39 @@ def save(request):
     tree = ET.ElementTree(root)
     tree.write('saveterminals.xml', xml_declaration=None, default_namespace=None, method="xml", encoding="Windows-1251") 
     return HttpResponseRedirect('/')
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+#    for i in ErrorTerminal.objects.all():   
+#        print(i.cadres)
+#    print('ERROR ' + str(len(ErrorTerminal.objects.all())))  
+#    print('OK ' + str(len(Terminal.objects.all()))) 
+#        try:
+#        gmaps = googlemaps.Client(key='AIzaSyC_CpD9oSCYYDu92Jq8EiIGklCgyelDbiw')
+#        geocode_result = gmaps.geocode(i.cadres)
+#        if geocode_result != []:
+#            new_terminal = Terminal(cimei = i.cimei, inr = i.inr, ctid = i.ctid, cmid = i.cmid, cpodr = i.cpodr,
+#                                    cadres = i.cadres, cgorod = i.cgorod, cobl = i.cobl, craion = i.craion,
+#                                    ddatan = i.ddatan, cname = i.cname, lat = geocode_result[0]['geometry']['location']['lat'],
+#                                    lng = geocode_result[0]['geometry']['location']['lng'])
+#            new_terminal.save()
+#            print('OK ' + str(count))
+#            count = count + 1
+#            i.delete()
+#        except Exception as e:
+#        else:
+#            print('ERROR ' + str(count))
+#            count = count + 1
+#    print('ERROR ' + str(len(ErrorTerminal.objects.all())))  
+#    print('OK ' + str(len(Terminal.objects.all())))

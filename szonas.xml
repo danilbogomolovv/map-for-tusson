@@ -1,0 +1,63 @@
+<?xml version = "1.0" encoding="Windows-1251" standalone="yes"?>
+<VFPData>
+	<szonas>
+		<czona>10</czona>
+		<cname_zona>Минский филиал</cname_zona>
+	</szonas>
+	<szonas>
+		<czona>20</czona>
+		<cname_zona>Брестский филиал</cname_zona>
+	</szonas>
+	<szonas>
+		<czona>30</czona>
+		<cname_zona>Витебский филиал</cname_zona>
+	</szonas>
+	<szonas>
+		<czona>40</czona>
+		<cname_zona>Могилевский филиал</cname_zona>
+	</szonas>
+	<szonas>
+		<czona>50</czona>
+		<cname_zona>Гомельский филиал</cname_zona>
+	</szonas>
+	<szonas>
+		<czona>60</czona>
+		<cname_zona>Гродненский филиал</cname_zona>
+	</szonas>
+	<szonas>
+		<czona>70</czona>
+		<cname_zona>Пинский филиал</cname_zona>
+	</szonas>
+	<szonas>
+		<czona>80</czona>
+		<cname_zona>Мозырьский филиал</cname_zona>
+	</szonas>
+	<szonas>
+		<czona>90</czona>
+		<cname_zona>Браславский филиал</cname_zona>
+	</szonas>
+	<szonas>
+		<czona>95</czona>
+		<cname_zona>Бобруйский филиал</cname_zona>
+	</szonas>
+	<szonas>
+		<czona>11</czona>
+		<cname_zona>Барановичский филиал</cname_zona>
+	</szonas>
+	<szonas>
+		<czona>12</czona>
+		<cname_zona>Молодечненский филиал</cname_zona>
+	</szonas>
+	<szonas>
+		<czona>13</czona>
+		<cname_zona>Борисовский филиал</cname_zona>
+	</szonas>
+	<szonas>
+		<czona>71</czona>
+		<cname_zona>Пинский филиал (Дрогичин)</cname_zona>
+	</szonas>
+	<szonas>
+		<czona>14</czona>
+		<cname_zona>Слуцкий филиал</cname_zona>
+	</szonas>
+</VFPData>
