@@ -76,10 +76,10 @@ def index(request):
                 count = count + 1 
 
  
-    for i in ErrorTerminal.objects.all():   
-        print(i.cadres)
-    print('ERROR ' + str(len(ErrorTerminal.objects.all())))  
-    print('OK ' + str(len(Terminal.objects.all()))) 
+#    for i in ErrorTerminal.objects.all():   
+#        print(i.cadres)
+#    print('ERROR ' + str(len(ErrorTerminal.objects.all())))  
+#    print('OK ' + str(len(Terminal.objects.all()))) 
 #        try:
 #        gmaps = googlemaps.Client(key='AIzaSyC_CpD9oSCYYDu92Jq8EiIGklCgyelDbiw')
 #        geocode_result = gmaps.geocode(i.cadres)

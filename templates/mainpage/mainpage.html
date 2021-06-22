@@ -25,7 +25,7 @@
               </a>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                 {% for key, value in terminal_names %}
-                    <li><a class="dropdown-item" href="javascript:addParamName('&name={{key}}','search/?name={{key}}', '{{key}}','{{value}}');">{{ key }} : {{ value }}</a></li>
+                    <li><a class="dropdown-item" href="javascript:addParam('{{ key }}', '');">{{ key }} : {{ value }}</a></li>
                 {% endfor %}
               </ul>
             </li>
@@ -37,7 +37,7 @@
               </a>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                 {% for key, value in terminal_parts %}
-                    <li><a class="dropdown-item" href="javascript:addParamParta('&parta={{key}}', 'search/?parta={{key}}');">{{ key }} : {{ value }}</a></li>
+                    <li><a class="dropdown-item" href="javascript:addParam('','{{key}}');">{{ key }} : {{ value }}</a></li>
                 {% endfor %}
               </ul>
             </li>
@@ -47,7 +47,7 @@
 
 
         {% if search_name != "" or search_parta != "" %}
-            <a class="btn btn-outline-danger" href="/" role="button" >Сбросить </a>
+            <a class="btn btn-outline-danger" href="javascript:clearHref();" role="button">Сбросить </a>
         {% endif %}
             <a class="btn btn-outline-success" href="save/" role="button">Сохранить</a>
       </div>
@@ -111,30 +111,36 @@
         }
 
 
-        function addParamName(v1, v2, key, value) {
-            let url = window.location.href;
-            if (url.includes('?')) {
-                window.location.href = url + v1;
-            } else {
-                window.location.href = url + v2;
+
+        function addParam(name, parta) {
+             if (name != '') {
+                localStorage.setItem('name', name);
+            };
+             if (parta != '') {
+                localStorage.setItem('parta', parta);
+            };
+             
+            let href_name = localStorage.getItem('name');
+            let href_parta = localStorage.getItem('parta');
+
+            if (href_parta == '' && href_name != '')  {
+                window.location.href = '/search/?name=' + href_name;
             };
 
-//            var search_params = url.searchParams;
-//            search_params.set('name', key);
- //           url.search = search_params.toString();
-//            var new_url = url.toString();
-//            console.log(new_url)
-//            window.location.href = new_url;
+            if (href_name == '' && href_parta != '') {
+                window.location.href = '/search/?parta=' + href_parta;
+            };
+           
+            if (href_parta != '' && href_name != '') {
+                window.location.href = '/search/?name=' + href_name + '&parta=' + href_parta;
+            };
+
         }
 
-        function addParamParta(v1, v2) {
-            let url = window.location.href;
-            if (url.includes('?')) {
-                window.location.href = url + v1;
-            } else {
-                window.location.href = url + v2;
-            };
-            
+        function clearHref(){
+            localStorage.setItem('parta', '');
+            localStorage.setItem('name', '');
+            window.location.href = '/';
         }
 
 
