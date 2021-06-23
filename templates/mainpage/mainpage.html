@@ -9,7 +9,7 @@
     </head>
 
     <body>
-
+        {{ count_search_terminals }}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="z-index: 4">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">Tusson</a>
@@ -84,7 +84,7 @@
                     var marker = new google.maps.Marker({
                         map : map,
                         position : {lat: parseFloat('{{ i.lat }}'), lng: parseFloat('{{ i.lng }}')},
-                        title : '{{ i.cparta }}'
+                        title : '{{ i.cparta }}, {{ i.zona_name }}'
                     });
                     markers.push(marker);
 
@@ -93,8 +93,8 @@
 
                     {% for j in existterminals %}
 
-                        {% if i.cadres == j.cadres %}
-                            infolist.push(" <p> " + "{{ j.ctid }}" + " </p> " + "{{ j.cname }}" + "<br> _________________________________");
+                        {% if i.lat == j.lat and i.lng == j.lng %}
+                            infolist.push(" <p> " + "{{ j.ctid }}" + " </p> " + "{{j.cadres}}" + "<br>" + "{{ j.cname }}" + "<br> _________________________________");
                         {% endif %}
 
                     {% endfor %}
@@ -120,6 +120,8 @@
                 gridSize: 25,
                 imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
               });
+
+            //alert(markers.length);
         }
 
 

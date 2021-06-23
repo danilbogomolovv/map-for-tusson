@@ -39,6 +39,7 @@ class ErrorTerminal(models.Model):
 	zona_name = models.CharField(max_length = 50, null = True)
 
 
+
 class ExistTerminal(models.Model):
 	cimei = models.CharField(max_length = 50, null = True)
 	inr = models.CharField(max_length = 50, null = True)
@@ -55,6 +56,8 @@ class ExistTerminal(models.Model):
 	cots = models.CharField(max_length = 50, null = True)
 	czona = models.CharField(max_length = 50, null = True)
 	zona_name = models.CharField(max_length = 50, null = True)
+	lat = models.CharField(max_length = 30, null = True)
+	lng = models.CharField(max_length = 30, null = True)
 
 class TerminalName(models.Model):
 	terminal_name = models.CharField(max_length = 70, null = True)

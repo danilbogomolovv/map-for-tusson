@@ -62,6 +62,7 @@ def index(request):
 
     if len(Terminal.objects.all()) == 0: 
         count = 0
+        count_zone = 0
         lats = []
         lngs = []
         parser = ET.XMLParser(encoding="windows-1251")
@@ -89,21 +90,29 @@ def index(request):
                     lngs.append(geocode_result[0]['geometry']['location']['lng'])
 
                     print('OK ' + str(count) + str(child[8].text))
+                    if child[13].text == '10':
+                        count_zone = count_zone + 1
+                        print(count_zone)
                     count = count + 1
                 else:
                     new_exist_terminal = ExistTerminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
                                             cobl = child[5].text, craion = child[6].text, cgorod = child[7].text, cadres = child[8].text,
                                             ddatan = child[9].text, cname = child[10].text, cparta = child[11].text, cots = child[12].text,
-                                            czona = child[13].text, zona_name = zona_name)
+                                            czona = child[13].text, zona_name = zona_name,
+                                            lat = geocode_result[0]['geometry']['location']['lat'],
+                                            lng = geocode_result[0]['geometry']['location']['lng'])
                     new_exist_terminal.save()   
                     print('EXIST ' + str(count) + str(child[8].text))
                     count = count + 1 
+                    if child[13].text == '10':
+                        count_zone = count_zone + 1
+                        print(count_zone)
 
             except Exception as e:
                 new_error_terminal = ErrorTerminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
                                         cobl = child[5].text, craion = child[6].text, cgorod = child[7].text, cadres = child[8].text,
                                         ddatan = child[9].text, cname = child[10].text, cparta = child[11].text, cots = child[12].text,
-                                        czona = child[13].text, zona_name = zona_name)  
+                                        czona = child[13].text, zona_name = zona_name)
                 new_error_terminal.save() 
                 print('ERROR ' + str(count) + str(child[8].text))
                 count = count + 1 
@@ -115,6 +124,7 @@ def index(request):
     search_parta = request.GET.get("parta", "")
     context['search_name'] = search_name
     context['search_parta'] = search_parta
+    print(len(ExistTerminal.objects.all()))
     return render(request, 'mainpage/mainpage.html', context)  
 
 
@@ -147,7 +157,6 @@ def search(request, name = "", parta = ""):
                 search_terminals.append(i)
                 check_z = True
 
-
     if (check_z and check_p) or (check_p and check_n) or (check_z and check_n):
         check_double_param = True
         for i in search_terminals:
@@ -174,7 +183,16 @@ def search(request, name = "", parta = ""):
     if unique != []:
         search_terminals = unique
 
+    count_search_terminals = len(search_terminals)
+    for i in ExistTerminal.objects.all():
+        for j in search_terminals:
+            if j.lat == i.lat and j.lng == i.lng:
+                count_search_terminals = count_search_terminals + 1
+
+
+
     sort_terminals_parameters(context)
+    context['count_search_terminals'] = count_search_terminals
     context['search_name'] = search_name
     context['search_parta'] = search_parta
     context['search_zone'] = search_zone
