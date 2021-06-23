@@ -10,6 +10,15 @@
 
     <body>
         {{ count_search_terminals }}
+        {% if display == 'none' %}
+        <div class="test" style="display: none;">
+        {% endif %}
+        {% if display == 'block' %}
+        <div class="test" style="display: block;'">
+        {% endif %}
+            <p>test</p>
+
+        </div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="z-index: 4">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">Tusson</a>
