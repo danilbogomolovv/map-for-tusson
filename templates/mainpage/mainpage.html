@@ -9,16 +9,8 @@
     </head>
 
     <body>
-        {{ count_search_terminals }}
-        {% if display == 'none' %}
-        <div class="test" style="display: none;">
-        {% endif %}
-        {% if display == 'block' %}
-        <div class="test" style="display: block;'">
-        {% endif %}
-            <p>test</p>
+        
 
-        </div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="z-index: 4">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">Tusson</a>
@@ -67,12 +59,23 @@
  
 
 
-        {% if search_name != "" or search_parta != "" or search_zone != "" %}
+<!--        {% if search_name != "" or search_parta != "" or search_zone != "" %}
             <a class="btn btn-outline-danger" href="javascript:clearHref();" role="button">Сбросить </a>
-        {% endif %}
+        {% endif %} -->
             <a class="btn btn-outline-success" href="save/" role="button">Сохранить</a>
       </div>
     </nav>
+
+    {% if display == 'none' %}
+    <div class="search_info" style="display: none;">
+    {% endif %}
+    {% if display == 'block' %}
+    <div class="search_info" style="display: block;'">
+    {% endif %}
+
+        <p>Количество найденных терминалов : {{ count_search_terminals }}</p>
+        <a class="btn btn-outline-danger" href="javascript:clearHref();" role="button">Сбросить </a>
+    </div>
 
     <div id="map" style="z-index: 0"></div>
 
@@ -224,7 +227,7 @@
 <style type="text/css">
     #map {
     height: 94%;
-    
+    z-index: 4;
     }
 
     html,
@@ -232,6 +235,16 @@
     height: 100%;
     margin: 0;
     padding: 0;
+    }
+
+    .search_info {
+        z-index: 5;
+        position: absolute;
+        height: 100%;
+        width: 30%;
+        background: white;
+        right: 0;
+        border: 1px solid black; 
     }
 
     .dropdown-menu { overflow-y: scroll; max-height: 350px; }
