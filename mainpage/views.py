@@ -19,11 +19,6 @@ def sort_terminals_parameters(context):
         terminal_parts.append(i.cparta)
         terminal_zones.append(i.zona_name)
 
-#    for i in ExistTerminal.objects.all():
-#        terminal_names.append(i.cname)
-#        terminal_parts.append(i.cparta)
-#        terminal_zones.append(i.zona_name)
-
     for i in terminal_names:
         count = terminal_names.count(i)
         terminal_names_with_count[i] = count
@@ -112,7 +107,7 @@ def index(request):
                 count = count + 1 
 
     sort_terminals_parameters(context)
-    context['terminals'] = Terminal.objects.filter(exist = 'false')
+    context['terminals'] = Terminal.objects.all()
     context['display'] = 'none'
     context['existterminals'] = Terminal.objects.filter(exist = 'true')
     search_name = request.GET.get("name", "")
@@ -146,61 +141,15 @@ def search(request, name = "", parta = ""):
     if search_parta != "" and search_name != "" and search_zone != "":
         search_terminals = Terminal.objects.filter(cname = search_name, cparta = search_parta, zona_name = search_zone)
 
-#    check_p = False
-#    check_n = False
-#    check_z = False
-#    check_double_param = False
-#    if search_name != "":
-#        for i  in Terminal.objects.all():
-#            if i.cname == search_name:
-#                search_terminals.append(i)
-#                check_n = True
-#                
-#    if search_parta != "":
-#        for i in Terminal.objects.all():
-#            if i.cparta == search_parta:
-#                search_terminals.append(i)
-#                check_p = True
-#
-#    if search_zone != "":
-#        for i in Terminal.objects.all():
-#            if i.zona_name == search_zone:
-#                search_terminals.append(i)
-#                check_z = True
-
-#    if (check_z and check_p) or (check_p and check_n) or (check_z and check_n):
-#        check_double_param = True
-#        for i in search_terminals:
-#            count = search_terminals.count(i)
-#            if count == 2:
-#                search_terminals_r.append(i)
-#
-  #  if check_n and check_z and check_p:
- #       search_terminals_r = []
- #       for i in search_terminals:
- #           count = search_terminals.count(i)
- #           if count == 3:
- #               search_terminals_r.append(i)
- #   unique = []
- #   for i in search_terminals_r:
- #       if i in unique:
-#            continue
-#        else:
-#            unique.append(i)
-#
-#    if check_double_param:
-#        search_terminals = search_terminals_r
-#
-#    if unique != []:
-#        search_terminals = unique
-#
     count_search_terminals = len(search_terminals)
-#    for i in ExistTerminal.objects.all():
-#        for j in search_terminals:
-#            if j.lat == i.lat and j.lng == i.lng:
-#                count_search_terminals = count_search_terminals + 1
+    search_terminals_exist = []
+    search_terminals_not_exist = []
 
-
+    for i in search_terminals:
+        if i.exist == 'false':
+            search_terminals_not_exist.append(i)
+        elif i.exist == 'true':
+            search_terminals_exist.append(i)
 
     sort_terminals_parameters(context)
     context['count_search_terminals'] = count_search_terminals
@@ -209,7 +158,7 @@ def search(request, name = "", parta = ""):
     context['search_parta'] = search_parta
     context['search_zone'] = search_zone
     context['terminals'] = search_terminals
-    context['existterminals'] = Terminal.objects.filter(exist = 'true')
+    context['existterminals'] = search_terminals_exist
     return render(request, 'mainpage/mainpage.html', context)
 
 def save(request):

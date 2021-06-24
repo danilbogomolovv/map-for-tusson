@@ -56,12 +56,6 @@
             </li>
           </ul>
         </div>
- 
-
-
-<!--        {% if search_name != "" or search_parta != "" or search_zone != "" %}
-            <a class="btn btn-outline-danger" href="javascript:clearHref();" role="button">Сбросить </a>
-        {% endif %} -->
             <a class="btn btn-outline-success" href="save/" role="button">Сохранить</a>
       </div>
     </nav>
@@ -82,6 +76,8 @@
     <script type="text/javascript">
         let map;
         var markers = [];
+        var lats = [];
+        var lngs = [];
         function initMap() {
             map = new google.maps.Map(document.getElementById("map"), {
             center: { lat: 53.904789501846196, lng: 27.553534868069242 },
@@ -89,53 +85,57 @@
         });
 
             {% for i in terminals %}
+                    var check_lat = {{i.lat}};
 
-               // {% if i.lat != 'exist' and i.lng != 'exist' %}
+                    var check_lng = {{i.lng}};
 
-                    var infoWindow = new google.maps.InfoWindow();
-                    var marker = new google.maps.Marker({
-                        map : map,
-                        position : {lat: parseFloat('{{ i.lat }}'), lng: parseFloat('{{ i.lng }}')},
-                        title : '{{ i.cparta }}, {{ i.zona_name }}'
-                    });
-                    markers.push(marker);
-
-                    var infolist = ["<p> " + "{{ i.ctid }}" + " </p> " + "{{ i.cname }}" + "<br> _________________________________"];
-                    var cadres = "{{ i.cadres }}";
-
-                    {% for j in existterminals %}
-
-                        {% if i.lat == j.lat and i.lng == j.lng %}
-                            infolist.push(" <p> " + "{{ j.ctid }}" + " </p> " + "{{j.cadres}}" + "<br>" + "{{ j.cname }}" + "<br> _________________________________");
-                        {% endif %}
-
-                    {% endfor %}
-
-                    var countterminals = infolist.length;
-
-                    (function (marker, cadres, infolist, countterminals) {
-                        google.maps.event.addListener(marker, "click", function (e) {
-                            infoWindow.setContent("<div style = 'width:250px;min-height:60px'>" + 
-                                '<p> Количество териналов: ' + countterminals + '</p> ' + 
-                                cadres + '<br> _________________________________' + 
-                                infolist.join(' ') +
-                                "</div>");
-                            infoWindow.open(map, marker);
+                    if (lats.includes(check_lat) && lngs.includes(check_lng)) {
+                        console.log('include');
+                    } else {
+                        var infoWindow = new google.maps.InfoWindow();
+                        var marker = new google.maps.Marker({
+                            map : map,
+                            position : {lat: parseFloat('{{ i.lat }}'), lng: parseFloat('{{ i.lng }}')},
+                            title : '{{ i.cparta }}, {{ i.zona_name }}'
                         });
-                        })(marker, cadres, infolist, countterminals);
-                        
-             //   {% endif %}
+                        markers.push(marker);
+                        lats.push(marker.getPosition().lat())
+                        lngs.push(marker.getPosition().lng())
+
+                        var infolist = [];
+                        var cadres = "{{ i.cadres }}";
+
+                        {% for j in terminals %}
+
+                            {% if i.lat == j.lat and i.lng == j.lng %}
+                                infolist.push(" <p> " + "{{ j.ctid }}" + " </p> " + "{{j.cparta}}" + "<br>" + "{{j.cadres}}" + "<br>" + "{{ j.cname }}" + "<br> _________________________________");
+                            {% endif %}
+
+                        {% endfor %}
+
+                        var countterminals = infolist.length;
+
+                        (function (marker, cadres, infolist, countterminals) {
+                            google.maps.event.addListener(marker, "click", function (e) {
+                                infoWindow.setContent("<div style = 'width:250px;min-height:60px'>" + 
+                                    '<p> Количество териналов: ' + countterminals + '</p> ' + 
+                                    cadres + '<br> _________________________________' + 
+                                    infolist.join(' ') +
+                                    "</div>");
+                                infoWindow.open(map, marker);
+                            });
+                            })(marker, cadres, infolist, countterminals);
+                    }
 
             {% endfor %}
+
+
 
             new MarkerClusterer(map, markers, {
                 gridSize: 25,
                 imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
               });
-
-            //alert(markers.length);
         }
-
 
 
         function addParam(name, parta, zone) {
@@ -153,56 +153,6 @@
             let href_parta = localStorage.getItem('parta');
             let href_zone = localStorage.getItem('zone');
             window.location.href = '/search/?name=' + href_name + '&parta=' + href_parta + '&zone=' + href_zone;
-
-/*             if (href_parta == '' && href_name != '' && href_zone == '')  {
-                window.location.href = '/search/?name=' + href_name;
-            };
-
-            if (href_name == '' && href_parta != '' && href_zone == '') {
-                window.location.href = '/search/?parta=' + href_parta;
-            };
-
-            if (href_name == '' && href_parta == '' && href_zone != '') {
-                window.location.href = '/search/?zone=' + href_parta;
-            };  
-
-            if (href_parta != '' && href_name != '') {
-                window.location.href = '/search/?name=' + href_name + '&parta=' + href_parta;
-            };*/
-
-
-
-
-/*            if (href_name != '')  {
-                if (window.location.href.match(/name\=([a-z0-9%]+)/i) != null) {
-                        var delparam = window.location.href.match(/name\=([a-z0-9%]+)/i) + '';
-                        delparam = delparam.split(',')[0];
-                        alert(delparam)
-                        window.location.replace(delparam);
-                    }
-                
-                if (window.location.href.includes('?')){
-                    window.location.href = window.location.href + '&name=' + href_name;
-                } else {
-                    window.location.href = window.location.href + 'search/?name=' + href_name;
-                }
-            };
-
-            if (href_parta != '') {
-                if(window.location.href.includes('?')){
-                    window.location.href = window.location.href + '&parta=' + href_parta;
-                } else {
-                    window.location.href = window.location.href + 'search/?parta=' + href_parta;
-                }
-            };
-           
-            if (href_zone != '') {
-                if(window.location.href.includes('?')){
-                    window.location.href = window.location.href + '&zone=' + href_zone;
-                } else {
-                    window.location.href = window.location.href + 'search/?zone=' + href_zone;
-                }
-            };*/
         }
 
         function clearHref(){
@@ -211,8 +161,6 @@
             localStorage.setItem('zone', '');
             window.location.href = '/';
         }
-
-
 
     </script>
 
