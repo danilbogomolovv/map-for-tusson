@@ -109,11 +109,12 @@ def index(request):
     sort_terminals_parameters(context)
     context['terminals'] = Terminal.objects.all()
     context['display'] = 'none'
-    context['existterminals'] = Terminal.objects.filter(exist = 'true')
     search_name = request.GET.get("name", "")
     search_parta = request.GET.get("parta", "")
+    search_zone = request.GET.get("zone", "")
     context['search_name'] = search_name
     context['search_parta'] = search_parta
+    context['search_zone'] = search_zone
     return render(request, 'mainpage/mainpage.html', context)  
 
 
@@ -142,14 +143,40 @@ def search(request, name = "", parta = ""):
         search_terminals = Terminal.objects.filter(cname = search_name, cparta = search_parta, zona_name = search_zone)
 
     count_search_terminals = len(search_terminals)
-    search_terminals_exist = []
-    search_terminals_not_exist = []
+
+    terminal_names = []
+    terminal_parts = []
+    terminal_zones = []
+    terminal_parts_with_count = {}
+    terminal_names_with_count = {}
+    terminal_zones_with_count = {}
 
     for i in search_terminals:
-        if i.exist == 'false':
-            search_terminals_not_exist.append(i)
-        elif i.exist == 'true':
-            search_terminals_exist.append(i)
+        terminal_names.append(i.cname)
+        terminal_parts.append(i.cparta)
+        terminal_zones.append(i.zona_name)
+
+    for i in terminal_names:
+        count = terminal_names.count(i)
+        terminal_names_with_count[i] = count
+    sort_terminal_names_with_count = sorted(terminal_names_with_count.items(), key=lambda x: x[1])
+    sort_terminal_names_with_count.reverse()
+   
+    for i in terminal_parts:
+        count = terminal_parts.count(i)
+        terminal_parts_with_count[i] = count
+    sort_terminal_parts_with_count = sorted(terminal_parts_with_count.items(), key=lambda x: x[1])
+    sort_terminal_parts_with_count.reverse()
+    
+    for i in terminal_zones:
+        count = terminal_zones.count(i)
+        terminal_zones_with_count[i] = count
+    sort_terminal_zones_with_count = sorted(terminal_zones_with_count.items(), key=lambda x: x[1])
+    sort_terminal_zones_with_count.reverse()
+
+    context['search_terminal_names'] = sort_terminal_names_with_count
+    context['search_terminal_parts'] = sort_terminal_parts_with_count
+    context['search_terminal_zones'] = sort_terminal_zones_with_count
 
     sort_terminals_parameters(context)
     context['count_search_terminals'] = count_search_terminals
@@ -158,7 +185,6 @@ def search(request, name = "", parta = ""):
     context['search_parta'] = search_parta
     context['search_zone'] = search_zone
     context['terminals'] = search_terminals
-    context['existterminals'] = search_terminals_exist
     return render(request, 'mainpage/mainpage.html', context)
 
 def save(request):

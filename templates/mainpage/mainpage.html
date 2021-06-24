@@ -22,7 +22,11 @@
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Название терминала
+                {% if search_name == "" %}
+                    Название терминала
+                {% else %}
+                    {{search_name}}
+                {% endif %} 
               </a>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                 {% for key, value in terminal_names %}
@@ -34,7 +38,11 @@
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Название партнера
+                {% if search_parta == "" %}
+                    Название партнера
+                {% else %}
+                    {{ search_parta }}
+                {% endif %}
               </a>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                 {% for key, value in terminal_parts %}
@@ -46,7 +54,11 @@
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Название зоны
+                {% if search_zone == "" %}
+                    Название зоны
+                {% else %}
+                    {{ search_zone }}
+                {% endif %}
               </a>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                 {% for key, value in terminal_zones %}
@@ -67,8 +79,39 @@
     <div class="search_info" style="display: block;'">
     {% endif %}
 
-        <p>Количество найденных терминалов : {{ count_search_terminals }}</p>
-        <a class="btn btn-outline-danger" href="javascript:clearHref();" role="button">Сбросить </a>
+        
+        <a class="btn btn-outline-danger" href="javascript:clearHref();" role="button" style="float: right;">Сбросить </a>
+        <h5>Количество найденных терминалов : {{ count_search_terminals }}</h5>
+        {% if search_name == "" %}
+            <div class="serch_name" style="height: 150px; border: 1px solid black; overflow-y: auto;">
+                <h5>Инормация о названиях найденных терминалов</h5>
+                <ul>
+                    {% for key, value in search_terminal_names %}
+                        <li>{{ key }} : {{ value }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        {% if search_parta == "" %}
+            <div class="search_parta" style="height: 270px; border: 1px solid black; overflow-y: auto;">
+                <h5>Информация о партнерах найденных терминалов</h5>
+                <ul>
+                    {% for key, value in search_terminal_parts %}
+                        <li>{{ key }} : {{ value }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        {% if search_zone == "" %}
+            <div class="search_zone" style="height: 150px; border: 1px solid black; overflow-y: auto;">
+                <h5>Информация о зонах найденных терминалов</h5>
+                <ul>
+                    {% for key, value in search_terminal_zones %}
+                        <li>{{ key }} : {{ value }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
     </div>
 
     <div id="map" style="z-index: 0"></div>
@@ -103,7 +146,6 @@
                         lngs.push(marker.getPosition().lng())
 
                         var infolist = [];
-                        var cadres = "{{ i.cadres }}";
 
                         {% for j in terminals %}
 
@@ -115,16 +157,16 @@
 
                         var countterminals = infolist.length;
 
-                        (function (marker, cadres, infolist, countterminals) {
+                        (function (marker, infolist, countterminals) {
                             google.maps.event.addListener(marker, "click", function (e) {
                                 infoWindow.setContent("<div style = 'width:250px;min-height:60px'>" + 
                                     '<p> Количество териналов: ' + countterminals + '</p> ' + 
-                                    cadres + '<br> _________________________________' + 
+                                    '_________________________________' + 
                                     infolist.join(' ') +
                                     "</div>");
                                 infoWindow.open(map, marker);
                             });
-                            })(marker, cadres, infolist, countterminals);
+                            })(marker, infolist, countterminals);
                     }
 
             {% endfor %}
@@ -174,7 +216,7 @@
 
 <style type="text/css">
     #map {
-    height: 94%;
+    height: 90%;
     z-index: 4;
     }
 
@@ -188,7 +230,7 @@
     .search_info {
         z-index: 5;
         position: absolute;
-        height: 100%;
+        height: 90%;
         width: 30%;
         background: white;
         right: 0;
