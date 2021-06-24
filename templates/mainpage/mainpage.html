@@ -194,11 +194,10 @@
             if (zone != '') {
                 localStorage.setItem('zone', zone);
             };
-            //var re = [\+]*;
-            let href_name = localStorage.getItem('name');
-            let href_parta = localStorage.getItem('parta');
-            let href_zone = localStorage.getItem('zone');
-            //let new_href_parta = href_parta.replace(re, '%2B');
+
+            let href_name = encodeURIComponent(localStorage.getItem('name'));
+            let href_parta = encodeURIComponent(localStorage.getItem('parta'));
+            let href_zone = encodeURIComponent(localStorage.getItem('zone');
             window.location.href = '/search/?name=' + href_name + '&parta=' + href_parta + '&zone=' + href_zone;
         }
 
