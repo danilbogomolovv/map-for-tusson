@@ -69,7 +69,7 @@
           </ul>
         </div>
             
-            <div class="navbar-text" style="">
+            <div class="navbar-text" style="width: 260px;">
                 Всего терминалов : {{ count_all_terminals }} 
             </div>
             <a class="btn btn-outline-success" href="save/" role="button">Сохранить</a>
@@ -123,8 +123,7 @@
     <script type="text/javascript">
         let map;
         var markers = [];
-        var lats = [];
-        var lngs = [];
+        var coordinate_check_dict = {};
         function initMap() {
             map = new google.maps.Map(document.getElementById("map"), {
             center: { lat: 53.904789501846196, lng: 27.553534868069242 },
@@ -132,13 +131,19 @@
         });
 
             {% for i in terminals %}
+
+
                     var check_lat = '{{i.lat}}';
-
                     var check_lng = '{{i.lng}}';
+                    var check = true;
+                    for (const [key, value] of Object.entries(coordinate_check_dict)) {
+                          if (key == check_lat && value == check_lng) {
+                            check = false;
+                            console.log('true')
+                          }
+                    }
 
-                    if (lats.includes(check_lat) && lngs.includes(check_lng)) {
-                        console.log('include');
-                    } else {
+                    if (check) {
                         var infoWindow = new google.maps.InfoWindow();
                         var marker = new google.maps.Marker({
                             map : map,
@@ -146,8 +151,7 @@
                             title : '{{ i.cparta }}, {{ i.zona_name }}'
                         });
                         markers.push(marker);
-                        lats.push(marker.getPosition().lat())
-                        lngs.push(marker.getPosition().lng())
+                        coordinate_check_dict[marker.getPosition().lat()] = marker.getPosition().lng();
 
                         var infolist = [];
 
@@ -176,7 +180,6 @@
             {% endfor %}
 
 
-
             new MarkerClusterer(map, markers, {
                 gridSize: 25,
                 imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
@@ -197,7 +200,7 @@
 
             let href_name = encodeURIComponent(localStorage.getItem('name'));
             let href_parta = encodeURIComponent(localStorage.getItem('parta'));
-            let href_zone = encodeURIComponent(localStorage.getItem('zone');
+            let href_zone = encodeURIComponent(localStorage.getItem('zone'));
             window.location.href = '/search/?name=' + href_name + '&parta=' + href_parta + '&zone=' + href_zone;
         }
 
@@ -220,15 +223,15 @@
 
 <style type="text/css">
     #map {
-    height: 90%;
-    z-index: 4;
+        height: 90%;
+        z-index: 4;
     }
 
     html,
     body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+        height: 100%;
+        margin: 0;
+        padding: 0;
     }
 
     .search_info {
