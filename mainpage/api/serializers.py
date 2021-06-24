@@ -31,9 +31,3 @@ class ErrorTerminalSerializer(BaseTerminalSerializer, serializers.ModelSerialize
 	class Meta:
 		model = ErrorTerminal
 		fields = '__all__'
-
-class ExistTerminalSerializer(BaseTerminalSerializer, serializers.ModelSerializer):
-
-	class Meta:
-		model = ExistTerminal
-		fields = '__all__'

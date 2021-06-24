@@ -19,10 +19,10 @@ def sort_terminals_parameters(context):
         terminal_parts.append(i.cparta)
         terminal_zones.append(i.zona_name)
 
-    for i in ExistTerminal.objects.all():
-        terminal_names.append(i.cname)
-        terminal_parts.append(i.cparta)
-        terminal_zones.append(i.zona_name)
+#    for i in ExistTerminal.objects.all():
+#        terminal_names.append(i.cname)
+#        terminal_parts.append(i.cparta)
+#        terminal_zones.append(i.zona_name)
 
     for i in terminal_names:
         count = terminal_names.count(i)
@@ -70,19 +70,20 @@ def index(request):
         root = tree.getroot()
 
         for child in root:
+
+            for i in Zone.objects.all():
+                if child[13].text == i.zona:
+                    zona_name = i.name_zona
             try:
                 gmaps = googlemaps.Client(key='AIzaSyC_CpD9oSCYYDu92Jq8EiIGklCgyelDbiw')
                 geocode_result = gmaps.geocode(child[8].text)
 
-                for i in Zone.objects.all():
-                    if child[13].text == i.zona:
-                        zona_name = i.name_zona
 
                 if geocode_result[0]['geometry']['location']['lat'] not in lats and geocode_result[0]['geometry']['location']['lng'] not in lngs:
                     new_terminal = Terminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
                                             cobl = child[5].text, craion = child[6].text, cgorod = child[7].text, cadres = child[8].text,
                                             ddatan = child[9].text, cname = child[10].text, cparta = child[11].text, cots = child[12].text,
-                                            czona = child[13].text, zona_name = zona_name,
+                                            czona = child[13].text, zona_name = zona_name, exist = 'false',
                                             lat = geocode_result[0]['geometry']['location']['lat'],
                                             lng = geocode_result[0]['geometry']['location']['lng'])
                     new_terminal.save()
@@ -92,13 +93,13 @@ def index(request):
                     print('OK ' + str(count) + str(child[8].text))
                     count = count + 1
                 else:
-                    new_exist_terminal = ExistTerminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
+                    new_terminal = Terminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
                                             cobl = child[5].text, craion = child[6].text, cgorod = child[7].text, cadres = child[8].text,
                                             ddatan = child[9].text, cname = child[10].text, cparta = child[11].text, cots = child[12].text,
-                                            czona = child[13].text, zona_name = zona_name,
+                                            czona = child[13].text, zona_name = zona_name, exist = 'true',
                                             lat = geocode_result[0]['geometry']['location']['lat'],
                                             lng = geocode_result[0]['geometry']['location']['lng'])
-                    new_exist_terminal.save()   
+                    new_terminal.save()   
                     print('EXIST ' + str(count) + str(child[8].text))
                     count = count + 1 
             except Exception as e:
@@ -107,12 +108,13 @@ def index(request):
                                         ddatan = child[9].text, cname = child[10].text, cparta = child[11].text, cots = child[12].text,
                                         czona = child[13].text, zona_name = zona_name)
                 new_error_terminal.save() 
+                print('ERROR ' + str(count) + str(child[8].text))
+                count = count + 1 
 
     sort_terminals_parameters(context)
-    p = Terminal.objects.filter(czona = 10)
-    context['terminals'] = Terminal.objects.all()
+    context['terminals'] = Terminal.objects.filter(exist = 'false')
     context['display'] = 'none'
-    context['existterminals'] = ExistTerminal.objects.all()
+    context['existterminals'] = Terminal.objects.filter(exist = 'true')
     search_name = request.GET.get("name", "")
     search_parta = request.GET.get("parta", "")
     context['search_name'] = search_name
@@ -193,10 +195,10 @@ def search(request, name = "", parta = ""):
 #        search_terminals = unique
 #
     count_search_terminals = len(search_terminals)
-    for i in ExistTerminal.objects.all():
-        for j in search_terminals:
-            if j.lat == i.lat and j.lng == i.lng:
-                count_search_terminals = count_search_terminals + 1
+#    for i in ExistTerminal.objects.all():
+#        for j in search_terminals:
+#            if j.lat == i.lat and j.lng == i.lng:
+#                count_search_terminals = count_search_terminals + 1
 
 
 
@@ -207,7 +209,7 @@ def search(request, name = "", parta = ""):
     context['search_parta'] = search_parta
     context['search_zone'] = search_zone
     context['terminals'] = search_terminals
-    context['existterminals'] = ExistTerminal.objects.all()
+    context['existterminals'] = Terminal.objects.filter(exist = 'true')
     return render(request, 'mainpage/mainpage.html', context)
 
 def save(request):

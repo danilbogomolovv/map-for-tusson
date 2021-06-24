@@ -12,7 +12,3 @@ class TerminalListAPIView(ListAPIView):
 class ErrorTerminalListAPIView(ListAPIView):
 	serializer_class = ErrorTerminalSerializer
 	queryset = ErrorTerminal.objects.all()
-
-class ExistTerminalListAPIView(ListAPIView):
-	serializer_class = ExistTerminalSerializer
-	queryset = ExistTerminal.objects.all()
