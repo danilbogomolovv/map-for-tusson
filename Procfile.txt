@@ -1,5 +1,0 @@
-<<<<<<< HEAD
-web: gunicorn tusson.wsgi --log-file -
-=======
-web: gunicorn locallibrary.wsgi --log-file -
->>>>>>> parent of 6e876d0 (fix procfile)
