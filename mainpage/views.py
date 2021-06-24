@@ -108,6 +108,7 @@ def index(request):
 
     sort_terminals_parameters(context)
     context['terminals'] = Terminal.objects.all()
+    context['count_all_terminals'] = len(Terminal.objects.all())
     context['display'] = 'none'
     search_name = request.GET.get("name", "")
     search_parta = request.GET.get("parta", "")
@@ -121,7 +122,6 @@ def index(request):
 def search(request, name = "", parta = ""):
     context = {}
     search_terminals = []
-#    search_terminals_r = []
     search_name = request.GET.get("name", "")
     search_parta = request.GET.get("parta", "")
     search_zone = request.GET.get("zone", "")
@@ -131,6 +131,7 @@ def search(request, name = "", parta = ""):
         search_terminals = Terminal.objects.filter(cparta = search_parta)
     if search_name != "":
         search_terminals = Terminal.objects.filter(cname = search_name)
+        print(search_name)
     if search_zone != "":
         search_terminals = Terminal.objects.filter(zona_name = search_zone)
     if search_parta != "" and search_name != "":
@@ -185,6 +186,7 @@ def search(request, name = "", parta = ""):
     context['search_parta'] = search_parta
     context['search_zone'] = search_zone
     context['terminals'] = search_terminals
+    context['count_all_terminals'] = len(Terminal.objects.all())
     return render(request, 'mainpage/mainpage.html', context)
 
 def save(request):

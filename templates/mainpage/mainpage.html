@@ -68,6 +68,10 @@
             </li>
           </ul>
         </div>
+            
+            <div class="navbar-text" style="">
+                Всего терминалов : {{ count_all_terminals }} 
+            </div>
             <a class="btn btn-outline-success" href="save/" role="button">Сохранить</a>
       </div>
     </nav>
@@ -76,15 +80,15 @@
     <div class="search_info" style="display: none;">
     {% endif %}
     {% if display == 'block' %}
-    <div class="search_info" style="display: block;'">
+    <div class="search_info" style="display: block; background: #212529; color: #9e9e9e;">
     {% endif %}
 
         
         <a class="btn btn-outline-danger" href="javascript:clearHref();" role="button" style="float: right;">Сбросить </a>
         <h5>Количество найденных терминалов : {{ count_search_terminals }}</h5>
         {% if search_name == "" %}
-            <div class="serch_name" style="height: 150px; border: 1px solid black; overflow-y: auto;">
-                <h5>Инормация о названиях найденных терминалов</h5>
+            <div class="search_name">
+                <h5>Инормация о названиях найденных терминалов:</h5>
                 <ul>
                     {% for key, value in search_terminal_names %}
                         <li>{{ key }} : {{ value }}</li>
@@ -93,8 +97,8 @@
             </div>
         {% endif %}
         {% if search_parta == "" %}
-            <div class="search_parta" style="height: 270px; border: 1px solid black; overflow-y: auto;">
-                <h5>Информация о партнерах найденных терминалов</h5>
+            <div class="search_parta">
+                <h5>Информация о партнерах найденных терминалов:</h5>
                 <ul>
                     {% for key, value in search_terminal_parts %}
                         <li>{{ key }} : {{ value }}</li>
@@ -103,8 +107,8 @@
             </div>
         {% endif %}
         {% if search_zone == "" %}
-            <div class="search_zone" style="height: 150px; border: 1px solid black; overflow-y: auto;">
-                <h5>Информация о зонах найденных терминалов</h5>
+            <div class="search_zone">
+                <h5>Информация о зонах найденных терминалов:</h5>
                 <ul>
                     {% for key, value in search_terminal_zones %}
                         <li>{{ key }} : {{ value }}</li>
@@ -128,9 +132,9 @@
         });
 
             {% for i in terminals %}
-                    var check_lat = {{i.lat}};
+                    var check_lat = '{{i.lat}}';
 
-                    var check_lng = {{i.lng}};
+                    var check_lng = '{{i.lng}}';
 
                     if (lats.includes(check_lat) && lngs.includes(check_lng)) {
                         console.log('include');
@@ -190,10 +194,11 @@
             if (zone != '') {
                 localStorage.setItem('zone', zone);
             };
-             
+            //var re = [\+]*;
             let href_name = localStorage.getItem('name');
             let href_parta = localStorage.getItem('parta');
             let href_zone = localStorage.getItem('zone');
+            //let new_href_parta = href_parta.replace(re, '%2B');
             window.location.href = '/search/?name=' + href_name + '&parta=' + href_parta + '&zone=' + href_zone;
         }
 
@@ -237,5 +242,35 @@
         border: 1px solid black; 
     }
 
+    .search_name, .search_parta, .search_zone{
+        height: 180px;
+        border: 1px solid grey;
+        overflow-y: scroll;
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .search_parta {
+        height: 280px;
+    }
+
+    ::-webkit-scrollbar {
+      width: 20px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: #212529;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: #d6dee1;
+      border-radius: 20px;
+      border: 6px solid transparent;
+      background-clip: content-box;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: #a8bbbf;
+    }
     .dropdown-menu { overflow-y: scroll; max-height: 350px; }
 </style>
