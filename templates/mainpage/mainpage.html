@@ -6,11 +6,13 @@
         <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     </head>
 
     <body>
         
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="z-index: 4">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">Tusson</a>
@@ -30,7 +32,7 @@
               </a>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                 {% for key, value in terminal_names %}
-                    <li><a class="dropdown-item" href="javascript:addParam('{{ key }}', '','');">{{ key }} : {{ value }}</a></li>
+                    <li><a class="dropdown-item" href="javascript:addParam('{{ key }}', '','', true);">{{ key }} : {{ value }}</a></li>
                 {% endfor %}
               </ul>
             </li>
@@ -45,8 +47,11 @@
                 {% endif %}
               </a>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                 <div class="ui-widget" style="width: 150px">
+                    <input id="parts" style="width: 300px;" placeholder="Поиск по партнерам" onchange="addParam('',document.getElementById('parts').value,'', false)">
+                </div>
                 {% for key, value in terminal_parts %}
-                    <li><a class="dropdown-item" href="javascript:addParam('','{{key}}','');">{{ key }} : {{ value }}</a></li>
+                    <li><a class="dropdown-item" href="javascript:addParam('','{{key}}','', true);">{{ key }} : {{ value }}</a></li>
                 {% endfor %}
               </ul>
             </li>
@@ -62,13 +67,12 @@
               </a>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                 {% for key, value in terminal_zones %}
-                    <li><a class="dropdown-item" href="javascript:addParam('','','{{key}}');">{{ key }} : {{ value }}</a></li>
+                    <li><a class="dropdown-item" href="javascript:addParam('','','{{key}}', true);">{{ key }} : {{ value }}</a></li>
                 {% endfor %}
               </ul>
             </li>
           </ul>
         </div>
-            
             <div class="navbar-text" style="width: 260px;">
                 Всего терминалов : {{ count_all_terminals }} 
             </div>
@@ -124,6 +128,12 @@
         let map;
         var markers = [];
         var coordinate_check_dict = {};
+        var availableparts = [
+
+        {% for key, value in terminal_parts %}
+            '{{key}}'.replace(/&quot;/g,'"'),
+        {%  endfor %}
+        ];
         function initMap() {
             map = new google.maps.Map(document.getElementById("map"), {
             center: { lat: 53.904789501846196, lng: 27.553534868069242 },
@@ -187,11 +197,11 @@
         }
 
 
-        function addParam(name, parta, zone) {
-             if (name != '') {
+        function addParam(name, parta, zone, check) {
+            if (name != '') {
                 localStorage.setItem('name', name);
             };
-             if (parta != '') {
+            if (parta != '' && availableparts.includes(parta)) {
                 localStorage.setItem('parta', parta);
             };
             if (zone != '') {
@@ -201,7 +211,14 @@
             let href_name = encodeURIComponent(localStorage.getItem('name'));
             let href_parta = encodeURIComponent(localStorage.getItem('parta'));
             let href_zone = encodeURIComponent(localStorage.getItem('zone'));
-            window.location.href = '/search/?name=' + href_name + '&parta=' + href_parta + '&zone=' + href_zone;
+            if (check) {
+                window.location.href = '/search/?name=' + href_name + '&parta=' + href_parta + '&zone=' + href_zone;
+                } else { 
+                    if (availableparts.includes(parta)) {
+                      window.location.href = '/search/?name=' + href_name + '&parta=' + href_parta + '&zone=' + href_zone;  
+                    }
+
+            }
         }
 
         function clearHref(){
@@ -210,6 +227,14 @@
             localStorage.setItem('zone', '');
             window.location.href = '/';
         }
+
+      $( function() {
+        $( "#parts" ).autocomplete({
+          source: availableparts
+        });
+
+      }
+    );
 
     </script>
 
@@ -273,6 +298,12 @@
 
     ::-webkit-scrollbar-thumb:hover {
       background-color: #a8bbbf;
+    }
+
+    .ui-autocomplete {
+        overflow: auto;
+        height: 300px;
+        overflow-x: hidden;
     }
     .dropdown-menu { overflow-y: scroll; max-height: 350px; }
 </style>
