@@ -68,7 +68,16 @@ def index(request):
                     zona_name = i.name_zona
             try:
                 gmaps = googlemaps.Client(key='AIzaSyC_CpD9oSCYYDu92Jq8EiIGklCgyelDbiw')
-                geocode_result = gmaps.geocode(child[8].text)
+                query_str = ''
+                if child[5].text != '':
+                    query_str = query_str + child[5].text + ' область '
+                if child[5].text != '':
+                    query_str = query_str + child[6].text + ' район '
+                if child[5].text != '':
+                    query_str = query_str + child[7].text + ' '
+                query_str = query_str + child[8].text
+                print(query_str)
+                geocode_result = gmaps.geocode(query_str)
 
                 new_terminal = Terminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
                                         cobl = child[5].text, craion = child[6].text, cgorod = child[7].text, cadres = child[8].text,
@@ -77,12 +86,13 @@ def index(request):
                                         lat = geocode_result[0]['geometry']['location']['lat'],
                                         lng = geocode_result[0]['geometry']['location']['lng'])
                 new_terminal.save()
-                lats.append(geocode_result[0]['geometry']['location']['lat'])
-                lngs.append(geocode_result[0]['geometry']['location']['lng'])
+#                lats.append(geocode_result[0]['geometry']['location']['lat'])
+#                lngs.append(geocode_result[0]['geometry']['location']['lng'])
 
-                print('OK ' + str(count) + str(child[8].text))
+                print('OK ' + str(count))
                 count = count + 1
             except Exception as e:
+                print(e)
                 new_error_terminal = ErrorTerminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
                                         cobl = child[5].text, craion = child[6].text, cgorod = child[7].text, cadres = child[8].text,
                                         ddatan = child[9].text, cname = child[10].text, cparta = child[11].text, cots = child[12].text,
