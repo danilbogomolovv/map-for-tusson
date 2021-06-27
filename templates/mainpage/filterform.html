@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block nav %}
+    <a class="btn btn-outline-danger" href="/" role="button">Назад</a>
+{% endblock nav %}
+
+{% block content %}
+
+<div class="filterform" id="filterform" style="display: block; background: #212529; color: #9e9e9e;">        
+    <div class="filter_form" id="id_filter_form" style="height: 100%; overflow: auto;">   
+            <form method=POST action="" class="form-container">
+                {% csrf_token %}
+                    {{ filterform.as_p }}
+                    <button type="submit" class="btn btn-outline-success">Применить</button>
+                    <a href="/">back</a>
+            </form>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,76 @@
+
+#map {
+    height: 90%;
+    z-index: 4;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.errorlist{
+    display: none;
+}
+.filterform {
+    z-index: 5;
+    position: absolute;
+    height: 90%;
+    width: 30%;
+    background: white;
+    left: 0;
+    border: 1px solid black; 
+}
+
+.search_info {
+    z-index: 5;
+    position: absolute;
+    height: 90%;
+    width: 30%;
+    background: white;
+    right: 0;
+    border: 1px solid black; 
+}
+
+.search_name, .search_parta, .search_zone{
+    height: 180px;
+    border: 1px solid grey;
+    overflow-y: scroll;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.search_parta {
+    height: 280px;
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #212529;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d6dee1;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8bbbf;
+}
+
+.ui-autocomplete {
+    overflow: auto;
+    height: 300px;
+    overflow-x: hidden;
+    background: #343a40;
+    color: #d3e2e6;
+}
+
+.dropdown-menu { overflow-y: scroll; max-height: 350px; }

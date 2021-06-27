@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>Tusson</title>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+        <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="/static/js/script.js"></script>
+        <script src="/static/js/script.js"></script>
+        <link rel="stylesheet" href="/static/css/style.css">
+    </head>
+
+    <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="z-index: 4">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Tusson</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        {% block nav %}
+        {% endblock nav %}
+            <div class="navbar-text" style="width: 260px;">
+                Всего терминалов : {{ count_all_terminals }} 
+            </div>
+            <a class="btn btn-outline-success" href="save/" role="button">Сохранить</a>
+      </div>
+    </nav>
+
+    {% block content %}
+    {% endblock content %}
+    <div id="map" style="z-index: 0"></div>
+
+    <script type="text/javascript">
+        let map;
+        var markers = [];
+        var coordinate_check_dict = {};
+        var availableparts = [
+            {% for key, value in terminal_parts %}
+                '{{key}}'.replace(/&quot;/g,'"'),
+            {%  endfor %}
+        ];
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: 53.904789501846196, lng: 27.553534868069242 },
+            zoom: 6,
+        });
+
+            {% for i in terminals %}
+
+
+                    var check_lat = '{{i.lat}}';
+                    var check_lng = '{{i.lng}}';
+                    var check = true;
+                    for (const [key, value] of Object.entries(coordinate_check_dict)) {
+                          if (key == check_lat && value == check_lng) {
+                            check = false;
+                          }
+                    }
+
+                    if (check) {
+                        var infoWindow = new google.maps.InfoWindow();
+                        var marker = new google.maps.Marker({
+                            map : map,
+                            position : {lat: parseFloat('{{ i.lat }}'), lng: parseFloat('{{ i.lng }}')},
+                            title : '{{ i.cparta }}, {{ i.zona_name }}'
+                        });
+                        markers.push(marker);
+                        coordinate_check_dict[marker.getPosition().lat()] = marker.getPosition().lng();
+
+                        var infolist = [];
+
+                        {% for j in terminals %}
+
+                            {% if i.lat == j.lat and i.lng == j.lng %}
+                                infolist.push(" <p> " + "{{ j.ctid }}" + " </p> " + "{{j.cparta}}" + "<br>" + "{{j.cadres}}" + "<br>" + "{{ j.cname }}" + "<br> _________________________________");
+                            {% endif %}
+
+                        {% endfor %}
+
+                        var countterminals = infolist.length;
+
+                        (function (marker, infolist, countterminals) {
+                            google.maps.event.addListener(marker, "click", function (e) {
+                                infoWindow.setContent("<div style = 'width:250px;min-height:60px'>" + 
+                                    '<p> Количество териналов: ' + countterminals + '</p> ' + 
+                                    '_________________________________' + 
+                                    infolist.join(' ') +
+                                    "</div>");
+                                infoWindow.open(map, marker);
+                            });
+                            })(marker, infolist, countterminals);
+                    }
+
+            {% endfor %}
+
+
+            new MarkerClusterer(map, markers, {
+                gridSize: 25,
+                imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+              });
+        }   
+    </script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_CpD9oSCYYDu92Jq8EiIGklCgyelDbiw&callback=initMap&libraries=&v=weekly"
+        async
+    ></script>
+
+ </body>
+
+</html>

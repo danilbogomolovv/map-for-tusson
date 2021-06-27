@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from lxml import etree
 import xml.etree.ElementTree as ET
 from .models import *
+from .forms import *
 import googlemaps
 
 
@@ -86,9 +87,6 @@ def index(request):
                                         lat = geocode_result[0]['geometry']['location']['lat'],
                                         lng = geocode_result[0]['geometry']['location']['lng'])
                 new_terminal.save()
-#                lats.append(geocode_result[0]['geometry']['location']['lat'])
-#                lngs.append(geocode_result[0]['geometry']['location']['lng'])
-
                 print('OK ' + str(count))
                 count = count + 1
             except Exception as e:
@@ -100,7 +98,17 @@ def index(request):
                 new_error_terminal.save() 
                 print('ERROR ' + str(count) + str(child[8].text))
                 count = count + 1 
-
+    context = {}
+    if request.method == 'POST':
+        filterform = FilterForm(request.POST)
+        context['filterform'] = filterform
+        check = True
+        print(addform.errors)
+        if addform.is_valid():
+            pass
+    else:
+        filterform = FilterForm(request.POST)
+        context['filterform'] = filterform
     sort_terminals_parameters(context)
     context['terminals'] = Terminal.objects.all()
     context['count_all_terminals'] = len(Terminal.objects.all())
@@ -112,6 +120,23 @@ def index(request):
     context['search_parta'] = search_parta
     context['search_zone'] = search_zone
     return render(request, 'mainpage/mainpage.html', context)  
+
+def filter(request):
+    context = {}
+    if request.method == 'POST':
+        filterform = FilterForm(request.POST)
+        context['filterform'] = filterform
+        check = True
+        print(addform.errors)
+        if addform.is_valid():
+            pass
+    else:
+        filterform = FilterForm(request.POST)
+        context['filterform'] = filterform
+    context['terminals'] = Terminal.objects.all()
+    context['count_all_terminals'] = len(Terminal.objects.all())
+    return render(request, 'mainpage/filterform.html', context)  
+
 
 
 def search(request, name = "", parta = ""):

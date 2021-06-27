@@ -1,13 +1,13 @@
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, ListCreateAPIView
 from rest_framework.filters import SearchFilter
 from .serializers import *
 from ..models import *
 
-class TerminalListAPIView(ListAPIView):
+class TerminalListAPIView(ListCreateAPIView):
 	serializer_class = TerminalSerializer
 	queryset = Terminal.objects.all()
-	filter_backends = [SearchFilter]
-	search_fields = ['cgorod']
+#	filter_backends = [SearchFilter]
+#	search_fields = ['cgorod']
 
 class ErrorTerminalListAPIView(ListAPIView):
 	serializer_class = ErrorTerminalSerializer

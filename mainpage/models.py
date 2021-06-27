@@ -18,7 +18,6 @@ class Terminal(models.Model):
 	cots = models.CharField(max_length = 50, null = True)
 	czona = models.CharField(max_length = 50, null = True)
 	zona_name = models.CharField(max_length = 50, null = True)
-	exist = models.CharField(max_length = 10, null = True)
 	lat = models.CharField(max_length = 30, null = True)
 	lng = models.CharField(max_length = 30, null = True)
 
