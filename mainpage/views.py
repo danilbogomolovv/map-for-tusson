@@ -123,18 +123,42 @@ def index(request):
 
 def filter(request):
     context = {}
+    context['terminals'] = Terminal.objects.all()
     sort_terminals_parameters(context)
     if request.method == 'POST':
         filterform = FilterForm(request.POST)
         context['filterform'] = filterform
         check = True
-        print(addform.errors)
-        if addform.is_valid():
-            pass
+        if filterform.is_valid():
+            filters = {}
+            zone = filterform.cleaned_data.get('zona_name')
+            if zone != '':
+                filters['zona_name'] = zone
+            adres = filterform.cleaned_data.get('cadres')
+            if adres != '':
+                filters['cadres'] = adres
+            city = filterform.cleaned_data.get('cgorod')
+            if city != '':
+                filters['cgorod'] = city
+            area = filterform.cleaned_data.get('cobl')
+            if area != '':
+                filters['cobl'] = area
+            district = filterform.cleaned_data.get('craion')
+            if district != '':
+                filters['craion'] = district
+            name = filterform.cleaned_data.get('cname')
+            if name != '':
+                filters['cname'] = name
+            partner = filterform.cleaned_data.get('cparta')
+            if partner != '':
+                filters['cparta'] = partner
+                
+            context['terminals'] = Terminal.objects.filter(**filters)
+            
     else:
         filterform = FilterForm(request.POST)
         context['filterform'] = filterform
-    context['terminals'] = Terminal.objects.all()
+    
     context['count_all_terminals'] = len(Terminal.objects.all())
     return render(request, 'mainpage/filterform.html', context)  
 

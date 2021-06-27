@@ -16,9 +16,21 @@
                     </div>
                 </table>
                     <button type="submit" class="btn btn-outline-success">Применить</button>
+                    <button class="btn btn-outline-danger" onclick="clearfilters()">Сбросить</button>
             </form>
     </div>
 </div>
-
+<script type="text/javascript">
+    
+function clearfilters(){
+    document.getElementById('cadres').value = ''
+    document.getElementById('cgorods').value = ''
+    document.getElementById('cobls').value = ''
+    document.getElementById('craions').value = ''
+    document.getElementById('cnames').value = ''
+    document.getElementById('parts').value = ''
+    document.getElementById('zones').value = ''  
+}
+</script>
 {% endblock content %}
 
