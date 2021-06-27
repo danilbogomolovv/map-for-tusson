@@ -123,6 +123,7 @@ def index(request):
 
 def filter(request):
     context = {}
+    sort_terminals_parameters(context)
     if request.method == 'POST':
         filterform = FilterForm(request.POST)
         context['filterform'] = filterform

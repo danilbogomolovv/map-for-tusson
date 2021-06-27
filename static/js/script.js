@@ -36,9 +36,36 @@ function openfilterform() {
 }
 
 $( function() {
-$( "#parts" ).autocomplete({
-  source: availableparts
-});
+    $( "#parts" ).autocomplete({
+      source: availableparts
+    });
 
-  }
+
+    $( "#zones" ).autocomplete({
+      source: availablezones
+    });
+
+
+    $( "#cnames" ).autocomplete({
+      source: availablenames
+    });
+
+
+    $( "#cobls" ).autocomplete({
+      source: availableobls
+    });
+
+    $( "#cgorods" ).autocomplete({
+      source: availablegorod
+    });
+
+    $( "#craions" ).autocomplete({
+      source: availableraion
+    });
+
+    $( "#cadres" ).autocomplete({
+      source: availableadres
+    });
+
+    }
 );

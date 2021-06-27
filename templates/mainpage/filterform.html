@@ -10,11 +10,15 @@
     <div class="filter_form" id="id_filter_form" style="height: 100%; overflow: auto;">   
             <form method=POST action="" class="form-container">
                 {% csrf_token %}
-                    {{ filterform.as_p }}
+                <table>
+                    <div class="ui-widget">
+                            {{ filterform.as_table }}
+                    </div>
+                </table>
                     <button type="submit" class="btn btn-outline-success">Применить</button>
-                    <a href="/">back</a>
             </form>
     </div>
 </div>
 
 {% endblock content %}
+
