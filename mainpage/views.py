@@ -4,42 +4,43 @@ from lxml import etree
 import xml.etree.ElementTree as ET
 from .models import *
 from .forms import *
+import json
 import googlemaps
 
-def sort_terminals_parameters(context):
-    terminal_names = []
-    terminal_parts = []
-    terminal_zones = []
-    terminal_parts_with_count = {}
-    terminal_names_with_count = {}
-    terminal_zones_with_count = {}
+# def sort_terminals_parameters(context):
+#     terminal_names = []
+#     terminal_parts = []
+#     terminal_zones = []
+#     terminal_parts_with_count = {}
+#     terminal_names_with_count = {}
+#     terminal_zones_with_count = {}
 
-    for i in Terminal.objects.all():
-        terminal_names.append(i.cname)
-        terminal_parts.append(i.cparta)
-        terminal_zones.append(i.zona_name)
+#     for i in Terminal.objects.all():
+#         terminal_names.append(i.cname)
+#         terminal_parts.append(i.cparta)
+#         terminal_zones.append(i.zona_name)
 
-    for i in terminal_names:
-        count = terminal_names.count(i)
-        terminal_names_with_count[i] = count
-    sort_terminal_names_with_count = sorted(terminal_names_with_count.items(), key=lambda x: x[1])
-    sort_terminal_names_with_count.reverse()
+#     for i in terminal_names:
+#         count = terminal_names.count(i)
+#         terminal_names_with_count[i] = count
+#     sort_terminal_names_with_count = sorted(terminal_names_with_count.items(), key=lambda x: x[1])
+#     sort_terminal_names_with_count.reverse()
    
-    for i in terminal_parts:
-        count = terminal_parts.count(i)
-        terminal_parts_with_count[i] = count
-    sort_terminal_parts_with_count = sorted(terminal_parts_with_count.items(), key=lambda x: x[1])
-    sort_terminal_parts_with_count.reverse()
+#     for i in terminal_parts:
+#         count = terminal_parts.count(i)
+#         terminal_parts_with_count[i] = count
+#     sort_terminal_parts_with_count = sorted(terminal_parts_with_count.items(), key=lambda x: x[1])
+#     sort_terminal_parts_with_count.reverse()
     
-    for i in terminal_zones:
-        count = terminal_zones.count(i)
-        terminal_zones_with_count[i] = count
-    sort_terminal_zones_with_count = sorted(terminal_zones_with_count.items(), key=lambda x: x[1])
-    sort_terminal_zones_with_count.reverse()
+#     for i in terminal_zones:
+#         count = terminal_zones.count(i)
+#         terminal_zones_with_count[i] = count
+#     sort_terminal_zones_with_count = sorted(terminal_zones_with_count.items(), key=lambda x: x[1])
+#     sort_terminal_zones_with_count.reverse()
 
-    context['terminal_names'] = sort_terminal_names_with_count
-    context['terminal_parts'] = sort_terminal_parts_with_count
-    context['terminal_zones'] = sort_terminal_zones_with_count
+#     context['terminal_names'] = sort_terminal_names_with_count
+#     context['terminal_parts'] = sort_terminal_parts_with_count
+#     context['terminal_zones'] = sort_terminal_zones_with_count
 
 def search_terminals_info(context, search_terminals):
     terminal_names = []
@@ -71,10 +72,15 @@ def search_terminals_info(context, search_terminals):
         terminal_zones_with_count[i] = count
     sort_terminal_zones_with_count = sorted(terminal_zones_with_count.items(), key=lambda x: x[1])
     sort_terminal_zones_with_count.reverse()
+    if len(search_terminals) != len(Terminal.objects.all()):
+        context['search_terminal_names'] = sort_terminal_names_with_count
+        context['search_terminal_parts'] = sort_terminal_parts_with_count
+        context['search_terminal_zones'] = sort_terminal_zones_with_count
+    else:
+        context['terminal_names'] = sort_terminal_names_with_count
+        context['terminal_parts'] = sort_terminal_parts_with_count
+        context['terminal_zones'] = sort_terminal_zones_with_count
 
-    context['search_terminal_names'] = sort_terminal_names_with_count
-    context['search_terminal_parts'] = sort_terminal_parts_with_count
-    context['search_terminal_zones'] = sort_terminal_zones_with_count
 
 def index(request):
     context = {}
@@ -102,19 +108,13 @@ def index(request):
                     zona_name = i.name_zona
             try:
                 gmaps = googlemaps.Client(key='AIzaSyC_CpD9oSCYYDu92Jq8EiIGklCgyelDbiw')
-                query_str = ''
-                if child[6].text != '':
-                    query_str = query_str + child[6].text + ' район '
-                if child[7].text != '':
-                    query_str = query_str + child[7].text + ' '
-                query_str = query_str + child[8].text
-                geocode_result = gmaps.geocode(query_str)
+                geocode_result = gmaps.geocode(child[8].text, language = 'ru')
 
                 new_terminal = Terminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
                                         cobl = child[5].text, craion = child[6].text, cgorod = child[7].text, cadres = child[8].text,
                                         ddatan = child[9].text, cname = child[10].text, cparta = child[11].text, cots = child[12].text,
                                         czona = child[13].text, zona_name = zona_name, cvsoba = child[14].text, cunn = child[15].text,
-                                        cbank = child[16].text, ctype = child[17].text,
+                                        cbank = child[16].text, ctype = child[17].text, right_adres = geocode_result[0]['formatted_address'],
                                         lat = geocode_result[0]['geometry']['location']['lat'],
                                         lng = geocode_result[0]['geometry']['location']['lng'])
                 new_terminal.save()
@@ -129,7 +129,21 @@ def index(request):
                 print('ERROR ' + str(count) + str(child[8].text))
                 count = count + 1 
     context = {}
-    sort_terminals_parameters(context)
+    # gmaps = googlemaps.Client(key='AIzaSyC_CpD9oSCYYDu92Jq8EiIGklCgyelDbiw')
+    # datalist = []
+    # for i in Terminal.objects.all():
+
+    #     geocode_result = gmaps.geocode(i.cadres, language = 'ru')
+    #     geocode_result[0]['adres_from_alibi'] = str(i.cadres)
+    #     data = geocode_result[0]
+    #     datalist.append(data)
+
+    # with open('data.json', 'w', encoding='utf-8') as f:
+    #     for i in datalist:
+    #         json.dump(i, f, ensure_ascii=False, indent=4)
+
+
+    search_terminals_info(context, Terminal.objects.all())
     context['terminals'] = Terminal.objects.all()
     context['count_all_terminals'] = len(Terminal.objects.all())
     context['display'] = 'none'
@@ -145,7 +159,7 @@ def filter(request):
     context = {}
     context['terminals'] = Terminal.objects.all()
     context['display'] = 'none'
-    sort_terminals_parameters(context)
+    search_terminals_info(context, Terminal.objects.all())
     if request.method == 'POST':
         filterform = FilterForm(request.POST)
         context['filterform'] = filterform
@@ -171,22 +185,24 @@ def filter(request):
     return render(request, 'mainpage/filterform.html', context)  
 
 
-def search(request, name = "", parta = ""):
+def search(request):
     context = {}
     filters = {}
-    print(name)
+
     search_name = request.GET.get("name", "")
     if search_name != '':
         filters['cname'] = search_name
+
     search_parta = request.GET.get("parta", "")
     if search_parta != '':
         filters['cparta'] = search_parta
+
     search_zone = request.GET.get("zone", "")
     if search_zone != '':
         filters['zona_name'] = search_zone
 
     search_terminals_info(context, Terminal.objects.filter(**filters))
-    sort_terminals_parameters(context)
+    search_terminals_info(context, Terminal.objects.all())
     context['count_search_terminals'] =  len(Terminal.objects.filter(**filters))
     context['display'] = 'block'
     context['search_name'] = search_name

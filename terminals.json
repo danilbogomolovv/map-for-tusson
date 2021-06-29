@@ -1,0 +1,6532 @@
+{
+    "address_components": [
+        {
+            "long_name": "3",
+            "short_name": "3",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Кирова",
+            "short_name": "ул. Кирова",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Октябрьский район",
+            "short_name": "Октябрьский район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Минск",
+            "short_name": "Минск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минский район",
+            "short_name": "Минский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Кирова 3, Минск, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.8927585,
+            "lng": 27.5513935
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.8941074802915,
+                "lng": 27.5527424802915
+            },
+            "southwest": {
+                "lat": 53.8914095197085,
+                "lng": 27.5500445197085
+            }
+        }
+    },
+    "place_id": "ChIJBaHop93P20YRvJJz5dhMaAs",
+    "plus_code": {
+        "compound_code": "VHV2+4H Минск, Беларусь",
+        "global_code": "9G59VHV2+4H"
+    },
+    "types": [
+        "street_address"
+    ],
+    "adres_from_alibi": "г.Минск, ул.Кирова, 3"
+}{
+    "address_components": [
+        {
+            "long_name": "15",
+            "short_name": "15",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Молокова",
+            "short_name": "улица Молокова",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Орша",
+            "short_name": "Орша",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Оршанский район",
+            "short_name": "Оршанский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Витебская область",
+            "short_name": "Витебская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        },
+        {
+            "long_name": "211030",
+            "short_name": "211030",
+            "types": [
+                "postal_code"
+            ]
+        }
+    ],
+    "formatted_address": "улица Молокова 15, Орша 211030, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 54.51678159999999,
+                "lng": 30.3769799
+            },
+            "southwest": {
+                "lat": 54.5164918,
+                "lng": 30.3763686
+            }
+        },
+        "location": {
+            "lat": 54.5166439,
+            "lng": 30.376645
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 54.5179856802915,
+                "lng": 30.3780232302915
+            },
+            "southwest": {
+                "lat": 54.5152877197085,
+                "lng": 30.3753252697085
+            }
+        }
+    },
+    "place_id": "ChIJRwb6H0_iz0YRcX55VofkLiU",
+    "types": [
+        "premise"
+    ],
+    "adres_from_alibi": "Орша , ул., Молокова, 15"
+}{
+    "address_components": [
+        {
+            "long_name": "3",
+            "short_name": "3",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Карла Маркса",
+            "short_name": "улица Карла Маркса",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Дзержинск",
+            "short_name": "Дзержинск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Дзержинский район",
+            "short_name": "Дзержинский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "улица Карла Маркса 3, Дзержинск, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.683405,
+            "lng": 27.133853
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.6847539802915,
+                "lng": 27.1352019802915
+            },
+            "southwest": {
+                "lat": 53.6820560197085,
+                "lng": 27.1325040197085
+            }
+        }
+    },
+    "place_id": "ChIJwdj4WBhk2UYRHfQMjdyjnWA",
+    "plus_code": {
+        "compound_code": "M4MM+9G Дзержинск, Беларусь",
+        "global_code": "9G59M4MM+9G"
+    },
+    "types": [
+        "street_address"
+    ],
+    "adres_from_alibi": "г. Дзержинск , ул., К.Маркса, 3"
+}{
+    "address_components": [
+        {
+            "long_name": "3",
+            "short_name": "3",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Дзержинского",
+            "short_name": "улица Дзержинского",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Орша",
+            "short_name": "Орша",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Оршанский район",
+            "short_name": "Оршанский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Витебская область",
+            "short_name": "Витебская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        },
+        {
+            "long_name": "211030",
+            "short_name": "211030",
+            "types": [
+                "postal_code"
+            ]
+        }
+    ],
+    "formatted_address": "улица Дзержинского 3, Орша 211030, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 54.5194079,
+                "lng": 30.3752286
+            },
+            "southwest": {
+                "lat": 54.51913709999999,
+                "lng": 30.3746036
+            }
+        },
+        "location": {
+            "lat": 54.5192827,
+            "lng": 30.3749609
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 54.5206214802915,
+                "lng": 30.3762650802915
+            },
+            "southwest": {
+                "lat": 54.5179235197085,
+                "lng": 30.3735671197085
+            }
+        }
+    },
+    "place_id": "ChIJ2aGubU7iz0YR2XQQdTvjjsg",
+    "types": [
+        "premise"
+    ],
+    "adres_from_alibi": "г. Орша , ул., Дзержинского, 3в"
+}{
+    "address_components": [
+        {
+            "long_name": "14",
+            "short_name": "14",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Уручская",
+            "short_name": "ул. Уручская",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Первомайский район",
+            "short_name": "Первомайский район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Минск",
+            "short_name": "Минск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минский район",
+            "short_name": "Минский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Уручская 14, Минск, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.95807319999999,
+            "lng": 27.6881405
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.95942218029149,
+                "lng": 27.6894894802915
+            },
+            "southwest": {
+                "lat": 53.95672421970849,
+                "lng": 27.6867915197085
+            }
+        }
+    },
+    "place_id": "ChIJWQBPRjrJ20YRnI6zYZfMyyw",
+    "plus_code": {
+        "compound_code": "XM5Q+67 Минск, Беларусь",
+        "global_code": "9G59XM5Q+67"
+    },
+    "types": [
+        "street_address"
+    ],
+    "adres_from_alibi": "г.Минск , ул.Уручская, 14"
+}{
+    "address_components": [
+        {
+            "long_name": "35",
+            "short_name": "35",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Победы",
+            "short_name": "улица Победы",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Логойск",
+            "short_name": "Логойск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Логойский район",
+            "short_name": "Логойский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "улица Победы 35, Логойск, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 54.2067536,
+                "lng": 27.8513593
+            },
+            "southwest": {
+                "lat": 54.2055636,
+                "lng": 27.8496231
+            }
+        },
+        "location": {
+            "lat": 54.206271,
+            "lng": 27.8510766
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 54.2075075802915,
+                "lng": 27.8518401802915
+            },
+            "southwest": {
+                "lat": 54.2048096197085,
+                "lng": 27.8491422197085
+            }
+        }
+    },
+    "place_id": "ChIJPcMOQV-l20YRSSvwIYNErJw",
+    "types": [
+        "premise"
+    ],
+    "adres_from_alibi": "Логойск , ул., Победы, 35."
+}{
+    "address_components": [
+        {
+            "long_name": "улица Шмырёва",
+            "short_name": "ул. Шмырёва",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Сураж",
+            "short_name": "Сураж",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Витебский район",
+            "short_name": "Витебский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Витебская область",
+            "short_name": "Витебская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Шмырёва, Сураж, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 55.4119251,
+                "lng": 30.7330245
+            },
+            "southwest": {
+                "lat": 55.4069827,
+                "lng": 30.72306
+            }
+        },
+        "location": {
+            "lat": 55.409274,
+            "lng": 30.728098
+        },
+        "location_type": "GEOMETRIC_CENTER",
+        "viewport": {
+            "northeast": {
+                "lat": 55.4119251,
+                "lng": 30.7330245
+            },
+            "southwest": {
+                "lat": 55.4069827,
+                "lng": 30.72306
+            }
+        }
+    },
+    "partial_match": true,
+    "place_id": "ChIJ_ccIi06OxUYRLkhZPhcmLgU",
+    "types": [
+        "route"
+    ],
+    "adres_from_alibi": "г.п. Сураж ул. Шмырева 5 Витебск"
+}{
+    "address_components": [
+        {
+            "long_name": "Радошковичи",
+            "short_name": "Радошковичи",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Молодечненский район",
+            "short_name": "Молодечненский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "Радошковичи, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 54.179189,
+                "lng": 27.2633838
+            },
+            "southwest": {
+                "lat": 54.146035,
+                "lng": 27.2241411
+            }
+        },
+        "location": {
+            "lat": 54.1550624,
+            "lng": 27.2434182
+        },
+        "location_type": "APPROXIMATE",
+        "viewport": {
+            "northeast": {
+                "lat": 54.179189,
+                "lng": 27.2633838
+            },
+            "southwest": {
+                "lat": 54.146035,
+                "lng": 27.2241411
+            }
+        }
+    },
+    "partial_match": true,
+    "place_id": "ChIJCQ85CS-T20YR55uaAYcxwaQ",
+    "types": [
+        "locality",
+        "political"
+    ],
+    "adres_from_alibi": "г.п. РАДОШКОВИЧИ ул. ШКОЛЬНАЯ 1 Минский"
+}{
+    "address_components": [
+        {
+            "long_name": "1Н",
+            "short_name": "1Н",
+            "types": [
+                "subpremise"
+            ]
+        },
+        {
+            "long_name": "3",
+            "short_name": "3",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Киселёва",
+            "short_name": "ул. Киселёва",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Центральный район",
+            "short_name": "Центральный район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Минск",
+            "short_name": "Минск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минский район",
+            "short_name": "Минский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "1Н, ул. Киселёва 3, Минск, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.9096789,
+            "lng": 27.5733313
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.9110278802915,
+                "lng": 27.5746802802915
+            },
+            "southwest": {
+                "lat": 53.9083299197085,
+                "lng": 27.5719823197085
+            }
+        }
+    },
+    "place_id": "Eigx0J0sIHZ1bGljYSBLaXNpYWxpb3ZhIDMsIE1pbnNrLCBCZWxhcnVzIh8aHQoWChQKEglXCbS5l8_bRhFlK0bO-e5zMxIDMdCd",
+    "types": [
+        "subpremise"
+    ],
+    "adres_from_alibi": "г. Минск ул. Киселева 3/1Н Минск"
+}{
+    "address_components": [
+        {
+            "long_name": "58",
+            "short_name": "58",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "проспект Независимости",
+            "short_name": "пр. Независимости",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Советский район",
+            "short_name": "Советский район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Минск",
+            "short_name": "Минск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минский район",
+            "short_name": "Минский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        },
+        {
+            "long_name": "220089",
+            "short_name": "220089",
+            "types": [
+                "postal_code"
+            ]
+        }
+    ],
+    "formatted_address": "пр. Независимости 58, Минск 220089, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.917748,
+            "lng": 27.588908
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.9190969802915,
+                "lng": 27.5902569802915
+            },
+            "southwest": {
+                "lat": 53.9163990197085,
+                "lng": 27.5875590197085
+            }
+        }
+    },
+    "partial_match": true,
+    "place_id": "ChIJhSwup6bP20YRf8NGy2UwKx8",
+    "plus_code": {
+        "compound_code": "WH9Q+3H Минск, Беларусь",
+        "global_code": "9G59WH9Q+3H"
+    },
+    "types": [
+        "street_address"
+    ],
+    "adres_from_alibi": "г. Минск пр. Независимости 58, пом. 142/3 Минский"
+}{
+    "address_components": [
+        {
+            "long_name": "улица Колосовская",
+            "short_name": "улица Колосовская",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Столбцы",
+            "short_name": "Столбцы",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Столбцовский район",
+            "short_name": "Столбцовский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "улица Колосовская, Столбцы, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 53.4675599,
+                "lng": 26.7816183
+            },
+            "southwest": {
+                "lat": 53.46330589999999,
+                "lng": 26.7741667
+            }
+        },
+        "location": {
+            "lat": 53.4643559,
+            "lng": 26.7759132
+        },
+        "location_type": "GEOMETRIC_CENTER",
+        "viewport": {
+            "northeast": {
+                "lat": 53.4675599,
+                "lng": 26.7816183
+            },
+            "southwest": {
+                "lat": 53.46330589999999,
+                "lng": 26.7741667
+            }
+        }
+    },
+    "partial_match": true,
+    "place_id": "EjrRg9C70LjRhtCwINCa0L7Qu9C-0YHQvtCy0YHQutCw0Y8sINCh0YLQvtC70LHRhtGLLCBCZWxhcnVzIi4qLAoUChIJxXfYvgkV2UYRzz2X7wr3Xh8SFAoSCe9ro5p4FdlGEdRmXR1kBFW0",
+    "types": [
+        "route"
+    ],
+    "adres_from_alibi": "Столбцы , ул., Колосовская, 13а"
+}{
+    "address_components": [
+        {
+            "long_name": "2а",
+            "short_name": "2а",
+            "types": [
+                "subpremise"
+            ]
+        },
+        {
+            "long_name": "8",
+            "short_name": "8",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Первомайская",
+            "short_name": "улица Первомайская",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Жлобин",
+            "short_name": "Жлобин",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Жлобинский район",
+            "short_name": "Жлобинский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Гомельская область",
+            "short_name": "Гомельская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "2а, улица Первомайская 8, Жлобин, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 52.8950888,
+                "lng": 30.0567377
+            },
+            "southwest": {
+                "lat": 52.8948833,
+                "lng": 30.055725
+            }
+        },
+        "location": {
+            "lat": 52.8949837,
+            "lng": 30.0562136
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 52.8963350302915,
+                "lng": 30.0575803302915
+            },
+            "southwest": {
+                "lat": 52.8936370697085,
+                "lng": 30.0548823697085
+            }
+        }
+    },
+    "place_id": "Ei0y0LAsIFBlcnZvbWF5c2theWEgc3RyZWV0IDgsIMW9bG9iaW4sIEJlbGFydXMiHxodChYKFAoSCVPvjslSttZGEbktNsjbRF5-EgMy0LA",
+    "types": [
+        "subpremise"
+    ],
+    "adres_from_alibi": "Жлобин , ул., Первомайская, 8/2а"
+}{
+    "address_components": [
+        {
+            "long_name": "улица Минское шоссе",
+            "short_name": "ул. Минское ш.",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Бобруйск",
+            "short_name": "Бобруйск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Бобруйский район",
+            "short_name": "Бобруйский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Могилёвская область",
+            "short_name": "Могилёвская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Минское ш., Бобруйск, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 53.2021277,
+                "lng": 29.2037802
+            },
+            "southwest": {
+                "lat": 53.17143369999999,
+                "lng": 29.1358278
+            }
+        },
+        "location": {
+            "lat": 53.1921026,
+            "lng": 29.1680108
+        },
+        "location_type": "GEOMETRIC_CENTER",
+        "viewport": {
+            "northeast": {
+                "lat": 53.2021277,
+                "lng": 29.2037802
+            },
+            "southwest": {
+                "lat": 53.17143369999999,
+                "lng": 29.1358278
+            }
+        }
+    },
+    "place_id": "EilVbGl0c2EgTWluc2tveWUgU2hvc3NlLCBCYWJydXlzaywgQmVsYXJ1cyIuKiwKFAoSCe15pcL4M9dGEZohFKbATH4sEhQKEgkpBP3DdTHXRhHyHDlgCMS-8w",
+    "types": [
+        "route"
+    ],
+    "adres_from_alibi": "Бобруйск , шоссе, Минское,"
+}{
+    "address_components": [
+        {
+            "long_name": "улица Минское шоссе",
+            "short_name": "ул. Минское ш.",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Бобруйск",
+            "short_name": "Бобруйск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Бобруйский район",
+            "short_name": "Бобруйский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Могилёвская область",
+            "short_name": "Могилёвская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Минское ш., Бобруйск, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 53.2021277,
+                "lng": 29.2037802
+            },
+            "southwest": {
+                "lat": 53.17143369999999,
+                "lng": 29.1358278
+            }
+        },
+        "location": {
+            "lat": 53.1921026,
+            "lng": 29.1680108
+        },
+        "location_type": "GEOMETRIC_CENTER",
+        "viewport": {
+            "northeast": {
+                "lat": 53.2021277,
+                "lng": 29.2037802
+            },
+            "southwest": {
+                "lat": 53.17143369999999,
+                "lng": 29.1358278
+            }
+        }
+    },
+    "place_id": "EilVbGl0c2EgTWluc2tveWUgU2hvc3NlLCBCYWJydXlzaywgQmVsYXJ1cyIuKiwKFAoSCe15pcL4M9dGEZohFKbATH4sEhQKEgkpBP3DdTHXRhHyHDlgCMS-8w",
+    "types": [
+        "route"
+    ],
+    "adres_from_alibi": "Бобруйск , шоссе, Минское,"
+}{
+    "address_components": [
+        {
+            "long_name": "улица Минское шоссе",
+            "short_name": "ул. Минское ш.",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Бобруйск",
+            "short_name": "Бобруйск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Бобруйский район",
+            "short_name": "Бобруйский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Могилёвская область",
+            "short_name": "Могилёвская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Минское ш., Бобруйск, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 53.2021277,
+                "lng": 29.2037802
+            },
+            "southwest": {
+                "lat": 53.17143369999999,
+                "lng": 29.1358278
+            }
+        },
+        "location": {
+            "lat": 53.1921026,
+            "lng": 29.1680108
+        },
+        "location_type": "GEOMETRIC_CENTER",
+        "viewport": {
+            "northeast": {
+                "lat": 53.2021277,
+                "lng": 29.2037802
+            },
+            "southwest": {
+                "lat": 53.17143369999999,
+                "lng": 29.1358278
+            }
+        }
+    },
+    "place_id": "EilVbGl0c2EgTWluc2tveWUgU2hvc3NlLCBCYWJydXlzaywgQmVsYXJ1cyIuKiwKFAoSCe15pcL4M9dGEZohFKbATH4sEhQKEgkpBP3DdTHXRhHyHDlgCMS-8w",
+    "types": [
+        "route"
+    ],
+    "adres_from_alibi": "Бобруйск , шоссе, Минское,"
+}{
+    "address_components": [
+        {
+            "long_name": "80",
+            "short_name": "80",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Первомайская",
+            "short_name": "улица Первомайская",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Жлобин",
+            "short_name": "Жлобин",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Жлобинский район",
+            "short_name": "Жлобинский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Гомельская область",
+            "short_name": "Гомельская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "улица Первомайская 80, Жлобин, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 52.893887,
+            "lng": 30.029996
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 52.8952359802915,
+                "lng": 30.0313449802915
+            },
+            "southwest": {
+                "lat": 52.8925380197085,
+                "lng": 30.0286470197085
+            }
+        }
+    },
+    "place_id": "ChIJr1FE2Mm31kYREfDfTVI7cdc",
+    "plus_code": {
+        "compound_code": "V2VH+HX Жлобин, Беларусь",
+        "global_code": "9G4GV2VH+HX"
+    },
+    "types": [
+        "street_address"
+    ],
+    "adres_from_alibi": "г. Жлобин , ул., Первомайская, 80А"
+}{
+    "address_components": [
+        {
+            "long_name": "75 Д",
+            "short_name": "75 Д",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "Пушкинский проспект",
+            "short_name": "Пушкинский просп.",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Октябрьский район",
+            "short_name": "Октябрьский район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Могилёв",
+            "short_name": "Могилёв",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Могилёвский район",
+            "short_name": "Могилёвский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Могилёвская область",
+            "short_name": "Могилёвская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        },
+        {
+            "long_name": "212029",
+            "short_name": "212029",
+            "types": [
+                "postal_code"
+            ]
+        }
+    ],
+    "formatted_address": "Пушкинский просп. 75 Д, Могилёв 212029, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.8705236,
+            "lng": 30.3480118
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.8718725802915,
+                "lng": 30.3493607802915
+            },
+            "southwest": {
+                "lat": 53.8691746197085,
+                "lng": 30.3466628197085
+            }
+        }
+    },
+    "place_id": "ChIJDygDlC9S0EYRzZBYBkGVWY8",
+    "plus_code": {
+        "compound_code": "V8CX+66 Могилёв, Беларусь",
+        "global_code": "9G5GV8CX+66"
+    },
+    "types": [
+        "establishment",
+        "point_of_interest",
+        "shopping_mall"
+    ],
+    "adres_from_alibi": "Могилев , пр., Пушкинский, ТЦ \"Карусель\", 75Д"
+}{
+    "address_components": [
+        {
+            "long_name": "54",
+            "short_name": "54",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Уманская",
+            "short_name": "ул. Уманская",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Московский район",
+            "short_name": "Московский район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Минск",
+            "short_name": "Минск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минский район",
+            "short_name": "Минский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        },
+        {
+            "long_name": "220089",
+            "short_name": "220089",
+            "types": [
+                "postal_code"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Уманская 54, Минск 220089, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.8753438,
+            "lng": 27.4983295
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.8766927802915,
+                "lng": 27.4996784802915
+            },
+            "southwest": {
+                "lat": 53.8739948197085,
+                "lng": 27.4969805197085
+            }
+        }
+    },
+    "place_id": "ChIJnzkyogzQ20YR4IPBI0KpnM0",
+    "plus_code": {
+        "compound_code": "VFGX+48 Минск, Беларусь",
+        "global_code": "9G59VFGX+48"
+    },
+    "types": [
+        "establishment",
+        "point_of_interest",
+        "shopping_mall"
+    ],
+    "adres_from_alibi": "Минск , ул., Уманская, ТЦ\"Глобо\", 54"
+}{
+    "address_components": [
+        {
+            "long_name": "57б",
+            "short_name": "57б",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Сурганова",
+            "short_name": "ул. Сурганова",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Советский район",
+            "short_name": "Советский район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Минск",
+            "short_name": "Минск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минский район",
+            "short_name": "Минский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        },
+        {
+            "long_name": "220100",
+            "short_name": "220100",
+            "types": [
+                "postal_code"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Сурганова 57б, Минск 220100, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.928688,
+            "lng": 27.5829577
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.9300369802915,
+                "lng": 27.5843066802915
+            },
+            "southwest": {
+                "lat": 53.9273390197085,
+                "lng": 27.5816087197085
+            }
+        }
+    },
+    "place_id": "ChIJH56B-QvP20YRy_M7L4Q3ulU",
+    "plus_code": {
+        "compound_code": "WHHM+F5 Минск, Беларусь",
+        "global_code": "9G59WHHM+F5"
+    },
+    "types": [
+        "establishment",
+        "point_of_interest",
+        "shopping_mall"
+    ],
+    "adres_from_alibi": "г. Минск , ул. Сурганова, ТЦ \"Европа\", 57б"
+}{
+    "address_components": [
+        {
+            "long_name": "15",
+            "short_name": "15",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "Pobedy Avenue",
+            "short_name": "Pobedy Avenue",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Первомайский район",
+            "short_name": "Первомайский район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Витебск",
+            "short_name": "Витебск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Витебский район",
+            "short_name": "Витебский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Витебская область",
+            "short_name": "Витебская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "Pobedy Avenue 15, Витебск, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 55.1695651,
+            "lng": 30.2240477
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 55.1709140802915,
+                "lng": 30.2253966802915
+            },
+            "southwest": {
+                "lat": 55.1682161197085,
+                "lng": 30.2226987197085
+            }
+        }
+    },
+    "place_id": "ChIJpZHQpWtxxUYRMkXw3HV7i3o",
+    "plus_code": {
+        "compound_code": "569F+RJ Витебск, Беларусь",
+        "global_code": "9G7G569F+RJ"
+    },
+    "types": [
+        "street_address"
+    ],
+    "adres_from_alibi": "г. Витебск, пр-т Победы, 15"
+}{
+    "address_components": [
+        {
+            "long_name": "улица Железнодорожная",
+            "short_name": "ул. Железнодорожная",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Петришки",
+            "short_name": "Петришки",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минский район",
+            "short_name": "Минский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        },
+        {
+            "long_name": "223037",
+            "short_name": "223037",
+            "types": [
+                "postal_code"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Железнодорожная, Петришки 223037, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 54.0740166,
+                "lng": 27.2157066
+            },
+            "southwest": {
+                "lat": 54.06855119999999,
+                "lng": 27.2109424
+            }
+        },
+        "location": {
+            "lat": 54.07121850000001,
+            "lng": 27.2128823
+        },
+        "location_type": "GEOMETRIC_CENTER",
+        "viewport": {
+            "northeast": {
+                "lat": 54.0740166,
+                "lng": 27.2157066
+            },
+            "southwest": {
+                "lat": 54.06855119999999,
+                "lng": 27.2109424
+            }
+        }
+    },
+    "partial_match": true,
+    "place_id": "EjzQstGD0LvRltGG0LAg0KfRi9Cz0YPQvdCw0YfQvdCw0Y8sINCf0Y_RgtGA0YvRiNC60ZYsIEJlbGFydXMiLiosChQKEgkPHmET-OvbRhFpKKBYek9tGhIUChIJBXKqOfrr20YRsZ19yMIvnX8",
+    "types": [
+        "route"
+    ],
+    "adres_from_alibi": "аг. Петришки , ул., Железнодорожная, 18 б"
+}{
+    "address_components": [
+        {
+            "long_name": "13",
+            "short_name": "13",
+            "types": [
+                "premise"
+            ]
+        },
+        {
+            "long_name": "13",
+            "short_name": "13",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "проспект Клецкова",
+            "short_name": "пр-т. Клецкова",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Октябрьский район",
+            "short_name": "Октябрьский район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Гродно",
+            "short_name": "Гродно",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Гродненский район",
+            "short_name": "Гродненский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Гродненская область",
+            "short_name": "Гродненская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        },
+        {
+            "long_name": "230026",
+            "short_name": "230026",
+            "types": [
+                "postal_code"
+            ]
+        }
+    ],
+    "formatted_address": "13, пр-т. Клецкова 13, Гродно 230026, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 53.64675889999999,
+                "lng": 23.8464528
+            },
+            "southwest": {
+                "lat": 53.64572219999999,
+                "lng": 23.8452835
+            }
+        },
+        "location": {
+            "lat": 53.6461634,
+            "lng": 23.8461223
+        },
+        "location_type": "GEOMETRIC_CENTER",
+        "viewport": {
+            "northeast": {
+                "lat": 53.6475895302915,
+                "lng": 23.8472171302915
+            },
+            "southwest": {
+                "lat": 53.6448915697085,
+                "lng": 23.8445191697085
+            }
+        }
+    },
+    "place_id": "ChIJdcr2TqPX30YRW0tDGR5BCVM",
+    "types": [
+        "premise"
+    ],
+    "adres_from_alibi": "г. Гродно , пр., Клецкова, 13 п.3"
+}{
+    "address_components": [
+        {
+            "long_name": "улица Минское шоссе",
+            "short_name": "ул. Минское ш.",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Бобруйск",
+            "short_name": "Бобруйск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Бобруйский район",
+            "short_name": "Бобруйский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Могилёвская область",
+            "short_name": "Могилёвская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Минское ш., Бобруйск, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 53.2021277,
+                "lng": 29.2037802
+            },
+            "southwest": {
+                "lat": 53.17143369999999,
+                "lng": 29.1358278
+            }
+        },
+        "location": {
+            "lat": 53.1921026,
+            "lng": 29.1680108
+        },
+        "location_type": "GEOMETRIC_CENTER",
+        "viewport": {
+            "northeast": {
+                "lat": 53.2021277,
+                "lng": 29.2037802
+            },
+            "southwest": {
+                "lat": 53.17143369999999,
+                "lng": 29.1358278
+            }
+        }
+    },
+    "place_id": "EilVbGl0c2EgTWluc2tveWUgU2hvc3NlLCBCYWJydXlzaywgQmVsYXJ1cyIuKiwKFAoSCe15pcL4M9dGEZohFKbATH4sEhQKEgkpBP3DdTHXRhHyHDlgCMS-8w",
+    "types": [
+        "route"
+    ],
+    "adres_from_alibi": "г. Бобруйск , шоссе, Минское, 4"
+}{
+    "address_components": [
+        {
+            "long_name": "35",
+            "short_name": "35",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Чехова",
+            "short_name": "ул. Чехова",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Бобруйск",
+            "short_name": "Бобруйск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Бобруйский район",
+            "short_name": "Бобруйский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Могилёвская область",
+            "short_name": "Могилёвская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Чехова 35, Бобруйск, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.1615376,
+            "lng": 29.2151878
+        },
+        "location_type": "RANGE_INTERPOLATED",
+        "viewport": {
+            "northeast": {
+                "lat": 53.1628865802915,
+                "lng": 29.2165367802915
+            },
+            "southwest": {
+                "lat": 53.1601886197085,
+                "lng": 29.2138388197085
+            }
+        }
+    },
+    "place_id": "EiN2dWwuIMSMZWNoYXZhIDM1LCBCYWJydWpzaywgQmVsYXJ1cyIaEhgKFAoSCUcoMWp6MddGERghADwt6zfdECM",
+    "types": [
+        "street_address"
+    ],
+    "adres_from_alibi": "г. Бобруйск , ул., Чехова, 35"
+}{
+    "address_components": [
+        {
+            "long_name": "26",
+            "short_name": "26",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Лактионова",
+            "short_name": "ул. Лактионова",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Брест",
+            "short_name": "Брест",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Брестский район",
+            "short_name": "Брестский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Брестская область",
+            "short_name": "Брестская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Лактионова 26, Брест, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 52.09915549999999,
+            "lng": 23.7855881
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 52.1005044802915,
+                "lng": 23.7869370802915
+            },
+            "southwest": {
+                "lat": 52.0978065197085,
+                "lng": 23.7842391197085
+            }
+        }
+    },
+    "place_id": "ChIJ_d6bOogOIUcRT4jcC2I8xng",
+    "plus_code": {
+        "compound_code": "3QXP+M6 Брест, Беларусь",
+        "global_code": "9G453QXP+M6"
+    },
+    "types": [
+        "street_address"
+    ],
+    "adres_from_alibi": "г. Брест , ул., Лактионова, 26"
+}{
+    "address_components": [
+        {
+            "long_name": "14",
+            "short_name": "14",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Янки Лучины",
+            "short_name": "улица Янки Лучины",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Ленинский район",
+            "short_name": "Ленинский район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Минск",
+            "short_name": "Минск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минский район",
+            "short_name": "Минский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "улица Янки Лучины 14, Минск, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.837704,
+            "lng": 27.5692381
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.8390529802915,
+                "lng": 27.5705870802915
+            },
+            "southwest": {
+                "lat": 53.8363550197085,
+                "lng": 27.5678891197085
+            }
+        }
+    },
+    "place_id": "ChIJu-AoLKLR20YR_JvnmIXFBMk",
+    "plus_code": {
+        "compound_code": "RHQ9+3M Минск, Беларусь",
+        "global_code": "9G59RHQ9+3M"
+    },
+    "types": [
+        "street_address"
+    ],
+    "adres_from_alibi": "г. Минск , ул., Я.Лучины, 14"
+}{
+    "address_components": [
+        {
+            "long_name": "Баня №3",
+            "short_name": "Баня №3",
+            "types": [
+                "premise"
+            ]
+        },
+        {
+            "long_name": "46",
+            "short_name": "46",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "Интернациональная улица",
+            "short_name": "Интернациональная ул.",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Центральный район",
+            "short_name": "Центральный район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Гомель",
+            "short_name": "Гомель",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Гомельский район",
+            "short_name": "Гомельский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Гомельская область",
+            "short_name": "Гомельская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "Баня №3, Интернациональная ул. 46, Гомель, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 52.4174127,
+                "lng": 31.0021628
+            },
+            "southwest": {
+                "lat": 52.41704619999999,
+                "lng": 31.0015136
+            }
+        },
+        "location": {
+            "lat": 52.4172388,
+            "lng": 31.00185129999999
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 52.4185784302915,
+                "lng": 31.0031871802915
+            },
+            "southwest": {
+                "lat": 52.4158804697085,
+                "lng": 31.00048921970851
+            }
+        }
+    },
+    "place_id": "ChIJA9PM2kto1EYRhUBdQzWHARM",
+    "types": [
+        "premise"
+    ],
+    "adres_from_alibi": "Гомель , ул., Интернациональная, 46"
+}{
+    "address_components": [
+        {
+            "long_name": "улица Мира",
+            "short_name": "ул. Мира",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Воложин",
+            "short_name": "Воложин",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Воложинский район",
+            "short_name": "Воложинский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Мира, Воложин, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 54.08634170000001,
+                "lng": 26.5234992
+            },
+            "southwest": {
+                "lat": 54.0848427,
+                "lng": 26.5191481
+            }
+        },
+        "location": {
+            "lat": 54.0856515,
+            "lng": 26.5212976
+        },
+        "location_type": "GEOMETRIC_CENTER",
+        "viewport": {
+            "northeast": {
+                "lat": 54.0869411802915,
+                "lng": 26.5234992
+            },
+            "southwest": {
+                "lat": 54.0842432197085,
+                "lng": 26.5191481
+            }
+        }
+    },
+    "place_id": "ChIJ34CT50wE3EYRRXW8VLY7k1o",
+    "types": [
+        "route"
+    ],
+    "adres_from_alibi": "г. Воложин , ул., Мира, 12"
+}{
+    "address_components": [
+        {
+            "long_name": "улица Советская",
+            "short_name": "ул. Советская",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Кобрин",
+            "short_name": "Кобрин",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Кобринский район",
+            "short_name": "Кобринский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Брестская область",
+            "short_name": "Брестская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Советская, Кобрин, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 52.2125475,
+                "lng": 24.3563012
+            },
+            "southwest": {
+                "lat": 52.2036701,
+                "lng": 24.3052269
+            }
+        },
+        "location": {
+            "lat": 52.2089535,
+            "lng": 24.3312701
+        },
+        "location_type": "GEOMETRIC_CENTER",
+        "viewport": {
+            "northeast": {
+                "lat": 52.2125475,
+                "lng": 24.3563012
+            },
+            "southwest": {
+                "lat": 52.2036701,
+                "lng": 24.3052269
+            }
+        }
+    },
+    "place_id": "EiF2dWxpY2EgU2F2ZWNrYWphLCBLb2JyeW4sIEJlbGFydXMiLiosChQKEgkJSAnJ8iAhRxF7ubf6_tvGLBIUChIJM4QymI4gIUcRDg8_KQiFiiE",
+    "types": [
+        "route"
+    ],
+    "adres_from_alibi": "Кобрин , ул., Советская,"
+}{
+    "address_components": [
+        {
+            "long_name": "5б",
+            "short_name": "5б",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Кульман",
+            "short_name": "ул. Кульман",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Советский район",
+            "short_name": "Советский район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Минск",
+            "short_name": "Минск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минский район",
+            "short_name": "Минский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        },
+        {
+            "long_name": "220089",
+            "short_name": "220089",
+            "types": [
+                "postal_code"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Кульман 5б, Минск 220089, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.9198574,
+            "lng": 27.5811768
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.92120638029149,
+                "lng": 27.5825257802915
+            },
+            "southwest": {
+                "lat": 53.91850841970849,
+                "lng": 27.57982781970849
+            }
+        }
+    },
+    "place_id": "ChIJfYXUuqHP20YRK4tLKhjamsk",
+    "plus_code": {
+        "compound_code": "WH9J+WF Минск, Беларусь",
+        "global_code": "9G59WH9J+WF"
+    },
+    "types": [
+        "street_address"
+    ],
+    "adres_from_alibi": "Минск , ул., Кульман, 5б"
+}{
+    "address_components": [
+        {
+            "long_name": "Кобрин",
+            "short_name": "Кобрин",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Кобринский район",
+            "short_name": "Кобринский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Брестская область",
+            "short_name": "Брестская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "Кобрин, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 52.2471639,
+                "lng": 24.393005
+            },
+            "southwest": {
+                "lat": 52.1819829,
+                "lng": 24.30602
+            }
+        },
+        "location": {
+            "lat": 52.21175849999999,
+            "lng": 24.3562415
+        },
+        "location_type": "APPROXIMATE",
+        "viewport": {
+            "northeast": {
+                "lat": 52.2471639,
+                "lng": 24.393005
+            },
+            "southwest": {
+                "lat": 52.1819829,
+                "lng": 24.30602
+            }
+        }
+    },
+    "partial_match": true,
+    "place_id": "ChIJM4QymI4gIUcRDg8_KQiFiiE",
+    "types": [
+        "locality",
+        "political"
+    ],
+    "adres_from_alibi": "Перекресток , а/д, Кобрин-Малорита-гр.Укр. и Брест-Мокраны-г"
+}{
+    "address_components": [
+        {
+            "long_name": "102",
+            "short_name": "102",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Городокская",
+            "short_name": "ул. Городокская",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Молодечно",
+            "short_name": "Молодечно",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Молодечненский район",
+            "short_name": "Молодечненский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Городокская 102, Молодечно, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 54.304308,
+            "lng": 26.8725229
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 54.3056569802915,
+                "lng": 26.8738718802915
+            },
+            "southwest": {
+                "lat": 54.3029590197085,
+                "lng": 26.8711739197085
+            }
+        }
+    },
+    "place_id": "ChIJiSzx3Eh03EYR8oYH8CJ5V0c",
+    "plus_code": {
+        "compound_code": "8V3F+P2 Молодечно, Беларусь",
+        "global_code": "9G688V3F+P2"
+    },
+    "types": [
+        "street_address"
+    ],
+    "adres_from_alibi": "Молодечно , ул., Городокская, 102б"
+}{
+    "address_components": [
+        {
+            "long_name": "рынок \"Лагуна\"",
+            "short_name": "рынок \"Лагуна\"",
+            "types": [
+                "premise"
+            ]
+        },
+        {
+            "long_name": "19",
+            "short_name": "19",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Волгоградская",
+            "short_name": "ул. Волгоградская",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Брест",
+            "short_name": "Брест",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Брестский район",
+            "short_name": "Брестский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Брестская область",
+            "short_name": "Брестская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "рынок \"Лагуна\", ул. Волгоградская 19, Брест, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 52.07871480000001,
+                "lng": 23.7561269
+            },
+            "southwest": {
+                "lat": 52.0770663,
+                "lng": 23.7546514
+            }
+        },
+        "location": {
+            "lat": 52.0780482,
+            "lng": 23.7554799
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 52.07923953029151,
+                "lng": 23.7567381302915
+            },
+            "southwest": {
+                "lat": 52.07654156970851,
+                "lng": 23.7540401697085
+            }
+        }
+    },
+    "place_id": "ChIJeSnTDjEMIUcRjP9CMkWe6-s",
+    "types": [
+        "premise"
+    ],
+    "adres_from_alibi": "Брест , ул., Волгоградская, 19"
+}{
+    "address_components": [
+        {
+            "long_name": "37",
+            "short_name": "37",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Октябрьская",
+            "short_name": "ул. Октябрьская",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Мядельский район",
+            "short_name": "Мядельский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Октябрьская 37, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 54.9165974,
+            "lng": 26.7014581
+        },
+        "location_type": "RANGE_INTERPOLATED",
+        "viewport": {
+            "northeast": {
+                "lat": 54.9179463802915,
+                "lng": 26.7028070802915
+            },
+            "southwest": {
+                "lat": 54.9152484197085,
+                "lng": 26.7001091197085
+            }
+        }
+    },
+    "place_id": "EiBVbGl0c2EgT2t0eWFicidza2F5YSAzNywgQmVsYXJ1cyIaEhgKFAoSCcu3U28Y79xGETe4pH3Mr3G2ECU",
+    "types": [
+        "street_address"
+    ],
+    "adres_from_alibi": "Нарочь , ул., Октябрьская, 37"
+}{
+    "address_components": [
+        {
+            "long_name": "3",
+            "short_name": "3",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Немига",
+            "short_name": "улица Немига",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Центральный район",
+            "short_name": "Центральный район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Минск",
+            "short_name": "Минск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минский район",
+            "short_name": "Минский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "улица Немига 3, Минск, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.9040617,
+            "lng": 27.5524422
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.9054106802915,
+                "lng": 27.5537911802915
+            },
+            "southwest": {
+                "lat": 53.9027127197085,
+                "lng": 27.5510932197085
+            }
+        }
+    },
+    "place_id": "ChIJkTxBoOvP20YRRzf5Kj14--A",
+    "plus_code": {
+        "compound_code": "WH32+JX Минск, Беларусь",
+        "global_code": "9G59WH32+JX"
+    },
+    "types": [
+        "street_address"
+    ],
+    "adres_from_alibi": "Минск , ул., Немига, 3"
+}{
+    "address_components": [
+        {
+            "long_name": "18",
+            "short_name": "18",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Уборевича",
+            "short_name": "ул. Уборевича",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Барановичи",
+            "short_name": "Барановичи",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Барановичский район",
+            "short_name": "Барановичский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Брестская область",
+            "short_name": "Брестская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Уборевича 18, Барановичи, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 53.1258455,
+                "lng": 26.0414453
+            },
+            "southwest": {
+                "lat": 53.1255946,
+                "lng": 26.0410756
+            }
+        },
+        "location": {
+            "lat": 53.12571819999999,
+            "lng": 26.0412326
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.1270690302915,
+                "lng": 26.0426094302915
+            },
+            "southwest": {
+                "lat": 53.1243710697085,
+                "lng": 26.0399114697085
+            }
+        }
+    },
+    "place_id": "ChIJLRJW6PzP2EYRrPgz72Q8uy0",
+    "types": [
+        "premise"
+    ],
+    "adres_from_alibi": "Барановичи , ул., Уборевича, 18"
+}{
+    "address_components": [
+        {
+            "long_name": "182",
+            "short_name": "182",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Советских Пограничников",
+            "short_name": "ул. Советских Пограничников",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Октябрьский район",
+            "short_name": "Октябрьский район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Гродно",
+            "short_name": "Гродно",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Гродненский район",
+            "short_name": "Гродненский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Гродненская область",
+            "short_name": "Гродненская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Советских Пограничников 182, Гродно, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.6743225,
+            "lng": 23.7856635
+        },
+        "location_type": "RANGE_INTERPOLATED",
+        "viewport": {
+            "northeast": {
+                "lat": 53.67567148029149,
+                "lng": 23.7870124802915
+            },
+            "southwest": {
+                "lat": 53.67297351970849,
+                "lng": 23.7843145197085
+            }
+        }
+    },
+    "place_id": "EjVVbGl0c2EgU292ZXRza2lraCBQb2dyYW5pY2huaWtvdiAxODIsIEdyb2RubywgQmVsYXJ1cyIbEhkKFAoSCQP1KitieOBGEc6TnJEGtq1aELYB",
+    "types": [
+        "street_address"
+    ],
+    "adres_from_alibi": "Гродно , ул., Советских пограничников, 182"
+}{
+    "address_components": [
+        {
+            "long_name": "108",
+            "short_name": "108",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Советская",
+            "short_name": "ул. Советская",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Ошмяны",
+            "short_name": "Ошмяны",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Ошмянский район",
+            "short_name": "Ошмянский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Гродненская область",
+            "short_name": "Гродненская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Советская 108, Ошмяны, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 54.4248196,
+                "lng": 25.9356737
+            },
+            "southwest": {
+                "lat": 54.4245604,
+                "lng": 25.9351265
+            }
+        },
+        "location": {
+            "lat": 54.42466899999999,
+            "lng": 25.9353871
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 54.4260389802915,
+                "lng": 25.9367490802915
+            },
+            "southwest": {
+                "lat": 54.4233410197085,
+                "lng": 25.9340511197085
+            }
+        }
+    },
+    "place_id": "ChIJ9V4Ha8U13EYRLScNwAV9u14",
+    "types": [
+        "premise"
+    ],
+    "adres_from_alibi": "Ошмяны , ул., Советская, 108"
+}{
+    "address_components": [
+        {
+            "long_name": "пом. 200",
+            "short_name": "пом. 200",
+            "types": [
+                "subpremise"
+            ]
+        },
+        {
+            "long_name": "34",
+            "short_name": "34",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Янковского",
+            "short_name": "улица Янковского",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Фрунзенский район",
+            "short_name": "Фрунзенский район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Минск",
+            "short_name": "Минск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минский район",
+            "short_name": "Минский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        },
+        {
+            "long_name": "220022",
+            "short_name": "220022",
+            "types": [
+                "postal_code"
+            ]
+        }
+    ],
+    "formatted_address": "пом. 200, улица Янковского 34, Минск 220022, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.87814520000001,
+            "lng": 27.4539088
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.87949418029151,
+                "lng": 27.4552577802915
+            },
+            "southwest": {
+                "lat": 53.87679621970851,
+                "lng": 27.45255981970849
+            }
+        }
+    },
+    "partial_match": true,
+    "place_id": "ChIJz_XCepPa20YR_jtbkxpkye4",
+    "types": [
+        "subpremise"
+    ],
+    "adres_from_alibi": "г. Минск , ул., Кальварийская, 33, пом. 200"
+}{
+    "address_components": [
+        {
+            "long_name": "Леошки",
+            "short_name": "Леошки",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Браславский район",
+            "short_name": "Браславский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Витебская область",
+            "short_name": "Витебская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "Леошки, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 55.754781,
+                "lng": 27.1700189
+            },
+            "southwest": {
+                "lat": 55.735702,
+                "lng": 27.1489712
+            }
+        },
+        "location": {
+            "lat": 55.743699,
+            "lng": 27.1653514
+        },
+        "location_type": "APPROXIMATE",
+        "viewport": {
+            "northeast": {
+                "lat": 55.754781,
+                "lng": 27.1700189
+            },
+            "southwest": {
+                "lat": 55.735702,
+                "lng": 27.1489712
+            }
+        }
+    },
+    "place_id": "ChIJp2HHksvhwkYRhWFWhEnYnu0",
+    "types": [
+        "locality",
+        "political"
+    ],
+    "adres_from_alibi": "Леошки , -, , -"
+}{
+    "address_components": [
+        {
+            "long_name": "35",
+            "short_name": "35",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Достоевского",
+            "short_name": "ул. Достоевского",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Речица",
+            "short_name": "Речица",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Речицкий район",
+            "short_name": "Речицкий район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Гомельская область",
+            "short_name": "Гомельская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Достоевского 35, Речица, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 52.357569,
+            "lng": 30.4078989
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 52.3589179802915,
+                "lng": 30.4092478802915
+            },
+            "southwest": {
+                "lat": 52.3562200197085,
+                "lng": 30.4065499197085
+            }
+        }
+    },
+    "place_id": "ChIJY9wwimQw1EYRfqvkotPU0IA",
+    "plus_code": {
+        "compound_code": "9C55+25 Речица, Беларусь",
+        "global_code": "9G4G9C55+25"
+    },
+    "types": [
+        "street_address"
+    ],
+    "adres_from_alibi": "Речица , ул., Достоевского, 35"
+}{
+    "address_components": [
+        {
+            "long_name": "9",
+            "short_name": "9",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Заводская",
+            "short_name": "улица Заводская",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Фаниполь",
+            "short_name": "Фаниполь",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Дзержинский район",
+            "short_name": "Дзержинский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "улица Заводская 9, Фаниполь, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 53.7415057,
+                "lng": 27.3489471
+            },
+            "southwest": {
+                "lat": 53.7412579,
+                "lng": 27.3479747
+            }
+        },
+        "location": {
+            "lat": 53.7413758,
+            "lng": 27.3484794
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.7427307802915,
+                "lng": 27.3498098802915
+            },
+            "southwest": {
+                "lat": 53.7400328197085,
+                "lng": 27.3471119197085
+            }
+        }
+    },
+    "place_id": "ChIJT5swb1R92UYRpiCR1ODtJCU",
+    "types": [
+        "premise"
+    ],
+    "adres_from_alibi": "Фаниполь , ул., Заводская, 9"
+}{
+    "address_components": [
+        {
+            "long_name": "20",
+            "short_name": "20",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица 50 лет ВЛКСМ",
+            "short_name": "ул. 50 лет ВЛКСМ",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Бобруйск",
+            "short_name": "Бобруйск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Бобруйский район",
+            "short_name": "Бобруйский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Могилёвская область",
+            "short_name": "Могилёвская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        },
+        {
+            "long_name": "213810",
+            "short_name": "213810",
+            "types": [
+                "postal_code"
+            ]
+        }
+    ],
+    "formatted_address": "ул. 50 лет ВЛКСМ 20, Бобруйск 213810, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.1694998,
+            "lng": 29.1943075
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.1708487802915,
+                "lng": 29.1956564802915
+            },
+            "southwest": {
+                "lat": 53.1681508197085,
+                "lng": 29.1929585197085
+            }
+        }
+    },
+    "place_id": "ChIJLzQp7Wox10YR-ihP0U7Ttng",
+    "plus_code": {
+        "compound_code": "559V+QP Бобруйск, Беларусь",
+        "global_code": "9G5F559V+QP"
+    },
+    "types": [
+        "establishment",
+        "point_of_interest"
+    ],
+    "adres_from_alibi": "Бобруйск , ул., 50 лет ВЛКСМ, 20а"
+}{
+    "address_components": [
+        {
+            "long_name": "30",
+            "short_name": "30",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "Брестская улица",
+            "short_name": "Брестская ул.",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Каменец",
+            "short_name": "Каменец",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Каменецкий район",
+            "short_name": "Каменецкий район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Брестская область",
+            "short_name": "Брестская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "Брестская ул. 30, Каменец, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 52.4013717,
+            "lng": 23.8215017
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 52.40272068029149,
+                "lng": 23.8228506802915
+            },
+            "southwest": {
+                "lat": 52.4000227197085,
+                "lng": 23.8201527197085
+            }
+        }
+    },
+    "place_id": "ChIJAQDMGZtVIEcRU8dSV3Yeh68",
+    "plus_code": {
+        "compound_code": "CR2C+GJ Каменец, Беларусь",
+        "global_code": "9G45CR2C+GJ"
+    },
+    "types": [
+        "street_address"
+    ],
+    "adres_from_alibi": "г. Каменец , ул., Брестская, 30"
+}{
+    "address_components": [
+        {
+            "long_name": "Парк Победы",
+            "short_name": "Парк Победы",
+            "types": [
+                "establishment",
+                "park",
+                "point_of_interest",
+                "tourist_attraction"
+            ]
+        },
+        {
+            "long_name": "Центральный район",
+            "short_name": "Центральный район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Минск",
+            "short_name": "Минск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минский район",
+            "short_name": "Минский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "Парк Победы, Минск, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.9234045,
+            "lng": 27.5358629
+        },
+        "location_type": "GEOMETRIC_CENTER",
+        "viewport": {
+            "northeast": {
+                "lat": 53.9247534802915,
+                "lng": 27.5372118802915
+            },
+            "southwest": {
+                "lat": 53.9220555197085,
+                "lng": 27.53451391970849
+            }
+        }
+    },
+    "place_id": "ChIJ36aDuInP20YRxtaEQB9m0d8",
+    "types": [
+        "establishment",
+        "park",
+        "point_of_interest",
+        "tourist_attraction"
+    ],
+    "adres_from_alibi": "Минск , -, парк \"Победы\", набережная \"Комсомольское озеро\","
+}{
+    "address_components": [
+        {
+            "long_name": "139",
+            "short_name": "139",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Великий Гостинец",
+            "short_name": "ул. Великий Гостинец",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Молодечно",
+            "short_name": "Молодечно",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Молодечненский район",
+            "short_name": "Молодечненский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        },
+        {
+            "long_name": "222301",
+            "short_name": "222301",
+            "types": [
+                "postal_code"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Великий Гостинец 139, Молодечно 222301, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 54.3010001,
+                "lng": 26.8574068
+            },
+            "southwest": {
+                "lat": 54.3007229,
+                "lng": 26.8570555
+            }
+        },
+        "location": {
+            "lat": 54.300869,
+            "lng": 26.8572695
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 54.3022104802915,
+                "lng": 26.8585801302915
+            },
+            "southwest": {
+                "lat": 54.2995125197085,
+                "lng": 26.8558821697085
+            }
+        }
+    },
+    "place_id": "ChIJO5XKykR03EYRbrYg3xdnEgc",
+    "types": [
+        "premise"
+    ],
+    "adres_from_alibi": "Молодечно , ул., В.Гостинец, 139 Б"
+}{
+    "address_components": [
+        {
+            "long_name": "19",
+            "short_name": "19",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Ленинская",
+            "short_name": "ул. Ленинская",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Марьина Горка",
+            "short_name": "Марьина Горка",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Пуховичский район",
+            "short_name": "Пуховичский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        },
+        {
+            "long_name": "222810",
+            "short_name": "222810",
+            "types": [
+                "postal_code"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Ленинская 19, Марьина Горка 222810, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.5176069,
+            "lng": 28.1449129
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.51895588029149,
+                "lng": 28.1462618802915
+            },
+            "southwest": {
+                "lat": 53.5162579197085,
+                "lng": 28.14356391970849
+            }
+        }
+    },
+    "place_id": "ChIJo8f9Qgn12UYRHGMLkxtHXC0",
+    "plus_code": {
+        "compound_code": "G49V+2X Марьина Горка, Беларусь",
+        "global_code": "9G5CG49V+2X"
+    },
+    "types": [
+        "street_address"
+    ],
+    "adres_from_alibi": "г. Марьина Горка , ул., Ленинская, 19А-1"
+}{
+    "address_components": [
+        {
+            "long_name": "99",
+            "short_name": "99",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "Партизанский проспект",
+            "short_name": "Партизанский просп.",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Заводской район",
+            "short_name": "Заводской район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Минск",
+            "short_name": "Минск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минский район",
+            "short_name": "Минский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "Партизанский просп. 99, Минск, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.8727801,
+            "lng": 27.6403018
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.8741290802915,
+                "lng": 27.6416507802915
+            },
+            "southwest": {
+                "lat": 53.8714311197085,
+                "lng": 27.6389528197085
+            }
+        }
+    },
+    "place_id": "ChIJzf8iFwbO20YRRvANW1VHP-Y",
+    "plus_code": {
+        "compound_code": "VJFR+44 Минск, Беларусь",
+        "global_code": "9G59VJFR+44"
+    },
+    "types": [
+        "establishment",
+        "point_of_interest"
+    ],
+    "adres_from_alibi": "г. Минск , пр., Партизанский, рынок Тутэйшы, 99"
+}{
+    "address_components": [
+        {
+            "long_name": "22",
+            "short_name": "22",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Янки Брыля",
+            "short_name": "ул. Янки Брыля",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Московский район",
+            "short_name": "Московский район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Минск",
+            "short_name": "Минск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минский район",
+            "short_name": "Минский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Янки Брыля 22, Минск, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.8779692,
+            "lng": 27.4823266
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.87931818029149,
+                "lng": 27.4836755802915
+            },
+            "southwest": {
+                "lat": 53.87662021970849,
+                "lng": 27.4809776197085
+            }
+        }
+    },
+    "place_id": "ChIJjfkyjKHa20YRZtmFIRnnz3g",
+    "plus_code": {
+        "compound_code": "VFHJ+5W Минск, Беларусь",
+        "global_code": "9G59VFHJ+5W"
+    },
+    "types": [
+        "street_address"
+    ],
+    "adres_from_alibi": "Минск , ул., Я.Брыля, 22-222"
+}{
+    "address_components": [
+        {
+            "long_name": "49",
+            "short_name": "49",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Нестерова",
+            "short_name": "улица Нестерова",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Заводской район",
+            "short_name": "Заводской район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Минск",
+            "short_name": "Минск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минский район",
+            "short_name": "Минский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "улица Нестерова 49, Минск, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.8836121,
+            "lng": 27.6814699
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.8849610802915,
+                "lng": 27.6828188802915
+            },
+            "southwest": {
+                "lat": 53.8822631197085,
+                "lng": 27.6801209197085
+            }
+        }
+    },
+    "place_id": "ChIJZen308TN20YR8qjVa15ixqg",
+    "plus_code": {
+        "compound_code": "VMMJ+CH Минск, Беларусь",
+        "global_code": "9G59VMMJ+CH"
+    },
+    "types": [
+        "street_address"
+    ],
+    "adres_from_alibi": "Минск , ул., Нестерова, 49"
+}{
+    "address_components": [
+        {
+            "long_name": "139",
+            "short_name": "139",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Великий Гостинец",
+            "short_name": "ул. Великий Гостинец",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Молодечно",
+            "short_name": "Молодечно",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Молодечненский район",
+            "short_name": "Молодечненский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        },
+        {
+            "long_name": "222301",
+            "short_name": "222301",
+            "types": [
+                "postal_code"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Великий Гостинец 139, Молодечно 222301, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 54.3010001,
+                "lng": 26.8574068
+            },
+            "southwest": {
+                "lat": 54.3007229,
+                "lng": 26.8570555
+            }
+        },
+        "location": {
+            "lat": 54.300869,
+            "lng": 26.8572695
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 54.3022104802915,
+                "lng": 26.8585801302915
+            },
+            "southwest": {
+                "lat": 54.2995125197085,
+                "lng": 26.8558821697085
+            }
+        }
+    },
+    "place_id": "ChIJO5XKykR03EYRbrYg3xdnEgc",
+    "types": [
+        "premise"
+    ],
+    "adres_from_alibi": "Молодечно , ул., В.Гостинец, 139 Б"
+}{
+    "address_components": [
+        {
+            "long_name": "139",
+            "short_name": "139",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Великий Гостинец",
+            "short_name": "ул. Великий Гостинец",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Молодечно",
+            "short_name": "Молодечно",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Молодечненский район",
+            "short_name": "Молодечненский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        },
+        {
+            "long_name": "222301",
+            "short_name": "222301",
+            "types": [
+                "postal_code"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Великий Гостинец 139, Молодечно 222301, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 54.3010001,
+                "lng": 26.8574068
+            },
+            "southwest": {
+                "lat": 54.3007229,
+                "lng": 26.8570555
+            }
+        },
+        "location": {
+            "lat": 54.300869,
+            "lng": 26.8572695
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 54.3022104802915,
+                "lng": 26.8585801302915
+            },
+            "southwest": {
+                "lat": 54.2995125197085,
+                "lng": 26.8558821697085
+            }
+        }
+    },
+    "place_id": "ChIJO5XKykR03EYRbrYg3xdnEgc",
+    "types": [
+        "premise"
+    ],
+    "adres_from_alibi": "Молодечно , ул., В.Гостинец, 139 Б"
+}{
+    "address_components": [
+        {
+            "long_name": "139",
+            "short_name": "139",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Великий Гостинец",
+            "short_name": "ул. Великий Гостинец",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Молодечно",
+            "short_name": "Молодечно",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Молодечненский район",
+            "short_name": "Молодечненский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        },
+        {
+            "long_name": "222301",
+            "short_name": "222301",
+            "types": [
+                "postal_code"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Великий Гостинец 139, Молодечно 222301, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 54.3010001,
+                "lng": 26.8574068
+            },
+            "southwest": {
+                "lat": 54.3007229,
+                "lng": 26.8570555
+            }
+        },
+        "location": {
+            "lat": 54.300869,
+            "lng": 26.8572695
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 54.3022104802915,
+                "lng": 26.8585801302915
+            },
+            "southwest": {
+                "lat": 54.2995125197085,
+                "lng": 26.8558821697085
+            }
+        }
+    },
+    "place_id": "ChIJO5XKykR03EYRbrYg3xdnEgc",
+    "types": [
+        "premise"
+    ],
+    "adres_from_alibi": "Молодечно , ул., В.Гостинец, 139 Б"
+}{
+    "address_components": [
+        {
+            "long_name": "19",
+            "short_name": "19",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Уручская",
+            "short_name": "ул. Уручская",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Первомайский район",
+            "short_name": "Первомайский район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Минск",
+            "short_name": "Минск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минский район",
+            "short_name": "Минский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Уручская 19, Минск, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.9545334,
+            "lng": 27.6918152
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.9558823802915,
+                "lng": 27.6931641802915
+            },
+            "southwest": {
+                "lat": 53.9531844197085,
+                "lng": 27.6904662197085
+            }
+        }
+    },
+    "place_id": "ChIJxQM3gzfJ20YReOjaeeoqdi8",
+    "plus_code": {
+        "compound_code": "XM3R+RP Минск, Беларусь",
+        "global_code": "9G59XM3R+RP"
+    },
+    "types": [
+        "street_address"
+    ],
+    "adres_from_alibi": "г. Минск , ул. Уручская, 19"
+}{
+    "address_components": [
+        {
+            "long_name": "35",
+            "short_name": "35",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Октябрьская",
+            "short_name": "ул. Октябрьская",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Ганцевичи",
+            "short_name": "Ганцевичи",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Ганцевичский район",
+            "short_name": "Ганцевичский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Брестская область",
+            "short_name": "Брестская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Октябрьская 35, Ганцевичи, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 52.75753599999999,
+            "lng": 26.4234995
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 52.7588849802915,
+                "lng": 26.4248484802915
+            },
+            "southwest": {
+                "lat": 52.7561870197085,
+                "lng": 26.4221505197085
+            }
+        }
+    },
+    "place_id": "ChIJX_X42WmP2EYR7yDtY-pcarg",
+    "types": [
+        "establishment",
+        "point_of_interest"
+    ],
+    "adres_from_alibi": "Ганцевичи , ул., Октябрьская(рынок),"
+}{
+    "address_components": [
+        {
+            "long_name": "125/3",
+            "short_name": "125/3",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Тимирязева",
+            "short_name": "улица Тимирязева",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Центральный район",
+            "short_name": "Центральный район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Минск",
+            "short_name": "Минск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минский район",
+            "short_name": "Минский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "улица Тимирязева 125/3, Минск, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.93551069999999,
+            "lng": 27.4481966
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.93685968029149,
+                "lng": 27.44954558029151
+            },
+            "southwest": {
+                "lat": 53.9341617197085,
+                "lng": 27.4468476197085
+            }
+        }
+    },
+    "place_id": "ChIJYWizYOjE20YR2q6xLLQsZp0",
+    "plus_code": {
+        "compound_code": "WCPX+67 Минск, Беларусь",
+        "global_code": "9G59WCPX+67"
+    },
+    "types": [
+        "establishment",
+        "point_of_interest",
+        "shopping_mall"
+    ],
+    "adres_from_alibi": "Минск , ул., Тимирязева, ТЦ \"Зооботанический\", 125/2"
+}{
+    "address_components": [
+        {
+            "long_name": "62",
+            "short_name": "62",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Сухаревская",
+            "short_name": "ул. Сухаревская",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Фрунзенский район",
+            "short_name": "Фрунзенский район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Минск",
+            "short_name": "Минск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минский район",
+            "short_name": "Минский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Сухаревская 62, Минск, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.8882646,
+            "lng": 27.4228031
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.8896135802915,
+                "lng": 27.4241520802915
+            },
+            "southwest": {
+                "lat": 53.8869156197085,
+                "lng": 27.4214541197085
+            }
+        }
+    },
+    "partial_match": true,
+    "place_id": "ChIJZ8rMjB3b20YRgnXLs7o9r9A",
+    "plus_code": {
+        "compound_code": "VCQF+84 Минск, Беларусь",
+        "global_code": "9G59VCQF+84"
+    },
+    "types": [
+        "street_address"
+    ],
+    "adres_from_alibi": "Минск , ул., Сухаревская, 62, пом.169"
+}{
+    "address_components": [
+        {
+            "long_name": "139",
+            "short_name": "139",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Великий Гостинец",
+            "short_name": "ул. Великий Гостинец",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Молодечно",
+            "short_name": "Молодечно",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Молодечненский район",
+            "short_name": "Молодечненский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        },
+        {
+            "long_name": "222301",
+            "short_name": "222301",
+            "types": [
+                "postal_code"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Великий Гостинец 139, Молодечно 222301, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 54.3010001,
+                "lng": 26.8574068
+            },
+            "southwest": {
+                "lat": 54.3007229,
+                "lng": 26.8570555
+            }
+        },
+        "location": {
+            "lat": 54.300869,
+            "lng": 26.8572695
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 54.3022104802915,
+                "lng": 26.8585801302915
+            },
+            "southwest": {
+                "lat": 54.2995125197085,
+                "lng": 26.8558821697085
+            }
+        }
+    },
+    "place_id": "ChIJO5XKykR03EYRbrYg3xdnEgc",
+    "types": [
+        "premise"
+    ],
+    "adres_from_alibi": "Молодечно , ул., В.Гостинец, 139 Б"
+}{
+    "address_components": [
+        {
+            "long_name": "54",
+            "short_name": "54",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Уманская",
+            "short_name": "ул. Уманская",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Московский район",
+            "short_name": "Московский район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Минск",
+            "short_name": "Минск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минский район",
+            "short_name": "Минский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        },
+        {
+            "long_name": "220089",
+            "short_name": "220089",
+            "types": [
+                "postal_code"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Уманская 54, Минск 220089, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.87487119999999,
+            "lng": 27.4983029
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.8762201802915,
+                "lng": 27.49965188029151
+            },
+            "southwest": {
+                "lat": 53.8735222197085,
+                "lng": 27.4969539197085
+            }
+        }
+    },
+    "place_id": "ChIJ9886ogzQ20YR528XYPOzLss",
+    "plus_code": {
+        "compound_code": "VFFX+W8 Минск, Беларусь",
+        "global_code": "9G59VFFX+W8"
+    },
+    "types": [
+        "street_address"
+    ],
+    "adres_from_alibi": "Минск , ул., Уманская, 54"
+}{
+    "address_components": [
+        {
+            "long_name": "МФК НОРД СИТИ",
+            "short_name": "МФК НОРД СИТИ",
+            "types": [
+                "establishment",
+                "point_of_interest"
+            ]
+        },
+        {
+            "long_name": "37",
+            "short_name": "37",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "Логойский тракт",
+            "short_name": "Логойский тракт",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Советский район",
+            "short_name": "Советский район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Минск",
+            "short_name": "Минск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минский район",
+            "short_name": "Минский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "МФК НОРД СИТИ, Логойский тракт 37, Минск, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.9556057,
+            "lng": 27.6202108
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.9569546802915,
+                "lng": 27.6215597802915
+            },
+            "southwest": {
+                "lat": 53.9542567197085,
+                "lng": 27.6188618197085
+            }
+        }
+    },
+    "partial_match": true,
+    "place_id": "ChIJHbaE2jXP20YRqxizOjnTR2I",
+    "plus_code": {
+        "compound_code": "XJ4C+63 Минск, Беларусь",
+        "global_code": "9G59XJ4C+63"
+    },
+    "types": [
+        "establishment",
+        "point_of_interest",
+        "shopping_mall"
+    ],
+    "adres_from_alibi": "Минск , тракт, Логойский, ТЦ \"Норд Сити\", 37-3"
+}{
+    "address_components": [
+        {
+            "long_name": "62",
+            "short_name": "62",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Парковая",
+            "short_name": "ул. Парковая",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Барановичи",
+            "short_name": "Барановичи",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Барановичский район",
+            "short_name": "Барановичский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Брестская область",
+            "short_name": "Брестская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Парковая 62, Барановичи, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 53.14750230000001,
+                "lng": 26.071836
+            },
+            "southwest": {
+                "lat": 53.14519379999999,
+                "lng": 26.0689045
+            }
+        },
+        "location": {
+            "lat": 53.14637099999999,
+            "lng": 26.0703916
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.1476970302915,
+                "lng": 26.071836
+            },
+            "southwest": {
+                "lat": 53.1449990697085,
+                "lng": 26.0689045
+            }
+        }
+    },
+    "place_id": "ChIJkeJZt3TQ2EYRAKhkXHKGxVw",
+    "types": [
+        "premise"
+    ],
+    "adres_from_alibi": "г. Барановичи , ул., Парковая, 62"
+}{
+    "address_components": [
+        {
+            "long_name": "71/1",
+            "short_name": "71/1",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Ленина",
+            "short_name": "улица Ленина",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Дрогичин",
+            "short_name": "Дрогичин",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Дрогичинский район",
+            "short_name": "Дрогичинский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Брестская область",
+            "short_name": "Брестская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "улица Ленина 71/1, Дрогичин, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 52.1871926,
+                "lng": 25.1442718
+            },
+            "southwest": {
+                "lat": 52.1870189,
+                "lng": 25.1439876
+            }
+        },
+        "location": {
+            "lat": 52.18708179999999,
+            "lng": 25.1441354
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 52.1884547302915,
+                "lng": 25.1454786802915
+            },
+            "southwest": {
+                "lat": 52.1857567697085,
+                "lng": 25.1427807197085
+            }
+        }
+    },
+    "place_id": "ChIJAUsuVIMlJ0cRgmmFXxKUXAM",
+    "types": [
+        "premise"
+    ],
+    "adres_from_alibi": "г. Дрогичин , ул., Ленина, 71/1"
+}{
+    "address_components": [
+        {
+            "long_name": "66",
+            "short_name": "66",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Чечерская",
+            "short_name": "ул. Чечерская",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Центральный район",
+            "short_name": "Центральный район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Гомель",
+            "short_name": "Гомель",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Гомельский район",
+            "short_name": "Гомельский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Гомельская область",
+            "short_name": "Гомельская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Чечерская 66, Гомель, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 52.4673065,
+            "lng": 31.0445654
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 52.4686554802915,
+                "lng": 31.0459143802915
+            },
+            "southwest": {
+                "lat": 52.4659575197085,
+                "lng": 31.0432164197085
+            }
+        }
+    },
+    "place_id": "ChIJt6fGVhpp1EYRBoD2PCfcWJk",
+    "types": [
+        "establishment",
+        "point_of_interest",
+        "school"
+    ],
+    "adres_from_alibi": "г. Гомель , ул., Ильича (Рынок новобелицкий), 74"
+}{
+    "address_components": [
+        {
+            "long_name": "24",
+            "short_name": "24",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Уборевича",
+            "short_name": "улица Уборевича",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Заводской район",
+            "short_name": "Заводской район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Минск",
+            "short_name": "Минск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минский район",
+            "short_name": "Минский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "улица Уборевича 24, Минск, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.8462988,
+            "lng": 27.6425725
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.8476477802915,
+                "lng": 27.6439214802915
+            },
+            "southwest": {
+                "lat": 53.8449498197085,
+                "lng": 27.6412235197085
+            }
+        }
+    },
+    "place_id": "ChIJX4ZM4RrS20YR3DQuLdb6dr8",
+    "plus_code": {
+        "compound_code": "RJWV+G2 Минск, Беларусь",
+        "global_code": "9G59RJWV+G2"
+    },
+    "types": [
+        "street_address"
+    ],
+    "adres_from_alibi": "г. Минск , ул., Уборевича, 24а"
+}{
+    "address_components": [
+        {
+            "long_name": "27",
+            "short_name": "27",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Фабричная",
+            "short_name": "улица Фабричная",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Ленинский район",
+            "short_name": "Ленинский район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Минск",
+            "short_name": "Минск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минский район",
+            "short_name": "Минский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "улица Фабричная 27, Минск, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 53.8864276,
+                "lng": 27.5934665
+            },
+            "southwest": {
+                "lat": 53.8856689,
+                "lng": 27.5919593
+            }
+        },
+        "location": {
+            "lat": 53.8859301,
+            "lng": 27.5926603
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.8873972302915,
+                "lng": 27.5940618802915
+            },
+            "southwest": {
+                "lat": 53.8846992697085,
+                "lng": 27.5913639197085
+            }
+        }
+    },
+    "place_id": "ChIJSXXL5DHO20YR2SfSmz-Ewpg",
+    "types": [
+        "premise"
+    ],
+    "adres_from_alibi": "г. Минск , ул., Фабричная, 27"
+}{
+    "address_components": [
+        {
+            "long_name": "54",
+            "short_name": "54",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "проспект Шмидта",
+            "short_name": "просп. Шмидта",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Октябрьский район",
+            "short_name": "Октябрьский район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Могилёв",
+            "short_name": "Могилёв",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Могилёвский район",
+            "short_name": "Могилёвский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Могилёвская область",
+            "short_name": "Могилёвская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        },
+        {
+            "long_name": "212029",
+            "short_name": "212029",
+            "types": [
+                "postal_code"
+            ]
+        }
+    ],
+    "formatted_address": "просп. Шмидта 54, Могилёв 212029, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 53.8698576,
+                "lng": 30.3281477
+            },
+            "southwest": {
+                "lat": 53.8694558,
+                "lng": 30.3275361
+            }
+        },
+        "location": {
+            "lat": 53.8696614,
+            "lng": 30.3278514
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.8710056802915,
+                "lng": 30.3291908802915
+            },
+            "southwest": {
+                "lat": 53.8683077197085,
+                "lng": 30.3264929197085
+            }
+        }
+    },
+    "place_id": "ChIJs7zUmIBR0EYRHiA8u6cPgZI",
+    "types": [
+        "premise"
+    ],
+    "adres_from_alibi": "г. Могилев , пр., Шмидта, 54"
+}{
+    "address_components": [
+        {
+            "long_name": "переулок Ширмы",
+            "short_name": "пер. Ширмы",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Пружаны",
+            "short_name": "Пружаны",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Пружанский район",
+            "short_name": "Пружанский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Брестская область",
+            "short_name": "Брестская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "пер. Ширмы, Пружаны, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 52.5538957,
+                "lng": 24.4685186
+            },
+            "southwest": {
+                "lat": 52.5520664,
+                "lng": 24.4673751
+            }
+        },
+        "location": {
+            "lat": 52.5533359,
+            "lng": 24.4680957
+        },
+        "location_type": "GEOMETRIC_CENTER",
+        "viewport": {
+            "northeast": {
+                "lat": 52.5543300302915,
+                "lng": 24.4692958302915
+            },
+            "southwest": {
+                "lat": 52.5516320697085,
+                "lng": 24.4665978697085
+            }
+        }
+    },
+    "partial_match": true,
+    "place_id": "ChIJSYrmNz_rIEcR4DZxfRdEZGg",
+    "types": [
+        "route"
+    ],
+    "adres_from_alibi": "г. Пружаны , ул., Ширмы, 18, кв. 3"
+}{
+    "address_components": [
+        {
+            "long_name": "21",
+            "short_name": "21",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Войкова",
+            "short_name": "ул. Войкова",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Барановичи",
+            "short_name": "Барановичи",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Барановичский район",
+            "short_name": "Барановичский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Брестская область",
+            "short_name": "Брестская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Войкова 21, Барановичи, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.1224889,
+            "lng": 26.0413995
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.1238378802915,
+                "lng": 26.0427484802915
+            },
+            "southwest": {
+                "lat": 53.1211399197085,
+                "lng": 26.0400505197085
+            }
+        }
+    },
+    "place_id": "ChIJEVFnl_vP2EYRIWL6IqGvMf4",
+    "plus_code": {
+        "compound_code": "42CR+XH Барановичи, Беларусь",
+        "global_code": "9G5842CR+XH"
+    },
+    "types": [
+        "street_address"
+    ],
+    "adres_from_alibi": "г. Барановичи , ул., Войкова, 21"
+}{
+    "address_components": [
+        {
+            "long_name": "12",
+            "short_name": "12",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "Проспект Ленина",
+            "short_name": "пр-т. Ленина",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Центральный район",
+            "short_name": "Центральный район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Гомель",
+            "short_name": "Гомель",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Гомельский район",
+            "short_name": "Гомельский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Гомельская область",
+            "short_name": "Гомельская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "пр-т. Ленина 12, Гомель, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 52.42596109999999,
+            "lng": 31.0062264
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 52.4273100802915,
+                "lng": 31.0075753802915
+            },
+            "southwest": {
+                "lat": 52.4246121197085,
+                "lng": 31.0048774197085
+            }
+        }
+    },
+    "place_id": "ChIJw8Vf6FJo1EYRoa5e-CNT4W4",
+    "plus_code": {
+        "compound_code": "C2G4+9F Гомель, Беларусь",
+        "global_code": "9G4HC2G4+9F"
+    },
+    "types": [
+        "street_address"
+    ],
+    "adres_from_alibi": "г. Гомель , пр., Ленина, 12-71"
+}{
+    "address_components": [
+        {
+            "long_name": "гп. Красная слобода",
+            "short_name": "гп. Красная слобода",
+            "types": [
+                "establishment",
+                "point_of_interest",
+                "transit_station"
+            ]
+        },
+        {
+            "long_name": "Красная Слобода",
+            "short_name": "Красная Слобода",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Солигорский район",
+            "short_name": "Солигорский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "гп. Красная слобода, Красная Слобода, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 52.8546203,
+            "lng": 27.1792316
+        },
+        "location_type": "GEOMETRIC_CENTER",
+        "viewport": {
+            "northeast": {
+                "lat": 52.8559692802915,
+                "lng": 27.1805805802915
+            },
+            "southwest": {
+                "lat": 52.8532713197085,
+                "lng": 27.17788261970849
+            }
+        }
+    },
+    "partial_match": true,
+    "place_id": "ChIJaVQ1Tf9F2EYR9H5CHgWqMzE",
+    "plus_code": {
+        "compound_code": "V53H+RM Красная Слобода, Беларусь",
+        "global_code": "9G49V53H+RM"
+    },
+    "types": [
+        "establishment",
+        "point_of_interest",
+        "transit_station"
+    ],
+    "adres_from_alibi": "г.п. Красная Слобода , а/д Н9637, д.Радкова-г.п.Красная Собо"
+}{
+    "address_components": [
+        {
+            "long_name": "37",
+            "short_name": "37",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Победы",
+            "short_name": "ул. Победы",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Лида",
+            "short_name": "Лида",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Лидский район",
+            "short_name": "Лидский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Гродненская область",
+            "short_name": "Гродненская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        },
+        {
+            "long_name": "231300",
+            "short_name": "231300",
+            "types": [
+                "postal_code"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Победы 37, Лида 231300, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.8910208,
+            "lng": 25.2962859
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.8923697802915,
+                "lng": 25.2976348802915
+            },
+            "southwest": {
+                "lat": 53.8896718197085,
+                "lng": 25.2949369197085
+            }
+        }
+    },
+    "place_id": "ChIJVciLm5KK3kYRGHHc_o_dAEg",
+    "plus_code": {
+        "compound_code": "V7RW+CG Лида, Беларусь",
+        "global_code": "9G57V7RW+CG"
+    },
+    "types": [
+        "street_address"
+    ],
+    "adres_from_alibi": "г. Лида , ул., Победы, 37"
+}{
+    "address_components": [
+        {
+            "long_name": "2",
+            "short_name": "2",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Гамарника",
+            "short_name": "ул. Гамарника",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Советский район",
+            "short_name": "Советский район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Минск",
+            "short_name": "Минск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минский район",
+            "short_name": "Минский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Гамарника 2, Минск, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.9568131,
+            "lng": 27.6200205
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.9581620802915,
+                "lng": 27.62136948029151
+            },
+            "southwest": {
+                "lat": 53.9554641197085,
+                "lng": 27.6186715197085
+            }
+        }
+    },
+    "place_id": "ChIJASKryDXP20YRZ_E-Wg-d3LM",
+    "plus_code": {
+        "compound_code": "XJ4C+P2 Минск, Беларусь",
+        "global_code": "9G59XJ4C+P2"
+    },
+    "types": [
+        "street_address"
+    ],
+    "adres_from_alibi": "г. Минск , ул., Гамарника, 2-13"
+}{
+    "address_components": [
+        {
+            "long_name": "11",
+            "short_name": "11",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Петра Мстиславца",
+            "short_name": "ул. Петра Мстиславца",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Первомайский район",
+            "short_name": "Первомайский район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Минск",
+            "short_name": "Минск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минский район",
+            "short_name": "Минский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        },
+        {
+            "long_name": "220114",
+            "short_name": "220114",
+            "types": [
+                "postal_code"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Петра Мстиславца 11, Минск 220114, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.9335259,
+            "lng": 27.6516587
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.9348748802915,
+                "lng": 27.6530076802915
+            },
+            "southwest": {
+                "lat": 53.9321769197085,
+                "lng": 27.6503097197085
+            }
+        }
+    },
+    "place_id": "ChIJdfkHwdzO20YR8ONLwcrcpHM",
+    "plus_code": {
+        "compound_code": "WMM2+CM Минск, Беларусь",
+        "global_code": "9G59WMM2+CM"
+    },
+    "types": [
+        "establishment",
+        "point_of_interest",
+        "shopping_mall"
+    ],
+    "adres_from_alibi": "г. Минск , ул., Мстиславца, 11, т.п. ТЦ-2-16А"
+}{
+    "address_components": [
+        {
+            "long_name": "42",
+            "short_name": "42",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица 70 лет БССР",
+            "short_name": "ул. 70 лет БССР",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Советский район",
+            "short_name": "Советский район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Гомель",
+            "short_name": "Гомель",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Гомельский район",
+            "short_name": "Гомельский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Гомельская область",
+            "short_name": "Гомельская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "ул. 70 лет БССР 42, Гомель, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 52.39893439999999,
+            "lng": 30.9126595
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 52.4002833802915,
+                "lng": 30.9140084802915
+            },
+            "southwest": {
+                "lat": 52.3975854197085,
+                "lng": 30.9113105197085
+            }
+        }
+    },
+    "place_id": "ChIJKzPnJhFC1EYRauyDTUE7jgI",
+    "plus_code": {
+        "compound_code": "9WX7+H3 Гомель, Беларусь",
+        "global_code": "9G4G9WX7+H3"
+    },
+    "types": [
+        "street_address"
+    ],
+    "adres_from_alibi": "г. Гомель , ул., 70 лет БССР, 42а"
+}{
+    "address_components": [
+        {
+            "long_name": "23",
+            "short_name": "23",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Советская",
+            "short_name": "ул. Советская",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Ленинский район",
+            "short_name": "Ленинский район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Брест",
+            "short_name": "Брест",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Брестский район",
+            "short_name": "Брестский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Брестская область",
+            "short_name": "Брестская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Советская 23, Брест, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 52.0965175,
+                "lng": 23.6895812
+            },
+            "southwest": {
+                "lat": 52.0961945,
+                "lng": 23.6891198
+            }
+        },
+        "location": {
+            "lat": 52.09629289999999,
+            "lng": 23.689404
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 52.0977049802915,
+                "lng": 23.6906994802915
+            },
+            "southwest": {
+                "lat": 52.0950070197085,
+                "lng": 23.6880015197085
+            }
+        }
+    },
+    "place_id": "ChIJa3B2c-ULIUcRIAiamFWQRPM",
+    "types": [
+        "premise"
+    ],
+    "adres_from_alibi": "г. Брест , ул., Советская, 23"
+}{
+    "address_components": [
+        {
+            "long_name": "16",
+            "short_name": "16",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Франциска Скорины",
+            "short_name": "ул. Франциска Скорины",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Молодечно",
+            "short_name": "Молодечно",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Молодечненский район",
+            "short_name": "Молодечненский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "ул. Франциска Скорины 16, Молодечно, Беларусь",
+    "geometry": {
+        "bounds": {
+            "northeast": {
+                "lat": 54.2983634,
+                "lng": 26.8471098
+            },
+            "southwest": {
+                "lat": 54.2980808,
+                "lng": 26.8466994
+            }
+        },
+        "location": {
+            "lat": 54.2981977,
+            "lng": 26.8469119
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 54.29957108029149,
+                "lng": 26.8482535802915
+            },
+            "southwest": {
+                "lat": 54.2968731197085,
+                "lng": 26.8455556197085
+            }
+        }
+    },
+    "place_id": "ChIJbVR9Mlx03EYRc935rJUNQ90",
+    "types": [
+        "establishment",
+        "premise"
+    ],
+    "adres_from_alibi": "г. Молодечно , ул., Ф.Скорины, 16А-3"
+}{
+    "address_components": [
+        {
+            "long_name": "АЗС-46",
+            "short_name": "АЗС-46",
+            "types": [
+                "establishment",
+                "point_of_interest"
+            ]
+        },
+        {
+            "long_name": "10А",
+            "short_name": "10А",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "улица Радужная",
+            "short_name": "ул. Радужная",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Центральный район",
+            "short_name": "Центральный район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Старобин",
+            "short_name": "Старобин",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минский район",
+            "short_name": "Минский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "АЗС-46, ул. Радужная 10А, Старобин, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.9344926,
+            "lng": 27.496542
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.93584158029149,
+                "lng": 27.4978909802915
+            },
+            "southwest": {
+                "lat": 53.9331436197085,
+                "lng": 27.49519301970849
+            }
+        }
+    },
+    "partial_match": true,
+    "place_id": "ChIJw8tWpADF20YRo5jDWT-97g4",
+    "plus_code": {
+        "compound_code": "WFMW+QJ Минск, Беларусь",
+        "global_code": "9G59WFMW+QJ"
+    },
+    "types": [
+        "establishment",
+        "insurance_agency",
+        "point_of_interest"
+    ],
+    "adres_from_alibi": "Старобин , ул., Радужная 10, на 140 км а/д Р-23 Минск-Микаше"
+}{
+    "address_components": [
+        {
+            "long_name": "20/1",
+            "short_name": "20/1",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "Проспект Победителей",
+            "short_name": "пр-т. Победителей",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Центральный район",
+            "short_name": "Центральный район",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "long_name": "Минск",
+            "short_name": "Минск",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минский район",
+            "short_name": "Минский район",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Минская область",
+            "short_name": "Минская область",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Беларусь",
+            "short_name": "BY",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "formatted_address": "пр-т. Победителей 20/1, Минск, Беларусь",
+    "geometry": {
+        "location": {
+            "lat": 53.9333213,
+            "lng": 27.5083387
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+            "northeast": {
+                "lat": 53.93467028029151,
+                "lng": 27.5096876802915
+            },
+            "southwest": {
+                "lat": 53.93197231970851,
+                "lng": 27.5069897197085
+            }
+        }
+    },
+    "place_id": "ChIJ70F5CQ_F20YRmKyvttrXW1M",
+    "plus_code": {
+        "compound_code": "WGM5+88 Минск, Беларусь",
+        "global_code": "9G59WGM5+88"
+    },
+    "types": [
+        "street_address"
+    ],
+    "adres_from_alibi": "Минск , пр., Победителей, 20/1"
+}
