@@ -6,21 +6,6 @@ from .models import *
 from .forms import *
 import googlemaps
 
-
-def test(attr):
-    terminal_attr = []
-    terminal_attr_with_count = {}
-
-    for i in Terminal.objects.all():
-        terminal_attr.append(i.attr)
-
-    for i in terminal_attr:
-        count = terminal_attr.count(i)
-        terminal_attr_with_count[i] = count
-    sort_terminal_names_with_count = sorted(terminal_attr_with_count.items(), key=lambda x: x[1])
-    sort_terminal_names_with_count.reverse()
-
-    print(sort_terminal_names_with_count)
 def sort_terminals_parameters(context):
     terminal_names = []
     terminal_parts = []
@@ -56,6 +41,40 @@ def sort_terminals_parameters(context):
     context['terminal_parts'] = sort_terminal_parts_with_count
     context['terminal_zones'] = sort_terminal_zones_with_count
 
+def search_terminals_info(context, search_terminals):
+    terminal_names = []
+    terminal_parts = []
+    terminal_zones = []
+    terminal_parts_with_count = {}
+    terminal_names_with_count = {}
+    terminal_zones_with_count = {}
+
+    for i in search_terminals:
+        terminal_names.append(i.cname)
+        terminal_parts.append(i.cparta)
+        terminal_zones.append(i.zona_name)
+
+    for i in terminal_names:
+        count = terminal_names.count(i)
+        terminal_names_with_count[i] = count
+    sort_terminal_names_with_count = sorted(terminal_names_with_count.items(), key=lambda x: x[1])
+    sort_terminal_names_with_count.reverse()
+   
+    for i in terminal_parts:
+        count = terminal_parts.count(i)
+        terminal_parts_with_count[i] = count
+    sort_terminal_parts_with_count = sorted(terminal_parts_with_count.items(), key=lambda x: x[1])
+    sort_terminal_parts_with_count.reverse()
+    
+    for i in terminal_zones:
+        count = terminal_zones.count(i)
+        terminal_zones_with_count[i] = count
+    sort_terminal_zones_with_count = sorted(terminal_zones_with_count.items(), key=lambda x: x[1])
+    sort_terminal_zones_with_count.reverse()
+
+    context['search_terminal_names'] = sort_terminal_names_with_count
+    context['search_terminal_parts'] = sort_terminal_parts_with_count
+    context['search_terminal_zones'] = sort_terminal_zones_with_count
 
 def index(request):
     context = {}
@@ -109,9 +128,6 @@ def index(request):
                 new_error_terminal.save() 
                 print('ERROR ' + str(count) + str(child[8].text))
                 count = count + 1 
-
-    print('ERROR ' + str(len(ErrorTerminal.objects.all())))  
-    print('OK ' + str(len(Terminal.objects.all()))) 
     context = {}
     sort_terminals_parameters(context)
     context['terminals'] = Terminal.objects.all()
@@ -128,63 +144,37 @@ def index(request):
 def filter(request):
     context = {}
     context['terminals'] = Terminal.objects.all()
+    context['display'] = 'none'
     sort_terminals_parameters(context)
     if request.method == 'POST':
         filterform = FilterForm(request.POST)
         context['filterform'] = filterform
-        check = True
+        context['search_name'] = ''
+        context['search_parta'] = ''
+        context['search_zone'] = ''
         if filterform.is_valid():
-            filters = {}
-            zone = filterform.cleaned_data.get('zona_name')
-            if zone != '':
-                filters['zona_name'] = zone
-            adres = filterform.cleaned_data.get('cadres')
-            if adres != '':
-                filters['cadres'] = adres
-            city = filterform.cleaned_data.get('cgorod')
-            if city != '':
-                filters['cgorod'] = city
-            bank = filterform.cleaned_data.get('cbank')
-            if bank != '':
-                filters['cbank'] = bank
-            ctype = filterform.cleaned_data.get('ctype')
-            if ctype != '':
-                filters['ctype'] = ctype
-            name = filterform.cleaned_data.get('cname')
-            if name != '':
-                filters['cname'] = name
-            partner = filterform.cleaned_data.get('cparta')
-            if partner != '':
-                filters['cparta'] = partner
-                
-            inr = filterform.cleaned_data.get('inr')
-            if inr != '':
-                filters['inr'] = inr
-            ctid = filterform.cleaned_data.get('ctid')
-            if ctid != '':
-                filters['ctid'] = ctid
-            cunn = filterform.cleaned_data.get('cunn')
-            if cunn != '':
-                filters['cunn'] = cunn
-            cvsoba = filterform.cleaned_data.get('cvsoba')
-            if cvsoba != '':
-                filters['cvsoba'] = cvsoba
 
-            context['terminals'] = Terminal.objects.filter(**filters)
-            
+            for i in list(filterform.cleaned_data):
+                if filterform.cleaned_data[i] == '':
+                    del filterform.cleaned_data[i]
+
+            if len(Terminal.objects.all()) != len(Terminal.objects.filter(**filterform.cleaned_data)):
+                context['display'] = 'block'
+                search_terminals_info(context, Terminal.objects.filter(**filterform.cleaned_data))
+            context['terminals'] = Terminal.objects.filter(**filterform.cleaned_data)
+            context['count_search_terminals'] = len(Terminal.objects.filter(**filterform.cleaned_data))           
     else:
         filterform = FilterForm(request.POST)
-        context['filterform'] = filterform
-    
+        context['filterform'] = filterform   
+
     context['count_all_terminals'] = len(Terminal.objects.all())
     return render(request, 'mainpage/filterform.html', context)  
 
 
-
 def search(request, name = "", parta = ""):
     context = {}
-    search_terminals = []
     filters = {}
+    print(name)
     search_name = request.GET.get("name", "")
     if search_name != '':
         filters['cname'] = search_name
@@ -195,51 +185,14 @@ def search(request, name = "", parta = ""):
     if search_zone != '':
         filters['zona_name'] = search_zone
 
-    search_terminals = Terminal.objects.filter(**filters)
-
-    count_search_terminals = len(search_terminals)
-
-    terminal_names = []
-    terminal_parts = []
-    terminal_zones = []
-    terminal_parts_with_count = {}
-    terminal_names_with_count = {}
-    terminal_zones_with_count = {}
-
-    for i in search_terminals:
-        terminal_names.append(i.cname)
-        terminal_parts.append(i.cparta)
-        terminal_zones.append(i.zona_name)
-
-    for i in terminal_names:
-        count = terminal_names.count(i)
-        terminal_names_with_count[i] = count
-    sort_terminal_names_with_count = sorted(terminal_names_with_count.items(), key=lambda x: x[1])
-    sort_terminal_names_with_count.reverse()
-   
-    for i in terminal_parts:
-        count = terminal_parts.count(i)
-        terminal_parts_with_count[i] = count
-    sort_terminal_parts_with_count = sorted(terminal_parts_with_count.items(), key=lambda x: x[1])
-    sort_terminal_parts_with_count.reverse()
-    
-    for i in terminal_zones:
-        count = terminal_zones.count(i)
-        terminal_zones_with_count[i] = count
-    sort_terminal_zones_with_count = sorted(terminal_zones_with_count.items(), key=lambda x: x[1])
-    sort_terminal_zones_with_count.reverse()
-
-    context['search_terminal_names'] = sort_terminal_names_with_count
-    context['search_terminal_parts'] = sort_terminal_parts_with_count
-    context['search_terminal_zones'] = sort_terminal_zones_with_count
-
+    search_terminals_info(context, Terminal.objects.filter(**filters))
     sort_terminals_parameters(context)
-    context['count_search_terminals'] = count_search_terminals
+    context['count_search_terminals'] =  len(Terminal.objects.filter(**filters))
     context['display'] = 'block'
     context['search_name'] = search_name
     context['search_parta'] = search_parta
     context['search_zone'] = search_zone
-    context['terminals'] = search_terminals
+    context['terminals'] = Terminal.objects.filter(**filters)
     context['count_all_terminals'] = len(Terminal.objects.all())
     return render(request, 'mainpage/mainpage.html', context)
 
@@ -310,7 +263,5 @@ def save(request):
  #           new_terminal.save()
  #           print('OK ' + str(count))
  #           count = count + 1
-#            i.delete()
-#        else:
-#            print('ERROR ' + str(count))
-#            count = count + 1
+
+
