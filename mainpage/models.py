@@ -57,4 +57,10 @@ class Zone(models.Model):
 
 
 
-
+class Terminal_for_check(models.Model):
+	ss_nom = models.CharField(max_length = 150, null = True)
+	cadres = models.CharField(max_length = 150, null = True)
+	right_adres = models.CharField(max_length = 150, null = True)
+	right_city_distrcit = models.CharField(max_length = 150, null = True)
+	right_district = models.CharField(max_length = 150, null = True)
+	right_area = models.CharField(max_length = 150, null = True)
