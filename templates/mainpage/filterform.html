@@ -6,8 +6,8 @@
 
 {% block content %}
 
-<div class="filterform" id="filterform" style="display: block; background: #212529; color: #9e9e9e;">        
-    <div class="filter_form" id="id_filter_form" style="height: 100%; overflow: auto;">   
+<div class="filterform" id="filterform" style="display: block; background: #212529; color: #9e9e9e; height: 100%; overflow: auto; width: 25%;">        
+    <div class="filter_form" id="id_filter_form">   
             <form method=POST action="" class="form-container">
                 {% csrf_token %}
                 <table>
@@ -25,11 +25,15 @@
 function clearfilters(){
     document.getElementById('cadres').value = ''
     document.getElementById('cgorods').value = ''
-    document.getElementById('cobls').value = ''
-    document.getElementById('craions').value = ''
     document.getElementById('cnames').value = ''
     document.getElementById('parts').value = ''
-    document.getElementById('zones').value = ''  
+    document.getElementById('zones').value = '' 
+    document.getElementById('cbanks').value = ''
+    document.getElementById('ctypes').value = ''
+    document.getElementById('inrs').value = ''
+    document.getElementById('ctids').value = ''
+    document.getElementById('cunns').value = '' 
+    document.getElementById('cvsobas').value = ''
 }
 </script>
 {% endblock content %}

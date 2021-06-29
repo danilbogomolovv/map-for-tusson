@@ -51,20 +51,32 @@ $( function() {
     });
 
 
-    $( "#cobls" ).autocomplete({
-      source: availableobls
+    $( "#inrs" ).autocomplete({
+      source: availableinrs
     });
 
     $( "#cgorods" ).autocomplete({
       source: availablegorod
     });
 
-    $( "#craions" ).autocomplete({
-      source: availableraion
+    $( "#ctids" ).autocomplete({
+      source: availablectids
     });
 
     $( "#cadres" ).autocomplete({
       source: availableadres
+    });
+    $( "#cunns" ).autocomplete({
+      source: availablecunns
+    });
+    $( "#cvsobas" ).autocomplete({
+      source: availablecvsobas
+    });
+    $( "#ctypes" ).autocomplete({
+      source: availabletypes
+    });
+    $( "#cbanks" ).autocomplete({
+      source: availablebanks
     });
 
     }

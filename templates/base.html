@@ -24,7 +24,7 @@
         </button>
         {% block nav %}
         {% endblock nav %}
-            <div class="navbar-text" style="width: 260px;">
+            <div class="navbar-text" style="width: 260px; text-align: center;">
                 Всего терминалов : {{ count_all_terminals }} 
             </div>
             <a class="btn btn-outline-success" href="save/" role="button">Сохранить</a>
@@ -41,36 +41,72 @@
         var coordinate_check_dict = {};
         var availableparts = [];
         var availablezones = [];
-        var availableobls = [];
+        var availableinrs = [];
         var availablenames = [];
         var availableadres = [];
-    	var availableraion = [];
+    	var availabletypes = [];
+        var availablebanks = [];
+        var availablectids = [];
+        var availablecunns = [];
+        var availablecvsobas = [];
     	var availablegorod = [];
 
         {% for i in terminals %}
         	var cparta = '{{i.cparta}}'.replace(/&quot;/g,'"')
         	var zona = '{{i.zona_name}}'.replace(/&quot;/g,'"')
-        	var cobl = '{{i.cobl}}'.replace(/&quot;/g,'"')
         	var cname = '{{i.cname}}'.replace(/&quot;/g,'"')
         	var cadres = '{{i.cadres}}'.replace(/&quot;/g,'"')
-        	var craion = '{{i.craion}}'.replace(/&quot;/g,'"')
         	var cgorod = '{{i.cgorod}}'.replace(/&quot;/g,'"')
+            var cvsoba = '{{i.cvsoba}}'.replace(/&quot;/g,'"')
+            var cunn = '{{i.cunn}}'.replace(/&quot;/g,'"')
+            var ctid = '{{i.ctid}}'.replace(/&quot;/g,'"')
+            var inr = '{{i.inr}}'.replace(/&quot;/g,'"')
+            var ctype = '{{i.ctype}}'.replace(/&quot;/g,'"')
+            var cbank = '{{i.cbank}}'.replace(/&quot;/g,'"')
         	if (availableparts.includes(cparta)) {
             	console.log('availableparts')
         	} else {
 				availableparts.push(cparta)
         	}
+            if (availablecunns.includes(cunn)) {
+                console.log('availableparts')
+            } else {
+                availableparts.push(cunn)
+            }
+            if (availablecvsobas.includes(cvsoba)) {
+                console.log('availableparts')
+            } else {
+                availableparts.push(cvsoba)
+            }
+
+            if (availableinrs.includes(inr)) {
+                console.log('availableparts')
+            } else {
+                availableparts.push(inr)
+            }
+
+            if (availabletypes.includes(ctype)) {
+                console.log('availableparts')
+            } else {
+                availableparts.push(ctype)
+            }
+
+            if (availablebanks.includes(cbank)) {
+                console.log('availableparts')
+            } else {
+                availablebanks.push(cbank)
+            }
+
+            if (availablectids.includes(ctid)) {
+                console.log('availableparts')
+            } else {
+                availableparts.push(ctid)
+            }
 
         	if (availablezones.includes(zona)) {
             	console.log('availablezones')
         	} else {
 				availablezones.push(zona)
-        	}
-
-        	if (availableobls.includes(cobl)) {
-            	console.log('availableobls')
-        	} else {
-				availableobls.push(cobl)
         	}
 
         	if (availablenames.includes(cname)) {
@@ -83,12 +119,6 @@
             	console.log('availablegorod')
         	} else {
 				availablegorod.push(cgorod)
-        	}
-
-        	if (availableraion.includes(craion)) {
-            	console.log('availableraion')
-        	} else {
-				availableraion.push(craion)
         	}
 
         	if (availableadres.includes(cadres)) {

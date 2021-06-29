@@ -18,6 +18,10 @@ class Terminal(models.Model):
 	cots = models.CharField(max_length = 50, null = True)
 	czona = models.CharField(max_length = 50, null = True)
 	zona_name = models.CharField(max_length = 50, null = True)
+	cvsoba = models.CharField(max_length = 50, null = True)
+	cunn = models.CharField(max_length = 50, null = True)
+	cbank = models.CharField(max_length = 50, null = True)
+	ctype = models.CharField(max_length = 50, null = True)
 	lat = models.CharField(max_length = 30, null = True)
 	lng = models.CharField(max_length = 30, null = True)
 
@@ -37,6 +41,10 @@ class ErrorTerminal(models.Model):
 	cots = models.CharField(max_length = 50, null = True)
 	czona = models.CharField(max_length = 50, null = True)
 	zona_name = models.CharField(max_length = 50, null = True)
+	cvsoba = models.CharField(max_length = 50, null = True)
+	cunn = models.CharField(max_length = 50, null = True)
+	cbank = models.CharField(max_length = 50, null = True)
+	ctype = models.CharField(max_length = 50, null = True)
 
 
 class TerminalName(models.Model):
