@@ -8,7 +8,17 @@ from .forms import *
 import json
 import googlemaps
 
-global_zone_terminals = []
+list_q_objects = []
+
+def get_q_objects(request):
+    if request.method == 'POST':
+        zones = request.POST.getlist('zones')
+        q_objects = Q()
+        for z in zones:
+            q_objects |= Q(zona_name__startswith=z)
+        list_q_objects.append(q_objects)
+    print(list_q_objects)
+    return list_q_objects[-1]
 
 def terminal_lists_for_drop_down_list(context, search_terminals):
     """ Функция вызывающая рассчитывающая все варианты для трех атрибутов терминала """
@@ -129,38 +139,27 @@ def index(request):
                 new_error_terminal.save() 
                 print('ERROR ' + str(count) + str(child[8].text))
                 count = count + 1 
-    context = {}
-    # print(len(Terminal_for_check.objects.all()))
-    # print(len(ErrorTerminal.objects.all()))
-    # zone_filters = ['Минский', 'Гомельский']
-    # q_objects = Q()
-    # for z in zone_filters:
-    #     q_objects |= Q(zona_name__startswith=z)
-    # print(len(Terminal.objects.filter(q_objects)))  
+    context = {}  
 
     terminal_lists_for_drop_down_list(context, Terminal.objects.all())
 
-    context['terminals'] = Terminal.objects.filter(zona_name = 'Минский филиал')
+    try:
+        context['terminals'] = Terminal.objects.filter(get_q_objects(request))
+    except Exception as e:
+        context['terminals'] = Terminal.objects.filter(zona_name = 'Минский филиал') 
+
     context['allterminals'] = Terminal.objects.all()
     context['count_all_terminals'] = len(Terminal.objects.all())
     context['display'] = 'none'
     context['search_name'] = ''
     context['search_parta'] = ''
     context['search_zone'] = ''
-    if request.method == 'POST':
-        zones = request.POST.getlist('zones')
-        print(zones)
-        q_objects = Q()
-        for z in zones:
-            q_objects |= Q(zona_name__startswith=z)
-        print(q_objects)
-        context['terminals'] = Terminal.objects.filter(q_objects)
-        
+       
     return render(request, 'mainpage/mainpage.html', context)  
 
 def filter(request):
     context = {}
-    context['terminals'] = Terminal.objects.all()
+    context['terminals'] = ''
     context['display'] = 'none'
     terminal_lists_for_drop_down_list(context, Terminal.objects.all())
     if request.method == 'POST':
@@ -202,99 +201,57 @@ def search(request):
     if search_zone != '':
         filters['zona_name'] = search_zone
 
-    terminal_lists_for_drop_down_list(context, Terminal.objects.filter(**filters))
+    terminal_lists_for_drop_down_list(context, Terminal.objects.filter(**filters).filter(get_q_objects(request)))
     terminal_lists_for_drop_down_list(context, Terminal.objects.all())
 
-    context['count_search_terminals'] =  len(Terminal.objects.filter(**filters))
+    context['count_search_terminals'] =  len(Terminal.objects.filter(**filters).filter(get_q_objects(request)))
     context['display'] = 'block'
     context['search_name'] = search_name
     context['search_parta'] = search_parta
     context['search_zone'] = search_zone
-    context['terminals'] = Terminal.objects.filter(**filters)
+    context['terminals'] = Terminal.objects.filter(**filters).filter(get_q_objects(request))
     context['allterminals'] = Terminal.objects.all()
     context['count_all_terminals'] = len(Terminal.objects.all())
     return render(request, 'mainpage/mainpage.html', context)
 
 def save(request):
-    pass
-    #root = ET.Element('VFPData')
-    # ss_noms = []
-    # for i in Terminal_for_check.objects.all():
-    #     if i.ss_nom not in ss_noms:
-    #         ss_noms.append(i.ss_nom)
+    for i in Terminal.objects.all():
+        level1 = ET.SubElement(root, 'terminals')
+        cimei = ET.SubElement(level1, 'cimei')
+        cimei.text = str(i.cimei)
+        inr = ET.SubElement(level1, 'inr')
+        inr.text = str(i.inr)
+        ctid = ET.SubElement(level1, 'ctid')
+        ctid.text = str(i.ctid)
+        cmid = ET.SubElement(level1, 'cmid')
+        cmid.text = str(i.cmid)
+        cpodr = ET.SubElement(level1, 'cpodr')
+        cpodr.text = str(i.cpodr)
+        cadres = ET.SubElement(level1, 'cadres')
+        cadres.text = str(i.cadres)
+        cgorod = ET.SubElement(level1, 'cgorod')
+        cgorod.text = str(i.cgorod)
+        cobl = ET.SubElement(level1, 'cobl')
+        cobl.text = str(i.cobl)
+        craion = ET.SubElement(level1, 'craion')
+        craion.text = str(i.craion)
+        ddatan = ET.SubElement(level1, 'ddatan')
+        ddatan.text = str(i.ddatan)
+        cname = ET.SubElement(level1, 'cname')
+        cname.text = str(i.cname)
+        cparta = ET.SubElement(level1, 'cparta')
+        cparta.text = str(i.cparta)
+        cots = ET.SubElement(level1, 'cots')
+        cots.text = str(i.cots)
+        lat = ET.SubElement(level1, 'lat')
+        lat.text = str(i.lat)
+        lng = ET.SubElement(level1, 'lng')
+        lng.text = str(i.lng)
 
-    #         level1 = ET.SubElement(root, 'terminals')
-    #         ss_nom = ET.SubElement(level1, 'ss_nom')
-    #         ss_nom.text = str(i.ss_nom)
-    #         cadres = ET.SubElement(level1, 'cadres')
-    #         cadres.text = str(i.cadres)
-    #         cobl = ET.SubElement(level1, 'cobl')
-    #         cobl.text = str(i.cobl)
-    #         craion = ET.SubElement(level1, 'craion')
-    #         craion.text = str(i.craion)
-    #         cgorod = ET.SubElement(level1, 'cgorod')
-    #         cgorod.text = str(i.cgorod)
-    #         right_adres = ET.SubElement(level1, 'right_adres')
-    #         right_adres.text = str(i.right_adres)
-    #         lat = ET.SubElement(level1, 'lat')
-    #         lat.text = str(i.lat)
-    #         lng = ET.SubElement(level1, 'lng')
-    #         lng.text = str(i.lng)
-    #         right_city_distrcit = ET.SubElement(level1, 'right_city_distrcit')
-    #         right_city_distrcit.text = str(i.right_city_distrcit)
-    #         right_district = ET.SubElement(level1, 'right_district')
-    #         right_district.text = str(i.right_district)
-    #         right_area = ET.SubElement(level1, 'right_area')
-    #         right_area.text = str(i.right_area)
-
-    # for i in ErrorTerminal.objects.all():
-    #     level1 = ET.SubElement(root, 'terminals')
-    #     ss_nom = ET.SubElement(level1, 'ss_nom')
-    #     ss_nom.text = str(i.ss_nom)
-    #     cadres = ET.SubElement(level1, 'cadres')
-    #     cadres.text = str(i.cadres)
-
-   
-
-
-
-    # for i in Terminal.objects.all():
-    #     level1 = ET.SubElement(root, 'terminals')
-    #     cimei = ET.SubElement(level1, 'cimei')
-    #     cimei.text = str(i.cimei)
-    #     inr = ET.SubElement(level1, 'inr')
-    #     inr.text = str(i.inr)
-    #     ctid = ET.SubElement(level1, 'ctid')
-    #     ctid.text = str(i.ctid)
-    #     cmid = ET.SubElement(level1, 'cmid')
-    #     cmid.text = str(i.cmid)
-    #     cpodr = ET.SubElement(level1, 'cpodr')
-    #     cpodr.text = str(i.cpodr)
-    #     cadres = ET.SubElement(level1, 'cadres')
-    #     cadres.text = str(i.cadres)
-    #     cgorod = ET.SubElement(level1, 'cgorod')
-    #     cgorod.text = str(i.cgorod)
-    #     cobl = ET.SubElement(level1, 'cobl')
-    #     cobl.text = str(i.cobl)
-    #     craion = ET.SubElement(level1, 'craion')
-    #     craion.text = str(i.craion)
-    #     ddatan = ET.SubElement(level1, 'ddatan')
-    #     ddatan.text = str(i.ddatan)
-    #     cname = ET.SubElement(level1, 'cname')
-    #     cname.text = str(i.cname)
-    #     cparta = ET.SubElement(level1, 'cparta')
-    #     cparta.text = str(i.cparta)
-    #     cots = ET.SubElement(level1, 'cots')
-    #     cots.text = str(i.cots)
-    #     lat = ET.SubElement(level1, 'lat')
-    #     lat.text = str(i.lat)
-    #     lng = ET.SubElement(level1, 'lng')
-    #     lng.text = str(i.lng)
-
-    # ET.indent(root)
-    # tree = ET.ElementTree(root)
-    # tree.write('error_terminals.xml', xml_declaration=None, default_namespace=None, method="xml", encoding="Windows-1251") 
-    # return HttpResponseRedirect('/')
+    ET.indent(root)
+    tree = ET.ElementTree(root)
+    tree.write('error_terminals.xml', xml_declaration=None, default_namespace=None, method="xml", encoding="Windows-1251") 
+    return HttpResponseRedirect('/')
 
 
 
