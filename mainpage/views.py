@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.db.models import F, Q, When
 from django.http import HttpResponseRedirect
 from lxml import etree
 import xml.etree.ElementTree as ET
@@ -6,6 +7,8 @@ from .models import *
 from .forms import *
 import json
 import googlemaps
+
+global_zone_terminals = []
 
 def terminal_lists_for_drop_down_list(context, search_terminals):
     """ Функция вызывающая рассчитывающая все варианты для трех атрибутов терминала """
@@ -127,12 +130,17 @@ def index(request):
                 print('ERROR ' + str(count) + str(child[8].text))
                 count = count + 1 
     context = {}
-   # print(len(Terminal_for_check.objects.all()))
-   # print(len(ErrorTerminal.objects.all()))
-            
+    # print(len(Terminal_for_check.objects.all()))
+    # print(len(ErrorTerminal.objects.all()))
+    # zone_filters = ['Минский', 'Гомельский']
+    # q_objects = Q()
+    # for z in zone_filters:
+    #     q_objects |= Q(zona_name__startswith=z)
+    # print(len(Terminal.objects.filter(q_objects)))  
+
     terminal_lists_for_drop_down_list(context, Terminal.objects.all())
 
-    context['terminals'] = Terminal.objects.all()
+    context['terminals'] = Terminal.objects.filter(zona_name = 'Минский филиал')
     context['allterminals'] = Terminal.objects.all()
     context['count_all_terminals'] = len(Terminal.objects.all())
     context['display'] = 'none'
@@ -140,13 +148,14 @@ def index(request):
     context['search_parta'] = ''
     context['search_zone'] = ''
     if request.method == 'POST':
-        zone_terminals = []
         zones = request.POST.getlist('zones')
-        for i in zones:
-            search_terminals_by_zone = Terminal.objects.filter(zona_name = i + ' филиал')
-            for j in search_terminals_by_zone:
-                zone_terminals.append(j)
-        context['terminals'] = zone_terminals
+        print(zones)
+        q_objects = Q()
+        for z in zones:
+            q_objects |= Q(zona_name__startswith=z)
+        print(q_objects)
+        context['terminals'] = Terminal.objects.filter(q_objects)
+        
     return render(request, 'mainpage/mainpage.html', context)  
 
 def filter(request):
