@@ -31,8 +31,12 @@ function clearHref(){
     window.location.href = '/';
 }
 
-function openfilterform() {
-    document.getElementById('filterform').style.display = 'block'
+
+function toggle(source) {
+  checkboxes = document.getElementsByName('zones');
+  for(var i=0, n=checkboxes.length;i<n;i++) {
+    checkboxes[i].checked = source.checked;
+  }
 }
 
 $( function() {

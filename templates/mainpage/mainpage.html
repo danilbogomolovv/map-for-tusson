@@ -51,14 +51,13 @@
                 <form method="POST">
                     {% csrf_token %}
                     <div class="zone_form">
+                                <input type="checkbox" onClick="toggle(this)" /> Выбрать все <br/>
                         {% for key, value in terminal_zones %}
-                        <!--<li><a class="dropdown-item" href="javascript:addParam('','','{{key}}', true);">{{ key }} : {{ value }}</a></li>-->
                             <li>                        
                                 <input type="checkbox" name="zones" value= {{key}}> {{key }} : {{ value }}     
                             </li>
                         {% endfor %}
                         <button type="submit">Submit</button>
-                        <a type="submit" class="btn btn-outline-success" role="button">Применить</a>
                     </div>
                 </form>
                 
