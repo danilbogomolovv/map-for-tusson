@@ -17,11 +17,15 @@ def get_q_objects(request):
         for z in zones:
             q_objects |= Q(zona_name__startswith=z)
         list_q_objects.append(q_objects)
+        if len(list_q_objects) >= 2:
+            list_q_objects.pop(-2)
     print(list_q_objects)
     return list_q_objects[-1]
 
 def terminal_lists_for_drop_down_list(context, search_terminals):
+
     """ Функция вызывающая рассчитывающая все варианты для трех атрибутов терминала """
+
     terminal_names = []
     for i in search_terminals:
         terminal_names.append(i.cname)
@@ -159,7 +163,7 @@ def index(request):
 
 def filter(request):
     context = {}
-    context['terminals'] = ''
+    context['terminals'] = Terminal.objects.filter(ctid = 'f')
     context['display'] = 'none'
     terminal_lists_for_drop_down_list(context, Terminal.objects.all())
     if request.method == 'POST':
@@ -201,7 +205,7 @@ def search(request):
     if search_zone != '':
         filters['zona_name'] = search_zone
 
-    terminal_lists_for_drop_down_list(context, Terminal.objects.filter(**filters).filter(get_q_objects(request)))
+    terminal_lists_for_drop_down_list(context, Terminal.objects.filter(**filters)) #.filter(get_q_objects(request))
     terminal_lists_for_drop_down_list(context, Terminal.objects.all())
 
     context['count_search_terminals'] =  len(Terminal.objects.filter(**filters).filter(get_q_objects(request)))

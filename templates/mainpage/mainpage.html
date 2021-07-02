@@ -50,14 +50,16 @@
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink" style="width: 300px;">
                 <form method="POST">
                     {% csrf_token %}
-                    <div class="zone_form">
-                                <input type="checkbox" onClick="toggle(this)" /> Выбрать все <br/>
+                    <div class="form-check form-switch">
+                        {% autoescape on %}
+                        <input type="checkbox" class="form-check-input"  onClick="toggle(this)"> Выбрать все <br/>
                         {% for key, value in terminal_zones %}
                             <li>                        
-                                <input type="checkbox" name="zones" value= {{key}}> {{key }} : {{ value }}     
+                                <input type="checkbox" name="zones" value= {{key}} class="form-check-input" id='{{key}}'> {{key }} : {{ value }}     
                             </li>
                         {% endfor %}
-                        <button type="submit">Submit</button>
+                        <button type="submit" class="btn btn-outline-success" onclick="zonesChecked()">Применить</button>
+                        {% endautoescape %}
                     </div>
                 </form>
                 

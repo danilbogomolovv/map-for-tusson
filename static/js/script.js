@@ -1,4 +1,18 @@
 
+window.onload = function() {
+checkboxes = document.getElementsByName('zones');
+
+  for(var i=0, n=checkboxes.length;i<n;i++) {
+    for (j in localStorage) {
+      if (j == checkboxes[i].id && localStorage[j] == 'true') {
+        document.getElementById(j).setAttribute('checked', localStorage[j])
+      }
+    } 
+  }
+}
+
+
+
 
 function addParam(name, parta, zone, check) {
     if (name != '') {
@@ -36,6 +50,18 @@ function toggle(source) {
   checkboxes = document.getElementsByName('zones');
   for(var i=0, n=checkboxes.length;i<n;i++) {
     checkboxes[i].checked = source.checked;
+  }
+}
+
+function zonesChecked(){
+  checkboxes = document.getElementsByName('zones');
+  for(var i=0, n=checkboxes.length;i<n;i++) {
+    if (checkboxes[i].checked == true) {
+      localStorage.setItem(checkboxes[i].id, true)
+    }
+    else {
+      localStorage.setItem(checkboxes[i].id, false)
+    }
   }
 }
 
