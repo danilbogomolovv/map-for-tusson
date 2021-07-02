@@ -5,6 +5,7 @@
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                
                 {% if search_name == "" %}
                     Название терминала
                 {% else %}
@@ -46,10 +47,21 @@
                     {{ search_zone }}
                 {% endif %}
               </a>
-              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                {% for key, value in terminal_zones %}
-                    <li><a class="dropdown-item" href="javascript:addParam('','','{{key}}', true);">{{ key }} : {{ value }}</a></li>
-                {% endfor %}
+              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink" style="width: 300px;">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="zone_form">
+                        {% for key, value in terminal_zones %}
+                        <!--<li><a class="dropdown-item" href="javascript:addParam('','','{{key}}', true);">{{ key }} : {{ value }}</a></li>-->
+                            <li>                        
+                                <input type="checkbox" name="zones" value= {{key}}> {{key }} : {{ value }}     
+                            </li>
+                        {% endfor %}
+                        <button type="submit">Submit</button>
+                        <a type="submit" class="btn btn-outline-success" href="/search">Применить</a>
+                    </div>
+                </form>
+                
               </ul>
             </li>
           </ul>

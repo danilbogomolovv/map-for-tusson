@@ -27,7 +27,7 @@ body {
 .search_info {
     z-index: 5;
     position: absolute;
-    height: 90%;
+    height: 75%;
     width: 30%;
     background: white;
     right: 0;
@@ -35,7 +35,7 @@ body {
 }
 
 .search_name, .search_parta, .search_zone{
-    height: 180px;
+    max-height: 160px;
     border: 1px solid grey;
     overflow-y: scroll;
     padding: 1rem;

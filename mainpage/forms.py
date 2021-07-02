@@ -34,14 +34,6 @@ class FilterForm(forms.Form):
 							 								 'placeholder':'Поиск по партнерам',
 							 								 'class':'ui-autocomplite-input',
 							 								 'autocomplie':'off'}))
-#	cobl = forms.CharField(max_length = 100, required = False, label='Область', widget = forms.TextInput(attrs={'id': 'cobls',
-#							 								 'placeholder':'Поиск по области',
-#							 								 'class':'ui-autocomplite-input',
-#							 								 'autocomplie':'off'}))
-#	craion = forms.CharField(max_length = 100, required = False, label='Район', widget = forms.TextInput(attrs={'id': 'craions',
-#							 								 'placeholder':'Поиск по району',
-#							 								 'class':'ui-autocomplite-input',
-#							 								 'autocomplie':'off'}))
 	cunn = forms.CharField(max_length = 100, required = False, label='УНП', widget = forms.TextInput(attrs={'id': 'cunns',
 							 								 'placeholder':'Поиск по УНП',
 							 								 'class':'ui-autocomplite-input',

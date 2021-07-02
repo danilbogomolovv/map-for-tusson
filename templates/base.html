@@ -11,7 +11,6 @@
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="/static/js/script.js"></script>
-        <script src="/static/js/script.js"></script>
         <link rel="stylesheet" href="/static/css/style.css">
     </head>
 
@@ -46,7 +45,7 @@
 
         <h5>Количество найденных терминалов : {{ count_search_terminals }}</h5>
 
-        {% if search_name == "" %}
+        {% if search_terminal_names != None %}
             <div class="search_name">
                 <h5>Инормация о названиях найденных терминалов:</h5>
                 <ul>
@@ -56,7 +55,7 @@
                 </ul>
             </div>
         {% endif %}
-        {% if search_parta == "" %}
+        {% if search_terminal_parts != None %}
             <div class="search_parta">
                 <h5>Информация о партнерах найденных терминалов:</h5>
                 <ul>
@@ -66,7 +65,7 @@
                 </ul>
             </div>
         {% endif %}
-        {% if search_zone == "" %}
+        {% if search_terminal_zones != None %}
             <div class="search_zone">
                 <h5>Информация о зонах найденных терминалов:</h5>
                 <ul>
@@ -95,7 +94,7 @@
         var availablecvsobas = [];
     	var availablegorod = [];
 
-        {% for i in terminals %}
+        {% for i in allterminals %}
         	var cparta = '{{i.cparta}}'.replace(/&quot;/g,'"')
         	var zona = '{{i.zona_name}}'.replace(/&quot;/g,'"')
         	var cname = '{{i.cname}}'.replace(/&quot;/g,'"')
@@ -115,24 +114,24 @@
             if (availablecunns.includes(cunn)) {
                 console.log('availableparts')
             } else {
-                availableparts.push(cunn)
+                availablecunns.push(cunn)
             }
             if (availablecvsobas.includes(cvsoba)) {
                 console.log('availableparts')
             } else {
-                availableparts.push(cvsoba)
+                availablecvsobas.push(cvsoba)
             }
 
             if (availableinrs.includes(inr)) {
                 console.log('availableparts')
             } else {
-                availableparts.push(inr)
+                availableinrs.push(inr)
             }
 
             if (availabletypes.includes(ctype)) {
                 console.log('availableparts')
             } else {
-                availableparts.push(ctype)
+                availabletypes.push(ctype)
             }
 
             if (availablebanks.includes(cbank)) {
@@ -144,7 +143,7 @@
             if (availablectids.includes(ctid)) {
                 console.log('availableparts')
             } else {
-                availableparts.push(ctid)
+                availablectids.push(ctid)
             }
 
         	if (availablezones.includes(zona)) {
