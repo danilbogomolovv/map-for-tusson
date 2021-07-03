@@ -55,7 +55,7 @@
                         <input type="checkbox" class="form-check-input"  onClick="toggle(this)"> Выбрать все <br/>
                         {% for key, value in terminal_zones %}
                             <li>                        
-                                <input type="checkbox" name="zones" value= {{key}} class="form-check-input" id='{{key}}'> {{key }} : {{ value }}     
+                                <label><input type="checkbox" name="zones" value= {{key}} class="form-check-input" id='{{key}}'> {{key }} : {{ value }}     </label>
                             </li>
                         {% endfor %}
                         <button type="submit" class="btn btn-outline-success" onclick="zonesChecked()">Применить</button>

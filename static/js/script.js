@@ -65,6 +65,20 @@ function zonesChecked(){
   }
 }
 
+function clearfilters(){
+    document.getElementById('cadres').value = ''
+    document.getElementById('cgorods').value = ''
+    document.getElementById('cnames').value = ''
+    document.getElementById('parts').value = ''
+    document.getElementById('zones').value = '' 
+    document.getElementById('cbanks').value = ''
+    document.getElementById('ctypes').value = ''
+    document.getElementById('inrs').value = ''
+    document.getElementById('ctids').value = ''
+    document.getElementById('cunns').value = '' 
+    document.getElementById('cvsobas').value = ''
+}
+
 $( function() {
     $( "#parts" ).autocomplete({
       source: availableparts
