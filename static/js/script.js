@@ -79,6 +79,7 @@ function clearfilters(){
     document.getElementById('cvsobas').value = ''
 }
 
+
 $( function() {
     $( "#parts" ).autocomplete({
       source: availableparts

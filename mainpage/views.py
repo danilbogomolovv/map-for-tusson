@@ -5,13 +5,23 @@ from lxml import etree
 import xml.etree.ElementTree as ET
 from .models import *
 from .forms import *
-import json
+import json as simplejson
 import googlemaps
+
 
 list_q_objects = []
 
-def count_terminal_attribute(attr):
-    print(Terminal.objects.values_list(attr, flat=True))
+def count_terminal_attribute(attr, context):
+
+    """ Функция которая находит все индивидуальные вхождения для любого аттрибута терминала и возвращает список с этими вхождениями """
+    
+    result = []
+    for i in list(Terminal.objects.values_list(attr, flat=True)):
+        if i not in result:
+            result.append(i)
+    print(result)
+    json_list = simplejson.dumps(result)
+    context['available' + attr] = json_list
 
 
 def get_q_objects(request):
@@ -34,9 +44,22 @@ def terminal_lists_for_drop_down_list(context, search_terminals):
     """ Функция вызывающая рассчитывающая все варианты для трех атрибутов терминала """
 
 
-    terminal_names = search_terminals_info(Terminal.objects.values_list('cname', flat=True))
-    terminal_parts = search_terminals_info(Terminal.objects.values_list('cparta', flat=True))
-    terminal_zones = search_terminals_info(Terminal.objects.values_list('zona_name', flat=True))
+    # terminal_names = search_terminals_info(search_terminals.objects.values_list('cname', flat=True))
+    # terminal_parts = search_terminals_info(search_terminals.objects.values_list('cparta', flat=True))
+    # terminal_zones = search_terminals_info(search_terminals.objects.values_list('zona_name', flat=True))
+
+    terminal_names = []
+    for i in search_terminals:
+        terminal_names.append(i.cname)
+    terminal_names = search_terminals_info(terminal_names)
+    terminal_parts = []
+    for i in search_terminals:
+        terminal_parts.append(i.cparta)
+    terminal_parts = search_terminals_info(terminal_parts)
+    terminal_zones = []
+    for i in search_terminals:
+        terminal_zones.append(i.zona_name)
+    terminal_zones = search_terminals_info(terminal_zones)
     if len(search_terminals) != len(Terminal.objects.all()):
         context['search_terminal_names'] = terminal_names
         context['search_terminal_parts'] = terminal_parts
@@ -147,8 +170,6 @@ def index(request):
 
     terminal_lists_for_drop_down_list(context, Terminal.objects.all())
 
-    count_terminal_attribute('zona_name')
-
     try:
         context['terminals'] = Terminal.objects.filter(get_q_objects(request))
     except Exception as e:
@@ -172,7 +193,7 @@ def filter(request):
         filterform = FilterForm(request.POST)
         context['filterform'] = filterform
         if filterform.is_valid():
-
+            
             for i in list(filterform.cleaned_data):
                 if filterform.cleaned_data[i] == '':
                     del filterform.cleaned_data[i]
@@ -188,6 +209,12 @@ def filter(request):
 
     context['count_all_terminals'] = len(Terminal.objects.all())
     context['allterminals'] = Terminal.objects.all()
+
+
+    for i in Terminal._meta.get_fields()[1:20]:
+        if str(i) != 'mainpage.Terminal.ddatan' and str(i) != 'mainpage.Terminal.czona':
+            count_terminal_attribute(str(i).replace('mainpage.Terminal.', ''), context)
+
     return render(request, 'mainpage/filterform.html', context)  
 
 
@@ -203,9 +230,9 @@ def search(request):
     if search_parta != '':
         filters['cparta'] = search_parta
 
-    search_zone = request.GET.get("zone", "")
-    if search_zone != '':
-        filters['zona_name'] = search_zone
+    # search_zone = request.GET.get("zone", "")
+    # if search_zone != '':
+    #     filters['zona_name'] = search_zone
 
     terminal_lists_for_drop_down_list(context, Terminal.objects.filter(**filters).filter(get_q_objects(request)))
     terminal_lists_for_drop_down_list(context, Terminal.objects.all())
