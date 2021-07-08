@@ -1,2 +1,4 @@
 .env
 templates/base.html
+szonas.xml
+terminals.xml
