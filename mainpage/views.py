@@ -1,6 +1,8 @@
 from django.shortcuts import render
+import os
 from django.db.models import F, Q, When
 from django.http import HttpResponseRedirect
+from django.conf import settings
 from lxml import etree
 import xml.etree.ElementTree as ET
 from .models import *
@@ -8,8 +10,65 @@ from .forms import *
 import json as simplejson
 import googlemaps
 
+q_objects = Q()
+q_objects |= Q(zona_name__startswith='Минский')
+list_q_objects = [q_objects]
 
-list_q_objects = []
+def append_zones():
+    
+    """ Функция считывающая все зоны из xml файла и добавляющая их в модели """
+
+    parser = ET.XMLParser(encoding="windows-1251")
+    tree = ET.parse("szonas.xml", parser = parser)
+    root = tree.getroot()
+    for child in root:
+        new_zone = Zone(zona = child[0].text, name_zona = child[1].text)
+        new_zone.save()
+        print(child[1].text)
+
+def append_terminals():
+
+    """ Функция считывающая все терминалы из xml файла и добавляющая их в модели """
+
+    count = 1
+    parser = ET.XMLParser(encoding="windows-1251")
+    tree = ET.parse("terminals.xml", parser=parser)
+    root = tree.getroot()
+
+    for child in root:
+
+        for i in Zone.objects.all():
+            if child[13].text == i.zona:
+                zona_name = i.name_zona
+        try:
+
+            gmaps = googlemaps.Client(key=os.getenv('GOOGLE_API'))
+
+            geocode_result = gmaps.geocode(child[8].text, language = 'ru')
+    
+            new_terminal = Terminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
+                                    cobl = child[5].text, craion = child[6].text, cgorod = child[7].text, cadres = child[8].text,
+                                    ddatan = child[9].text, cname = child[10].text, cparta = child[11].text, cots = child[12].text,
+                                    czona = child[13].text, zona_name = zona_name, cvsoba = child[14].text, cunn = child[15].text,
+                                    cbank = child[16].text, ctype = child[17].text, right_adres = geocode_result[0]['formatted_address'],
+                                    lat = geocode_result[0]['geometry']['location']['lat'],
+                                    lng = geocode_result[0]['geometry']['location']['lng'])
+            new_terminal.save()
+            print('OK ' + str(count))
+            count = count + 1
+        except Exception as e:
+            print('-------------------------')
+            print(e)
+            print('-------------------------')
+            new_error_terminal = ErrorTerminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
+                                    cobl = child[5].text, craion = child[6].text, cgorod = child[7].text, cadres = child[8].text,
+                                    ddatan = child[9].text, cname = child[10].text, cparta = child[11].text, cots = child[12].text,
+                                    czona = child[13].text,
+                                    zona_name = zona_name,
+                                    ss_nom = child[18].text)
+            new_error_terminal.save() 
+            print('ERROR ' + str(count) + str(child[8].text))
+            count = count + 1     
 
 def count_terminal_attribute(attr, context):
 
@@ -19,7 +78,6 @@ def count_terminal_attribute(attr, context):
     for i in list(Terminal.objects.values_list(attr, flat=True)):
         if i not in result:
             result.append(i)
-    print(result)
     json_list = simplejson.dumps(result)
     context['available' + attr] = json_list
 
@@ -36,7 +94,6 @@ def get_q_objects(request):
         list_q_objects.append(q_objects)
         if len(list_q_objects) > 2:
             list_q_objects.pop(-2)
-    print(list_q_objects)
     return list_q_objects[-1]
 
 def terminal_lists_for_drop_down_list(context, search_terminals):
@@ -85,90 +142,22 @@ def search_terminals_info(terminal_attr):
     return sort_terminal_names_with_count  
 
 
+
+
+
 def index(request):
     context = {}
-
+    
     if len(Zone.objects.all()) == 0:
-        parser = ET.XMLParser(encoding="windows-1251")
-        tree = ET.parse("szonas.xml", parser = parser)
-        root = tree.getroot()
-        for child in root:
-            new_zone = Zone(zona = child[0].text, name_zona = child[1].text)
-            new_zone.save()
-            print(child[1].text)
+        append_zones()
 
+    if len(Terminal.objects.all()) == 0:
+        append_terminals() 
 
-    if len(Terminal.objects.all()) == 0: 
-        count = 1
-        parser = ET.XMLParser(encoding="windows-1251")
-        tree = ET.parse("terminals.xml", parser=parser)
-        root = tree.getroot()
-
-        for child in root:
-
-            for i in Zone.objects.all():
-                if child[13].text == i.zona:
-                    zona_name = i.name_zona
-            try:
-                gmaps = googlemaps.Client(key='AIzaSyC_CpD9oSCYYDu92Jq8EiIGklCgyelDbiw')
-                query_str = ''
-                if child[5].text != '':
-                    query_str = query_str + child[5].text + ' область, '
-                if child[6].text != '':
-                    query_str = query_str + child[6].text + ' район, '
-                query_str = query_str + child[8].text
-                geocode_result = gmaps.geocode(child[8].text, language = 'ru')
-                #attr = {}
-
-                # try:
-                #     attr['right_city_distrcit'] = geocode_result[0]['address_components'][2]['long_name']
-                # except:
-                #     pass
-                # try:
-                #     attr['right_district'] = geocode_result[0]['address_components'][4]['long_name']
-                # except:
-                #     pass
-                # try:
-                #     attr['right_area'] = geocode_result[0]['address_components'][5]['long_name']
-                # except:
-                #     pass
-            
-                # new_terminal = Terminal_for_check(ss_nom = child[18].text,
-                #                                     cadres = child[8].text,
-                #                                     cobl = child[5].text, craion = child[6].text, cgorod = child[7].text,
-                #                                     right_adres = geocode_result[0]['formatted_address'],
-                #                                     lat = geocode_result[0]['geometry']['location']['lat'],
-                #                                     lng = geocode_result[0]['geometry']['location']['lng'],
-                #                                     **attr)
-                # new_terminal.save()
-                # print('OK ' + str(count))
-                # count = count + 1       
-                new_terminal = Terminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
-                                        cobl = child[5].text, craion = child[6].text, cgorod = child[7].text, cadres = child[8].text,
-                                        ddatan = child[9].text, cname = child[10].text, cparta = child[11].text, cots = child[12].text,
-                                        czona = child[13].text, zona_name = zona_name, cvsoba = child[14].text, cunn = child[15].text,
-                                        cbank = child[16].text, ctype = child[17].text, right_adres = geocode_result[0]['formatted_address'],
-                                        lat = geocode_result[0]['geometry']['location']['lat'],
-                                        lng = geocode_result[0]['geometry']['location']['lng'])
-                new_terminal.save()
-                print('OK ' + str(count))
-                count = count + 1
-            except Exception as e:
-                print('-------------------------')
-                print(e)
-                print('-------------------------')
-                new_error_terminal = ErrorTerminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
-                                        cobl = child[5].text, craion = child[6].text, cgorod = child[7].text, cadres = child[8].text,
-                                        ddatan = child[9].text, cname = child[10].text, cparta = child[11].text, cots = child[12].text,
-                                        czona = child[13].text,
-                                        zona_name = zona_name,
-                                        ss_nom = child[18].text)
-                new_error_terminal.save() 
-                print('ERROR ' + str(count) + str(child[8].text))
-                count = count + 1 
     context = {}  
 
     terminal_lists_for_drop_down_list(context, Terminal.objects.all())
+    count_terminal_attribute('cparta', context)
 
     try:
         context['terminals'] = Terminal.objects.filter(get_q_objects(request))
@@ -230,10 +219,6 @@ def search(request):
     if search_parta != '':
         filters['cparta'] = search_parta
 
-    # search_zone = request.GET.get("zone", "")
-    # if search_zone != '':
-    #     filters['zona_name'] = search_zone
-
     terminal_lists_for_drop_down_list(context, Terminal.objects.filter(**filters).filter(get_q_objects(request)))
     terminal_lists_for_drop_down_list(context, Terminal.objects.all())
 
@@ -241,7 +226,6 @@ def search(request):
     context['display'] = 'block'
     context['search_name'] = search_name
     context['search_parta'] = search_parta
-    context['search_zone'] = search_zone
     context['terminals'] = Terminal.objects.filter(**filters).filter(get_q_objects(request))
     context['allterminals'] = Terminal.objects.all()
     context['count_all_terminals'] = len(Terminal.objects.all())

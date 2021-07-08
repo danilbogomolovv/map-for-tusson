@@ -21,18 +21,15 @@ function addParam(name, parta, zone, check) {
     if (parta != '' && availableparts.includes(parta)) {
         localStorage.setItem('parta', parta);
     };
-    if (zone != '') {
-        localStorage.setItem('zone', zone);
-    };
 
     let href_name = encodeURIComponent(localStorage.getItem('name'));
     let href_parta = encodeURIComponent(localStorage.getItem('parta'));
-    let href_zone = encodeURIComponent(localStorage.getItem('zone'));
+
     if (check) {
-        window.location.href = '/search/?name=' + href_name + '&parta=' + href_parta + '&zone=' + href_zone;
+        window.location.href = '/search/?name=' + href_name + '&parta=' + href_parta;
         } else { 
             if (availableparts.includes(parta)) {
-              window.location.href = '/search/?name=' + href_name + '&parta=' + href_parta + '&zone=' + href_zone;  
+              window.location.href = '/search/?name=' + href_name + '&parta=' + href_parta;  
             }
 
     }
