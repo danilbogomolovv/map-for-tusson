@@ -20,6 +20,8 @@
               </ul>
             </li>
           </ul>
+
+
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -39,14 +41,31 @@
               </ul>
             </li>
           </ul>
+
+
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                {% if search_zone == "" %}
-                    Название зоны
+                
+                {% if search_status == "" %}
+                    Сатус
                 {% else %}
-                    {{ search_zone }}
-                {% endif %}
+                    {{search_status}}
+                {% endif %} 
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                {% for key, value in terminal_status %}
+                    <li><a class="dropdown-item" href="javascript:addParam('', '','{{ key }}', true);">{{ key }} : {{ value }}</a></li>
+                {% endfor %}
+              </ul>
+            </li>
+          </ul>
+
+
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Название зоны
               </a>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink" style="width: 300px;">
                 <form method="POST">

@@ -117,14 +117,20 @@ def terminal_lists_for_drop_down_list(context, search_terminals):
     for i in search_terminals:
         terminal_zones.append(i.zona_name)
     terminal_zones = search_terminals_info(terminal_zones)
+    terminal_status = []
+    for i in search_terminals:
+        terminal_status.append(i.cstatus)
+    terminal_status = search_terminals_info(terminal_status)
     if len(search_terminals) != len(Terminal.objects.all()):
         context['search_terminal_names'] = terminal_names
         context['search_terminal_parts'] = terminal_parts
         context['search_terminal_zones'] = terminal_zones
+        context['search_terminal_status'] = terminal_status
     else:
         context['terminal_names'] = terminal_names
         context['terminal_parts'] = terminal_parts
         context['terminal_zones'] = terminal_zones
+        context['terminal_status'] = terminal_status
 
  
 
@@ -152,7 +158,28 @@ def index(request):
         append_zones()
 
     if len(Terminal.objects.all()) == 0:
-        append_terminals() 
+        count = 1
+        parser = ET.XMLParser(encoding="windows-1251")
+        tree = ET.parse("terminals.xml", parser=parser)
+        root = tree.getroot()
+
+        for child in root:
+
+            for i in Zone.objects.all():
+                if child[13].text == i.zona:
+                    zona_name = i.name_zona
+            try:
+                new_terminal = Terminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
+                                        cobl = child[5].text, craion = child[6].text, cgorod = child[7].text, cadres = child[8].text,
+                                        ddatan = child[9].text, cname = child[10].text, cparta = child[11].text, cots = child[12].text,
+                                        czona = child[13].text, zona_name = zona_name, cvsoba = child[14].text, cunn = child[15].text,
+                                        cbank = child[16].text, ctype = child[17].text, ss_nom = child[18].text,
+                                        lat = child[19].text, lng = child[20].text, ddatap = child[21].text, cmemo = child[22].text, cstatus = child[23].text)
+                new_terminal.save()
+                print('OK ' + str(count))
+                count = count + 1 
+            except:
+                ...       
 
     context = {}  
 
@@ -169,7 +196,7 @@ def index(request):
     context['display'] = 'none'
     context['search_name'] = ''
     context['search_parta'] = ''
-    context['search_zone'] = ''
+    context['search_status'] = ''
        
     return render(request, 'mainpage/mainpage.html', context)  
 
@@ -219,6 +246,10 @@ def search(request):
     if search_parta != '':
         filters['cparta'] = search_parta
 
+    search_status = request.GET.get("status", "")
+    if search_status != '':
+        filters['cstatus'] = search_status
+
     terminal_lists_for_drop_down_list(context, Terminal.objects.filter(**filters).filter(get_q_objects(request)))
     terminal_lists_for_drop_down_list(context, Terminal.objects.all())
 
@@ -226,6 +257,7 @@ def search(request):
     context['display'] = 'block'
     context['search_name'] = search_name
     context['search_parta'] = search_parta
+    context['search_status'] = search_status
     context['terminals'] = Terminal.objects.filter(**filters).filter(get_q_objects(request))
     context['allterminals'] = Terminal.objects.all()
     context['count_all_terminals'] = len(Terminal.objects.all())

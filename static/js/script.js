@@ -14,7 +14,7 @@ checkboxes = document.getElementsByName('zones');
 
 
 
-function addParam(name, parta, zone, check) {
+function addParam(name, parta, status, check) {
     if (name != '') {
         localStorage.setItem('name', name);
     };
@@ -22,14 +22,18 @@ function addParam(name, parta, zone, check) {
         localStorage.setItem('parta', parta);
     };
 
+    if (status != '') {
+        localStorage.setItem('status', status);
+    };
     let href_name = encodeURIComponent(localStorage.getItem('name'));
     let href_parta = encodeURIComponent(localStorage.getItem('parta'));
+    let href_status = encodeURIComponent(localStorage.getItem('status'));
 
     if (check) {
-        window.location.href = '/search/?name=' + href_name + '&parta=' + href_parta;
+        window.location.href = '/search/?name=' + href_name + '&parta=' + href_parta + '&status=' + href_status;
         } else { 
             if (availableparts.includes(parta)) {
-              window.location.href = '/search/?name=' + href_name + '&parta=' + href_parta;  
+              window.location.href = '/search/?name=' + href_name + '&parta=' + href_parta + '&status=' + href_status;  
             }
 
     }
@@ -38,7 +42,7 @@ function addParam(name, parta, zone, check) {
 function clearHref(){
     localStorage.setItem('parta', '');
     localStorage.setItem('name', '');
-    localStorage.setItem('zone', '');
+    localStorage.setItem('status', '');
     window.location.href = '/';
 }
 
