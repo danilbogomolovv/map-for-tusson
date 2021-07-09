@@ -41,5 +41,9 @@ class Zone(models.Model):
 	zona = models.CharField(max_length = 150, null = True)
 	name_zona = models.CharField(max_length = 150, null = True)
 
+class Terminal_attr_name_and_count(models.Model):
+	attr_name =  models.CharField(max_length = 150, null = True)
+	attr_count =  models.CharField(max_length = 150, null = True)
+
 
 

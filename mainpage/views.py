@@ -13,6 +13,10 @@ import googlemaps
 q_objects = Q()
 q_objects |= Q(zona_name__startswith='Минский')
 list_q_objects = [q_objects]
+terminal_names_for_drop_down_list = []
+terminal_parts_for_drop_down_list = []
+terminal_zones_for_drop_down_list = []
+terminal_status_for_drop_down_list = []
 
 def append_zones():
     
@@ -78,9 +82,9 @@ def count_terminal_attribute(attr, context):
     for i in list(Terminal.objects.values_list(attr, flat=True)):
         if i not in result:
             result.append(i)
+            print(i)
     json_list = simplejson.dumps(result)
     context['available' + attr] = json_list
-
 
 def get_q_objects(request):
 
@@ -91,20 +95,35 @@ def get_q_objects(request):
         q_objects = Q()
         for z in zones:
             q_objects |= Q(zona_name__startswith=z)
+            print(z)
         list_q_objects.append(q_objects)
         if len(list_q_objects) > 2:
             list_q_objects.pop(-2)
     return list_q_objects[-1]
 
-def terminal_lists_for_drop_down_list(context, search_terminals):
+def terminal_lists_for_drop_down_list(context):
 
-    """ Функция вызывающая рассчитывающая все варианты для трех атрибутов терминала """
+    global terminal_names_for_drop_down_list
+    terminal_names_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('cname', flat=True))
+    print(terminal_names_for_drop_down_list)
+    
+    global terminal_parts_for_drop_down_list
+    terminal_parts_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('cparta', flat=True))
+    print(terminal_parts_for_drop_down_list)
+
+    global terminal_zones_for_drop_down_list
+    terminal_zones_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('zona_name', flat=True))
+    print(terminal_zones_for_drop_down_list)
+
+    global terminal_status_for_drop_down_list
+    terminal_status_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('cstatus', flat=True))
+    print(terminal_status_for_drop_down_list)
 
 
-    # terminal_names = search_terminals_info(search_terminals.objects.values_list('cname', flat=True))
-    # terminal_parts = search_terminals_info(search_terminals.objects.values_list('cparta', flat=True))
-    # terminal_zones = search_terminals_info(search_terminals.objects.values_list('zona_name', flat=True))
 
+def terminal_lists_for_search_terminals(context, search_terminals):
+
+    """ Функция рассчитывающая все варианты и количество вхождений для четырех атрибутов терминала """
     terminal_names = []
     for i in search_terminals:
         terminal_names.append(i.cname)
@@ -126,13 +145,7 @@ def terminal_lists_for_drop_down_list(context, search_terminals):
         context['search_terminal_parts'] = terminal_parts
         context['search_terminal_zones'] = terminal_zones
         context['search_terminal_status'] = terminal_status
-    else:
-        context['terminal_names'] = terminal_names
-        context['terminal_parts'] = terminal_parts
-        context['terminal_zones'] = terminal_zones
-        context['terminal_status'] = terminal_status
 
- 
 
 def search_terminals_info(terminal_attr):
 
@@ -146,9 +159,6 @@ def search_terminals_info(terminal_attr):
     sort_terminal_names_with_count = sorted(terminal_with_count.items(), key=lambda x: x[1])
     sort_terminal_names_with_count.reverse()
     return sort_terminal_names_with_count  
-
-
-
 
 
 def index(request):
@@ -182,29 +192,36 @@ def index(request):
                 ...       
 
     context = {}  
+    
+    if terminal_names_for_drop_down_list == []: # ДОБАВИТЬ НОРМАЛЬНУЮ ПРОВЕРКУ
+        terminal_lists_for_drop_down_list(context)
 
-    terminal_lists_for_drop_down_list(context, Terminal.objects.all())
+    context['terminal_names'] = terminal_names_for_drop_down_list
+    context['terminal_parts'] = terminal_parts_for_drop_down_list
+    context['terminal_zones'] = terminal_zones_for_drop_down_list
+    context['terminal_status'] = terminal_status_for_drop_down_list
     count_terminal_attribute('cparta', context)
 
+    print('check1')
     try:
         context['terminals'] = Terminal.objects.filter(get_q_objects(request))
     except Exception as e:
         context['terminals'] = Terminal.objects.filter(zona_name = 'Минский филиал') 
-
+    print('check2')
     context['allterminals'] = Terminal.objects.all()
     context['count_all_terminals'] = len(Terminal.objects.all())
     context['display'] = 'none'
     context['search_name'] = ''
     context['search_parta'] = ''
     context['search_status'] = ''
-       
+    print('check3')     
     return render(request, 'mainpage/mainpage.html', context)  
 
 def filter(request):
     context = {}
     context['terminals'] = Terminal.objects.filter(ctid = 'f')
     context['display'] = 'none'
-    terminal_lists_for_drop_down_list(context, Terminal.objects.all())
+    terminal_lists_for_drop_down_list(context)
     if request.method == 'POST':
         filterform = FilterForm(request.POST)
         context['filterform'] = filterform
@@ -216,7 +233,7 @@ def filter(request):
 
             if len(Terminal.objects.all()) != len(Terminal.objects.filter(**filterform.cleaned_data)):
                 context['display'] = 'block'
-                terminal_lists_for_drop_down_list(context, Terminal.objects.filter(**filterform.cleaned_data))
+                terminal_lists_for_search_terminals(context, Terminal.objects.filter(**filterform.cleaned_data))
             context['terminals'] = Terminal.objects.filter(**filterform.cleaned_data)
             context['count_search_terminals'] = len(Terminal.objects.filter(**filterform.cleaned_data))           
     else:
@@ -250,10 +267,11 @@ def search(request):
     if search_status != '':
         filters['cstatus'] = search_status
 
-    terminal_lists_for_drop_down_list(context, Terminal.objects.filter(**filters).filter(get_q_objects(request)))
-    terminal_lists_for_drop_down_list(context, Terminal.objects.all())
+    search_terminals = Terminal.objects.filter(**filters).filter(get_q_objects(request))
+    terminal_lists_for_search_terminals(context, search_terminals)
+    terminal_lists_for_drop_down_list(context)
 
-    context['count_search_terminals'] =  len(Terminal.objects.filter(**filters).filter(get_q_objects(request)))
+    context['count_search_terminals'] =  len(search_terminals)
     context['display'] = 'block'
     context['search_name'] = search_name
     context['search_parta'] = search_parta
