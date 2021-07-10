@@ -29,6 +29,8 @@ class Terminal(models.Model):
 	cstatus = models.CharField(max_length = 3, null = True)
 	lat = models.CharField(max_length = 150, null = True)
 	lng = models.CharField(max_length = 150, null = True)
+	info = models.CharField(max_length = 250, null = True)
+	info_count =  models.IntegerField( null = True)
 
 
 class ErrorTerminal(models.Model):

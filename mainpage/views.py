@@ -82,7 +82,6 @@ def count_terminal_attribute(attr, context):
     for i in list(Terminal.objects.values_list(attr, flat=True)):
         if i not in result:
             result.append(i)
-            print(i)
     json_list = simplejson.dumps(result)
     context['available' + attr] = json_list
 
@@ -95,35 +94,29 @@ def get_q_objects(request):
         q_objects = Q()
         for z in zones:
             q_objects |= Q(zona_name__startswith=z)
-            print(z)
         list_q_objects.append(q_objects)
         if len(list_q_objects) > 2:
             list_q_objects.pop(-2)
     return list_q_objects[-1]
 
 def terminal_lists_for_drop_down_list(context):
-
+    """ Функция рассчитывающая все варианты и количество вхождений для четырех атрибутов всех терминалов """
     global terminal_names_for_drop_down_list
     terminal_names_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('cname', flat=True))
-    print(terminal_names_for_drop_down_list)
-    
+
     global terminal_parts_for_drop_down_list
     terminal_parts_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('cparta', flat=True))
-    print(terminal_parts_for_drop_down_list)
 
     global terminal_zones_for_drop_down_list
     terminal_zones_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('zona_name', flat=True))
-    print(terminal_zones_for_drop_down_list)
 
     global terminal_status_for_drop_down_list
     terminal_status_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('cstatus', flat=True))
-    print(terminal_status_for_drop_down_list)
-
 
 
 def terminal_lists_for_search_terminals(context, search_terminals):
 
-    """ Функция рассчитывающая все варианты и количество вхождений для четырех атрибутов терминала """
+    """ Функция рассчитывающая все варианты и количество вхождений для четырех атрибутов искомых терминалов """
     terminal_names = []
     for i in search_terminals:
         terminal_names.append(i.cname)
@@ -163,6 +156,7 @@ def search_terminals_info(terminal_attr):
 
 def index(request):
     context = {}
+    check_terminals = {}
     
     if len(Zone.objects.all()) == 0:
         append_zones()
@@ -184,7 +178,9 @@ def index(request):
                                         ddatan = child[9].text, cname = child[10].text, cparta = child[11].text, cots = child[12].text,
                                         czona = child[13].text, zona_name = zona_name, cvsoba = child[14].text, cunn = child[15].text,
                                         cbank = child[16].text, ctype = child[17].text, ss_nom = child[18].text,
-                                        lat = child[19].text, lng = child[20].text, ddatap = child[21].text, cmemo = child[22].text, cstatus = child[23].text)
+                                        lat = child[19].text, lng = child[20].text, ddatap = child[21].text, cmemo = child[22].text, cstatus = child[23].text,
+                                        info = " <p> " +  child[2].text + " </p> " + child[11].text + "<br>" + child[8].text + "<br>" + child[10].text + "<br> _________________________________",
+                                        info_count = 1)
                 new_terminal.save()
                 print('OK ' + str(count))
                 count = count + 1 
@@ -192,7 +188,7 @@ def index(request):
                 ...       
 
     context = {}  
-    
+
     if terminal_names_for_drop_down_list == []: # ДОБАВИТЬ НОРМАЛЬНУЮ ПРОВЕРКУ
         terminal_lists_for_drop_down_list(context)
 
@@ -202,19 +198,20 @@ def index(request):
     context['terminal_status'] = terminal_status_for_drop_down_list
     count_terminal_attribute('cparta', context)
 
-    print('check1')
     try:
-        context['terminals'] = Terminal.objects.filter(get_q_objects(request))
+        context['terminals'] = Terminal.objects.filter(get_q_objects(request)).iterator()
+        context['terminals_for_info'] = Terminal.objects.filter(get_q_objects(request))
     except Exception as e:
-        context['terminals'] = Terminal.objects.filter(zona_name = 'Минский филиал') 
-    print('check2')
-    context['allterminals'] = Terminal.objects.all()
+        context['terminals'] = Terminal.objects.filter(zona_name = 'Минский филиал').iterator()
+        context['terminals_for_info'] = Terminal.objects.filter(zona_name = 'Минский филиал')
+
+    context['allterminals'] = Terminal.objects.all().iterator()
     context['count_all_terminals'] = len(Terminal.objects.all())
     context['display'] = 'none'
     context['search_name'] = ''
     context['search_parta'] = ''
     context['search_status'] = ''
-    print('check3')     
+   
     return render(request, 'mainpage/mainpage.html', context)  
 
 def filter(request):
