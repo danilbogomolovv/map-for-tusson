@@ -8,7 +8,7 @@
               <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 
                 {% if search_name == "" %}
-                    Название терминала
+                    Терминал
                 {% else %}
                     {{search_name}}
                 {% endif %} 
@@ -26,7 +26,7 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {% if search_parta == "" %}
-                    Название партнера
+                    Партнер
                 {% else %}
                     {{ search_parta }}
                 {% endif %}
@@ -65,7 +65,7 @@
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Название зоны
+                    Зоны
               </a>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink" style="width: 300px;">
                 <form method="POST">
@@ -89,6 +89,7 @@
         </div>
 
         <a class="btn btn-outline-success" id="filter_button" href="filter/" role="button" >Фильтр</a>
+        <a class="btn btn-outline-success" id="filter_button" href="terminals_for_repair/" role="button" >Заявки на ремонт</a>
 {% endblock nav %}
 
 

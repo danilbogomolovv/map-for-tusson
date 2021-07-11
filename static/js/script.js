@@ -82,6 +82,7 @@ function clearfilters(){
 
 
 $( function() {
+  
     $( "#parts" ).autocomplete({
       source: availableparts
     });

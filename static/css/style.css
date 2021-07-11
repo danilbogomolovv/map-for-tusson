@@ -14,7 +14,7 @@ body {
 .errorlist{
     display: none;
 }
-.filterform {
+.filterform, .terminals_for_repair {
     z-index: 5;
     position: absolute;
     height: 90%;

@@ -9,6 +9,7 @@ from .models import *
 from .forms import *
 import json as simplejson
 import googlemaps
+from datetime import datetime
 
 q_objects = Q()
 q_objects |= Q(zona_name__startswith='Минский')
@@ -188,7 +189,7 @@ def index(request):
                 ...       
 
     context = {}  
-
+    
     if terminal_names_for_drop_down_list == []: # ДОБАВИТЬ НОРМАЛЬНУЮ ПРОВЕРКУ
         terminal_lists_for_drop_down_list(context)
 
@@ -196,16 +197,21 @@ def index(request):
     context['terminal_parts'] = terminal_parts_for_drop_down_list
     context['terminal_zones'] = terminal_zones_for_drop_down_list
     context['terminal_status'] = terminal_status_for_drop_down_list
+
+   
     count_terminal_attribute('cparta', context)
 
     try:
-        context['terminals'] = Terminal.objects.filter(get_q_objects(request)).iterator()
-        context['terminals_for_info'] = Terminal.objects.filter(get_q_objects(request))
+        right_terminals = Terminal.objects.filter(get_q_objects(request))
     except Exception as e:
-        context['terminals'] = Terminal.objects.filter(zona_name = 'Минский филиал').iterator()
-        context['terminals_for_info'] = Terminal.objects.filter(zona_name = 'Минский филиал')
+        right_terminals = Terminal.objects.filter(zona_name = 'Минский филиал')
 
-    context['allterminals'] = Terminal.objects.all().iterator()
+    # for i in right_terminals:
+    #     for j in Terminal.objects.filter(lat = i.lat, lng = i.lng):
+    #         print(j.cadres)
+
+    context['terminals'] = right_terminals.only('lat','lng').iterator()
+    context['terminals_for_info'] = right_terminals.only('lat','lng','ctid','cparta','cname')
     context['count_all_terminals'] = len(Terminal.objects.all())
     context['display'] = 'none'
     context['search_name'] = ''
@@ -216,8 +222,8 @@ def index(request):
 
 def filter(request):
     context = {}
-    context['terminals'] = Terminal.objects.filter(ctid = 'f')
     context['display'] = 'none'
+    context['terminals'] = Terminal.objects.all().iterator()
     terminal_lists_for_drop_down_list(context)
     if request.method == 'POST':
         filterform = FilterForm(request.POST)
@@ -231,15 +237,14 @@ def filter(request):
             if len(Terminal.objects.all()) != len(Terminal.objects.filter(**filterform.cleaned_data)):
                 context['display'] = 'block'
                 terminal_lists_for_search_terminals(context, Terminal.objects.filter(**filterform.cleaned_data))
-            context['terminals'] = Terminal.objects.filter(**filterform.cleaned_data)
+            context['terminals'] = Terminal.objects.filter(**filterform.cleaned_data).iterator()
+            context['terminals_for_info'] = Terminal.objects.filter(**filterform.cleaned_data)
             context['count_search_terminals'] = len(Terminal.objects.filter(**filterform.cleaned_data))           
     else:
         filterform = FilterForm(request.POST)
         context['filterform'] = filterform   
 
     context['count_all_terminals'] = len(Terminal.objects.all())
-    context['allterminals'] = Terminal.objects.all()
-
 
     for i in Terminal._meta.get_fields()[1:20]:
         if str(i) != 'mainpage.Terminal.ddatan' and str(i) != 'mainpage.Terminal.czona':
@@ -273,48 +278,36 @@ def search(request):
     context['search_name'] = search_name
     context['search_parta'] = search_parta
     context['search_status'] = search_status
-    context['terminals'] = Terminal.objects.filter(**filters).filter(get_q_objects(request))
-    context['allterminals'] = Terminal.objects.all()
+    context['terminals'] = search_terminals.iterator()
+    context['terminals_for_info'] = search_terminals
+
     context['count_all_terminals'] = len(Terminal.objects.all())
+
+    context['terminal_names'] = terminal_names_for_drop_down_list
+    context['terminal_parts'] = terminal_parts_for_drop_down_list
+    context['terminal_zones'] = terminal_zones_for_drop_down_list
+    context['terminal_status'] = terminal_status_for_drop_down_list
     return render(request, 'mainpage/mainpage.html', context)
 
-def save(request):
-    for i in Terminal.objects.all():
-        level1 = ET.SubElement(root, 'terminals')
-        cimei = ET.SubElement(level1, 'cimei')
-        cimei.text = str(i.cimei)
-        inr = ET.SubElement(level1, 'inr')
-        inr.text = str(i.inr)
-        ctid = ET.SubElement(level1, 'ctid')
-        ctid.text = str(i.ctid)
-        cmid = ET.SubElement(level1, 'cmid')
-        cmid.text = str(i.cmid)
-        cpodr = ET.SubElement(level1, 'cpodr')
-        cpodr.text = str(i.cpodr)
-        cadres = ET.SubElement(level1, 'cadres')
-        cadres.text = str(i.cadres)
-        cgorod = ET.SubElement(level1, 'cgorod')
-        cgorod.text = str(i.cgorod)
-        cobl = ET.SubElement(level1, 'cobl')
-        cobl.text = str(i.cobl)
-        craion = ET.SubElement(level1, 'craion')
-        craion.text = str(i.craion)
-        ddatan = ET.SubElement(level1, 'ddatan')
-        ddatan.text = str(i.ddatan)
-        cname = ET.SubElement(level1, 'cname')
-        cname.text = str(i.cname)
-        cparta = ET.SubElement(level1, 'cparta')
-        cparta.text = str(i.cparta)
-        cots = ET.SubElement(level1, 'cots')
-        cots.text = str(i.cots)
-        lat = ET.SubElement(level1, 'lat')
-        lat.text = str(i.lat)
-        lng = ET.SubElement(level1, 'lng')
-        lng.text = str(i.lng)
+def terminals_for_repair(request):
+    context = {}
+    now = datetime.now().date()
+    terminals_for_repair = Terminal.objects.filter(cstatus = 3)
+    context['count_all_terminals'] = len(Terminal.objects.all())
+    context['terminals'] = terminals_for_repair.only('lat','lng').iterator()
+    context['terminals_for_info'] = terminals_for_repair.only('lat','lng','ctid','cparta','cname')  
+    context['terminals_for_repair'] = terminals_for_repair.only('cname','ddatap','cmemo','cparta') 
+    context['now_date'] = now
+    context['check_for_repair'] = False
+    context['display'] = 'none'
 
-    ET.indent(root)
-    tree = ET.ElementTree(root)
-    tree.write('error_terminals.xml', xml_declaration=None, default_namespace=None, method="xml", encoding="Windows-1251") 
+    for i in terminals_for_repair:
+        if i.ddatap < now:
+            context['check_for_repair'] = True
+            break    
+    return render(request, 'mainpage/terminals_for_repair.html', context)
+
+def save(request):
     return HttpResponseRedirect('/')
 
 

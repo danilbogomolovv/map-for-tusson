@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block nav %}
+    <a class="btn btn-outline-danger" href="/" role="button">Назад</a>
+{% endblock nav %}
+
+{% block content %}
+    <div class="terminals_for_repair" style="display: block; background: #212529; color: #9e9e9e; height: 95%; overflow: auto; width: 23%;">
+        <ul>
+            {% for i in terminals_for_repair %}
+
+                <li>
+                    {% if i.ddatap < now_date %}
+                    Дата : {{i.ddatap}} <span style="color: red">(ПРОСРОЧЕНО!)</span> <br>
+                    {% else %}
+                    Дата : {{i.ddatap}} <br>
+                    {% endif %}
+                    Информация : {{i.cmemo}} <br>
+                    Партнер : {{i.cparta}} <br>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock content %}
+

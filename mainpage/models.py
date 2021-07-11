@@ -24,14 +24,11 @@ class Terminal(models.Model):
 	ctype = models.CharField(max_length = 150, null = True)
 	right_adres = models.CharField(max_length = 150, null = True)
 	ss_nom = models.CharField(max_length = 150, null = True)
-	ddatap = models.CharField(max_length = 150, null = True)
+	ddatap = models.DateField(max_length = 150, null = True)
 	cmemo = models.CharField(max_length = 250, null = True)
-	cstatus = models.CharField(max_length = 3, null = True)
+	cstatus = models.IntegerField( null = True)
 	lat = models.CharField(max_length = 150, null = True)
 	lng = models.CharField(max_length = 150, null = True)
-	info = models.CharField(max_length = 250, null = True)
-	info_count =  models.IntegerField( null = True)
-
 
 class ErrorTerminal(models.Model):
 
