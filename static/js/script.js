@@ -12,7 +12,11 @@ checkboxes = document.getElementsByName('zones');
 }
 
 
-
+function ShowTerminalForRepairInfo(lat, lng) {
+  var myLatlng = new google.maps.LatLng(lat, lng);
+  map.setZoom(12);
+  map.panTo(myLatlng);
+}
 
 function addParam(name, parta, status, check) {
     if (name != '') {

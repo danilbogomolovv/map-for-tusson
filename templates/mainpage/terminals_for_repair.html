@@ -5,7 +5,20 @@
 {% endblock nav %}
 
 {% block content %}
-    <div class="terminals_for_repair" style="display: block; background: #212529; color: #9e9e9e; height: 95%; overflow: auto; width: 23%;">
+    <div class="terminals_for_repair" style="display: block; background: #212529; color: #9e9e9e; height: 95%; overflow: auto; width: 14%;">
+        <ul>
+            <div class="d-grid gap-2">
+                {% for i in terminals_for_repair %}
+
+                    <li>
+                        <button type="button" class="btn btn-secondary btn-sm" onclick="ShowTerminalForRepairInfo('{{i.lat}}','{{i.lng}}')">TID : {{i.ctid}}</button>
+                    </li>
+                {% endfor %}
+             </div>
+        </ul>
+    </div>
+
+    <div class="terminals_for_repair_info" style="display: none; background: #212529; color: #9e9e9e; height: 95%; overflow: auto; width: 23%;">
         <ul>
             {% for i in terminals_for_repair %}
 
