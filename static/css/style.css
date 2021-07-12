@@ -24,6 +24,16 @@ body {
     border: 1px solid black; 
 }
 
+.terminals_for_repair_info {
+    z-index: 5;
+    position: absolute;
+    height: 20%;
+    width: 20%;
+    background: white;
+    right: 0;
+    border: 1px solid black; 
+}
+
 .search_info {
     z-index: 5;
     position: absolute;

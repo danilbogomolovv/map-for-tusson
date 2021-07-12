@@ -11,28 +11,21 @@
                 {% for i in terminals_for_repair %}
 
                     <li>
-                        <button type="button" class="btn btn-secondary btn-sm" onclick="ShowTerminalForRepairInfo('{{i.lat}}','{{i.lng}}')">TID : {{i.ctid}}</button>
+                        {% if i.ddatap < now_date %}
+                        <button type="button" class="btn btn-secondary btn-sm" onclick="ShowTerminalForRepairInfo('{{i.lat}}','{{i.lng}}', '{{i.ddatap}}','{{i.cmemo}}','{{i.cparta}}', '{{i.cadres}}')">TID : {{i.ctid}}</button><span style="color: red">(ПРОСРОЧЕНО!)</span> 
+                        {% else %}
+                        <button type="button" class="btn btn-secondary btn-sm" onclick="ShowTerminalForRepairInfo('{{i.lat}}','{{i.lng}}', '{{i.ddatap}}','{{i.cmemo}}','{{i.cparta}}', '{{i.cadres}}')">TID : {{i.ctid}}</button>
+                        {% endif %}
                     </li>
                 {% endfor %}
              </div>
         </ul>
     </div>
 
-    <div class="terminals_for_repair_info" style="display: none; background: #212529; color: #9e9e9e; height: 95%; overflow: auto; width: 23%;">
-        <ul>
-            {% for i in terminals_for_repair %}
+    <div class="terminals_for_repair_info" id="terminals_for_repair_info" style="display: none; background: #212529; color: #9e9e9e; height: 95%; overflow: auto; width: 23%;">
+         
 
-                <li>
-                    {% if i.ddatap < now_date %}
-                    Дата : {{i.ddatap}} <span style="color: red">(ПРОСРОЧЕНО!)</span> <br>
-                    {% else %}
-                    Дата : {{i.ddatap}} <br>
-                    {% endif %}
-                    Информация : {{i.cmemo}} <br>
-                    Партнер : {{i.cparta}} <br>
-                </li>
-            {% endfor %}
-        </ul>
+         <button class="btn btn-outline-danger" onclick="ClearRepairInfo()">Сбросить</button>   
     </div>
 {% endblock content %}
 

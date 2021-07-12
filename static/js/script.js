@@ -12,10 +12,19 @@ checkboxes = document.getElementsByName('zones');
 }
 
 
-function ShowTerminalForRepairInfo(lat, lng) {
+function ShowTerminalForRepairInfo(lat, lng, ddatap, cmemo, cparta, cadres) {
   var myLatlng = new google.maps.LatLng(lat, lng);
   map.setZoom(12);
   map.panTo(myLatlng);
+  document.getElementById('terminals_for_repair_info').style.display = 'block'
+  document.getElementById('terminals_for_repair_info').innerHTML = "<h5>Дата :</h5>" + ddatap  + "<h5>Информация :</h5>" + cmemo + "<h5>Партнер :</h5>" + cparta + "<h5>Адрес :</h5>" + cadres + '</br>    <button class="btn btn-outline-danger" onclick="ClearRepairInfo()">Сбросить</button> '
+}
+
+function ClearRepairInfo() {
+  var myLatlng = new google.maps.LatLng(53.904789501846196, 27.553534868069242);
+  map.setZoom(6);
+  map.panTo(myLatlng); 
+  document.getElementById('terminals_for_repair_info').style.display = 'none' 
 }
 
 function addParam(name, parta, status, check) {

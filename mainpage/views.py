@@ -296,7 +296,7 @@ def terminals_for_repair(request):
     context['count_all_terminals'] = len(Terminal.objects.all())
     context['terminals'] = terminals_for_repair.only('lat','lng').iterator()
     context['terminals_for_info'] = terminals_for_repair.only('lat','lng','ctid','cparta','cname')  
-    context['terminals_for_repair'] = terminals_for_repair.only('cname','ddatap','cmemo','cparta') 
+    context['terminals_for_repair'] = terminals_for_repair.only('cname','ddatap','cmemo','cparta', 'cadres') 
     context['now_date'] = now
     context['check_for_repair'] = False
     context['display'] = 'none'
