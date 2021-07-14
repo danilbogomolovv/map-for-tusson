@@ -104,40 +104,46 @@ def get_q_objects(request):
 def terminal_lists_for_drop_down_list(context):
     """ Функция рассчитывающая все варианты и количество вхождений для четырех атрибутов всех терминалов """
     global terminal_names_for_drop_down_list
-    terminal_names_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('cname', flat=True))
+    terminal_names_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('cname', flat=True), False)
 
     global terminal_parts_for_drop_down_list
-    terminal_parts_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('cparta', flat=True))
+    terminal_parts_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('cparta', flat=True), False)
 
     global terminal_zones_for_drop_down_list
-    terminal_zones_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('zona_name', flat=True))
+    terminal_zones_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('zona_name', flat=True), True)
+    # for i in terminal_zones_for_drop_down_list:
+    #     for j in Zone.objects.all():
+    #         if i[0] == j.name_zona:
+    #             i[0] += str(j.zona)
+    #     print(i)
+
 
     global terminal_cpodr_for_drop_down_list
-    terminal_cpodr_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('cpodr', flat=True))
+    terminal_cpodr_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('cpodr', flat=True), False)
 
 
 def terminal_lists_for_search_terminals(context, search_terminals):
 
-    """ Функция рассчитывающая все варианты и количество вхождений для четырех атрибутов искомых терминалов """
+    """ Функция рассчитывающая все варианты и количество вхождений для трех атрибутов искомых терминалов """
     terminal_names = []
     for i in search_terminals:
         terminal_names.append(i.cname)
-    terminal_names = search_terminals_info(terminal_names)
+    terminal_names = search_terminals_info(terminal_names, False)
     terminal_parts = []
     for i in search_terminals:
         terminal_parts.append(i.cparta)
-    terminal_parts = search_terminals_info(terminal_parts)
+    terminal_parts = search_terminals_info(terminal_parts, False)
     terminal_zones = []
     for i in search_terminals:
         terminal_zones.append(i.zona_name)
-    terminal_zones = search_terminals_info(terminal_zones)
+    terminal_zones = search_terminals_info(terminal_zones, True)
     if len(search_terminals) != len(Terminal.objects.all()):
         context['search_terminal_names'] = terminal_names
         context['search_terminal_parts'] = terminal_parts
         context['search_terminal_zones'] = terminal_zones
 
 
-def search_terminals_info(terminal_attr):
+def search_terminals_info(terminal_attr, zona_check):
 
     """Функция для поиска всех вариантов какого-либо атрибута терминала и его количества вхождений"""
 
@@ -145,6 +151,10 @@ def search_terminals_info(terminal_attr):
     terminal_with_count = {}
     for i in to_list:
         count = to_list.count(i)
+        if zona_check:
+            for j in Zone.objects.all():
+                if i == j.name_zona:
+                    i = str(i) + ' (' + str(j.zona) + ') '
         terminal_with_count[i] = count
     sort_terminal_names_with_count = sorted(terminal_with_count.items(), key=lambda x: x[1])
     sort_terminal_names_with_count.reverse()
@@ -186,8 +196,8 @@ def index(request):
 
     context = {}  
     
-    if terminal_names_for_drop_down_list == []: # ДОБАВИТЬ НОРМАЛЬНУЮ ПРОВЕРКУ
-        terminal_lists_for_drop_down_list(context)
+    #if terminal_names_for_drop_down_list == []: # ДОБАВИТЬ НОРМАЛЬНУЮ ПРОВЕРКУ
+    terminal_lists_for_drop_down_list(context)
 
     context['terminal_names'] = terminal_names_for_drop_down_list
     context['terminal_parts'] = terminal_parts_for_drop_down_list
@@ -247,6 +257,7 @@ def filter(request):
     for i in Terminal._meta.get_fields()[1:20]:
         if str(i) != 'mainpage.Terminal.ddatan' and str(i) != 'mainpage.Terminal.czona':
             count_terminal_attribute(str(i).replace('mainpage.Terminal.', ''), context)
+            print(i)
 
     return render(request, 'mainpage/filterform.html', context)  
 
@@ -266,7 +277,7 @@ def search(request):
     if search_cpodr != '':
         filters['cpodr'] = search_cpodr
     
-    search_terminals = Terminal.objects.filter(**filters)
+    search_terminals = Terminal.objects.filter(**filters)   
     print(search_terminals)
     terminal_lists_for_search_terminals(context, search_terminals)
     terminal_lists_for_drop_down_list(context)

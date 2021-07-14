@@ -19,7 +19,7 @@ class FilterForm(forms.Form):
 							 								 'class':'ui-autocomplite-input',
 							 								 'autocomplie':'off'}))
 	inr = forms.CharField(max_length = 100, required = False, label='Артикул', widget = forms.TextInput(attrs={'id': 'inrs',
-							 								 'placeholder':'Поиск по аритикулу',
+							 								 'placeholder':'Поиск по аритиклю',
 							 								 'class':'ui-autocomplite-input',
 							 								 'autocomplie':'off'}))
 	zona_name = forms.CharField(max_length = 100, required = False, label='Зона', widget = forms.TextInput(attrs={'id': 'zones',
@@ -48,5 +48,10 @@ class FilterForm(forms.Form):
 							 								 'autocomplie':'off'}))
 	cvsoba = forms.CharField(max_length = 100, required = False, label='Вид собственности', widget = forms.TextInput(attrs={'id': 'cvsobas',
 							 								 'placeholder':'Поиск по Виду собственности',
+							 								 'class':'ui-autocomplite-input',
+							 								 'autocomplie':'off'}))
+
+	cpodr = forms.CharField(max_length = 100, required = False, label='Отдел', widget = forms.TextInput(attrs={'id': 'cpodrs',
+							 								 'placeholder':'Поиск по отделу',
 							 								 'class':'ui-autocomplite-input',
 							 								 'autocomplie':'off'}))

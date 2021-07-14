@@ -140,5 +140,9 @@ $( function() {
       source: availablebanks
     });
 
+    $( "#cpodrs" ).autocomplete({
+      source: availablecpodr
+    });
+
     }
 );
