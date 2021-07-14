@@ -27,7 +27,7 @@ function ClearRepairInfo() {
   document.getElementById('terminals_for_repair_info').style.display = 'none' 
 }
 
-function addParam(name, parta, status, check) {
+function addParam(name, parta, cpodr, check) {
     if (name != '') {
         localStorage.setItem('name', name);
     };
@@ -35,18 +35,18 @@ function addParam(name, parta, status, check) {
         localStorage.setItem('parta', parta);
     };
 
-    if (status != '') {
-        localStorage.setItem('status', status);
+    if (cpodr != '') {
+        localStorage.setItem('cpodr', cpodr);
     };
     let href_name = encodeURIComponent(localStorage.getItem('name'));
     let href_parta = encodeURIComponent(localStorage.getItem('parta'));
-    let href_status = encodeURIComponent(localStorage.getItem('status'));
+    let href_cpodr = encodeURIComponent(localStorage.getItem('cpodr'));
 
     if (check) {
-        window.location.href = '/search/?name=' + href_name + '&parta=' + href_parta + '&status=' + href_status;
+        window.location.href = '/search/?name=' + href_name + '&parta=' + href_parta + '&cpodr=' + href_cpodr;
         } else { 
             if (availableparts.includes(parta)) {
-              window.location.href = '/search/?name=' + href_name + '&parta=' + href_parta + '&status=' + href_status;  
+              window.location.href = '/search/?name=' + href_name + '&parta=' + href_parta + '&cpodr=' + href_cpodr;  
             }
 
     }
@@ -123,9 +123,10 @@ $( function() {
       source: availablectids
     });
 
-    $( "#cadres" ).autocomplete({
-      source: availableadres
-    });
+    // $( "#cadres" ).autocomplete({
+    //   source: availableadres
+    // });
+
     $( "#cunns" ).autocomplete({
       source: availablecunns
     });

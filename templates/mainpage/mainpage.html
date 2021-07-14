@@ -47,14 +47,14 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 
-                {% if search_status == "" %}
-                    Сатус
+                {% if search_cpodr == "" %}
+                    Отдел
                 {% else %}
-                    {{search_status}}
+                    {{search_cpodr}}
                 {% endif %} 
               </a>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                {% for key, value in terminal_status %}
+                {% for key, value in terminal_cpodr %}
                     <li><a class="dropdown-item" href="javascript:addParam('', '','{{ key }}', true);">{{ key }} : {{ value }}</a></li>
                 {% endfor %}
               </ul>
