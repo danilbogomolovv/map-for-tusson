@@ -141,7 +141,7 @@ $( function() {
     });
 
     $( "#cpodrs" ).autocomplete({
-      source: availablecpodr
+      source: availablecpodr 
     });
 
     }

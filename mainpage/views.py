@@ -84,7 +84,6 @@ def count_terminal_attribute(attr, context):
         if i not in result:
             result.append(i)
     json_list = simplejson.dumps(result)
-    print(attr)
     context['available' + attr] = json_list
 
 def get_q_objects(request):
@@ -185,9 +184,7 @@ def index(request):
                                         ddatan = child[9].text, cname = child[10].text, cparta = child[11].text, cots = child[12].text,
                                         czona = child[13].text, zona_name = zona_name, cvsoba = child[14].text, cunn = child[15].text,
                                         cbank = child[16].text, ctype = child[17].text, ss_nom = child[18].text,
-                                        lat = child[19].text, lng = child[20].text, ddatap = child[21].text, cmemo = child[22].text, cstatus = child[23].text,
-                                        info = " <p> " +  child[2].text + " </p> " + child[11].text + "<br>" + child[8].text + "<br>" + child[10].text + "<br> _________________________________",
-                                        info_count = 1)
+                                        lat = child[19].text, lng = child[20].text, ddatap = child[21].text, cmemo = child[22].text, cstatus = child[23].text)
                 new_terminal.save()
                 print('OK ' + str(count))
                 count = count + 1 
@@ -196,8 +193,8 @@ def index(request):
 
     context = {}  
     
-    #if terminal_names_for_drop_down_list == []: # ДОБАВИТЬ НОРМАЛЬНУЮ ПРОВЕРКУ
-    terminal_lists_for_drop_down_list(context)
+    if terminal_names_for_drop_down_list == []: # ДОБАВИТЬ НОРМАЛЬНУЮ ПРОВЕРКУ
+        terminal_lists_for_drop_down_list(context)
 
     context['terminal_names'] = terminal_names_for_drop_down_list
     context['terminal_parts'] = terminal_parts_for_drop_down_list
@@ -223,7 +220,9 @@ def index(request):
     context['search_name'] = ''
     context['search_parta'] = ''
     context['search_cpodr'] = ''
-   
+    for i in Terminal.objects.all():
+        print(i.ctid)
+    print(len(Terminal.objects.all()))
     return render(request, 'mainpage/mainpage.html', context)  
 
 def filter(request):
@@ -278,7 +277,6 @@ def search(request):
         filters['cpodr'] = search_cpodr
     
     search_terminals = Terminal.objects.filter(**filters)   
-    print(search_terminals)
     terminal_lists_for_search_terminals(context, search_terminals)
     terminal_lists_for_drop_down_list(context)
 
@@ -318,20 +316,3 @@ def terminals_for_repair(request):
 
 def save(request):
     return HttpResponseRedirect('/')
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
