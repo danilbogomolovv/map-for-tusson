@@ -3,9 +3,6 @@ from django.urls import path
 from .api_views import *
 
 urlpatterns = [
-	path('getterminals/', getTerminal.as_view(), name = 'getterminals'),
-	path('postterminal/', postTerminal.as_view(), name = 'postterminals'),
-	path('updateterminal/<str:ctid>', updateTerminal.as_view(), name = 'updateterminal'),
-	path('deleteterminal/<str:ctid>', deleteTerminal.as_view(), name = 'deleteterminal'),
-	#path('errorterminals/', ErrorTerminalListAPIView.as_view(), name = 'errorterminals')
+	path('terminals/', TerminalView.as_view(), name = 'gen_terminals'),
+	path('update_terminal/<int:pk>', UpdateTerminalView.as_view(), name = 'update_terminals'),
 ]

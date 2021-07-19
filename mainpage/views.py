@@ -221,8 +221,8 @@ def index(request):
     context['search_parta'] = ''
     context['search_cpodr'] = ''
     for i in Terminal.objects.all():
-        print(i.ctid)
-    print(len(Terminal.objects.all()))
+        print(str(i.ctid) + ' : ' + str(i.cmemo))
+    print("Длина : " + str(len(Terminal.objects.all())))
     return render(request, 'mainpage/mainpage.html', context)  
 
 def filter(request):

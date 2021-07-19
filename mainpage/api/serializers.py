@@ -11,7 +11,6 @@ class TerminalSerializer( serializers.ModelSerializer):
 	def create(self, validated_data):
 		return Terminal.objects.create(**validated_data)
 
-
 	def update(self, instance, validated_data):
 		instance.cstatus = validated_data.get('cstatus', instance.cstatus)
 		instance.cmemo = validated_data.get('cmemo', instance.cmemo)
@@ -19,7 +18,7 @@ class TerminalSerializer( serializers.ModelSerializer):
 		return instance
 
 class ErrorTerminalSerializer( serializers.ModelSerializer):
-
+	inr = serializers.CharField(default=None, source='checkouts.checked_out', read_only=True)
 	class Meta:
 		model = ErrorTerminal
 		fields = '__all__'
