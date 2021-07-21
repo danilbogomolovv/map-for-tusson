@@ -1,7 +1,7 @@
 import requests
-params =  {"cmemo":"oghk"}
+#params =  {"cmemo":"oghk"}
 terminal = { "cimei": "2", "inr": "2",
-    "ctid": "2",
+    "ctid": "fdgdf",
     "cmid": "2",
     "cpodr": "2",
     "cadres": "2",
@@ -26,8 +26,8 @@ terminal = { "cimei": "2", "inr": "2",
     "lat": "2",
     "lng": "2"
 }
-params = {"ctid": "2"}
+params = {"ctid": "21"}
 headers = {"Content-Type": "application/json"}
 
-response = requests.post("http://localhost:8000/api/gen_terminals/", headers = headers, params = params)
+response = requests.post("http://localhost:8000/api/terminals/", headers = headers, params = terminal)
 print(response.text)
