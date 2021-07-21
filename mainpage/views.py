@@ -101,7 +101,9 @@ def get_q_objects(request):
     return list_q_objects[-1]
 
 def terminal_lists_for_drop_down_list(context):
+
     """ Функция рассчитывающая все варианты и количество вхождений для четырех атрибутов всех терминалов """
+
     global terminal_names_for_drop_down_list
     terminal_names_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('cname', flat=True), False)
 
@@ -110,12 +112,6 @@ def terminal_lists_for_drop_down_list(context):
 
     global terminal_zones_for_drop_down_list
     terminal_zones_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('zona_name', flat=True), True)
-    # for i in terminal_zones_for_drop_down_list:
-    #     for j in Zone.objects.all():
-    #         if i[0] == j.name_zona:
-    #             i[0] += str(j.zona)
-    #     print(i)
-
 
     global terminal_cpodr_for_drop_down_list
     terminal_cpodr_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('cpodr', flat=True), False)
@@ -193,7 +189,7 @@ def index(request):
 
     context = {}  
     
-    if terminal_names_for_drop_down_list == []: # ДОБАВИТЬ НОРМАЛЬНУЮ ПРОВЕРКУ
+    if terminal_names_for_drop_down_list == [] or terminal_parts_for_drop_down_list == [] or terminal_cpodr_for_drop_down_list == [] or terminal_zones_for_drop_down_list == []:
         terminal_lists_for_drop_down_list(context)
 
     context['terminal_names'] = terminal_names_for_drop_down_list
@@ -209,10 +205,6 @@ def index(request):
     except Exception as e:
         right_terminals = Terminal.objects.filter(zona_name = 'Минский филиал')
 
-    # for i in right_terminals:
-    #     for j in Terminal.objects.filter(lat = i.lat, lng = i.lng):
-    #         print(j.cadres)
-
     context['terminals'] = right_terminals.only('lat','lng').iterator()
     context['terminals_for_info'] = right_terminals.only('lat','lng','ctid','cparta','cname')
     context['count_all_terminals'] = len(Terminal.objects.all())
@@ -220,8 +212,6 @@ def index(request):
     context['search_name'] = ''
     context['search_parta'] = ''
     context['search_cpodr'] = ''
-    for i in Terminal.objects.all():
-        print(str(i.ctid) + ' : ' + str(i.cmemo))
     print("Длина : " + str(len(Terminal.objects.all())))
     return render(request, 'mainpage/mainpage.html', context)  
 
@@ -229,7 +219,7 @@ def filter(request):
     context = {}
     context['display'] = 'none'
     context['terminals'] = Terminal.objects.filter(ctid = 'f').iterator()
-    terminal_lists_for_drop_down_list(context)
+
     if request.method == 'POST':
         filterform = FilterForm(request.POST)
         context['filterform'] = filterform
@@ -278,7 +268,6 @@ def search(request):
     
     search_terminals = Terminal.objects.filter(**filters)   
     terminal_lists_for_search_terminals(context, search_terminals)
-    terminal_lists_for_drop_down_list(context)
 
     context['count_search_terminals'] =  len(search_terminals)
     context['display'] = 'block'

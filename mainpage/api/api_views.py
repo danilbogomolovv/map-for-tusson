@@ -1,4 +1,5 @@
-from rest_framework.generics import ListCreateAPIView, GenericAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import ListCreateAPIView, GenericAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
+from rest_framework.filters import SearchFilter
 from .serializers import *
 from ..models import *
 from rest_framework.response import Response
@@ -6,6 +7,8 @@ from rest_framework.response import Response
 class TerminalView(ListCreateAPIView):
 	queryset = Terminal.objects.all()
 	serializer_class = TerminalSerializer
+	filter_backends = [SearchFilter]
+	search_fields = ['ctid']	
 
 	def get(self, request, *args, **kwargs):
 		return self.list(request, *args, **kwargs)
