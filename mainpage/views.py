@@ -212,6 +212,7 @@ def index(request):
     context['search_name'] = ''
     context['search_parta'] = ''
     context['search_cpodr'] = ''
+    context['zone_check'] = True
     for i in Terminal.objects.all():
         print(i.ctid)
     print("Длина : " + str(len(Terminal.objects.all())))
@@ -256,6 +257,7 @@ def filter(request):
 def search(request):
     context = {}
     filters = {}
+    count_terminal_attribute('cparta', context)
     search_name = request.GET.get("name", "")
     if search_name != '':
         filters['cname'] = search_name
@@ -278,6 +280,7 @@ def search(request):
     context['search_cpodr'] = search_cpodr
     context['terminals'] = search_terminals.iterator()
     context['terminals_for_info'] = search_terminals
+    context['zone_check'] = False
 
     context['count_all_terminals'] = len(Terminal.objects.all())
 
