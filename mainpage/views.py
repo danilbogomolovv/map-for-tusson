@@ -311,8 +311,11 @@ def save(request):
 def one_terminal(request):
     context = {}
     search_ctid = request.GET.get("ctid", "")
-    context['terminals'] = Terminal.objects.filter(ctid = search_ctid).iterator()
-    context['terminals_for_info'] = Terminal.objects.filter(ctid = search_ctid).only('lat','lng','ctid','cparta','cname') 
+    one_terminal = Terminal.objects.filter(ctid = search_ctid)
+    context['terminals'] = one_terminal.iterator()
+    context['lat'] = one_terminal[0].lat
+    context['lng'] = one_terminal[0].lng
+    context['terminals_for_info'] = one_terminal.only('lat','lng','ctid','cparta','cname') 
     context['display'] = 'none'
     context['count_all_terminals'] = len(Terminal.objects.all())
     return render(request, 'mainpage/one_terminal.html', context)  
