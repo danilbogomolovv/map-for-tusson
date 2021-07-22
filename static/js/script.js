@@ -55,7 +55,7 @@ function addParam(name, parta, cpodr, check) {
 function clearHref(){
     localStorage.setItem('parta', '');
     localStorage.setItem('name', '');
-    localStorage.setItem('status', '');
+    localStorage.setItem('cpodr', '');
     window.location.href = '/';
 }
 
