@@ -3,6 +3,8 @@ from rest_framework.filters import SearchFilter
 from .serializers import *
 from ..models import *
 from rest_framework.response import Response
+import googlemaps
+import os
 
 class TerminalView(ListCreateAPIView):
 	queryset = Terminal.objects.all()
@@ -15,6 +17,12 @@ class TerminalView(ListCreateAPIView):
 
 
 	def post(self, request, *args, **kwargs):
+		if request.data.get('lat') == '-' and request.data.get('lng') == '-':
+		 	gmaps = googlemaps.Client(key=os.getenv('GOOGLE_API'))
+		 	geocode_result = gmaps.geocode(request.data.get('cadres'), language = 'ru')
+		 	request.data['lat'] = geocode_result[0]['geometry']['location']['lat']
+		 	request.data['lng'] = geocode_result[0]['geometry']['location']['lng']
+	
 		return self.create(request, *args, **kwargs)
 
 class UpdateTerminalView(RetrieveUpdateDestroyAPIView):
