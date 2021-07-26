@@ -292,6 +292,13 @@ def search(request):
 
 def terminals_for_repair(request):
     context = {}
+    if request.method == 'POST':
+        RepairForm = TerminalForRepairForm(request.POST)
+        context['repair_form'] = RepairForm
+    else:
+        RepairForm = TerminalForRepairForm(request.POST)
+        context['repair_form'] = RepairForm
+
     now = datetime.now().date()
     terminals_for_repair = Terminal.objects.filter(cstatus = 3)
     context['count_all_terminals'] = len(Terminal.objects.all())

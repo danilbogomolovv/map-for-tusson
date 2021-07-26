@@ -24,6 +24,16 @@ function ClearFormField(id) {
   document.getElementById(id).value = ''
 }
 
+function ShowFormCloseTids(){
+  document.getElementById('repair_form').style.display = 'block'
+  document.getElementById('repair_tids').style.display = 'none'
+}
+
+function ShowTidsCloseForm(){
+  document.getElementById('repair_tids').style.display = 'block'
+  document.getElementById('repair_form').style.display = 'none'
+}
+
 function ClearRepairInfo() {
   var myLatlng = new google.maps.LatLng(53.904789501846196, 27.553534868069242);
   map.setZoom(6);
