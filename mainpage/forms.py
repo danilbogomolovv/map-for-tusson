@@ -15,7 +15,7 @@ class FilterForm(forms.Form):
 							 								 'class':'ui-autocomplite-input',
 							 								 'autocomplie':'off'}))
 	cname = forms.CharField(max_length = 100, required = False, label='Название', widget = forms.TextInput(attrs={'id': 'cnames',
-							 								 'placeholder':'Поиск по навзванию',
+							 								 'placeholder':'Поиск по названию',
 							 								 'class':'ui-autocomplite-input',
 							 								 'autocomplie':'off'}))
 	inr = forms.CharField(max_length = 100, required = False, label='Артикул', widget = forms.TextInput(attrs={'id': 'inrs',
@@ -23,10 +23,10 @@ class FilterForm(forms.Form):
 							 								 'class':'ui-autocomplite-input',
 							 								 'autocomplie':'off'}))
 	zona_name = forms.CharField(max_length = 100, required = False, label='Зона', widget = forms.TextInput(attrs={'id': 'zones',
-							 								 'placeholder':'Поиск по зонам',
+							 								 'placeholder':'Поиск по зоне',
 							 								 'class':'ui-autocomplite-input',
 							 								 'autocomplie':'off'}))
-	ctid = forms.CharField(max_length = 100, required = False, label='Идентивикатор', widget = forms.TextInput(attrs={'id': 'ctids',
+	ctid = forms.CharField(max_length = 100, required = False, label='Идентификатор', widget = forms.TextInput(attrs={'id': 'ctids',
 							 								 'placeholder':'Поиск по идентификаторам',
 							 								 'class':'ui-autocomplite-input',
 							 								 'autocomplie':'off'}))

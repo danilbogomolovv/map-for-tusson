@@ -213,8 +213,8 @@ def index(request):
     context['search_parta'] = ''
     context['search_cpodr'] = ''
     context['zone_check'] = True
-    for i in Terminal.objects.all():
-        print(i.ctid)
+    # for i in Terminal.objects.all():
+    #     print(i.ctid)
     print("Длина : " + str(len(Terminal.objects.all())))
     return render(request, 'mainpage/mainpage.html', context)  
 

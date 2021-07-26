@@ -8,11 +8,20 @@
 
 <div class="filterform" id="filterform" style="display: block; background: #212529; color: #9e9e9e; height: 95%; overflow: auto; width: 23%;">        
     <div class="filter_form" id="id_filter_form">  
-            <form method=POST action="" class="form-container">
+            <form method=POST action="" class="form-container" style=" align-items: center">
                 {% csrf_token %}
                 <table>
                     <div class="ui-widget">
-                            {{ filterform.as_table }}
+                        <table>
+                            {% for field in filterform %}
+                              <tr>
+                                  <td>{{field.label}}</td>
+                                  <td>{{field}}</td>
+                                  <td><button class="btn btn-outline-danger btn-sm" onclick="ClearFormField('{{field.id_for_label}}')">-</button></td>
+                              </tr> 
+                            {% endfor %}
+                            <!-- {{filterform.as_table}} -->
+                        </table>
                     </div>
                 </table>
                     <button type="submit" class="btn btn-outline-success">Применить</button>

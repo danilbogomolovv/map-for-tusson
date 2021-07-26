@@ -20,6 +20,9 @@ function ShowTerminalForRepairInfo(lat, lng, ddatap, cmemo, cparta, cadres) {
   document.getElementById('terminals_for_repair_info').innerHTML = "<h5>Дата :</h5>" + ddatap  + "<h5>Информация :</h5>" + cmemo + "<h5>Партнер :</h5>" + cparta + "<h5>Адрес :</h5>" + cadres + '</br>    <button class="btn btn-outline-danger" onclick="ClearRepairInfo()">Сбросить</button> '
 }
 
+function ClearFormField(id) {
+  document.getElementById(id).value = ''
+}
 
 function ClearRepairInfo() {
   var myLatlng = new google.maps.LatLng(53.904789501846196, 27.553534868069242);
