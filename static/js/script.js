@@ -27,11 +27,17 @@ function ClearFormField(id) {
 function ShowFormCloseTids(){
   document.getElementById('repair_form').style.display = 'block'
   document.getElementById('repair_tids').style.display = 'none'
+  document.getElementById('terminals_for_repair').style.width = '24%'
+  document.getElementById('repair_form_make_button').style.display = 'block'
+  document.getElementById('repair_form_clear_button').style.display = 'block'
 }
 
 function ShowTidsCloseForm(){
   document.getElementById('repair_tids').style.display = 'block'
   document.getElementById('repair_form').style.display = 'none'
+  document.getElementById('terminals_for_repair').style.width = '16%'
+    document.getElementById('repair_form_make_button').style.display = 'none'
+  document.getElementById('repair_form_clear_button').style.display = 'none'
 }
 
 function ClearRepairInfo() {

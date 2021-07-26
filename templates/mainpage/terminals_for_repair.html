@@ -5,14 +5,32 @@
 {% endblock nav %}
 
 {% block content %}
-    <div class="terminals_for_repair" style="display: block; background: #212529; color: #9e9e9e; height: 95%; overflow: auto; width: 16%;">
+    <div class="terminals_for_repair" id="terminals_for_repair" style="display: block; background: #212529; color: #9e9e9e; height: 95%; overflow: auto; width: 16%;">
         <ul>
             <div class="d-grid gap-2">
                 <button  class="btn btn-primary btn-sm active" type="button" onclick="ShowFormCloseTids()">Фильтр</button>
                 <button class="btn btn-primary btn-sm active" type="button" onclick="ShowTidsCloseForm()">Тиды</button>
 
                 <div class="repair_form" id="repair_form" style="display: none">
-                    {{repair_form.as_table}}
+                        <form method=POST action="" class="form-container" style=" align-items: center">
+                            {% csrf_token %}
+                            <table>
+                                <div class="ui-widget">
+                                    <table>
+                                        {% for field in repair_form %}
+                                          <tr>
+                                              <td>{{field.label}}</td>
+                                              <td>{{field}}</td>
+                                              <td><button class="btn btn-outline-danger btn-sm" onclick="ClearFormField('{{field.id_for_label}}')">-</button></td>
+                                          </tr> 
+                                        {% endfor %}
+                                       
+                                    </table>
+                                </div>
+                            </table>
+                                <button type="submit" class="btn btn-outline-success" id="repair_form_make_button" style="display: none">Применить</button>
+                                <button class="btn btn-outline-danger" onclick="clearfilters()" id="repair_form_clear_button" style="display: none">Сбросить</button>
+                        </form>
                 </div>
 
                 <div class="repair_tids" id="repair_tids" style="display: none">

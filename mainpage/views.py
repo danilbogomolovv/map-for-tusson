@@ -86,6 +86,17 @@ def count_terminal_attribute(attr, context):
     json_list = simplejson.dumps(result)
     context['available' + attr] = json_list
 
+def count_repair_terminal_attribute(attr, context):
+
+    """ Функция которая находит все индивидуальные вхождения для любого аттрибута терминала в ремонте и возвращает список с этими вхождениями """
+    
+    result = []
+    for i in list(Terminal.objects.filter(cstatus=3).values_list(attr, flat=True)):
+        if i not in result:
+            result.append(i)
+    json_list = simplejson.dumps(result)
+    context['available' + attr] = json_list
+
 def get_q_objects(request):
 
     """ Функция высчитывающая какие зоны с терминалами демонстрировать пользователю """
@@ -292,27 +303,39 @@ def search(request):
 
 def terminals_for_repair(request):
     context = {}
+    terminals_for_repair = Terminal.objects.filter(cstatus = 3)
+    context['terminals'] = terminals_for_repair.only('lat','lng').iterator()
+    context['terminals_for_info'] = terminals_for_repair.only('lat','lng','ctid','cparta','cname')  
     if request.method == 'POST':
-        RepairForm = TerminalForRepairForm(request.POST)
+        RepairForm = FilterForm(request.POST)
         context['repair_form'] = RepairForm
+        if RepairForm.is_valid():
+            
+            for i in list(RepairForm.cleaned_data):
+                if RepairForm.cleaned_data[i] == '':
+                    del RepairForm.cleaned_data[i]
+
+            if len(Terminal.objects.all()) != len(Terminal.objects.filter(**RepairForm.cleaned_data)):
+                context['display'] = 'block'
+                terminal_lists_for_search_terminals(context, Terminal.objects.filter(**RepairForm.cleaned_data))
+                context['terminals'] = terminals_for_repair.filter(**RepairForm.cleaned_data).only('lat','lng').iterator()
+                context['terminals_for_info'] = terminals_for_repair.filter(**RepairForm.cleaned_data).only('lat','lng','ctid','cparta','cname')  
+                context['count_search_terminals'] = len(terminals_for_repair.filter(**RepairForm.cleaned_data))  
     else:
-        RepairForm = TerminalForRepairForm(request.POST)
+        RepairForm = FilterForm(request.POST)
         context['repair_form'] = RepairForm
 
     now = datetime.now().date()
-    terminals_for_repair = Terminal.objects.filter(cstatus = 3)
+    
     context['count_all_terminals'] = len(Terminal.objects.all())
-    context['terminals'] = terminals_for_repair.only('lat','lng').iterator()
-    context['terminals_for_info'] = terminals_for_repair.only('lat','lng','ctid','cparta','cname')  
     context['terminals_for_repair'] = terminals_for_repair.only('cname','ddatap','cmemo','cparta', 'cadres') 
     context['now_date'] = now
-    context['check_for_repair'] = False
     context['display'] = 'none'
 
-    for i in terminals_for_repair:
-        if i.ddatap < now:
-            context['check_for_repair'] = True
-            break    
+    for i in Terminal._meta.get_fields()[1:20]:
+        if str(i) != 'mainpage.Terminal.ddatan' and str(i) != 'mainpage.Terminal.czona':
+            count_repair_terminal_attribute(str(i).replace('mainpage.Terminal.', ''), context)
+            
     return render(request, 'mainpage/terminals_for_repair.html', context)
 
 def save(request):

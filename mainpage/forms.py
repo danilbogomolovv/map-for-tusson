@@ -55,14 +55,3 @@ class FilterForm(forms.Form):
 							 								 'placeholder':'Поиск по отделу',
 							 								 'class':'ui-autocomplite-input',
 							 								 'autocomplie':'off'}))
-
-class TerminalForRepairForm(forms.Form):
-
-	cmemo = forms.CharField(max_length = 100, required = False, label='Проблема', widget = forms.TextInput(attrs={'id': 'cmemos',
-							 								 'placeholder':'Поиск по проблеме',
-							 								 'class':'ui-autocomplite-input',
-							 								 'autocomplie':'off'}))
-	ddatap = forms.DateField( required = False, label='Дата', widget = forms.TextInput(attrs={'id': 'ddataps',
-							 								 'placeholder':'Поиск по дате',
-							 								 'class':'ui-autocomplite-input',
-							 								 'autocomplie':'off'}))
