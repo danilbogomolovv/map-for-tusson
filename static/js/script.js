@@ -3,12 +3,9 @@ window.onload = function() {
 checkboxes = document.getElementsByName('zones');
 
   for(var i=0, n=checkboxes.length;i<n;i++) {
-    for (j in localStorage) {
-      console.log(localStorage[j])
-      if (j == checkboxes[i].id && localStorage[j] == 'true') {
-        document.getElementById(j).setAttribute('checked', localStorage[j])
+      if (sessionStorage.getItem(checkboxes[i].id) == 'true') {
+        document.getElementById(checkboxes[i].id).setAttribute('checked', 'checked')
       }
-    } 
   }
 
   document.getElementById('repair_form').style.display = localStorage.getItem('repair_form')
@@ -109,10 +106,10 @@ function zonesChecked(){
   checkboxes = document.getElementsByName('zones');
   for(var i=0, n=checkboxes.length;i<n;i++) {
     if (checkboxes[i].checked == true) {
-      localStorage.setItem(checkboxes[i].id, true)
+      sessionStorage.setItem(checkboxes[i].id, true)
     }
     else {
-      localStorage.setItem(checkboxes[i].id, false)
+      sessionStorage.setItem(checkboxes[i].id, false)
     }
   }
 }

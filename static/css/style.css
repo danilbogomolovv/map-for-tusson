@@ -14,6 +14,12 @@ body {
 .errorlist{
     display: none;
 }
+
+#ui-id-1, #ui-id-2, #ui-id-3, #ui-id-4, #ui-id-5, #ui-id-6, #ui-id-7, #ui-id-8, #ui-id-9, #ui-id-10, #ui-id-11{
+z-index: 10;
+width: 350px;
+}
+
 .filterform, .terminals_for_repair {
     z-index: 5;
     position: absolute;

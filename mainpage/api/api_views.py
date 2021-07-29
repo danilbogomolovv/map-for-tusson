@@ -18,10 +18,15 @@ class TerminalView(ListCreateAPIView):
 
 	def post(self, request, *args, **kwargs):
 		if request.data.get('lat') == '-' and request.data.get('lng') == '-':
-		 	gmaps = googlemaps.Client(key=os.getenv('GOOGLE_API'))
-		 	geocode_result = gmaps.geocode(request.data.get('cadres'), language = 'ru')
-		 	request.data['lat'] = geocode_result[0]['geometry']['location']['lat']
-		 	request.data['lng'] = geocode_result[0]['geometry']['location']['lng']
+			query = ''
+			if request.data.get('cgorod') != '-':
+				query = request.data.get('cgorod') + ' ,'
+			query = query + request.data.get('cadres')
+			gmaps = googlemaps.Client(key=os.getenv('GOOGLE_API'))
+			print(query)
+			geocode_result = gmaps.geocode(query, language = 'ru')
+			request.data['lat'] = geocode_result[0]['geometry']['location']['lat']
+			request.data['lng'] = geocode_result[0]['geometry']['location']['lng']
 	
 		return self.create(request, *args, **kwargs)
 

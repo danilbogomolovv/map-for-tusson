@@ -1,32 +1,32 @@
 import requests
 #params =  {"cmemo":"oghk"}
-terminal = { "cimei": "7", "inr": "7",
+terminal = { "cimei": "8", "inr": "8",
     "ctid": "fdgdf",
-    "cmid": "7",
-    "cpodr": "7",
-    "cadres": "7",
-    "cgorod": "7",
-    "cobl": "7",
-    "craion": "7",
+    "cmid": "8",
+    "cpodr": "8",
+    "cadres": "8",
+    "cgorod": "8",
+    "cobl": "8",
+    "craion": "8",
     "ddatan": null,
-    "cname": "7",
-    "cparta": "7",
-    "cots": "7",
-    "czona": "7",
-    "zona_name": "7",
-    "cvsoba": "7",
-    "cunn": "7",
-    "cbank": "7",
-    "ctype": "7",
-    "right_adres": "7",
-    "ss_nom": "7",
+    "cname": "8",
+    "cparta": "8",
+    "cots": "8",
+    "czona": "8",
+    "zona_name": "8",
+    "cvsoba": "8",
+    "cunn": "8",
+    "cbank": "8",
+    "ctype": "8",
+    "right_adres": "8",
+    "ss_nom": "8",
     "ddatap": null,
-    "cmemo": "7",
+    "cmemo": "8",
     "cstatus": 0,
-    "lat": "7",
-    "lng": "7"
+    "lat": "8",
+    "lng": "8"
 }
-params = {"ctid": "71"}
+params = {"ctid": "81"}
 headers = {"Content-Type": "application/json"}
 
 response = requests.post("http://localhost:8000/api/terminals/", headers = headers, params = terminal)

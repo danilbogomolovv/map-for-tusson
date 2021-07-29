@@ -101,14 +101,15 @@ def get_q_objects(request):
 
     """ Функция высчитывающая какие зоны с терминалами демонстрировать пользователю """
 
-    if request.method == 'POST':
-        zones = request.POST.getlist('zones')
-        q_objects = Q()
-        for z in zones:
-            q_objects |= Q(zona_name__startswith=z)
-        list_q_objects.append(q_objects)
-        if len(list_q_objects) > 2:
-            list_q_objects.pop(-2)
+    zones = request.POST.getlist('zones')
+    q_objects = Q()
+    for z in zones:
+        q_objects |= Q(zona_name__startswith=z)
+    if not zones:
+        q_objects |= Q(zona_name__startswith='Минский')
+    list_q_objects.append(q_objects)
+    if len(list_q_objects) > 2:
+        list_q_objects.pop(-2)
     return list_q_objects[-1]
 
 def terminal_lists_for_drop_down_list(context):
@@ -217,7 +218,7 @@ def index(request):
         right_terminals = Terminal.objects.filter(zona_name = 'Минский филиал')
 
     context['terminals'] = right_terminals.only('lat','lng').iterator()
-    context['terminals_for_info'] = right_terminals.only('lat','lng','ctid','cparta','cname')
+    context['terminals_for_info'] = right_terminals.only('lat','lng','ctid','cparta','cname','cadres','cstatus','ddatap')
     context['count_all_terminals'] = len(Terminal.objects.all())
     context['display'] = 'none'
     context['search_name'] = ''
@@ -227,6 +228,7 @@ def index(request):
     # for i in Terminal.objects.all():
     #     print(i.ctid)
     print("Длина : " + str(len(Terminal.objects.all())))
+
     return render(request, 'mainpage/mainpage.html', context)  
 
 def filter(request):
@@ -239,7 +241,7 @@ def filter(request):
         context['filterform'] = filterform
         if filterform.is_valid():
             
-            for i in list(filterform.cleaned_data):
+            for i in list(filterform.cleaned_data):      
                 if filterform.cleaned_data[i] == '':
                     del filterform.cleaned_data[i]
 
@@ -260,7 +262,7 @@ def filter(request):
     for i in Terminal._meta.get_fields()[1:20]:
         if str(i) != 'mainpage.Terminal.ddatan' and str(i) != 'mainpage.Terminal.czona':
             count_terminal_attribute(str(i).replace('mainpage.Terminal.', ''), context)
-            print(i)
+           
 
     return render(request, 'mainpage/filterform.html', context)  
 

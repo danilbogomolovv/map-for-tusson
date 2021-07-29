@@ -72,7 +72,7 @@
                     {% csrf_token %}
                     <div class="form-check form-switch">
                         {% autoescape on %}
-                        <input type="checkbox" class="form-check-input"  onClick="toggle(this)"> Выбрать все <br/>
+                        <!-- <input type="checkbox" class="form-check-input"  onClick="toggle(this)"> Выбрать все <br/> -->
                         {% for key, value in terminal_zones %}
                             <li>                        
                                 <label><input type="checkbox" name="zones" value= {{key}} class="form-check-input" id='{{key}}'> {{key }} : {{ value }}     </label>
