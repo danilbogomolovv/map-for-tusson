@@ -12,7 +12,7 @@ import googlemaps
 from datetime import datetime
 
 q_objects = Q()
-q_objects |= Q(zona_name__startswith='Минский')
+#q_objects |= Q(zona_name__startswith='Минский')
 list_q_objects = [q_objects]
 terminal_names_for_drop_down_list = []
 terminal_parts_for_drop_down_list = []
@@ -106,8 +106,9 @@ def get_q_objects(request):
     for z in zones:
         q_objects |= Q(zona_name__startswith=z)
     if not zones:
-        q_objects |= Q(zona_name__startswith='Минский')
-    list_q_objects.append(q_objects)
+        return  Q(zona_name__startswith='f')
+    if zones:
+        list_q_objects.append(q_objects)
     if len(list_q_objects) > 2:
         list_q_objects.pop(-2)
     return list_q_objects[-1]
@@ -171,6 +172,7 @@ def search_terminals_info(terminal_attr, zona_check):
 def index(request):
     context = {}
     check_terminals = {}
+    print(list_q_objects)
     
     if len(Zone.objects.all()) == 0:
         append_zones()
@@ -213,9 +215,18 @@ def index(request):
     count_terminal_attribute('cparta', context)
 
     try:
-        right_terminals = Terminal.objects.filter(get_q_objects(request))
+        
+        if str(get_q_objects(request)) != '(AND: )':
+            print('if')
+            print(get_q_objects(request))
+            right_terminals = Terminal.objects.filter(get_q_objects(request))
+        else:
+            print('else')
+            right_terminals = Terminal.objects.filter(zona_name = 'f ')
+
     except Exception as e:
-        right_terminals = Terminal.objects.filter(zona_name = 'Минский филиал')
+        right_terminals = Terminal.objects.filter(zona_name = 'f ')
+
 
     context['terminals'] = right_terminals.only('lat','lng').iterator()
     context['terminals_for_info'] = right_terminals.only('lat','lng','ctid','cparta','cname','cadres','cstatus','ddatap')
@@ -228,7 +239,7 @@ def index(request):
     # for i in Terminal.objects.all():
     #     print(i.ctid)
     print("Длина : " + str(len(Terminal.objects.all())))
-
+    print(list_q_objects)
     return render(request, 'mainpage/mainpage.html', context)  
 
 def filter(request):

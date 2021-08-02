@@ -163,9 +163,9 @@ $( function() {
       source: availablectids
     });
 
-    // $( "#cadres" ).autocomplete({
-    //   source: availableadres
-    // });
+    $( "#cadres" ).autocomplete({
+       source: availableadres
+     });
 
     $( "#cunns" ).autocomplete({
       source: availablecunns
