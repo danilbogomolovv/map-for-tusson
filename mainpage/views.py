@@ -354,3 +354,17 @@ def one_terminal(request):
     context['display'] = 'none'
     context['count_all_terminals'] = len(Terminal.objects.all())
     return render(request, 'mainpage/one_terminal.html', context)  
+
+def search_terminals(request):
+    context = {}
+    search_ctid = request.GET.get("ctid", "")
+    search_ctid = search_ctid.split(',')
+    q_ctid = Q()
+    for ctid in search_ctid:
+        q_ctid |= Q(ctid__startswith=ctid)
+    one_terminal = Terminal.objects.filter(q_ctid)
+    context['terminals'] = one_terminal.iterator()
+    context['terminals_for_info'] = one_terminal.only('lat','lng','ctid','cparta','cname') 
+    context['display'] = 'none'
+    context['count_all_terminals'] = len(Terminal.objects.all())
+    return render(request, 'mainpage/search_terminals.html', context)  

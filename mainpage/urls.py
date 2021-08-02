@@ -9,6 +9,8 @@ urlpatterns = [
 	path('save/', views.save),
 	path('one_terminal/', views.one_terminal),
 	path('one_terminal/<str:ctid>', views.one_terminal),
+	path('search_terminals/', views.search_terminals),
+	path('search_terminals/<str:ctid>', views.search_terminals),
     path('search/<str:name>', views.search),
     path('search/<str:parta>', views.search),
     path('search/<str:zone>', views.search),

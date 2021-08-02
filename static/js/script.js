@@ -13,6 +13,11 @@ checkboxes = document.getElementsByName('zones');
   document.getElementById('terminals_for_repair').style.width = localStorage.getItem('terminals_for_repair_width')
   document.getElementById('repair_form_make_button').style.display = localStorage.getItem('repair_form_make_button')
   document.getElementById('repair_form_clear_button').style.display = localStorage.getItem('repair_form_clear_button')
+
+    localStorage.setItem('parta', '');
+    localStorage.setItem('name', '');
+    localStorage.setItem('cpodr', '');
+
 }
 
 
