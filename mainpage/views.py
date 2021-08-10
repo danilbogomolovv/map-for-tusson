@@ -49,7 +49,7 @@ def append_terminals():
 
             gmaps = googlemaps.Client(key=os.getenv('GOOGLE_API'))
 
-            geocode_result = gmaps.geocode(child[8].text, language = 'ru')
+            geocode_result = gmaps.geocode(child[8].text, language = 'ru', region = 'BY')
     
             new_terminal = Terminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
                                     cobl = child[5].text, craion = child[6].text, cgorod = child[7].text, cadres = child[8].text,
@@ -120,8 +120,10 @@ def terminal_lists_for_drop_down_list(context):
     global terminal_names_for_drop_down_list
     terminal_names_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('cname', flat=True), False)
 
+
     global terminal_parts_for_drop_down_list
     terminal_parts_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('cparta', flat=True), False)
+
 
     global terminal_zones_for_drop_down_list
     terminal_zones_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('zona_name', flat=True), True)
@@ -173,14 +175,14 @@ def index(request):
     context = {}
     check_terminals = {}
     print(list_q_objects)
-    
+
     if len(Zone.objects.all()) == 0:
         append_zones()
 
     if len(Terminal.objects.all()) == 0:
         count = 1
         parser = ET.XMLParser(encoding="windows-1251")
-        tree = ET.parse("terminals.xml", parser=parser)
+        tree = ET.parse("terminals (15).xml", parser=parser)
         root = tree.getroot()
 
         for child in root:
@@ -194,12 +196,134 @@ def index(request):
                                         ddatan = child[9].text, cname = child[10].text, cparta = child[11].text, cots = child[12].text,
                                         czona = child[13].text, zona_name = zona_name, cvsoba = child[14].text, cunn = child[15].text,
                                         cbank = child[16].text, ctype = child[17].text, ss_nom = child[18].text,
-                                        lat = child[19].text, lng = child[20].text, ddatap = child[21].text, cmemo = child[22].text, cstatus = child[23].text)
+                                        lat = child[19].text,
+                                        lng = child[20].text, ddatap = child[21].text, cmemo = child[22].text, cstatus = child[23].text)
                 new_terminal.save()
+
+                mark_check = True
+
+                for marker in Marker.objects.all():
+                    for term in marker.terminals.all():
+                        if new_terminal.lat == term.lat and new_terminal.lng == term.lng:
+                            marker.terminals.add(new_terminal)
+                            mark_check = False
+                            break
+
+                if mark_check:
+                    new_marker = Marker()
+                    new_marker.save()
+                    new_marker.terminals.add(new_terminal)
+
+                
+
                 print('OK ' + str(count))
-                count = count + 1 
-            except:
-                ...       
+                count = count + 1
+            except Exception as e:
+                pass
+
+
+#-----------------------------------------------------------------------ГЕОКОДИРОВАНИЕ НОВЫХ АДРЕСОВ-----------------------------------------------------------------
+            
+
+            # try:
+            #     query_str = ''
+            #     if child[5].text != '':
+            #         query_str = query_str + child[5].text + ' область, '
+            #     if child[6].text != '':
+            #         query_str = query_str + child[6].text + ' район, '
+            #     if child[7].text != '':
+            #         query_str = query_str + child[7].text + ', '
+            #     query_str = query_str + child[8].text
+            #     gmaps = googlemaps.Client(key=os.getenv('GOOGLE_API'))
+            #     if child[7].text != '':
+            #         geocode_result = gmaps.geocode(query_str, language = 'ru', components={"country":"BY", "city": str(child[7].text)})
+            #     else:
+            #         geocode_result = gmaps.geocode(query_str, language = 'ru', components={"country":"BY"}) 
+
+            #     right_components = ''
+            #     for i in geocode_result[0]['address_components']:
+            #         right_components = right_components + str(i['types']) + ' : ' + str(i['long_name']) + ',   '
+
+            #     new_terminal = Terminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
+            #                             cobl = child[5].text, craion = child[6].text, cgorod = child[7].text, cadres = child[8].text,
+            #                             ddatan = child[9].text, cname = child[10].text, cparta = child[11].text, cots = child[12].text,
+            #                             czona = child[13].text, zona_name = zona_name, cvsoba = child[14].text, cunn = child[15].text,
+            #                             cbank = child[16].text, ctype = child[17].text, ss_nom = child[18].text,
+            #                             right_adres = geocode_result[0]['formatted_address'], right_components = right_components,
+            #                             lat = geocode_result[0]['geometry']['location']['lat'],
+            #                             lng = geocode_result[0]['geometry']['location']['lng'], ddatap = child[21].text, cmemo = child[22].text, cstatus = child[23].text)
+            #     new_terminal.save()
+            #     print('OK ' + str(count))
+            #     print(query_str)
+            #     print(right_components)
+            #     print('-----------------------------------------------------------')
+            #     count = count + 1 
+            # except Exception as e:
+            #     new_error_terminal = Terminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
+            #                             cobl = child[5].text, craion = child[6].text, cgorod = child[7].text, cadres = child[8].text,
+            #                             ddatan = child[9].text, cname = child[10].text, cparta = child[11].text, cots = child[12].text,
+            #                             czona = child[13].text, zona_name = zona_name, cvsoba = child[14].text, cunn = child[15].text,
+            #                             cbank = child[16].text, ctype = child[17].text, ss_nom = child[18].text,
+            #                             right_adres = 'не найдено', right_components = 'не найдено',
+            #                             lat = 'не найдено',
+            #                             lng = 'не найдено', ddatap = child[21].text, cmemo = child[22].text, cstatus = child[23].text)
+            #     # new_error_terminal = ErrorTerminal(ss_nom = child[18].text, cadres = child[8].text) 
+            #     new_error_terminal.save()  
+                
+            #     print('ERROR' + str(count))  
+            #     print(str(e))
+            #     print('-----------------------------------------------------------')
+            #     count = count + 1 
+
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+    # error_terminals = Terminal.objects.filter(lat = 'не найдено')
+    # for i in error_terminals:
+    #     print(i.cadres)
+    #     for j in Zone.objects.all():
+    #         if i.czona == j.zona:
+    #             zona_name = j.name_zona
+    #     try:
+    #         query_str = ''
+    #         if j.cobl != '':
+    #             query_str = query_str + str(j.cobl) + ' область, '
+    #         if j.craion != '':
+    #             query_str = query_str + str(j.craion)  + ' район, '
+    #         if j.cgorod != '':
+    #             query_str = query_str + str(j.cgorod) + ', '
+    #         query_str = query_str + str(j.cadres)
+    #         gmaps = googlemaps.Client(key=os.getenv('GOOGLE_API'))
+    #         if j.cgorod != '':
+    #             geocode_result = gmaps.geocode(query_str, language = 'ru', components={"country":"BY", "city": str(j.cgorod)})
+    #         else:
+    #             geocode_result = gmaps.geocode(query_str, language = 'ru', components={"country":"BY"}) 
+
+    #         right_components = ''
+    #         for i in geocode_result[0]['address_components']:
+    #             right_components = right_components + str(i['types']) + ' : ' + str(i['long_name']) + ',   '
+
+    #         new_terminal = Terminal(cimei =j. cimei, inr = j.inr, ctid = j.ctid, cmid = j.cmid, cpodr = j.cpodr,
+    #                                 cobl = j.cobl, craion = j.craion, cgorod = j.cgorod, cadres = j.cadres,
+    #                                 ddatan = j.ddatan, cname = j.cname, cparta = j.cparta, cots = j.cots,
+    #                                 czona = j.czona, zona_name = zona_name, cvsoba = j.cvsoba, cunn = j.cunn,
+    #                                 cbank = j.cbank, ctype = j.ctype, ss_nom = j.ss_nom,
+    #                                 right_adres = geocode_result[0]['formatted_address'], right_components = right_components,
+    #                                 lat = geocode_result[0]['geometry']['location']['lat'],
+    #                                 lng = geocode_result[0]['geometry']['location']['lng'], ddatap = j.ddatap, cmemo = j.cmemo, cstatus = j.cstatus)
+    #         new_terminal.save()
+    #         print('OK ' + str(count))
+    #         print(query_str)
+    #         print(right_components)
+    #         print('-----------------------------------------------------------')
+    #         count = count + 1 
+    #     except Exception as e:
+    #         print('error')
+
+
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     context = {}  
     
@@ -211,7 +335,16 @@ def index(request):
     context['terminal_zones'] = terminal_zones_for_drop_down_list
     context['terminal_cpodr'] = terminal_cpodr_for_drop_down_list
 
-   
+    # test_terms = Terminal.objects.filter(czona = 10)
+    # marker = Marker(count = 1)
+    # marker.save()
+    # for i in test_terms:
+    #     marker.terminals.add(i)
+    #     print(i)
+    # 
+    # print(marker)
+
+    context['markers'] = Marker.objects.all()
     count_terminal_attribute('cparta', context)
 
     try:
@@ -352,6 +485,50 @@ def terminals_for_repair(request):
     return render(request, 'mainpage/terminals_for_repair.html', context)
 
 def save(request):
+    root = ET.Element('VFPData')
+
+    for i in Terminal.objects.all():
+        level1 = ET.SubElement(root, 'terminals')
+        cimei = ET.SubElement(level1, 'cimei')
+        cimei.text = str(i.cimei)
+        inr = ET.SubElement(level1, 'inr')
+        inr.text = str(i.inr)
+        ctid = ET.SubElement(level1, 'ctid')
+        ctid.text = str(i.ctid)
+        cmid = ET.SubElement(level1, 'cmid')
+        cmid.text = str(i.cmid)
+        cpodr = ET.SubElement(level1, 'cpodr')
+        cpodr.text = str(i.cpodr)
+        cadres = ET.SubElement(level1, 'cadres')
+        cadres.text = str(i.cadres)
+        cgorod = ET.SubElement(level1, 'cgorod')
+        cgorod.text = str(i.cgorod)
+        cobl = ET.SubElement(level1, 'cobl')
+        cobl.text = str(i.cobl)
+        craion = ET.SubElement(level1, 'craion')
+        craion.text = str(i.craion)
+        ddatan = ET.SubElement(level1, 'ddatan')
+        ddatan.text = str(i.ddatan)
+        cname = ET.SubElement(level1, 'cname')
+        cname.text = str(i.cname)
+        cparta = ET.SubElement(level1, 'cparta')
+        cparta.text = str(i.cparta)
+        cots = ET.SubElement(level1, 'cots')
+        cots.text = str(i.cots)
+        ss_nom = ET.SubElement(level1, 'ss_nom')
+        ss_nom.text = str(i.ss_nom)
+        lat = ET.SubElement(level1, 'lat')
+        lat.text = str(i.lat)
+        lng = ET.SubElement(level1, 'lng')
+        lng.text = str(i.lng)
+        right_components = ET.SubElement(level1, 'right_components')
+        right_components.text = str(i.right_components)
+        right_adres = ET.SubElement(level1, 'right_adres')
+        right_adres.text = str(i.right_adres)
+
+    ET.indent(root)
+    tree = ET.ElementTree(root)
+    tree.write('saveterminals.xml', xml_declaration=None, default_namespace=None, method="xml", encoding="Windows-1251") 
     return HttpResponseRedirect('/')
 
 def one_terminal(request):

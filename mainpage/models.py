@@ -23,12 +23,17 @@ class Terminal(models.Model):
 	cbank = models.CharField(max_length = 150, null = True)
 	ctype = models.CharField(max_length = 150, null = True)
 	right_adres = models.CharField(max_length = 150, null = True)
+	right_components = models.CharField(max_length = 250, null = True)
 	ss_nom = models.CharField(max_length = 150, null = True)
 	ddatap = models.DateField(max_length = 150, null = True)
 	cmemo = models.CharField(max_length = 250, null = True)
 	cstatus = models.IntegerField( null = True)
 	lat = models.CharField(max_length = 150, null = True)
 	lng = models.CharField(max_length = 150, null = True)
+
+class Marker(models.Model):
+	count = models.CharField(max_length = 10, null = True)
+	terminals = models.ManyToManyField(Terminal)
 
 class ErrorTerminal(models.Model):
 

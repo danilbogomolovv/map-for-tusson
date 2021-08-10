@@ -36,7 +36,7 @@
                     <input id="parts" style="width: 300px;" placeholder="Поиск по партнерам" onchange="addParam('',document.getElementById('parts').value,'', false)">
                 </div>
                 {% for key, value in terminal_parts %}
-                    <li><a class="dropdown-item" href="javascript:addParam('','{{key}}','', true);">{{ key }} : {{ value }}</a></li>
+                    <li><a class="dropdown-item" href="javascript:addParam('','{{key}}','');">{{ key }} : {{ value }}</a></li>
                 {% endfor %}
               </ul>
             </li>

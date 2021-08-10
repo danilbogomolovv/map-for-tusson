@@ -82,14 +82,14 @@ function addParam(name, parta, cpodr, check) {
     let href_parta = encodeURIComponent(localStorage.getItem('parta'));
     let href_cpodr = encodeURIComponent(localStorage.getItem('cpodr'));
 
-    if (check) {
+    //if (check) {
         window.location.href = '/search/?name=' + href_name + '&parta=' + href_parta + '&cpodr=' + href_cpodr;
-        } else { 
+/*        } else { 
             if (availableparts.includes(parta)) {
               window.location.href = '/search/?name=' + href_name + '&parta=' + href_parta + '&cpodr=' + href_cpodr;  
             }
 
-    }
+    }*/
 }
 
 function clearHref(){
