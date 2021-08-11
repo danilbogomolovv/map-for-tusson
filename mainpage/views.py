@@ -136,6 +136,9 @@ def terminal_lists_for_drop_down_list(context):
 def terminal_lists_for_search_terminals(context, search_terminals):
 
     """ Функция рассчитывающая все варианты и количество вхождений для трех атрибутов искомых терминалов """
+
+
+
     terminal_names = []
     for i in search_terminals:
         terminal_names.append(i.cname)
@@ -148,10 +151,10 @@ def terminal_lists_for_search_terminals(context, search_terminals):
     for i in search_terminals:
         terminal_zones.append(i.zona_name)
     terminal_zones = search_terminals_info(terminal_zones, True)
-    if len(search_terminals) != len(Terminal.objects.all()):
-        context['search_terminal_names'] = terminal_names
-        context['search_terminal_parts'] = terminal_parts
-        context['search_terminal_zones'] = terminal_zones
+    #if len(search_terminals) != len(Terminal.objects.all()):
+    context['search_terminal_names'] = terminal_names
+    context['search_terminal_parts'] = terminal_parts
+    context['search_terminal_zones'] = terminal_zones
 
 
 def search_terminals_info(terminal_attr, zona_check):
@@ -207,12 +210,14 @@ def index(request):
                     if new_terminal.lat == marker.lat and new_terminal.lng == marker.lng:
                         marker.terminals.add(new_terminal)
                         marker.count = F('count') + 1
+                        if new_terminal.cstatus == 3:
+                            marker.status = 3
                         marker.save()
                         mark_check = False
                         break
 
                 if mark_check:
-                    new_marker = Marker(count = 1, lat = new_terminal.lat, lng = new_terminal.lng)
+                    new_marker = Marker(count = 1, lat = new_terminal.lat, lng = new_terminal.lng, status = new_terminal.cstatus, zona_name = new_terminal.zona_name)
                     new_marker.save()
                     new_marker.terminals.add(new_terminal)
 
@@ -337,42 +342,29 @@ def index(request):
     context['terminal_zones'] = terminal_zones_for_drop_down_list
     context['terminal_cpodr'] = terminal_cpodr_for_drop_down_list
 
-    # test_terms = Terminal.objects.filter(czona = 10)
-    # marker = Marker(count = 1)
-    # marker.save()
-    # for i in test_terms:
-    #     marker.terminals.add(i)
-    #     print(i)
-    # 
-    # print(marker)
 
-    context['mark'] = Marker.objects.all().iterator()
     count_terminal_attribute('cparta', context)
 
     try:
         
         if str(get_q_objects(request)) != '(AND: )':
-            print('if')
-            print(get_q_objects(request))
-            right_terminals = Terminal.objects.filter(get_q_objects(request))
+            right_terminals = Marker.objects.filter(get_q_objects(request)).iterator()
         else:
-            print('else')
-            right_terminals = Terminal.objects.filter(zona_name = 'f ')
+            right_terminals = Marker.objects.filter(zona_name = 'f ').iterator()
 
     except Exception as e:
-        right_terminals = Terminal.objects.filter(zona_name = 'f ')
+        right_terminals = Terminal.objects.filter(zona_name = 'f ').iterator()
 
 
     #context['terminals'] = right_terminals.only('lat','lng').iterator()
     #context['terminals_for_info'] = right_terminals.only('lat','lng','ctid','cparta','cname','cadres','cstatus','ddatap')
+    context['mark'] = right_terminals
     context['count_all_terminals'] = len(Terminal.objects.all())
     context['display'] = 'none'
     context['search_name'] = ''
     context['search_parta'] = ''
     context['search_cpodr'] = ''
     context['zone_check'] = True
-    # for i in Terminal.objects.all():
-    #     print(i.ctid)
     print("Длина : " + str(len(Terminal.objects.all())))
     print(list_q_objects)
     return render(request, 'mainpage/mainpage.html', context)  
@@ -416,29 +408,34 @@ def filter(request):
 def search(request):
     context = {}
     filters = {}
+    filters_for_terminals = {}
     count_terminal_attribute('cparta', context)
     search_name = request.GET.get("name", "")
     if search_name != '':
-        filters['cname'] = search_name
+        filters['terminals__cname'] = search_name
+        filters_for_terminals['cname'] = search_name
 
     search_parta = request.GET.get("parta", "")
     if search_parta != '':
-        filters['cparta'] = search_parta
+        filters['terminals__cparta'] = search_parta
+        filters_for_terminals['cparta'] = search_parta
 
     search_cpodr = request.GET.get("cpodr", "")
     if search_cpodr != '':
-        filters['cpodr'] = search_cpodr
-    
-    search_terminals = Terminal.objects.filter(**filters)   
+        filters['terminals__cpodr'] = search_cpodr
+        filters_for_terminals['cpodr'] = search_cpodr
+    print(filters)
+    #search_markers = Marker.objects.filter(**filters)
+    search_terminals = Terminal.objects.filter(**filters_for_terminals)
     terminal_lists_for_search_terminals(context, search_terminals)
-
     context['count_search_terminals'] =  len(search_terminals)
     context['display'] = 'block'
     context['search_name'] = search_name
     context['search_parta'] = search_parta
     context['search_cpodr'] = search_cpodr
-    context['terminals'] = search_terminals.iterator()
-    context['terminals_for_info'] = search_terminals
+    # context['terminals'] = search_terminals.iterator()
+    # context['terminals_for_info'] = search_terminals
+    context['mark'] = Marker.objects.filter(**filters).iterator()
     context['zone_check'] = False
 
     context['count_all_terminals'] = len(Terminal.objects.all())

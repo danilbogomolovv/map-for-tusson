@@ -35,6 +35,8 @@ class Marker(models.Model):
 	count = models.IntegerField( null = True)
 	lat = models.CharField(max_length = 150, null = True)
 	lng = models.CharField(max_length = 150, null = True)
+	status = models.IntegerField( null = True)
+	zona_name = models.CharField(max_length = 150, null = True)
 	terminals = models.ManyToManyField(Terminal)
 
 class ErrorTerminal(models.Model):
