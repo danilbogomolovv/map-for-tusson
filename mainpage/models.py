@@ -32,7 +32,9 @@ class Terminal(models.Model):
 	lng = models.CharField(max_length = 150, null = True)
 
 class Marker(models.Model):
-	count = models.CharField(max_length = 10, null = True)
+	count = models.IntegerField( null = True)
+	lat = models.CharField(max_length = 150, null = True)
+	lng = models.CharField(max_length = 150, null = True)
 	terminals = models.ManyToManyField(Terminal)
 
 class ErrorTerminal(models.Model):

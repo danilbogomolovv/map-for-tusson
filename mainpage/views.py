@@ -10,6 +10,7 @@ from .forms import *
 import json as simplejson
 import googlemaps
 from datetime import datetime
+from django.db.models import F
 
 q_objects = Q()
 #q_objects |= Q(zona_name__startswith='Минский')
@@ -202,15 +203,16 @@ def index(request):
 
                 mark_check = True
 
-                for marker in Marker.objects.all():
-                    for term in marker.terminals.all():
-                        if new_terminal.lat == term.lat and new_terminal.lng == term.lng:
-                            marker.terminals.add(new_terminal)
-                            mark_check = False
-                            break
+                for marker in Marker.objects.all():                  
+                    if new_terminal.lat == marker.lat and new_terminal.lng == marker.lng:
+                        marker.terminals.add(new_terminal)
+                        marker.count = F('count') + 1
+                        marker.save()
+                        mark_check = False
+                        break
 
                 if mark_check:
-                    new_marker = Marker()
+                    new_marker = Marker(count = 1, lat = new_terminal.lat, lng = new_terminal.lng)
                     new_marker.save()
                     new_marker.terminals.add(new_terminal)
 
@@ -344,7 +346,7 @@ def index(request):
     # 
     # print(marker)
 
-    context['markers'] = Marker.objects.all()
+    context['mark'] = Marker.objects.all().iterator()
     count_terminal_attribute('cparta', context)
 
     try:
@@ -361,8 +363,8 @@ def index(request):
         right_terminals = Terminal.objects.filter(zona_name = 'f ')
 
 
-    context['terminals'] = right_terminals.only('lat','lng').iterator()
-    context['terminals_for_info'] = right_terminals.only('lat','lng','ctid','cparta','cname','cadres','cstatus','ddatap')
+    #context['terminals'] = right_terminals.only('lat','lng').iterator()
+    #context['terminals_for_info'] = right_terminals.only('lat','lng','ctid','cparta','cname','cadres','cstatus','ddatap')
     context['count_all_terminals'] = len(Terminal.objects.all())
     context['display'] = 'none'
     context['search_name'] = ''

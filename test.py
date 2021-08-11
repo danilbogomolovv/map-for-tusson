@@ -31,14 +31,3 @@
 
 # response = requests.post("http://localhost:8000/api/terminals/", headers = headers, params = terminal)
 # print(response.text)
-import googlemaps
-gmaps = googlemaps.Client(key='AIzaSyBfn_P6QEZBPg_63eVldoKmG7PbzZnGMdo')
-
-geocode_result = gmaps.geocode('г.Б.Ухолода , ул. Элькинда, 1', language = 'ru')
-
-# if geocode_result[0]['address_components'][5]['long_name'] == 'Беларусь' or geocode_result[0]['address_components'][4]['long_name'] == 'Беларусь' or geocode_result[0]['address_components'][6]['long_name'] == 'Беларусь':
-#     print('Беларусь')
-# else:
-
-for i in geocode_result[0]['address_components']:
-    print(str(i['types']) + ' : ' + str(i['long_name']))
