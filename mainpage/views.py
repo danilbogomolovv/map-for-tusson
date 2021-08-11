@@ -372,23 +372,26 @@ def index(request):
 def filter(request):
     context = {}
     context['display'] = 'none'
-    context['terminals'] = Terminal.objects.filter(ctid = 'f').iterator()
-
+    context['mark'] = Marker.objects.filter(status = '10').iterator()
+    filters_for_terminals = {}
     if request.method == 'POST':
         filterform = FilterForm(request.POST)
         context['filterform'] = filterform
         if filterform.is_valid():
             
-            for i in list(filterform.cleaned_data):      
+            for i in list(filterform.cleaned_data):     
                 if filterform.cleaned_data[i] == '':
                     del filterform.cleaned_data[i]
-
-            if len(Terminal.objects.all()) != len(Terminal.objects.filter(**filterform.cleaned_data)):
-                context['display'] = 'block'
-                terminal_lists_for_search_terminals(context, Terminal.objects.filter(**filterform.cleaned_data))
-                context['terminals'] = Terminal.objects.filter(**filterform.cleaned_data).iterator()
-                context['terminals_for_info'] = Terminal.objects.filter(**filterform.cleaned_data)
-                context['count_search_terminals'] = len(Terminal.objects.filter(**filterform.cleaned_data))           
+            for i in list(filterform.cleaned_data): 
+                value = filterform.cleaned_data[i]
+                i = i.replace('terminals__','')
+                filters_for_terminals[i] = value
+            #if len(Terminal.objects.all()) != len(Terminal.objects.filter(**filterform.cleaned_data)):
+            context['display'] = 'block'
+            terminal_lists_for_search_terminals(context, Terminal.objects.filter(**filters_for_terminals))
+            context['mark'] = Marker.objects.filter(**filterform.cleaned_data).iterator()
+            #context['terminals_for_info'] = Terminal.objects.filter(**filterform.cleaned_data)
+            context['count_search_terminals'] = len(Terminal.objects.filter(**filters_for_terminals))           
     else:
         filterform = FilterForm(request.POST)
         context['filterform'] = filterform   

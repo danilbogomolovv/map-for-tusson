@@ -6,52 +6,52 @@ from django.contrib.auth.models import User
 
 class FilterForm(forms.Form):
 
-	cbank__icontains  = forms.CharField(max_length = 100, required = False, label='Банк', widget = forms.TextInput(attrs={'id': 'cbanks',
+	terminals__cbank__icontains  = forms.CharField(max_length = 100, required = False, label='Банк', widget = forms.TextInput(attrs={'id': 'cbanks',
 							 								 'placeholder':'Поиск по банку',
 							 								 'class':'ui-autocomplite-input',
 							 								 'autocomplie':'off'}))
-	ctype__icontains  = forms.CharField(max_length = 100, required = False, label='Тип оборудования', widget = forms.TextInput(attrs={'id': 'ctypes',
+	terminals__ctype__icontains  = forms.CharField(max_length = 100, required = False, label='Тип оборудования', widget = forms.TextInput(attrs={'id': 'ctypes',
 							 								 'placeholder':'Поиск по типу оборудования',
 							 								 'class':'ui-autocomplite-input',
 							 								 'autocomplie':'off'}))
-	cname__icontains  = forms.CharField(max_length = 100, required = False, label='Название', widget = forms.TextInput(attrs={'id': 'cnames',
+	terminals__cname__icontains  = forms.CharField(max_length = 100, required = False, label='Название', widget = forms.TextInput(attrs={'id': 'cnames',
 							 								 'placeholder':'Поиск по названию',
 							 								 'class':'ui-autocomplite-input',
 							 								 'autocomplie':'off'}))
-	inr__icontains  = forms.CharField(max_length = 100, required = False, label='Артикул', widget = forms.TextInput(attrs={'id': 'inrs',
+	terminals__inr__icontains  = forms.CharField(max_length = 100, required = False, label='Артикул', widget = forms.TextInput(attrs={'id': 'inrs',
 							 								 'placeholder':'Поиск по артиклу',
 							 								 'class':'ui-autocomplite-input',
 							 								 'autocomplie':'off'}))
-	zona_name__icontains  = forms.CharField(max_length = 100, required = False, label='Зона', widget = forms.TextInput(attrs={'id': 'zones',
+	terminals__zona_name__icontains  = forms.CharField(max_length = 100, required = False, label='Зона', widget = forms.TextInput(attrs={'id': 'zones',
 							 								 'placeholder':'Поиск по зоне',
 							 								 'class':'ui-autocomplite-input',
 							 								 'autocomplie':'off'}))
-	ctid__icontains  = forms.CharField(max_length = 100, required = False, label='Идентификатор', widget = forms.TextInput(attrs={'id': 'ctids',
+	terminals__ctid__icontains  = forms.CharField(max_length = 100, required = False, label='Идентификатор', widget = forms.TextInput(attrs={'id': 'ctids',
 							 								 'placeholder':'Поиск по идентификаторам',
 							 								 'class':'ui-autocomplite-input',
 							 								 'autocomplie':'off'}))
-	cparta__icontains  = forms.CharField(max_length = 100, required = False, label='Партнер', widget = forms.TextInput(attrs={'id': 'parts',
+	terminals__cparta__icontains  = forms.CharField(max_length = 100, required = False, label='Партнер', widget = forms.TextInput(attrs={'id': 'parts',
 							 								 'placeholder':'Поиск по партнерам',
 							 								 'class':'ui-autocomplite-input',
 							 								 'autocomplie':'off'}))
-	cunn__icontains  = forms.CharField(max_length = 100, required = False, label='УНП', widget = forms.TextInput(attrs={'id': 'cunns',
+	terminals__cunn__icontains  = forms.CharField(max_length = 100, required = False, label='УНП', widget = forms.TextInput(attrs={'id': 'cunns',
 							 								 'placeholder':'Поиск по УНП',
 							 								 'class':'ui-autocomplite-input',
 							 								 'autocomplie':'off'}))
-	cadres__icontains  = forms.CharField(max_length = 100, required = False, label='Адрес', widget = forms.TextInput(attrs={'id': 'cadres',
+	terminals__cadres__icontains  = forms.CharField(max_length = 100, required = False, label='Адрес', widget = forms.TextInput(attrs={'id': 'cadres',
 							 								 'placeholder':'Поиск по адресу',
 							 								 'class':'ui-autocomplite-input',
 							 								 'autocomplie':'off'}))
-	cgorod__contains = forms.CharField(max_length = 100, required = False, label='Город', widget = forms.TextInput(attrs={'id': 'cgorods',
+	terminals__cgorod__contains = forms.CharField(max_length = 100, required = False, label='Город', widget = forms.TextInput(attrs={'id': 'cgorods',
 							 								 'placeholder':'Поиск по городу',
 							 								 'class':'ui-autocomplite-input',
 							 								 'autocomplie':'off'}))
-	cvsoba__icontains  = forms.CharField(max_length = 100, required = False, label='Вид собственности', widget = forms.TextInput(attrs={'id': 'cvsobas',
+	terminals__cvsoba__icontains  = forms.CharField(max_length = 100, required = False, label='Вид собственности', widget = forms.TextInput(attrs={'id': 'cvsobas',
 							 								 'placeholder':'Поиск по Виду собственности',
 							 								 'class':'ui-autocomplite-input',
 							 								 'autocomplie':'off'}))
 
-	cpodr__icontains  = forms.CharField(max_length = 100, required = False, label='Отдел', widget = forms.TextInput(attrs={'id': 'cpodrs',
+	terminals__cpodr__icontains  = forms.CharField(max_length = 100, required = False, label='Отдел', widget = forms.TextInput(attrs={'id': 'cpodrs',
 							 								 'placeholder':'Поиск по отделу',
 							 								 'class':'ui-autocomplite-input',
 							 								 'autocomplie':'off'}))
