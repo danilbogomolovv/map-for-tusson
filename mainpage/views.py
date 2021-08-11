@@ -382,16 +382,18 @@ def filter(request):
             for i in list(filterform.cleaned_data):     
                 if filterform.cleaned_data[i] == '':
                     del filterform.cleaned_data[i]
-            for i in list(filterform.cleaned_data): 
-                value = filterform.cleaned_data[i]
-                i = i.replace('terminals__','')
-                filters_for_terminals[i] = value
-            #if len(Terminal.objects.all()) != len(Terminal.objects.filter(**filterform.cleaned_data)):
-            context['display'] = 'block'
-            terminal_lists_for_search_terminals(context, Terminal.objects.filter(**filters_for_terminals))
-            context['mark'] = Marker.objects.filter(**filterform.cleaned_data).iterator()
-            #context['terminals_for_info'] = Terminal.objects.filter(**filterform.cleaned_data)
-            context['count_search_terminals'] = len(Terminal.objects.filter(**filters_for_terminals))           
+                else:
+                    value = filterform.cleaned_data[i]
+                    i = i.replace('terminals__','')
+                    filters_for_terminals[i] = value
+            
+
+            if len(Terminal.objects.all()) != len(Terminal.objects.filter(**filters_for_terminals)):
+                context['display'] = 'block'
+                terminal_lists_for_search_terminals(context, Terminal.objects.filter(**filters_for_terminals))
+                context['mark'] = Marker.objects.filter(**filterform.cleaned_data).iterator()
+                #context['terminals_for_info'] = Terminal.objects.filter(**filterform.cleaned_data)
+                context['count_search_terminals'] = len(Terminal.objects.filter(**filters_for_terminals))           
     else:
         filterform = FilterForm(request.POST)
         context['filterform'] = filterform   
@@ -451,9 +453,11 @@ def search(request):
 
 def terminals_for_repair(request):
     context = {}
-    terminals_for_repair = Terminal.objects.filter(cstatus = 3)
-    context['terminals'] = terminals_for_repair.only('lat','lng').iterator()
-    context['terminals_for_info'] = terminals_for_repair.only('lat','lng','ctid','cparta','cname')  
+    filters_for_terminals = {}
+    #terminals_for_repair = Terminal.objects.filter(cstatus = 3)
+    #context['terminals'] = terminals_for_repair.only('lat','lng').iterator()
+    #context['terminals_for_info'] = terminals_for_repair.only('lat','lng','ctid','cparta','cname') 
+    context['mark'] = Marker.objects.filter(status = 3).iterator() 
     if request.method == 'POST':
         RepairForm = FilterForm(request.POST)
         context['repair_form'] = RepairForm
@@ -462,13 +466,16 @@ def terminals_for_repair(request):
             for i in list(RepairForm.cleaned_data):
                 if RepairForm.cleaned_data[i] == '':
                     del RepairForm.cleaned_data[i]
+                else:
+                    value = RepairForm.cleaned_data[i]
+                    i = i.replace('terminals__','')
+                    filters_for_terminals[i] = value
 
-            if len(Terminal.objects.all()) != len(Terminal.objects.filter(**RepairForm.cleaned_data)):
+            if len(Terminal.objects.all()) != len(Terminal.objects.filter(**filters_for_terminals)):
                 context['display'] = 'block'
-                terminal_lists_for_search_terminals(context, Terminal.objects.filter(**RepairForm.cleaned_data))
-                context['terminals'] = terminals_for_repair.filter(**RepairForm.cleaned_data).only('lat','lng').iterator()
-                context['terminals_for_info'] = terminals_for_repair.filter(**RepairForm.cleaned_data).only('lat','lng','ctid','cparta','cname')  
-                context['count_search_terminals'] = len(terminals_for_repair.filter(**RepairForm.cleaned_data))  
+                terminal_lists_for_search_terminals(context, Terminal.objects.filter(**filters_for_terminals))
+                context['mark'] = Marker.objects.filter(**RepairForm.cleaned_data).filter(status=3).iterator()
+                context['count_search_terminals'] = len(Terminal.objects.filter(**filters_for_terminals))  
     else:
         RepairForm = FilterForm(request.POST)
         context['repair_form'] = RepairForm
@@ -476,7 +483,7 @@ def terminals_for_repair(request):
     now = datetime.now().date()
     
     context['count_all_terminals'] = len(Terminal.objects.all())
-    context['terminals_for_repair'] = terminals_for_repair.only('cname','ddatap','cmemo','cparta', 'cadres') 
+    context['terminals_for_repair'] = Marker.objects.filter(status = 3).iterator() 
     context['now_date'] = now
     context['display'] = 'none'
 
@@ -536,25 +543,24 @@ def save(request):
 def one_terminal(request):
     context = {}
     search_ctid = request.GET.get("ctid", "")
-    one_terminal = Terminal.objects.filter(ctid = search_ctid)
-    context['terminals'] = one_terminal.iterator()
+    one_terminal = Marker.objects.filter(terminals__ctid = search_ctid)
+    context['mark'] = one_terminal.iterator()
     context['lat'] = one_terminal[0].lat
     context['lng'] = one_terminal[0].lng
-    context['terminals_for_info'] = one_terminal.only('lat','lng','ctid','cparta','cname') 
     context['display'] = 'none'
     context['count_all_terminals'] = len(Terminal.objects.all())
     return render(request, 'mainpage/one_terminal.html', context)  
 
 def search_terminals(request):
     context = {}
+    print('sr')
     search_ctid = request.GET.get("ctid", "")
     search_ctid = search_ctid.split(',')
     q_ctid = Q()
     for ctid in search_ctid:
-        q_ctid |= Q(ctid__startswith=ctid)
-    one_terminal = Terminal.objects.filter(q_ctid)
-    context['terminals'] = one_terminal.iterator()
-    context['terminals_for_info'] = one_terminal.only('lat','lng','ctid','cparta','cname') 
+        q_ctid |= Q(terminals__ctid__startswith=ctid)
+    one_terminal = Marker.objects.filter(q_ctid)
+    context['mark'] = one_terminal.iterator()
     context['display'] = 'none'
     context['count_all_terminals'] = len(Terminal.objects.all())
     return render(request, 'mainpage/search_terminals.html', context)  

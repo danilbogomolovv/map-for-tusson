@@ -34,8 +34,8 @@
                 </div>
 
                 <div class="repair_tids" id="repair_tids" style="display: none">
-                    {% for i in terminals_for_repair %}
-
+                    {% for j in terminals_for_repair %}
+                        {% for i in j.terminals.all %}
                         <li>
                             {% if i.ddatap < now_date %}
                             <button type="button" class="btn btn-secondary btn-sm" onclick="ShowTerminalForRepairInfo('{{i.lat}}','{{i.lng}}', '{{i.ddatap}}','{{i.cmemo}}','{{i.cparta}}', '{{i.cadres}}')">TID : {{i.ctid}}</button><span style="color: red">(ПРОСРОЧЕНО!)</span> 
@@ -43,6 +43,7 @@
                             <button type="button" class="btn btn-secondary btn-sm" onclick="ShowTerminalForRepairInfo('{{i.lat}}','{{i.lng}}', '{{i.ddatap}}','{{i.cmemo}}','{{i.cparta}}', '{{i.cadres}}')">TID : {{i.ctid}}</button>
                             {% endif %}
                         </li>
+                        {% endfor %}
                     {% endfor %}
                 </div>
              </div>
