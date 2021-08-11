@@ -212,6 +212,8 @@ def index(request):
                         marker.count = F('count') + 1
                         if new_terminal.cstatus == 3:
                             marker.status = 3
+                        if new_terminal.cstatus == 2:
+                            marker.status = 2
                         marker.save()
                         mark_check = False
                         break
@@ -355,9 +357,6 @@ def index(request):
     except Exception as e:
         right_terminals = Terminal.objects.filter(zona_name = 'f ').iterator()
 
-
-    #context['terminals'] = right_terminals.only('lat','lng').iterator()
-    #context['terminals_for_info'] = right_terminals.only('lat','lng','ctid','cparta','cname','cadres','cstatus','ddatap')
     context['mark'] = right_terminals
     context['count_all_terminals'] = len(Terminal.objects.all())
     context['display'] = 'none'
@@ -392,7 +391,6 @@ def filter(request):
                 context['display'] = 'block'
                 terminal_lists_for_search_terminals(context, Terminal.objects.filter(**filters_for_terminals))
                 context['mark'] = Marker.objects.filter(**filterform.cleaned_data).iterator()
-                #context['terminals_for_info'] = Terminal.objects.filter(**filterform.cleaned_data)
                 context['count_search_terminals'] = len(Terminal.objects.filter(**filters_for_terminals))           
     else:
         filterform = FilterForm(request.POST)
@@ -430,7 +428,6 @@ def search(request):
         filters['terminals__cpodr'] = search_cpodr
         filters_for_terminals['cpodr'] = search_cpodr
     print(filters)
-    #search_markers = Marker.objects.filter(**filters)
     search_terminals = Terminal.objects.filter(**filters_for_terminals)
     terminal_lists_for_search_terminals(context, search_terminals)
     context['count_search_terminals'] =  len(search_terminals)
@@ -438,8 +435,6 @@ def search(request):
     context['search_name'] = search_name
     context['search_parta'] = search_parta
     context['search_cpodr'] = search_cpodr
-    # context['terminals'] = search_terminals.iterator()
-    # context['terminals_for_info'] = search_terminals
     context['mark'] = Marker.objects.filter(**filters).iterator()
     context['zone_check'] = False
 
@@ -454,9 +449,6 @@ def search(request):
 def terminals_for_repair(request):
     context = {}
     filters_for_terminals = {}
-    #terminals_for_repair = Terminal.objects.filter(cstatus = 3)
-    #context['terminals'] = terminals_for_repair.only('lat','lng').iterator()
-    #context['terminals_for_info'] = terminals_for_repair.only('lat','lng','ctid','cparta','cname') 
     context['mark'] = Marker.objects.filter(status = 3).iterator() 
     if request.method == 'POST':
         RepairForm = FilterForm(request.POST)
@@ -492,6 +484,46 @@ def terminals_for_repair(request):
             count_repair_terminal_attribute(str(i).replace('mainpage.Terminal.', ''), context)
             
     return render(request, 'mainpage/terminals_for_repair.html', context)
+
+def terminals_for_installation(request):
+    context = {}
+    filters_for_terminals = {}
+    context['mark'] = Marker.objects.filter(status = 2).iterator() 
+    if request.method == 'POST':
+        InstallationForm = FilterForm(request.POST)
+        context['repair_form'] = InstallationForm
+        if InstallationForm.is_valid():
+            
+            for i in list(InstallationForm.cleaned_data):
+                if InstallationForm.cleaned_data[i] == '':
+                    del InstallationForm.cleaned_data[i]
+                else:
+                    value = InstallationForm.cleaned_data[i]
+                    i = i.replace('terminals__','')
+                    filters_for_terminals[i] = value
+
+            if len(Terminal.objects.all()) != len(Terminal.objects.filter(**filters_for_terminals)):
+                context['display'] = 'block'
+                terminal_lists_for_search_terminals(context, Terminal.objects.filter(**filters_for_terminals))
+                context['mark'] = Marker.objects.filter(**InstallationForm.cleaned_data).filter(status=2).iterator()
+                context['count_search_terminals'] = len(Terminal.objects.filter(**filters_for_terminals))  
+    else:
+        InstallationForm = FilterForm(request.POST)
+        context['repair_form'] = InstallationForm
+
+    now = datetime.now().date()
+    
+    context['count_all_terminals'] = len(Terminal.objects.all())
+    context['terminals_for_repair'] = Marker.objects.filter(status = 2).iterator() 
+    context['now_date'] = now
+    context['display'] = 'none'
+
+    for i in Terminal._meta.get_fields()[1:20]:
+        if str(i) != 'mainpage.Terminal.ddatan' and str(i) != 'mainpage.Terminal.czona':
+            count_repair_terminal_attribute(str(i).replace('mainpage.Terminal.', ''), context)
+            
+    return render(request, 'mainpage/terminals_for_repair.html', context)
+
 
 def save(request):
     root = ET.Element('VFPData')
@@ -553,7 +585,6 @@ def one_terminal(request):
 
 def search_terminals(request):
     context = {}
-    print('sr')
     search_ctid = request.GET.get("ctid", "")
     search_ctid = search_ctid.split(',')
     q_ctid = Q()
