@@ -335,9 +335,13 @@ def index(request):
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     context = {}  
+
     
-    if terminal_names_for_drop_down_list == [] or terminal_parts_for_drop_down_list == [] or terminal_cpodr_for_drop_down_list == [] or terminal_zones_for_drop_down_list == []:
-        terminal_lists_for_drop_down_list(context)
+    #---------------------------------------ДОБАВИТЬ НОРМАЛЬНУЮ ПРОВЕРКУ!!!!----------------------------------------
+
+
+    #if terminal_names_for_drop_down_list == [] or terminal_parts_for_drop_down_list == [] or terminal_cpodr_for_drop_down_list == [] or terminal_zones_for_drop_down_list == []:
+    terminal_lists_for_drop_down_list(context)
 
     context['terminal_names'] = terminal_names_for_drop_down_list
     context['terminal_parts'] = terminal_parts_for_drop_down_list
@@ -366,6 +370,12 @@ def index(request):
     context['zone_check'] = True
     print("Длина : " + str(len(Terminal.objects.all())))
     print(list_q_objects)
+
+    for i in Marker.objects.all():
+
+        print(i.lat)
+        print(i.lng)
+        print('--------------')
     return render(request, 'mainpage/mainpage.html', context)  
 
 def filter(request):
