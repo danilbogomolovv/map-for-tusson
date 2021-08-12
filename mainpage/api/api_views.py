@@ -59,4 +59,17 @@ class TerminalView(ListCreateAPIView):
 class UpdateTerminalView(RetrieveUpdateDestroyAPIView):
 	queryset = Terminal.objects.all()
 	serializer_class = TerminalSerializer
-	lookup_field = 'ctid'
+	lookup_field = 'ctid'	
+	def put(self, request, *args, **kwargs):
+		print(request.data)
+		for marker in Marker.objects.all():                  
+			if request.data.get('lat') == marker.lat and request.data.get('lng')== marker.lng:
+				if request.data.get('cstatus') == 3:
+					marker.status = 3
+				if request.data.get('cstatus') == 2:
+					marker.status = 2
+				marker.save() 
+		return self.update(request, *args, **kwargs)
+
+	def delete(self, request, *args, **kwargs):
+		return self.destroy(request, *args, **kwargs)

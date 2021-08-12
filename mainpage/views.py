@@ -336,7 +336,7 @@ def index(request):
 
     context = {}  
 
-    
+
     #---------------------------------------ДОБАВИТЬ НОРМАЛЬНУЮ ПРОВЕРКУ!!!!----------------------------------------
 
 
@@ -371,11 +371,6 @@ def index(request):
     print("Длина : " + str(len(Terminal.objects.all())))
     print(list_q_objects)
 
-    for i in Marker.objects.all():
-
-        print(i.lat)
-        print(i.lng)
-        print('--------------')
     return render(request, 'mainpage/mainpage.html', context)  
 
 def filter(request):
