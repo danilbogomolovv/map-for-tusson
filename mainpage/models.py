@@ -32,10 +32,14 @@ class Terminal(models.Model):
 	lng = models.CharField(max_length = 150, null = True)
 
 class Marker(models.Model):
+	cgorod = models.CharField(max_length = 150, null = True)
+	cobl = models.CharField(max_length = 150, null = True)
+	craion = models.CharField(max_length = 150, null = True)
 	count = models.IntegerField( null = True)
 	lat = models.CharField(max_length = 150, null = True)
 	lng = models.CharField(max_length = 150, null = True)
 	status = models.IntegerField( null = True)
+	cadres = models.CharField(max_length = 150, null = True)
 	zona_name = models.CharField(max_length = 150, null = True)
 	terminals = models.ManyToManyField(Terminal)
 

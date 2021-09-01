@@ -12,6 +12,8 @@ urlpatterns = [
 	path('one_terminal/<str:ctid>', views.one_terminal),
 	path('search_terminals/', views.search_terminals),
 	path('search_terminals/<str:ctid>', views.search_terminals),
+	path('route/', views.route),
+	path('route/<str:ctid>', views.route),
     path('search/<str:name>', views.search),
     path('search/<str:parta>', views.search),
     path('search/<str:zone>', views.search),

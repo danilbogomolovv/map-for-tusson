@@ -24,8 +24,8 @@ def append_zones():
     
     """ Функция считывающая все зоны из xml файла и добавляющая их в модели """
 
-    parser = ET.XMLParser(encoding="windows-1251")
-    tree = ET.parse("szonas.xml", parser = parser)
+    parser = ET.XMLParser(encoding="utf-8")
+    tree = ET.parse("zona_utf8.xml", parser = parser)
     root = tree.getroot()
     for child in root:
         new_zone = Zone(zona = child[0].text, name_zona = child[1].text)
@@ -185,8 +185,8 @@ def index(request):
 
     if len(Terminal.objects.all()) == 0:
         count = 1
-        parser = ET.XMLParser(encoding="windows-1251")
-        tree = ET.parse("terminals (15).xml", parser=parser)
+        parser = ET.XMLParser(encoding="utf-8")
+        tree = ET.parse("term_utf8 (1).xml", parser=parser)
         root = tree.getroot()
 
         for child in root:
@@ -338,28 +338,41 @@ def index(request):
 
 
     #---------------------------------------ДОБАВИТЬ НОРМАЛЬНУЮ ПРОВЕРКУ!!!!----------------------------------------
+    mcount = 0
+    for marker in Marker.objects.all():
+        mcount = mcount + 1
+        print(mcount)
+        for term in marker.terminals.all():
+            marker.cobl = term.cobl
+            marker.craion = term.craion
+            marker.cgorod = term.cgorod
+            marker.save()
+            break
 
 
-    #if terminal_names_for_drop_down_list == [] or terminal_parts_for_drop_down_list == [] or terminal_cpodr_for_drop_down_list == [] or terminal_zones_for_drop_down_list == []:
-    terminal_lists_for_drop_down_list(context)
+    for ma in Marker.objects.all():
+        print(ma.cadres)
+
+
+    if terminal_names_for_drop_down_list == [] or terminal_parts_for_drop_down_list == [] or terminal_cpodr_for_drop_down_list == [] or terminal_zones_for_drop_down_list == []:
+        terminal_lists_for_drop_down_list(context)
 
     context['terminal_names'] = terminal_names_for_drop_down_list
     context['terminal_parts'] = terminal_parts_for_drop_down_list
     context['terminal_zones'] = terminal_zones_for_drop_down_list
     context['terminal_cpodr'] = terminal_cpodr_for_drop_down_list
 
-
     count_terminal_attribute('cparta', context)
 
     try:
         
         if str(get_q_objects(request)) != '(AND: )':
-            right_terminals = Marker.objects.filter(get_q_objects(request)).iterator()
+            right_terminals = Marker.objects.filter(get_q_objects(request)).distinct().iterator()
         else:
-            right_terminals = Marker.objects.filter(zona_name = 'f ').iterator()
+            right_terminals = Marker.objects.filter(zona_name = 'f ').distinct().iterator()
 
     except Exception as e:
-        right_terminals = Terminal.objects.filter(zona_name = 'f ').iterator()
+        right_terminals = Terminal.objects.filter(zona_name = 'f ').distinct().iterator()
 
     context['mark'] = right_terminals
     context['count_all_terminals'] = len(Terminal.objects.all())
@@ -440,7 +453,7 @@ def search(request):
     context['search_name'] = search_name
     context['search_parta'] = search_parta
     context['search_cpodr'] = search_cpodr
-    context['mark'] = Marker.objects.filter(**filters).iterator()
+    context['mark'] = Marker.objects.filter(**filters).distinct().iterator()
     context['zone_check'] = False
 
     context['count_all_terminals'] = len(Terminal.objects.all())
@@ -454,7 +467,7 @@ def search(request):
 def terminals_for_repair(request):
     context = {}
     filters_for_terminals = {}
-    context['mark'] = Marker.objects.filter(status = 3).iterator() 
+    context['mark'] = Marker.objects.filter(status = 3).distinct().iterator() 
     if request.method == 'POST':
         RepairForm = FilterForm(request.POST)
         context['repair_form'] = RepairForm
@@ -471,7 +484,7 @@ def terminals_for_repair(request):
             if len(Terminal.objects.all()) != len(Terminal.objects.filter(**filters_for_terminals)):
                 context['display'] = 'block'
                 terminal_lists_for_search_terminals(context, Terminal.objects.filter(**filters_for_terminals))
-                context['mark'] = Marker.objects.filter(**RepairForm.cleaned_data).filter(status=3).iterator()
+                context['mark'] = Marker.objects.filter(**RepairForm.cleaned_data).filter(status=3).distinct().iterator()
                 context['count_search_terminals'] = len(Terminal.objects.filter(**filters_for_terminals))  
     else:
         RepairForm = FilterForm(request.POST)
@@ -493,7 +506,7 @@ def terminals_for_repair(request):
 def terminals_for_installation(request):
     context = {}
     filters_for_terminals = {}
-    context['mark'] = Marker.objects.filter(status = 2).iterator() 
+    context['mark'] = Marker.objects.filter(status = 2).distinct().iterator() 
     if request.method == 'POST':
         InstallationForm = FilterForm(request.POST)
         context['repair_form'] = InstallationForm
@@ -510,7 +523,7 @@ def terminals_for_installation(request):
             if len(Terminal.objects.all()) != len(Terminal.objects.filter(**filters_for_terminals)):
                 context['display'] = 'block'
                 terminal_lists_for_search_terminals(context, Terminal.objects.filter(**filters_for_terminals))
-                context['mark'] = Marker.objects.filter(**InstallationForm.cleaned_data).filter(status=2).iterator()
+                context['mark'] = Marker.objects.filter(**InstallationForm.cleaned_data).filter(status=2).distinct().iterator()
                 context['count_search_terminals'] = len(Terminal.objects.filter(**filters_for_terminals))  
     else:
         InstallationForm = FilterForm(request.POST)
@@ -581,7 +594,7 @@ def one_terminal(request):
     context = {}
     search_ctid = request.GET.get("ctid", "")
     one_terminal = Marker.objects.filter(terminals__ctid = search_ctid)
-    context['mark'] = one_terminal.iterator()
+    context['mark'] = one_terminal.distinct().iterator()
     context['lat'] = one_terminal[0].lat
     context['lng'] = one_terminal[0].lng
     context['display'] = 'none'
@@ -596,7 +609,22 @@ def search_terminals(request):
     for ctid in search_ctid:
         q_ctid |= Q(terminals__ctid__startswith=ctid)
     one_terminal = Marker.objects.filter(q_ctid)
-    context['mark'] = one_terminal.iterator()
+    context['mark'] = one_terminal.distinct().iterator()
     context['display'] = 'none'
     context['count_all_terminals'] = len(Terminal.objects.all())
     return render(request, 'mainpage/search_terminals.html', context)  
+
+def route(request):
+    context = {}
+    search_ctid = request.GET.get("ctid", "")
+    search_ctid = search_ctid.split(',')
+    q_ctid = Q()
+    for ctid in search_ctid:
+        q_ctid |= Q(terminals__ctid__startswith=ctid)
+    search_objects = Marker.objects.filter(q_ctid)
+    context['count_all_terminals'] = len(Terminal.objects.all())
+    context['mark'] = search_objects.distinct().iterator()
+    context['first'] = Marker.objects.filter(terminals__ctid__startswith = search_ctid[0])[0]
+    print(Marker.objects.filter(terminals__ctid__startswith = search_ctid[0])[0].cadres)
+    context['last'] = Marker.objects.filter(terminals__ctid__startswith = search_ctid[-1])[0]
+    return render(request, 'mainpage/route.html', context)

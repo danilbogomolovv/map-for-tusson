@@ -7,6 +7,7 @@ class TerminalSerializer( serializers.ModelSerializer):
 	class Meta:
 		model = Terminal
 		fields = '__all__'
+		#exclude = ('right_adres')
 		
 
 class ErrorTerminalSerializer( serializers.ModelSerializer):
