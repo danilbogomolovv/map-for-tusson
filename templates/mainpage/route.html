@@ -22,16 +22,39 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        {% block nav %}
-        {% endblock nav %}
+            {% block nav %}
+                <a class="btn btn-outline-danger" href="/" role="button">Все терминалы</a>
+            {% endblock nav %}
             <div class="navbar-text" style="width: 260px; text-align: center;">
                 Всего терминалов : {{ count_all_terminals }} 
             </div>
-            <a class="btn btn-outline-success" href="save/" role="button">Сохранить</a>
       </div>
     </nav>
-
+<div class="filterform" id="filterform" style="display: block; background: #212529; color: #9e9e9e; height: 95%; overflow: auto; width: 23%;"> 
+    <h5>Постройте маршрут</h5>
+<!--     <input type="" name="" placeholder="Введите стартовый тид" style="width: 250px">
+    <input type="" name="" placeholder="Введите конечный тид" style="width: 250px">
+    <input type="" name="" placeholder="Введите промежуточные тиды" style="width: 250px"> -->
+    <table>
+          <tr>
+              <td>Стартовый тид:</td>
+              <td><input type="" name="first_input" placeholder="Введите стартовый тид"></td>
+          </tr> 
+          <tr>
+              <td>Конечный тид:</td>
+              <td><input type="" name="last_input" placeholder="Введите конечный тид"></td>
+          </tr>
+          <tr>
+              <td>Промежуточные тиды:</td>
+              <td><input type="" name="waypoints_input" placeholder="Введите промежуточные тиды"></td>
+          </tr>
+    </table>
+    <a class="btn btn-outline-primary" id="filter_button" role="button" onclick="addRouteParam()">Построить маршрут</a>
+</div>
     <div id="map" style="z-index: 0"></div>
+
+
+
     <script type="text/javascript">
         let map;
         var js_markers = [];
@@ -55,9 +78,9 @@
         });
             directionsRenderer.setMap(map);
 
-           
+           {% if check %}
             calculateAndDisplayRoute(directionsService, directionsRenderer);
-             
+            {% endif %}
 
             {% for i in mark %}
                     {% if i.status == 0 %}

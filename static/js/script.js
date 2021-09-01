@@ -91,6 +91,12 @@ function addParam(name, parta, cpodr, check) {
 
     }*/
 }
+dscds
+function addRouteParam() {
+    let href = document.getElementsByName('first_input')[0].value + ',' + document.getElementsByName('waypoints_input')[0].value + ',' + document.getElementsByName('last_input')[0].value
+    window.location.href = '/route/?ctid=' + href;
+}
+
 
 function clearHref(){
     localStorage.setItem('parta', '');
