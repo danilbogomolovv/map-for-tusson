@@ -37,12 +37,12 @@
     <input type="" name="" placeholder="Введите промежуточные тиды" style="width: 250px"> -->
     <table>
           <tr>
-              <td>Стартовый тид:</td>
-              <td><input type="" name="first_input" placeholder="Введите стартовый тид"></td>
+              <td>Пункт отправки:</td>
+              <td><input type="" name="first_input" placeholder="Введите пункт отправки "></td>
           </tr> 
           <tr>
-              <td>Конечный тид:</td>
-              <td><input type="" name="last_input" placeholder="Введите конечный тид"></td>
+              <td>Пункт прибытия:</td>
+              <td><input type="" name="last_input" placeholder="Введите пункт прибытия"></td>
           </tr>
           <tr>
               <td>Промежуточные тиды:</td>
@@ -136,10 +136,10 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
   directionsService
     .route({
       origin: {
-        query: '{{first.lat}},{{first.lng}}',
+        query: '{{first}}',
       },
       destination: {
-        query: '{{last.lat}},{{last.lng}}',
+        query: '{{last}}',
       },
       waypoints: waypts,
       travelMode: google.maps.TravelMode.DRIVING,

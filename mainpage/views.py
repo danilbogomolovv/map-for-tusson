@@ -617,24 +617,40 @@ def search_terminals(request):
 def route(request):
     context = {}
     search_ctid = request.GET.get("ctid", "")
-    search_ctid = search_ctid.split(',')
-    if len(search_ctid) > 1:
+    if search_ctid != '':
+        search_ctid = search_ctid.split(',')
+    start = request.GET.get("start", "")
+    end = request.GET.get("end", "")
+    context['count_all_terminals'] = len(Terminal.objects.all())
+    if search_ctid != '':
         q_ctid = Q()
-        q_ctid_without_last_and_first = Q()
         for ctid in search_ctid:
             q_ctid |= Q(terminals__ctid__startswith=ctid)
         search_objects = Marker.objects.filter(q_ctid)
-        context['count_all_terminals'] = len(Terminal.objects.all())
         context['mark'] = search_objects.distinct().iterator()
-        context['first'] = Marker.objects.filter(terminals__ctid__startswith = search_ctid[0])[0]
-        context['last'] = Marker.objects.filter(terminals__ctid__startswith = search_ctid[-1])[0]
-        marks = search_ctid[1:-1]
-        for ctid in marks:
-            q_ctid_without_last_and_first |= Q(terminals__ctid__startswith=ctid)
-        search_objects_without_first_and_last = Marker.objects.filter(q_ctid_without_last_and_first)
-
-        context['waypoints'] = search_objects_without_first_and_last.distinct().iterator()
+        context['first'] = start
+        context['last'] = end
+        context['waypoints'] = search_objects.distinct().iterator()
         context['check'] = True
     else:
         context['check'] = False
+    # if len(search_ctid) > 1:
+    #     q_ctid = Q()
+    #     q_ctid_without_last_and_first = Q()
+    #     for ctid in search_ctid:
+    #         q_ctid |= Q(terminals__ctid__startswith=ctid)
+    #     search_objects = Marker.objects.filter(q_ctid)
+    #     context['count_all_terminals'] = len(Terminal.objects.all())
+    #     context['mark'] = search_objects.distinct().iterator()
+    #     context['first'] = Marker.objects.filter(terminals__ctid__startswith = search_ctid[0])[0]
+    #     context['last'] = Marker.objects.filter(terminals__ctid__startswith = search_ctid[-1])[0]
+    #     marks = search_ctid[1:-1]
+    #     for ctid in marks:
+    #         q_ctid_without_last_and_first |= Q(terminals__ctid__startswith=ctid)
+    #     search_objects_without_first_and_last = Marker.objects.filter(q_ctid_without_last_and_first)
+
+    #     context['waypoints'] = search_objects_without_first_and_last.distinct().iterator()
+    #     context['check'] = True
+    # else:
+    #     context['check'] = False
     return render(request, 'mainpage/route.html', context)

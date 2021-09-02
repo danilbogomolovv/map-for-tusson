@@ -7,16 +7,20 @@ checkboxes = document.getElementsByName('zones');
         document.getElementById(checkboxes[i].id).setAttribute('checked', 'checked')
       }
   }
-
+  document.getElementsByName('first_input')[0].value = localStorage.getItem('startpoint')
+  document.getElementsByName('waypoints_input')[0].value = localStorage.getItem('tids')
+  document.getElementsByName('last_input')[0].value = localStorage.getItem('ednpoint')
   document.getElementById('repair_form').style.display = localStorage.getItem('repair_form')
   document.getElementById('repair_tids').style.display = localStorage.getItem('repair_tids')
   document.getElementById('terminals_for_repair').style.width = localStorage.getItem('terminals_for_repair_width')
   document.getElementById('repair_form_make_button').style.display = localStorage.getItem('repair_form_make_button')
   document.getElementById('repair_form_clear_button').style.display = localStorage.getItem('repair_form_clear_button')
 
+  
     localStorage.setItem('parta', '');
     localStorage.setItem('name', '');
     localStorage.setItem('cpodr', '');
+
 
 }
 
@@ -91,10 +95,23 @@ function addParam(name, parta, cpodr, check) {
 
     }*/
 }
-dscds
+
 function addRouteParam() {
-    let href = document.getElementsByName('first_input')[0].value + ',' + document.getElementsByName('waypoints_input')[0].value + ',' + document.getElementsByName('last_input')[0].value
-    window.location.href = '/route/?ctid=' + href;
+    let start = document.getElementsByName('first_input')[0].value
+    let tids =  document.getElementsByName('waypoints_input')[0].value
+    let end =  document.getElementsByName('last_input')[0].value
+
+    if (start != '') {
+        localStorage.setItem('startpoint', start);
+    };
+    if (tids != '') {
+        localStorage.setItem('tids', tids);
+    };
+
+    if (end != '') {
+        localStorage.setItem('ednpoint', end);
+    };
+    window.location.href = '/route/?start=' + start + '&end=' + end + '&ctid=' + tids;
 }
 
 
