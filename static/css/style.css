@@ -90,3 +90,30 @@ width: 350px;
 }
 
 .dropdown-menu { overflow-y: scroll; max-height: 350px; }
+
+.circle {
+  background: #456BD9;
+  border: 0.1875em solid #0F1C3F;
+  border-radius: 50%;
+  color:black;
+  display:inline-block;
+  position: relative;
+  float:left;
+  box-shadow: 0.375em 0.375em 0 0 rgba(15, 28, 63, 0.125);
+  height: 2em;
+  z-index: 6;
+  width: 2em;
+}
+
+.waypts_dist_and_durat {
+    margin: 15%;
+}
+
+.vl {
+    border-left: 6px solid #456BD9;
+    height: 170px;
+    position: relative;
+    margin: 4%;
+    z-index: 5;
+}
+
