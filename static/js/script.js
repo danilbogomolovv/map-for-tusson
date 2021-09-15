@@ -10,6 +10,7 @@ checkboxes = document.getElementsByName('zones');
   document.getElementsByName('first_input')[0].value = localStorage.getItem('startpoint')
   document.getElementsByName('waypoints_input')[0].value = localStorage.getItem('tids')
   document.getElementsByName('last_input')[0].value = localStorage.getItem('ednpoint')
+  document.getElementsByName('time_input')[0].value = localStorage.getItem('time_of_departure')
   document.getElementById('repair_form').style.display = localStorage.getItem('repair_form')
   document.getElementById('repair_tids').style.display = localStorage.getItem('repair_tids')
   document.getElementById('terminals_for_repair').style.width = localStorage.getItem('terminals_for_repair_width')
@@ -100,6 +101,7 @@ function addRouteParam() {
     let start = document.getElementsByName('first_input')[0].value
     let tids =  document.getElementsByName('waypoints_input')[0].value
     let end =  document.getElementsByName('last_input')[0].value
+    let time =  document.getElementsByName('time_input')[0].value
 
     if (start != '') {
         localStorage.setItem('startpoint', start);
@@ -111,7 +113,11 @@ function addRouteParam() {
     if (end != '') {
         localStorage.setItem('ednpoint', end);
     };
-    window.location.href = '/route/?start=' + start + '&end=' + end + '&ctid=' + tids;
+
+    if (time != '') {
+        localStorage.setItem('time_of_departure', time);
+    };
+    window.location.href = '/route/?start=' + start + '&end=' + end + '&time=' + time + '&ctid=' + tids;
 }
 
 

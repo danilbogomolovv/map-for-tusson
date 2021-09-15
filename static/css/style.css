@@ -112,8 +112,8 @@ width: 350px;
 .vl {
     border-left: 6px solid #456BD9;
     height: 170px;
-    position: relative;
-    margin: 4%;
+    position: absolute;
+    margin: 13px;
     z-index: 5;
 }
 

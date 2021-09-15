@@ -338,21 +338,6 @@ def index(request):
 
 
     #---------------------------------------ДОБАВИТЬ НОРМАЛЬНУЮ ПРОВЕРКУ!!!!----------------------------------------
-    # mcount = 0
-    # for marker in Marker.objects.all():
-    #     mcount = mcount + 1
-    #     print(mcount)
-    #     for term in marker.terminals.all():
-    #         marker.cobl = term.cobl
-    #         marker.craion = term.craion
-    #         marker.cgorod = term.cgorod
-    #         marker.save()
-    #         break
-
-
-    # for ma in Marker.objects.all():
-    #     print(ma.cadres)
-
 
     if terminal_names_for_drop_down_list == [] or terminal_parts_for_drop_down_list == [] or terminal_cpodr_for_drop_down_list == [] or terminal_zones_for_drop_down_list == []:
         terminal_lists_for_drop_down_list(context)
@@ -616,11 +601,13 @@ def search_terminals(request):
 
 def route(request):
     context = {}
+    tids_and_addresses = {}
     search_ctid = request.GET.get("ctid", "")
     if search_ctid != '':
         search_ctid = search_ctid.split(',')
     start = request.GET.get("start", "")
     end = request.GET.get("end", "")
+    time_of_departure = request.GET.get("time", "")
     context['count_all_terminals'] = len(Terminal.objects.all())
     if search_ctid != '':
         q_ctid = Q()
@@ -632,6 +619,14 @@ def route(request):
         context['last'] = end
         context['waypoints'] = search_objects.distinct().iterator()
         context['check'] = True
+        context['time_of_departure'] = time_of_departure
+        # for i in search_objects:
+        #     for j in i.terminals.all():
+        #         for tid in search_ctid:
+        #             if tid == j.ctid:
+        #                 tids_and_addresses[tid] = j.cadres
+
+        # context['tids_and_addresses'] = tids_and_addresses
     else:
         context['check'] = False
 
