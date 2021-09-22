@@ -36,7 +36,14 @@ class TerminalView(ListCreateAPIView):
 			geocode_result = gmaps.geocode(query_str, language = 'ru')
 			request.data['lat'] = geocode_result[0]['geometry']['location']['lat']
 			request.data['lng'] = geocode_result[0]['geometry']['location']['lng']
+			right_components = '{'
+			for i in geocode_result[0]['address_components']:
+				right_components = right_components + '"' + str(i['types']) + '" : "' + str(i['long_name']) + '", '
+			right_components = right_components[:-2]
+			right_components = right_components + '}'
+			request.data['right_components'] = right_components
 		new_terminal = Terminal.objects.create(**request.data)
+		new_terminal.save()
 		mark_check = True
 		for marker in Marker.objects.all():                  
 			if request.data.get('lat') == marker.lat and request.data.get('lng')== marker.lng:

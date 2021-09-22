@@ -607,7 +607,10 @@ def route(request):
         search_ctid = search_ctid.split(',')
     start = request.GET.get("start", "")
     end = request.GET.get("end", "")
-    time_of_departure = request.GET.get("time", "")
+    time_of_departure = request.GET.get("time_of_departure", "")
+    time = request.GET.get("time", "")
+
+
     context['count_all_terminals'] = len(Terminal.objects.all())
     if search_ctid != '':
         q_ctid = Q()

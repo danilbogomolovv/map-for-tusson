@@ -57,14 +57,14 @@
               <td>Время отправки</td>
           </tr>
           <tr>
-              <td><input type="text" size="40" class="form-control" name="time_input" placeholder="Введите время отправки"></td>
+              <td><input type="text" size="40" class="form-control" name="time_of_departure_input" placeholder="Введите время отправки"></td>
           </tr>
     </table>
     <a class="btn btn-outline-primary" id="filter_button" role="button" onclick="addRouteParam()">Построить маршрут</a>
 
     <div class="route_info" id="route_info" style="display: none; width: 100%">
         <h5 id="full_distance">Расстояние: </h5>
-        <h5 id="full_time">Примерное время в пути: </h5>
+        <h5 id="full_time">Примерное время в пути: <span id="full_time_int"></span></h5>
         <div class="vl" style="z-index: 1" id="line"></div>
 
     </div>
@@ -189,7 +189,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
       }
       document.getElementById('route_info').innerHTML += '<div class="circle"><h6 style="text-align: center; z-index:7; position: relative;">'  + parseInt(num+1,10) + '</h6></div><p>' + '{{last}}' + '<p>'
       document.getElementById('full_distance').innerHTML += full_distance/1000 + ' км.'
-      document.getElementById('full_time').innerHTML += Math.floor(full_time/60) + ' мин.' + '<br>_______________________________________'
+      document.getElementById('full_time_int').innerHTML += Math.floor(full_time/60) + ' мин.' + '<br>_______________________________________'
       document.getElementById('line').style.height = line_length + 'px';
     })
     .catch((e) => window.alert("Directions request failed due to " + status));
