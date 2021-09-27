@@ -11,6 +11,7 @@ import json as simplejson
 import googlemaps
 from datetime import datetime
 from django.db.models import F
+from .charts import *
 
 q_objects = Q()
 #q_objects |= Q(zona_name__startswith='Минский')
@@ -25,7 +26,7 @@ def append_zones():
     """ Функция считывающая все зоны из xml файла и добавляющая их в модели """
 
     parser = ET.XMLParser(encoding="utf-8")
-    tree = ET.parse("zona_utf8.xml", parser = parser)
+    tree = ET.parse("zona_utf8 (1).xml", parser = parser)
     root = tree.getroot()
     for child in root:
         new_zone = Zone(zona = child[0].text, name_zona = child[1].text)
@@ -186,7 +187,7 @@ def index(request):
     if len(Terminal.objects.all()) == 0:
         count = 1
         parser = ET.XMLParser(encoding="utf-8")
-        tree = ET.parse("term_utf8 (1).xml", parser=parser)
+        tree = ET.parse("term_utf8 (2).xml", parser=parser)
         root = tree.getroot()
 
         for child in root:
@@ -339,8 +340,8 @@ def index(request):
 
     #---------------------------------------ДОБАВИТЬ НОРМАЛЬНУЮ ПРОВЕРКУ!!!!----------------------------------------
 
-    if terminal_names_for_drop_down_list == [] or terminal_parts_for_drop_down_list == [] or terminal_cpodr_for_drop_down_list == [] or terminal_zones_for_drop_down_list == []:
-        terminal_lists_for_drop_down_list(context)
+   # if terminal_names_for_drop_down_list == [] or terminal_parts_for_drop_down_list == [] or terminal_cpodr_for_drop_down_list == [] or terminal_zones_for_drop_down_list == []:
+    terminal_lists_for_drop_down_list(context)
 
     context['terminal_names'] = terminal_names_for_drop_down_list
     context['terminal_parts'] = terminal_parts_for_drop_down_list
@@ -600,6 +601,7 @@ def search_terminals(request):
     return render(request, 'mainpage/search_terminals.html', context)  
 
 def route(request):
+
     context = {}
     tids_and_addresses = {}
     search_ctid = request.GET.get("ctid", "")
@@ -634,3 +636,16 @@ def route(request):
         context['check'] = False
 
     return render(request, 'mainpage/route.html', context)
+
+
+def charts(request):
+    context = {}
+    context['display'] = 'none'
+
+    data = get_terminal_chart(Terminal.objects.all(), 'cpodr', 'Области', True)
+
+    context['chart'] = data['img']
+    context['result'] = data['result']
+
+    context['count_all_terminals'] = len(Terminal.objects.all())
+    return render(request, 'mainpage/charts.html', context)

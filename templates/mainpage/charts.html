@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<div class="chart_block">
+		<div class="chart" style="display: inline-block; position: relative; width: 56;">
+			{{ chart|safe }}
+		</div>
+		<div class="chart_info" style="display: inline-block; position: relative; width: 20%; ">
+			{% for key,value in result.items %}
+				<h5>{{key}} : {{value}}</h5>
+			{% endfor %}
+		</div>
+	</div>
+
+
+{% endblock content %}
+
+
+{% block map %}
+
+{% endblock map %}
+
+
+{% block nav %}
+    <a class="btn btn-outline-danger" href="/" role="button">Все терминалы</a>
+{% endblock nav %}
+
+{% block style %}
+
+<style type="text/css">
+body{
+
+  margin: 0;
+  
+  background-size: 100% 100%;
+  background-attachment: fixed; 
+}
+</style>
+{% endblock %}

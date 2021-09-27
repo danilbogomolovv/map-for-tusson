@@ -36,14 +36,16 @@ class TerminalView(ListCreateAPIView):
 			geocode_result = gmaps.geocode(query_str, language = 'ru')
 			request.data['lat'] = geocode_result[0]['geometry']['location']['lat']
 			request.data['lng'] = geocode_result[0]['geometry']['location']['lng']
-			right_components = '{'
+			right_components = {}
 			for i in geocode_result[0]['address_components']:
-				right_components = right_components + '"' + str(i['types']) + '" : "' + str(i['long_name']) + '", '
-			right_components = right_components[:-2]
-			right_components = right_components + '}'
-			request.data['right_components'] = right_components
+				right_components[str(i['types']).replace("['","").replace("']", "").replace("political',","").replace(", 'political","").replace(" 'sublocality', ","").replace("'","")] = str(i['long_name']) 
+				print(right_components)
+		# new_right_components = Right_components.objects.create(**right_components)
+		# new_right_components.save()			
 		new_terminal = Terminal.objects.create(**request.data)
+		new_terminal.right_components = str(right_components)
 		new_terminal.save()
+
 		mark_check = True
 		for marker in Marker.objects.all():                  
 			if request.data.get('lat') == marker.lat and request.data.get('lng')== marker.lng:
@@ -66,7 +68,8 @@ class TerminalView(ListCreateAPIView):
 class UpdateTerminalView(RetrieveUpdateDestroyAPIView):
 	queryset = Terminal.objects.all()
 	serializer_class = TerminalSerializer
-	lookup_field = 'ctid'	
+	lookup_field = 'ctid'
+		
 	def put(self, request, *args, **kwargs):
 		print(request.data)
 		for marker in Marker.objects.all():                  

@@ -1,6 +1,15 @@
 from django.db import models
-from django.contrib.postgres.fields import JSONField
+#from django.contrib.postgres.fields import JSONField
 # Create your models here.
+
+# class Right_components(models.Model):
+# 	street_number = models.CharField(max_length = 400, null = True)
+# 	route = models.CharField(max_length = 400, null = True)
+# 	sublocality_level_1 = models.CharField(max_length = 400, null = True)
+# 	locality = models.CharField(max_length = 400, null = True)
+# 	administrative_area_level_2 = models.CharField(max_length = 400, null = True)
+# 	administrative_area_level_1= models.CharField(max_length = 400, null = True)
+# 	country = models.CharField(max_length = 400, null = True)
 
 class Terminal(models.Model):
 	cimei = models.CharField(max_length = 400, null = True)
@@ -23,13 +32,15 @@ class Terminal(models.Model):
 	cbank = models.CharField(max_length = 400, null = True)
 	ctype = models.CharField(max_length = 400, null = True)
 	right_adres = models.CharField(max_length = 400, null = True)
-	right_components = JSONField(null=True)
+	right_components = models.CharField(max_length = 800, null = True)
 	ss_nom = models.CharField(max_length = 400, null = True)
 	ddatap = models.DateField(max_length = 400, null = True)
 	cmemo = models.CharField(max_length = 700, null = True)
 	cstatus = models.IntegerField( null = True)
 	lat = models.CharField(max_length = 400, null = True)
 	lng = models.CharField(max_length = 400, null = True)
+
+
 
 class Marker(models.Model):
 	cgorod = models.CharField(max_length = 400, null = True)
