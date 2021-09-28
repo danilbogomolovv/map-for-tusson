@@ -9,6 +9,7 @@ urlpatterns = [
 	path('terminals_for_installation/', views.terminals_for_installation),
 	path('save/', views.save),
 	path('charts/', views.charts),
+	path('charts/<str:chart_name>', views.charts),
 	path('one_terminal/', views.one_terminal),
 	path('one_terminal/<str:ctid>', views.one_terminal),
 	path('search_terminals/', views.search_terminals),

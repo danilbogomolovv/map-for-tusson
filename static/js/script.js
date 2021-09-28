@@ -123,6 +123,20 @@ function addRouteParam() {
     window.location.href = '/route/?start=' + start + '&end=' + end + '&time=' + time + '&time_of_departure=' + time_of_departure + '&ctid=' + tids;
 }
 
+function addChartParam(chart_name, chart_type){
+
+    if (chart_name != '') {
+        localStorage.setItem('chart_name', chart_name);
+    };
+   if (chart_type != '') {
+        localStorage.setItem('chart_type', chart_type);
+    };
+/*    document.getElementById(localStorage.getItem('chart_type')).setAttribute("checked", "checked")
+    alert(document.getElementById(localStorage.getItem('chart_type')).checked)*/
+    let href_chart_name = encodeURIComponent(localStorage.getItem('chart_name'));
+    let href_chart_type = encodeURIComponent(localStorage.getItem('chart_type'));
+    window.location.href = '/charts/?chart_name=' + href_chart_name + '&chart_type=' + href_chart_type
+}
 
 function clearHref(){
     localStorage.setItem('parta', '');

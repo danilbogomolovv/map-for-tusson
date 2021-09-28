@@ -640,12 +640,19 @@ def route(request):
 
 def charts(request):
     context = {}
+    attributes = {'cobl':'Области', 'cpodr':'Партнеры','cstatus':'Статусы'}
+    search_chart_name = request.GET.get("chart_name", "")
+    data ={}
     context['display'] = 'none'
-
-    data = get_terminal_chart(Terminal.objects.all(), 'cpodr', 'Области', True)
-
+    if search_chart_name != '':
+        data = get_terminal_chart(Terminal.objects.all(), str(search_chart_name), str(attributes[search_chart_name]), request.GET.get("chart_type", ""))
+    else:
+        data['img'] = ''
+        data['result'] = ''
+    # for i in Terminal._meta.get_fields()[2:27]:
+    #     print(str(i).replace('mainpage.Terminal.', ''))
     context['chart'] = data['img']
     context['result'] = data['result']
-
+    context['attributes'] = attributes
     context['count_all_terminals'] = len(Terminal.objects.all())
     return render(request, 'mainpage/charts.html', context)
