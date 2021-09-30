@@ -145,6 +145,17 @@ function add_new_marker(latlng){
   window.location.href = '/add_new_marker/?latlng=' + latlng  
 }
 
+function open_add_terminal_to_marker(lat, lng){
+  document.getElementById('add_terminal_to_marker').style.display = 'block'
+  document.getElementById('grey_bg').style.display = 'block'
+  document.getElementById('lat_add_inp').value = lat
+  document.getElementById('lng_add_inp').value = lng  
+}
+
+function add_terminal_to_marker(lat, lng){
+  window.location.href = '/add_terminal_to_marker/?lat=' + lat + '&lng=' + lng + '&terminals=' + document.getElementById('terminals_for_transfer').value  
+}
+
 function check_delete_marker(lat, lng){
   document.getElementById('check_for_delete_marker').style.display = 'block'
   document.getElementById('grey_bg').style.display = 'block'
@@ -154,6 +165,11 @@ function check_delete_marker(lat, lng){
 
 function close_check_delete_marker(){
   document.getElementById('check_for_delete_marker').style.display = 'none'
+  document.getElementById('grey_bg').style.display = 'none'
+}
+
+function close_add_terminal_to_marker(){
+  document.getElementById('add_terminal_to_marker').style.display = 'none'
   document.getElementById('grey_bg').style.display = 'none'
 }
 

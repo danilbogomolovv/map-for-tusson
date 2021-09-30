@@ -112,7 +112,7 @@ def get_q_objects(request):
     #     return  Q(zona_name__startswith='f')
     # if zones:
     #     list_q_objects.append(q_objects)
-    if len(list_q_objects) > 2:
+    if len(list_q_objects) > 3:
         list_q_objects.pop(-2)
     return list_q_objects[-1]
 
@@ -415,7 +415,6 @@ def index(request):
     print("Длина : " + str(len(Terminal.objects.all())))
     
     print(list_q_objects)
-
 
     return render(request, 'mainpage/mainpage.html', context)  
 
@@ -720,5 +719,31 @@ def delete_marker(request):
 
     del_marker = Marker.objects.get(lat = del_lat, lng = del_lng)
     del_marker.delete()
+
+    return HttpResponseRedirect('/')
+
+def add_terminal_to_marker(request):
+
+    lat = request.GET.get("lat", "")
+    lng = request.GET.get("lng", "")
+    tids = request.GET.get("terminals", "")
+    if tids != '':
+        tids = tids.split(',')
+
+    for tid in tids:
+        marks = Marker.objects.filter(terminals__ctid__startswith = tid)
+        for i in marks:
+            for j in i.terminals.all():
+                if j.ctid == tid:
+
+                    i.count -= 1
+                    i.terminals.remove(j)
+                    i.save()
+                    destination_marker = Marker.objects.get(lat = lat, lng = lng)
+                    destination_marker.terminals.add(j)
+                    destination_marker.count = F('count') + 1
+                    destination_marker.save()
+
+
 
     return HttpResponseRedirect('/')
