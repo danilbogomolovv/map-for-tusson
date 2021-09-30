@@ -702,7 +702,6 @@ def charts(request):
     return render(request, 'mainpage/charts.html', context)
 
 def add_new_marker(request):
-    context = {}
     new_lat_lng = request.GET.get("latlng", "").replace('(','').replace(')','').split(', ')
     new_lat = new_lat_lng[0]
     new_lng = new_lat_lng[1]
@@ -710,4 +709,13 @@ def add_new_marker(request):
     new_marker = Marker(lat = new_lat, lng = new_lng, count = 0, zona_name = 'Не определено', status = 0)
     new_marker.save()
     print(len(Marker.objects.all()))
+    return HttpResponseRedirect('/')
+
+def delete_marker(request):
+    del_lat = request.GET.get("lat", "")
+    del_lng = request.GET.get("lng", "")
+
+    del_marker = Marker.objects.get(lat = del_lat, lng = del_lng)
+    del_marker.delete()
+
     return HttpResponseRedirect('/')

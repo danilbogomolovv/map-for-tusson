@@ -143,6 +143,10 @@ function add_new_marker(latlng){
   window.location.href = '/add_new_marker/?latlng=' + latlng  
 }
 
+function delete_marker(lat, lng){
+  window.location.href = '/delete_marker/?lat=' + lat + '&lng=' + lng
+}
+
 function clearHref(){
     localStorage.setItem('parta', '');
     localStorage.setItem('name', '');
