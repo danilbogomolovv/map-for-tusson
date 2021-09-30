@@ -13,7 +13,7 @@ from datetime import datetime
 from django.db.models import F
 from .charts import *
 
-q_objects = Q()
+q_objects = Q(zona_name__startswith='f')
 #q_objects |= Q(zona_name__startswith='Минский')
 list_q_objects = [q_objects]
 terminal_names_for_drop_down_list = []
@@ -107,10 +107,11 @@ def get_q_objects(request):
     q_objects = Q()
     for z in zones:
         q_objects |= Q(zona_name__startswith=z)
-    if not zones:
-        return  Q(zona_name__startswith='f')
-    if zones:
         list_q_objects.append(q_objects)
+    # if not zones:
+    #     return  Q(zona_name__startswith='f')
+    # if zones:
+    #     list_q_objects.append(q_objects)
     if len(list_q_objects) > 2:
         list_q_objects.pop(-2)
     return list_q_objects[-1]
@@ -179,6 +180,7 @@ def search_terminals_info(terminal_attr, zona_check):
 def index(request):
     context = {}
     check_terminals = {}
+    print('ЛИСТ КЮ')
     print(list_q_objects)
 
     if len(Zone.objects.all()) == 0:
@@ -392,17 +394,18 @@ def index(request):
 
     count_terminal_attribute('cparta', context)
 
-    try:
+    # try:
         
-        if str(get_q_objects(request)) != '(AND: )':
-            right_terminals = Marker.objects.filter(get_q_objects(request)).distinct().iterator()
-        else:
-            right_terminals = Marker.objects.filter(zona_name = 'f ').distinct().iterator()
+    #     if str(get_q_objects(request)) != '(AND: )':
+    #         right_terminals = Marker.objects.filter(get_q_objects(request)).distinct().iterator()
+    #     else:
+    #         right_terminals = Marker.objects.filter(zona_name = 'f ').distinct().iterator()
 
-    except Exception as e:
-        right_terminals = Terminal.objects.filter(zona_name = 'f ').distinct().iterator()
+    # except Exception as e:
+    #     right_terminals = Terminal.objects.filter(zona_name = 'f ').distinct().iterator()
 
-    context['mark'] = right_terminals
+
+    context['mark'] = Marker.objects.filter(get_q_objects(request)).distinct().iterator()
     context['count_all_terminals'] = len(Terminal.objects.all())
     context['display'] = 'none'
     context['search_name'] = ''
@@ -410,7 +413,7 @@ def index(request):
     context['search_cpodr'] = ''
     context['zone_check'] = True
     print("Длина : " + str(len(Terminal.objects.all())))
-    print("Длина error: " + str(len(ErrorTerminal.objects.all())))
+    
     print(list_q_objects)
 
 
@@ -708,7 +711,7 @@ def add_new_marker(request):
 
     new_marker = Marker(lat = new_lat, lng = new_lng, count = 0, zona_name = 'Не определено', status = 0)
     new_marker.save()
-    print(len(Marker.objects.all()))
+
     return HttpResponseRedirect('/')
 
 def delete_marker(request):

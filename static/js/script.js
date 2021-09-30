@@ -3,10 +3,11 @@ window.onload = function() {
 checkboxes = document.getElementsByName('zones');
 
   for(var i=0, n=checkboxes.length;i<n;i++) {
-      if (sessionStorage.getItem(checkboxes[i].id) == 'true') {
+      if (localStorage.getItem(checkboxes[i].id) == 'true') {
         document.getElementById(checkboxes[i].id).setAttribute('checked', 'checked')
       }
   }
+  zonesChecked()
   document.getElementsByName('first_input')[0].value = localStorage.getItem('startpoint')
   document.getElementsByName('waypoints_input')[0].value = localStorage.getItem('tids')
   document.getElementsByName('last_input')[0].value = localStorage.getItem('ednpoint')
@@ -21,6 +22,7 @@ checkboxes = document.getElementsByName('zones');
     localStorage.setItem('parta', '');
     localStorage.setItem('name', '');
     localStorage.setItem('cpodr', '');
+
 
 
 }
@@ -178,10 +180,10 @@ function zonesChecked(){
   checkboxes = document.getElementsByName('zones');
   for(var i=0, n=checkboxes.length;i<n;i++) {
     if (checkboxes[i].checked == true) {
-      sessionStorage.setItem(checkboxes[i].id, true)
+      localStorage.setItem(checkboxes[i].id, true)
     }
     else {
-      sessionStorage.setItem(checkboxes[i].id, false)
+      localStorage.setItem(checkboxes[i].id, false)
     }
   }
 }
