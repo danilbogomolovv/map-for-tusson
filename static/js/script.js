@@ -143,6 +143,18 @@ function add_new_marker(latlng){
   window.location.href = '/add_new_marker/?latlng=' + latlng  
 }
 
+function check_delete_marker(lat, lng){
+  document.getElementById('check_for_delete_marker').style.display = 'block'
+  document.getElementById('grey_bg').style.display = 'block'
+  document.getElementById('lat_del_inp').value = lat
+  document.getElementById('lng_del_inp').value = lng
+}
+
+function close_check_delete_marker(){
+  document.getElementById('check_for_delete_marker').style.display = 'none'
+  document.getElementById('grey_bg').style.display = 'none'
+}
+
 function delete_marker(lat, lng){
   window.location.href = '/delete_marker/?lat=' + lat + '&lng=' + lng
 }
