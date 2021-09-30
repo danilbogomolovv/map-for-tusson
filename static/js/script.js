@@ -138,6 +138,11 @@ function addChartParam(chart_name, chart_type){
     window.location.href = '/charts/?chart_name=' + href_chart_name + '&chart_type=' + href_chart_type
 }
 
+function add_new_marker(latlng){
+
+  window.location.href = '/add_new_marker/?latlng=' + latlng  
+}
+
 function clearHref(){
     localStorage.setItem('parta', '');
     localStorage.setItem('name', '');

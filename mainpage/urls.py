@@ -19,5 +19,7 @@ urlpatterns = [
     path('search/<str:name>', views.search),
     path('search/<str:parta>', views.search),
     path('search/<str:zone>', views.search),
+    path('add_new_marker/', views.add_new_marker),
+    path('add_new_marker/<str:latlng>', views.add_new_marker),
 
 ]

@@ -128,7 +128,7 @@ def terminal_lists_for_drop_down_list(context):
 
 
     global terminal_zones_for_drop_down_list
-    terminal_zones_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('zona_name', flat=True), True)
+    terminal_zones_for_drop_down_list = search_terminals_info(Marker.objects.values_list('zona_name', flat=True), True)
 
     global terminal_cpodr_for_drop_down_list
     terminal_cpodr_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('cpodr', flat=True), False)
@@ -187,7 +187,7 @@ def index(request):
     if len(Terminal.objects.all()) == 0:
         count = 1
         parser = ET.XMLParser(encoding="utf-8")
-        tree = ET.parse("term_utf8 (2).xml", parser=parser)
+        tree = ET.parse("term_utf8 (7).xml", parser=parser)
         root = tree.getroot()
 
         for child in root:
@@ -196,16 +196,58 @@ def index(request):
                 if child[13].text == i.zona:
                     zona_name = i.name_zona
             try:
+            #     #print(child[19].text, child[20].text)
+            #     if child[19].text == None and child[20].text == None:
+
+            #         try:
+     
+            #             query_str = ''
+            #             if child[5].text != '':
+            #                 query_str = query_str + child[5].text + ' область, '
+            #             if child[6].text != '':
+            #                 query_str = query_str + child[6].text + ' район, '
+            #             if child[7].text != '':
+            #                 query_str = query_str + child[7].text + ', '
+            #             query_str = query_str + child[8].text
+            #             gmaps = googlemaps.Client(key=os.getenv('GOOGLE_API'))
+            #             if child[7].text != '':
+            #                 geocode_result = gmaps.geocode(query_str, language = 'ru', components={"country":"BY", "city": str(child[7].text)})
+            #             else:
+            #                 geocode_result = gmaps.geocode(query_str, language = 'ru', components={"country":"BY"}) 
+
+            #             right_components = ''
+            #             for i in geocode_result[0]['address_components']:
+            #                 right_components = right_components + str(i['types']) + ' : ' + str(i['long_name']) + ', '
+
+            #             new_terminal = Terminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
+            #                                     cobl = child[5].text, craion = child[6].text, cgorod = child[7].text, cadres = child[8].text,
+            #                                     ddatan = child[9].text, cname = child[10].text, cparta = child[11].text, cots = child[12].text,
+            #                                     czona = child[13].text, zona_name = zona_name, cvsoba = child[14].text, cunn = child[15].text,
+            #                                     cbank = child[16].text, ctype = child[17].text, ss_nom = child[18].text, right_components = right_components,
+            #                                     right_adres = geocode_result[0]['formatted_address'],
+            #                                     lat = geocode_result[0]['geometry']['location']['lat'],
+            #                                     lng = geocode_result[0]['geometry']['location']['lng'], cmemo = child[21].text, ddatap = child[22].text, cstatus = child[23].text)
+            #             new_terminal.save()
+            #             print('geocode')
+            #             mark_check = True
+            #         except:
+            #             new_error_terminal = ErrorTerminal(ss_nom = child[18].text, cadres = child[8].text) 
+            #             new_error_terminal.save()  
+
+            #     else :
                 new_terminal = Terminal(cimei = child[0].text, inr = child[1].text, ctid = child[2].text, cmid = child[3].text, cpodr = child[4].text,
                                         cobl = child[5].text, craion = child[6].text, cgorod = child[7].text, cadres = child[8].text,
                                         ddatan = child[9].text, cname = child[10].text, cparta = child[11].text, cots = child[12].text,
                                         czona = child[13].text, zona_name = zona_name, cvsoba = child[14].text, cunn = child[15].text,
                                         cbank = child[16].text, ctype = child[17].text, ss_nom = child[18].text,
                                         lat = child[19].text,
-                                        lng = child[20].text, ddatap = child[21].text, cmemo = child[22].text, cstatus = child[23].text)
+                                        lng = child[20].text, cmemo = child[21].text, ddatap = child[22].text, cstatus = child[23].text)
                 new_terminal.save()
 
-                mark_check = True
+                mark_check = True                      
+
+
+
 
                 for marker in Marker.objects.all():                  
                     if new_terminal.lat == marker.lat and new_terminal.lng == marker.lng:
@@ -368,7 +410,9 @@ def index(request):
     context['search_cpodr'] = ''
     context['zone_check'] = True
     print("Длина : " + str(len(Terminal.objects.all())))
+    print("Длина error: " + str(len(ErrorTerminal.objects.all())))
     print(list_q_objects)
+
 
     return render(request, 'mainpage/mainpage.html', context)  
 
@@ -656,3 +700,14 @@ def charts(request):
     context['attributes'] = attributes
     context['count_all_terminals'] = len(Terminal.objects.all())
     return render(request, 'mainpage/charts.html', context)
+
+def add_new_marker(request):
+    context = {}
+    new_lat_lng = request.GET.get("latlng", "").replace('(','').replace(')','').split(', ')
+    new_lat = new_lat_lng[0]
+    new_lng = new_lat_lng[1]
+
+    new_marker = Marker(lat = new_lat, lng = new_lng, count = 0, zona_name = 'Не определено', status = 0)
+    new_marker.save()
+    print(len(Marker.objects.all()))
+    return HttpResponseRedirect('/')
