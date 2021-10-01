@@ -747,3 +747,9 @@ def add_terminal_to_marker(request):
 
 
     return HttpResponseRedirect('/')
+
+
+
+
+
+

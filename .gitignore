@@ -2,3 +2,4 @@
 templates/base.html
 szonas.xml
 terminals.xml
+templates/mainpage/route.html
