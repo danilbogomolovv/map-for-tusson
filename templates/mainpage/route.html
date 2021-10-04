@@ -78,8 +78,7 @@
         var js_markers = [];
         var coordinate_check_dict = {};
         const waypts = [];
-        //const waypts_addresses = [];
-        //waypts_addresses.push('{{first}}')
+
         {% for i in waypoints %}
 
           waypts.push({
@@ -87,12 +86,9 @@
             stopover: true,
           });
 
-         // waypts_addresses.push('{{i.cadres}}')
-
-
         {% endfor %}
 
-        //console.log('{{tids_and_addresses}}')
+
         function initMap() {
             var directionsService = new google.maps.DirectionsService();
             var directionsRenderer = new google.maps.DirectionsRenderer();
@@ -161,6 +157,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
   var full_distance = 0
   var full_time = 0
   var line_length = 0
+  var additional_time = -12
   var waypts_addresses = []
   waypts_addresses.push('{{first}}')
   directionsService
@@ -180,6 +177,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
       directionsRenderer.setDirections(response);
       console.log(response['routes']);
       for (var i = 0; i < response['routes']['0']['legs'].length; i++) {
+          additional_time = additional_time + 12
           var num = i + 1 
           line_length = line_length + 185
           waypts_addresses.push(response['routes']['0']['legs'][i]['end_address'])
@@ -189,7 +187,17 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
       }
       document.getElementById('route_info').innerHTML += '<div class="circle"><h6 style="text-align: center; z-index:7; position: relative;">'  + parseInt(num+1,10) + '</h6></div><p>' + '{{last}}' + '<p>'
       document.getElementById('full_distance').innerHTML += full_distance/1000 + ' км.'
-      document.getElementById('full_time_int').innerHTML += Math.floor(full_time/60) + ' мин.' + '<br>_______________________________________'
+
+      if (Math.floor(full_time/60 + additional_time) < 60) {
+
+        document.getElementById('full_time_int').innerHTML += Math.floor(full_time/60 + additional_time) + ' мин.' + '<br>_______________________________________'    
+
+      } else {
+
+        document.getElementById('full_time_int').innerHTML += Math.floor((full_time/60 + additional_time)/60) + ' ч. ' + Math.floor((full_time/60 + additional_time)%60) + 'мин. <br>_______________________________________'  
+
+      }
+
       document.getElementById('line').style.height = line_length + 'px';
     })
     .catch((e) => window.alert("Directions request failed due to " + status));

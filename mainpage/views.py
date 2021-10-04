@@ -707,9 +707,37 @@ def add_new_marker(request):
     new_lat_lng = request.GET.get("latlng", "").replace('(','').replace(')','').split(', ')
     new_lat = new_lat_lng[0]
     new_lng = new_lat_lng[1]
+    tids = request.GET.get("terminals", "")
 
-    new_marker = Marker(lat = new_lat, lng = new_lng, count = 0, zona_name = 'Не определено', status = 0)
-    new_marker.save()
+
+
+    if tids != '': 
+        print('not empty')
+        tids = tids.split(',')
+        new_marker = Marker(lat = new_lat, lng = new_lng, count = len(tids), status = 0)
+        
+        for tid in tids:
+            marks = Marker.objects.filter(terminals__ctid__startswith = tid)
+            for i in marks:
+                for j in i.terminals.all():
+                    if j.ctid == tid:
+
+                        i.count -= 1
+                        i.terminals.remove(j)
+                        i.save()
+                        j.lat = new_lat
+                        j.lng = new_lng
+                        j.save()
+                        new_marker.zona_name = j.zona_name
+                        new_marker.save()
+                        new_marker.terminals.add(j)
+                        
+                        
+    else:
+        print('empty')
+        new_marker = Marker(lat = new_lat, lng = new_lng, count = 0, zona_name = 'Не определено', status = 0)
+
+        new_marker.save()
 
     return HttpResponseRedirect('/')
 
@@ -738,10 +766,13 @@ def add_terminal_to_marker(request):
 
                     i.count -= 1
                     i.terminals.remove(j)
+                    i.lat = lat
+                    i.lng = lng
                     i.save()
                     destination_marker = Marker.objects.get(lat = lat, lng = lng)
                     destination_marker.terminals.add(j)
                     destination_marker.count = F('count') + 1
+                    destination_marker.zona_name = j.zona_name
                     destination_marker.save()
 
 

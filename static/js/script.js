@@ -28,6 +28,23 @@ checkboxes = document.getElementsByName('zones');
 }
 
 
+function search_place() {
+    var geocoder;
+    geocoder = new google.maps.Geocoder();
+    var address = document.getElementById('search_place').value;
+    
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      
+      if (status == 'OK') {
+        map.setCenter(results[0].geometry.location);
+
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+    map.setZoom(16);
+}
+
 function ShowTerminalForRepairInfo(lat, lng, ddatap, cmemo, cparta, cadres) {
   var myLatlng = new google.maps.LatLng(lat, lng);
   map.setZoom(12);
@@ -142,7 +159,7 @@ function addChartParam(chart_name, chart_type){
 
 function add_new_marker(latlng){
 
-  window.location.href = '/add_new_marker/?latlng=' + latlng  
+  window.location.href = '/add_new_marker/?latlng=' + latlng  +'&terminals=' + document.getElementById('terminals_for_add').value 
 }
 
 function open_add_terminal_to_marker(lat, lng){
