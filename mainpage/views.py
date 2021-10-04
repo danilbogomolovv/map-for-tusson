@@ -119,20 +119,40 @@ def get_q_objects(request):
 def terminal_lists_for_drop_down_list(context):
 
     """ Функция рассчитывающая все варианты и количество вхождений для четырех атрибутов всех терминалов """
+    
+    # global terminal_names_for_drop_down_list
+    # terminal_names_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('cname', flat=True), False)
+    # print('2')
 
-    global terminal_names_for_drop_down_list
-    terminal_names_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('cname', flat=True), False)
+    for i in search_terminals_info(Terminal.objects.values_list('cname', flat=True), False):
+        print(i)
+        Terminal_name_name_and_count.objects.create(attr_name = i[0], attr_count = int(i[1]))
+        print(Terminal_name_name_and_count.objects.all())
 
+    for i in search_terminals_info(Terminal.objects.values_list('cparta', flat=True), False):
+        print(i)
+        Terminal_part_name_and_count.objects.create(attr_name = i[0], attr_count = int(i[1]))
+        print(Terminal_part_name_and_count.objects.all())
+    for i in search_terminals_info(Terminal.objects.values_list('zona_name', flat=True), True):
+        print(i)
+        Terminal_zona_name_and_count.objects.create(attr_name = i[0], attr_count = int(i[1]))
+        print(Terminal_zona_name_and_count.objects.all())
+    for i in search_terminals_info(Terminal.objects.values_list('cpodr', flat=True), False):
+        print(i)
+        Terminal_podr_name_and_count.objects.create(attr_name = i[0], attr_count = int(i[1]))
+        print(Terminal_podr_name_and_count.objects.all())
+    # global terminal_parts_for_drop_down_list
+    # terminal_parts_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('cparta', flat=True), False)
 
-    global terminal_parts_for_drop_down_list
-    terminal_parts_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('cparta', flat=True), False)
+    # print('3')
 
+    # global terminal_zones_for_drop_down_list
+    # terminal_zones_for_drop_down_list = search_terminals_info(Marker.objects.values_list('zona_name', flat=True), True)
+    # print('4')
 
-    global terminal_zones_for_drop_down_list
-    terminal_zones_for_drop_down_list = search_terminals_info(Marker.objects.values_list('zona_name', flat=True), True)
-
-    global terminal_cpodr_for_drop_down_list
-    terminal_cpodr_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('cpodr', flat=True), False)
+    # global terminal_cpodr_for_drop_down_list
+    # terminal_cpodr_for_drop_down_list = search_terminals_info(Terminal.objects.values_list('cpodr', flat=True), False)
+    # print('5')
 
 
 def terminal_lists_for_search_terminals(context, search_terminals):
@@ -180,8 +200,7 @@ def search_terminals_info(terminal_attr, zona_check):
 def index(request):
     context = {}
     check_terminals = {}
-    print('ЛИСТ КЮ')
-    print(list_q_objects)
+
 
     if len(Zone.objects.all()) == 0:
         append_zones()
@@ -189,7 +208,7 @@ def index(request):
     if len(Terminal.objects.all()) == 0:
         count = 1
         parser = ET.XMLParser(encoding="utf-8")
-        tree = ET.parse("term_utf8 (7).xml", parser=parser)
+        tree = ET.parse("term_utf8 (9).xml", parser=parser)
         root = tree.getroot()
 
         for child in root:
@@ -384,14 +403,14 @@ def index(request):
 
     #---------------------------------------ДОБАВИТЬ НОРМАЛЬНУЮ ПРОВЕРКУ!!!!----------------------------------------
 
-   # if terminal_names_for_drop_down_list == [] or terminal_parts_for_drop_down_list == [] or terminal_cpodr_for_drop_down_list == [] or terminal_zones_for_drop_down_list == []:
-    terminal_lists_for_drop_down_list(context)
+    if len(Terminal_name_name_and_count.objects.all()) == 0 and len(Terminal_part_name_and_count.objects.all()) == 0 and len(Terminal_podr_name_and_count.objects.all()) == 0 and len(Terminal_zona_name_and_count.objects.all()) == 0:
+        terminal_lists_for_drop_down_list(context)
 
-    context['terminal_names'] = terminal_names_for_drop_down_list
-    context['terminal_parts'] = terminal_parts_for_drop_down_list
-    context['terminal_zones'] = terminal_zones_for_drop_down_list
-    context['terminal_cpodr'] = terminal_cpodr_for_drop_down_list
-
+    context['terminal_names'] = Terminal_name_name_and_count.objects.all().iterator()
+    context['terminal_parts'] = Terminal_part_name_and_count.objects.all().iterator()
+    context['terminal_zones'] = Terminal_zona_name_and_count.objects.all().iterator()
+    context['terminal_cpodr'] = Terminal_podr_name_and_count.objects.all().iterator()
+    
     count_terminal_attribute('cparta', context)
 
     # try:
@@ -490,10 +509,10 @@ def search(request):
 
     context['count_all_terminals'] = len(Terminal.objects.all())
 
-    context['terminal_names'] = terminal_names_for_drop_down_list
-    context['terminal_parts'] = terminal_parts_for_drop_down_list
-    context['terminal_zones'] = terminal_zones_for_drop_down_list
-    context['terminal_cpodr'] = terminal_cpodr_for_drop_down_list
+    context['terminal_names'] = Terminal_name_name_and_count.objects.all().iterator()
+    context['terminal_parts'] = Terminal_part_name_and_count.objects.all().iterator()
+    context['terminal_zones'] = Terminal_zona_name_and_count.objects.all().iterator()
+    context['terminal_cpodr'] = Terminal_podr_name_and_count.objects.all().iterator()
     return render(request, 'mainpage/mainpage.html', context)
 
 def terminals_for_repair(request):
@@ -728,6 +747,9 @@ def add_new_marker(request):
                         j.lat = new_lat
                         j.lng = new_lng
                         j.save()
+                        term = Terminal_zona_name_and_count.objects.get(attr_name__startswith = j.zona_name)
+                        term.attr_count += 1
+                        term.save()
                         new_marker.zona_name = j.zona_name
                         new_marker.save()
                         new_marker.terminals.add(j)
@@ -739,6 +761,21 @@ def add_new_marker(request):
 
         new_marker.save()
 
+        for i in Terminal_zona_name_and_count.objects.all():
+
+            if i.attr_name == 'Не определено':
+                
+                i.attr_count = F('attr_count') + 1
+                i.save()
+                check_for_add = False
+                break
+            else:
+                check_for_add = True
+
+        if check_for_add:
+            Terminal_zona_name_and_count.objects.create(attr_name = 'Не определено', attr_count = 1)
+                
+
     return HttpResponseRedirect('/')
 
 def delete_marker(request):
@@ -746,6 +783,9 @@ def delete_marker(request):
     del_lng = request.GET.get("lng", "")
 
     del_marker = Marker.objects.get(lat = del_lat, lng = del_lng)
+    del_mark_zone = Terminal_zona_name_and_count.objects.get(attr_name__startswith = del_marker.zona_name)
+    del_mark_zone.attr_count -= 1
+    del_mark_zone.save()
     del_marker.delete()
 
     return HttpResponseRedirect('/')
@@ -766,9 +806,14 @@ def add_terminal_to_marker(request):
 
                     i.count -= 1
                     i.terminals.remove(j)
-                    i.lat = lat
-                    i.lng = lng
+
+                    if i.count == 0:
+                        i.zona_name = 'Не определено'
+
+                    j.lat = lat
+                    j.lng = lng
                     i.save()
+                    j.save()
                     destination_marker = Marker.objects.get(lat = lat, lng = lng)
                     destination_marker.terminals.add(j)
                     destination_marker.count = F('count') + 1

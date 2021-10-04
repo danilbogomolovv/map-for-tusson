@@ -14,8 +14,8 @@
                 {% endif %} 
               </a>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                {% for key, value in terminal_names %}
-                    <li><a class="dropdown-item" href="javascript:addParam('{{ key }}', '','', true);">{{ key }} : {{ value }}</a></li>
+                {% for i in terminal_names %}
+                    <li><a class="dropdown-item" href="javascript:addParam('{{ i.attr_name }}', '','', true);">{{ i.attr_name }} : {{ i.attr_count }}</a></li>
                 {% endfor %}
               </ul>
             </li>
@@ -35,8 +35,8 @@
                 <div class="ui-widget" style="width: 150px">
                     <input id="parts" style="width: 300px;" placeholder="Поиск по партнерам" onchange="addParam('',document.getElementById('parts').value,'', false)">
                 </div>
-                {% for key, value in terminal_parts %}
-                    <li><a class="dropdown-item" href="javascript:addParam('','{{key}}','');">{{ key }} : {{ value }}</a></li>
+                {% for i in terminal_parts %}
+                    <li><a class="dropdown-item" href="javascript:addParam('','{{i.attr_name}}','');">{{ i.attr_name }} : {{ i.attr_count }}</a></li>
                 {% endfor %}
               </ul>
             </li>
@@ -54,8 +54,8 @@
                 {% endif %} 
               </a>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                {% for key, value in terminal_cpodr %}
-                    <li><a class="dropdown-item" href="javascript:addParam('', '','{{ key }}', true);">{{ key }} : {{ value }}</a></li>
+                {% for i in terminal_cpodr %}
+                    <li><a class="dropdown-item" href="javascript:addParam('', '','{{ i.attr_name }}', true);">{{ i.attr_name }} : {{ i.attr_count }}</a></li>
                 {% endfor %}
               </ul>
             </li>
@@ -73,9 +73,9 @@
                     <div class="form-check form-switch">
                         {% autoescape on %}
                         <!-- <input type="checkbox" class="form-check-input"  onClick="toggle(this)"> Выбрать все <br/> -->
-                        {% for key, value in terminal_zones %}
+                        {% for i in terminal_zones %}
                             <li>                        
-                                <label><input type="checkbox" name="zones" value= {{key}} class="form-check-input" id='{{key}}'> {{key }} : {{ value }}     </label>
+                                <label><input type="checkbox" name="zones" value= {{i.attr_name}} class="form-check-input" id='{{i.attr_name}}'> {{ i.attr_name }} : {{ i.attr_count }}     </label>
                             </li>
                         {% endfor %}
                         <button type="submit" class="btn btn-outline-success" onclick="zonesChecked()">Применить</button>

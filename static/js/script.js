@@ -28,6 +28,14 @@ checkboxes = document.getElementsByName('zones');
 }
 
 
+function copy_tids(terminals){
+  terminals = terminals.replace(',None', '').replace('None,','').replace('None','')
+  navigator.clipboard.writeText(terminals)
+  document.getElementById('terminals_for_transfer').value = terminals
+  //document.getElementById('terminals_for_add').value = terminals
+
+}
+
 function search_place() {
     var geocoder;
     geocoder = new google.maps.Geocoder();

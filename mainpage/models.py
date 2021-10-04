@@ -64,9 +64,21 @@ class Zone(models.Model):
 	zona = models.CharField(max_length = 400, null = True)
 	name_zona = models.CharField(max_length = 400, null = True)
 
-class Terminal_attr_name_and_count(models.Model):
+class Terminal_zona_name_and_count(models.Model):
 	attr_name =  models.CharField(max_length = 400, null = True)
-	attr_count =  models.CharField(max_length = 400, null = True)
+	attr_count =  models.IntegerField(null = True)
+
+class Terminal_name_name_and_count(models.Model):
+	attr_name =  models.CharField(max_length = 400, null = True)
+	attr_count =  models.IntegerField(null = True)
+
+class Terminal_part_name_and_count(models.Model):
+	attr_name =  models.CharField(max_length = 400, null = True)
+	attr_count =  models.IntegerField(null = True)
+
+class Terminal_podr_name_and_count(models.Model):
+	attr_name =  models.CharField(max_length = 400, null = True)
+	attr_count =  models.IntegerField(null = True)
 
 
 
