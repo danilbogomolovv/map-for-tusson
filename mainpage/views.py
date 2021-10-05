@@ -674,6 +674,11 @@ def save(request):
 def one_terminal(request):
     context = {}
     search_ctid = request.GET.get("ctid", "")
+  
+    for i in Marker.objects.filter(terminals__ctid = search_ctid):
+        for j in i.terminals.all():
+            context['offices'] = Office.objects.filter(cpodr = j.cpodr).distinct().iterator()
+
     one_terminal = Marker.objects.filter(terminals__ctid = search_ctid)
     context['mark'] = one_terminal.distinct().iterator()
     context['lat'] = one_terminal[0].lat
@@ -684,13 +689,27 @@ def one_terminal(request):
 
 def search_terminals(request):
     context = {}
+    podrs = []
     search_ctid = request.GET.get("ctid", "")
     search_ctid = search_ctid.split(',')
+
     q_ctid = Q()
+    q_cpodr = Q()
     for ctid in search_ctid:
         q_ctid |= Q(terminals__ctid__startswith=ctid)
-    one_terminal = Marker.objects.filter(q_ctid)
-    context['mark'] = one_terminal.distinct().iterator()
+    search_terminals = Marker.objects.filter(q_ctid)
+    context['mark'] = search_terminals.distinct().iterator()
+    for i in search_terminals:
+        for j in i.terminals.all():
+            if j.cpodr not in podrs:
+                podrs.append(j.cpodr)
+
+
+    for podr in podrs:
+        q_cpodr |= Q(cpodr=podr)
+
+    search_offices = Office.objects.filter(q_cpodr)
+    context['offices'] = search_offices.distinct().iterator()
     context['display'] = 'none'
     context['count_all_terminals'] = len(Terminal.objects.all())
     return render(request, 'mainpage/search_terminals.html', context)  
