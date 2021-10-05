@@ -728,7 +728,7 @@ def route(request):
 
     points = []
     for i in Office.objects.all():
-        points.append(str(i.cadres) + ' ')
+        points.append(str(i.podr_name) + ' ')
 
     context['availablepoints'] = points
     context['count_all_terminals'] = len(Terminal.objects.all())
@@ -738,8 +738,16 @@ def route(request):
             q_ctid |= Q(terminals__ctid__startswith=ctid)
         search_objects = Marker.objects.filter(q_ctid)
         context['mark'] = search_objects.distinct().iterator()
-        context['first'] = start
-        context['last'] = end
+        try:
+            context['first'] = Office.objects.get(podr_name = start).cadres
+        except:
+            context['first'] = start
+
+        try:
+            context['last'] = Office.objects.get(podr_name = end).cadres
+        except:
+            context['last'] = end
+
         context['waypoints'] = search_objects.distinct().iterator()
         context['check'] = True
         context['time_of_departure'] = time_of_departure
