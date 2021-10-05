@@ -40,6 +40,14 @@ class Terminal(models.Model):
 	lat = models.CharField(max_length = 400, null = True)
 	lng = models.CharField(max_length = 400, null = True)
 
+class Office(models.Model):
+	cpodr = models.CharField(max_length = 400, null = True)
+	podr_name = models.CharField(max_length = 400, null = True)
+	cadres = models.CharField(max_length = 400, null = True)
+	cfio = models.CharField(max_length = 400, null = True)
+	zona_name = models.CharField(max_length = 400, null = True)
+	lat = models.CharField(max_length = 400, null = True)
+	lng = models.CharField(max_length = 400, null = True)
 
 
 class Marker(models.Model):
@@ -63,6 +71,7 @@ class ErrorTerminal(models.Model):
 class Zone(models.Model):
 	zona = models.CharField(max_length = 400, null = True)
 	name_zona = models.CharField(max_length = 400, null = True)
+	cpodr = models.CharField(max_length = 400, null = True)
 
 class Terminal_zona_name_and_count(models.Model):
 	attr_name =  models.CharField(max_length = 400, null = True)

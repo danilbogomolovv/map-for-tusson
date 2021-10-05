@@ -1,0 +1,78 @@
+<?xml version = "1.0" encoding="UTF-8" standalone="yes"?>
+<VFPData>
+	<szonas>
+		<czona>10</czona>
+		<cname_zona>Минский филиал</cname_zona>
+		<cpodr>15L13</cpodr>
+	</szonas>
+	<szonas>
+		<czona>20</czona>
+		<cname_zona>Брестский филиал_15L2</cname_zona>
+		<cpodr>15L2</cpodr>
+	</szonas>
+	<szonas>
+		<czona>30</czona>
+		<cname_zona>Витебский филиал_15L3</cname_zona>
+		<cpodr>15L3</cpodr>
+	</szonas>
+	<szonas>
+		<czona>40</czona>
+		<cname_zona>Могилевский филиал_15L4</cname_zona>
+		<cpodr>15L4</cpodr>
+	</szonas>
+	<szonas>
+		<czona>50</czona>
+		<cname_zona>Гомельский филиал_15L5</cname_zona>
+		<cpodr>15L5</cpodr>
+	</szonas>
+	<szonas>
+		<czona>60</czona>
+		<cname_zona>Гродненский филиал_15L6</cname_zona>
+		<cpodr>15L6</cpodr>
+	</szonas>
+	<szonas>
+		<czona>70</czona>
+		<cname_zona>Пинский филиал_15L2P</cname_zona>
+		<cpodr>15L2P</cpodr>
+	</szonas>
+	<szonas>
+		<czona>80</czona>
+		<cname_zona>Мозырьский филиал_15L5M</cname_zona>
+		<cpodr>15L5M</cpodr>
+	</szonas>
+	<szonas>
+		<czona>90</czona>
+		<cname_zona>Браславский филиал_15L3B</cname_zona>
+		<cpodr>15L3B</cpodr>
+	</szonas>
+	<szonas>
+		<czona>95</czona>
+		<cname_zona>Бобруйский филиал_15L4В</cname_zona>
+		<cpodr>15L4B</cpodr>
+	</szonas>
+	<szonas>
+		<czona>11</czona>
+		<cname_zona>Барановичский филиал_15L1B</cname_zona>
+		<cpodr>15L1B</cpodr>
+	</szonas>
+	<szonas>
+		<czona>12</czona>
+		<cname_zona>Молодечненский филиал_15L1М</cname_zona>
+		<cpodr>15L1M</cpodr>
+	</szonas>
+	<szonas>
+		<czona>13</czona>
+		<cname_zona>Борисовский филиал_15L1A</cname_zona>
+		<cpodr>15L1A</cpodr>
+	</szonas>
+	<szonas>
+		<czona>71</czona>
+		<cname_zona>Пинский филиал (Дрогичин)</cname_zona>
+		<cpodr>15L2P</cpodr>
+	</szonas>
+	<szonas>
+		<czona>14</czona>
+		<cname_zona>Слуцкий филиал_15L1S</cname_zona>
+		<cpodr>15L1S</cpodr>
+	</szonas>
+</VFPData>

@@ -26,10 +26,10 @@ def append_zones():
     """ Функция считывающая все зоны из xml файла и добавляющая их в модели """
 
     parser = ET.XMLParser(encoding="utf-8")
-    tree = ET.parse("zona_utf8 (1).xml", parser = parser)
+    tree = ET.parse("zona_utf8 (2).xml", parser = parser)
     root = tree.getroot()
     for child in root:
-        new_zone = Zone(zona = child[0].text, name_zona = child[1].text)
+        new_zone = Zone(zona = child[0].text, name_zona = child[1].text, cpodr = child[2].text)
         new_zone.save()
         print(child[1].text)
 
@@ -201,9 +201,31 @@ def index(request):
     context = {}
     check_terminals = {}
 
-
+    #Zone.objects.all().delete()
     if len(Zone.objects.all()) == 0:
         append_zones()
+
+    #Office.objects.all().delete()
+    if len(Office.objects.all()) == 0:
+        parser = ET.XMLParser(encoding="utf-8")
+        tree = ET.parse("spodr_utf8.xml", parser=parser)
+        root = tree.getroot() 
+         
+        for child in root: 
+                 
+            for i in Zone.objects.all():
+                if child[0].text == i.cpodr:
+                    zona_name = i.name_zona
+
+            gmaps = googlemaps.Client(key=os.getenv('GOOGLE_API'))
+            geocode_result = gmaps.geocode(child[2].text, language = 'ru', components={"country":"BY"}) 
+
+            new_office = Office(cpodr = child[0].text, podr_name = child[1].text, cadres = child[2].text, cfio = child[3].text,
+                                zona_name = zona_name,lat = geocode_result[0]['geometry']['location']['lat'], 
+                                lng = geocode_result[0]['geometry']['location']['lng'])
+            new_office.save()
+
+
 
     if len(Terminal.objects.all()) == 0:
         count = 1
@@ -423,17 +445,21 @@ def index(request):
     # except Exception as e:
     #     right_terminals = Terminal.objects.filter(zona_name = 'f ').distinct().iterator()
 
-
+    for i in Office.objects.all():
+        print(i.zona_name)
     context['mark'] = Marker.objects.filter(get_q_objects(request)).distinct().iterator()
+    for i in Office.objects.filter(get_q_objects(request)).distinct().iterator():
+        print(i.cadres)
+    context['offices'] = Office.objects.filter(get_q_objects(request)).distinct().iterator()
     context['count_all_terminals'] = len(Terminal.objects.all())
     context['display'] = 'none'
     context['search_name'] = ''
     context['search_parta'] = ''
     context['search_cpodr'] = ''
     context['zone_check'] = True
-    print("Длина : " + str(len(Terminal.objects.all())))
+    #print("Длина : " + str(len(Terminal.objects.all())))
     
-    print(list_q_objects)
+    #print(list_q_objects)
 
     return render(request, 'mainpage/mainpage.html', context)  
 
@@ -481,6 +507,7 @@ def search(request):
     context = {}
     filters = {}
     filters_for_terminals = {}
+    filters_for_offices = {}
     count_terminal_attribute('cparta', context)
     search_name = request.GET.get("name", "")
     if search_name != '':
@@ -496,6 +523,8 @@ def search(request):
     if search_cpodr != '':
         filters['terminals__cpodr'] = search_cpodr
         filters_for_terminals['cpodr'] = search_cpodr
+        filters_for_offices['cpodr'] = search_cpodr
+        context['offices'] = Office.objects.filter(**filters_for_offices)
     print(filters)
     search_terminals = Terminal.objects.filter(**filters_for_terminals)
     terminal_lists_for_search_terminals(context, search_terminals)
@@ -505,6 +534,7 @@ def search(request):
     context['search_parta'] = search_parta
     context['search_cpodr'] = search_cpodr
     context['mark'] = Marker.objects.filter(**filters).distinct().iterator()
+
     context['zone_check'] = False
 
     context['count_all_terminals'] = len(Terminal.objects.all())
@@ -677,7 +707,11 @@ def route(request):
     time_of_departure = request.GET.get("time_of_departure", "")
     time = request.GET.get("time", "")
 
+    points = []
+    for i in Office.objects.all():
+        points.append(str(i.cadres) + ' ')
 
+    context['availablepoints'] = points
     context['count_all_terminals'] = len(Terminal.objects.all())
     if search_ctid != '':
         q_ctid = Q()

@@ -38,13 +38,13 @@
               <td>Пункт отправки:</td>
               </tr>
               <tr>
-              <td><input type="text" size="25" class="form-control" name="first_input" placeholder="Введите пункт отправки "></td>
+              <td><input type="text" size="25" class="form-control" name="first_input" id="point_of_departure" placeholder="Введите пункт отправки" onchange="addParam('',document.getElementById('point_of_departure').value,'', false)"></td>
           </tr> 
           <tr>
               <td>Пункт прибытия:</td>
           </tr>
           <tr>
-              <td><input type="text" size="25" class="form-control" name="last_input" placeholder="Введите пункт прибытия"></td>
+              <td><input type="text" id="point_of_arrival" size="25" class="form-control" name="last_input" placeholder="Введите пункт прибытия" onchange="addParam('',document.getElementById('point_of_departure').value,'', false)"></td>
           </tr>
           <tr>
               <td>Промежуточные тиды(через запятую):</td>
@@ -74,6 +74,25 @@
     <div id="map" style="z-index: 0"></div>
 
     <script type="text/javascript">
+
+        try {
+       
+        var availablepoints = '{{ availablepoints }}'.replace(/\[&#x27;/g,'')
+        
+        availablepoints = availablepoints.split('&#x27;, &#x27;')
+        
+        } catch {
+            console.log('error availablepoints')
+        }
+
+        $( "#point_of_departure" ).autocomplete({
+          source: availablepoints
+        });
+
+        $( "#point_of_arrival" ).autocomplete({
+          source: availablepoints
+        });
+        
         let map;
         var js_markers = [];
         var coordinate_check_dict = {};

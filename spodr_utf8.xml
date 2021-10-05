@@ -1,0 +1,93 @@
+<?xml version = "1.0" encoding="UTF-8" standalone="yes"?>
+<VFPData>
+	<podr>
+		<cpodr>15L2</cpodr>
+		<cname_podr>ИТЦ, филиал в г.Брест</cname_podr>
+		<cadres>224012 г.Брест, ул. Д. Донского, 12A</cadres>
+		<cfio>Худницкий Ю.Е.</cfio>
+	</podr>
+	<podr>
+		<cpodr>15L3</cpodr>
+		<cname_podr>ИТЦ, филиал в г.Витебск</cname_podr>
+		<cadres>210015 г.Витебск, пр-т. Черняховского, 33 пом. 5</cadres>
+		<cfio>Кочергин А.Б.</cfio>
+	</podr>
+	<podr>
+		<cpodr>15L4</cpodr>
+		<cname_podr>ИТЦ, филиал в г.Могилев</cname_podr>
+		<cadres>212030 г.Могилев, ул. Левая Дубровенка, 32а, пом.51</cadres>
+		<cfio>Денисов Л.И.</cfio>
+	</podr>
+	<podr>
+		<cpodr>15L5</cpodr>
+		<cname_podr>ИТЦ, филиал в г.Гомель</cname_podr>
+		<cadres>246044 г.Гомель, ул. Шевченко, 27/1  ком.30</cadres>
+		<cfio>Пинчук Ю.Н.</cfio>
+	</podr>
+	<podr>
+		<cpodr>15L6</cpodr>
+		<cname_podr>ИТЦ, филиал в г.Гродно</cname_podr>
+		<cadres>230005 г.Гродно, ул. Гаспадарчая, 29-1, к. 412</cadres>
+		<cfio>Чернявский В.Г.</cfio>
+	</podr>
+	<podr>
+		<cpodr>15L12</cpodr>
+		<cname_podr>Монтажно-ремонтный отдел (МРО)</cname_podr>
+		<cadres>220033 г.Минск, пр. Партизанский, 8 корп. 1</cadres>
+		<cfio>Кенда А.И.</cfio>
+	</podr>
+	<podr>
+		<cpodr>15L2P</cpodr>
+		<cname_podr>ИТЦ, участок в г.Пинск</cname_podr>
+		<cadres>225707 г.Пинск, ул. Калиновского, д. 22Б</cadres>
+		<cfio>Тихомиров В.В.</cfio>
+	</podr>
+	<podr>
+		<cpodr>15L5M</cpodr>
+		<cname_podr>ИТЦ, участок в г.Мозырь</cname_podr>
+		<cadres>247760 г.Мозырь, ул. Рыжкова, 11а, комн.2</cadres>
+		<cfio>Ковалевский В.И.</cfio>
+	</podr>
+	<podr>
+		<cpodr>15L3B</cpodr>
+		<cname_podr>ИТЦ, участок в г.Браслав</cname_podr>
+		<cadres>211969 г.Браслав, ул. Ленинская, д.61</cadres>
+		<cfio>Зинкевич А.Е.</cfio>
+	</podr>
+	<podr>
+		<cpodr>15L4B</cpodr>
+		<cname_podr>ИТЦ, участок в г.Бобруйск</cname_podr>
+		<cadres>213808 г.Бобруйск, ул.Западная, 1Д</cadres>
+		<cfio>Орлов В.И</cfio>
+	</podr>
+	<podr>
+		<cpodr>15L0</cpodr>
+		<cname_podr>Бюро договорной работы (БДР)</cname_podr>
+		<cadres>220033 г.Минск, пр. Партизанский, 8 корп. 1</cadres>
+		<cfio>Соколовская Е.А.</cfio>
+	</podr>
+	<podr>
+		<cpodr>15L1B</cpodr>
+		<cname_podr>ИТЦ, участок в г.Барановичи</cname_podr>
+		<cadres>225411 г.Барановичи, ул. Кирова д. 184, 2 эт, каб. 2, 3</cadres>
+		<cfio>Вилента А.А.</cfio>
+	</podr>
+	<podr>
+		<cpodr>15L1M</cpodr>
+		<cname_podr>ИТЦ, участок в г.Молодечно</cname_podr>
+		<cadres>222304 г.Молодечно, ул.Галицкого, 8</cadres>
+		<cfio>Мозолевский С.А</cfio>
+	</podr>
+	<podr>
+		<cpodr>15L1A</cpodr>
+		<cname_podr>ИТЦ, участок в г.Борисов</cname_podr>
+		<cadres>222526 г.Борисов, ул.50 лет БССР, 16 комн.61, 62</cadres>
+		<cfio>Грищеня Н.И.</cfio>
+	</podr>
+	<podr>
+		<cpodr>15L1S</cpodr>
+		<cname_podr>ИТЦ, участок в г.Слуцк</cname_podr>
+		<cadres>223610 г.Слуцк, ул.Парижской Коммуны, 2-1 ТЦ Маяк 4 этаж</cadres>
+		<cfio>Лазарь С.И.</cfio>
+	</podr>
+</VFPData>
