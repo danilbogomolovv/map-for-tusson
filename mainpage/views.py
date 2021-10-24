@@ -460,7 +460,7 @@ def index(request):
     #print("Длина : " + str(len(Terminal.objects.all())))
     
     #print(list_q_objects)
-
+    context['google_api_key'] = os.getenv('GOOGLE_API')
     return render(request, 'mainpage/mainpage.html', context)  
 
 def filter(request):
@@ -499,7 +499,7 @@ def filter(request):
         if str(i) != 'mainpage.Terminal.ddatan' and str(i) != 'mainpage.Terminal.czona':
             count_terminal_attribute(str(i).replace('mainpage.Terminal.', ''), context)
            
-
+    context['google_api_key'] = os.getenv('GOOGLE_API')
     return render(request, 'mainpage/filterform.html', context)  
 
 
@@ -581,7 +581,7 @@ def terminals_for_repair(request):
     for i in Terminal._meta.get_fields()[1:20]:
         if str(i) != 'mainpage.Terminal.ddatan' and str(i) != 'mainpage.Terminal.czona':
             count_repair_terminal_attribute(str(i).replace('mainpage.Terminal.', ''), context)
-            
+    context['google_api_key'] = os.getenv('GOOGLE_API')        
     return render(request, 'mainpage/terminals_for_repair.html', context)
 
 def terminals_for_installation(request):
@@ -620,7 +620,7 @@ def terminals_for_installation(request):
     for i in Terminal._meta.get_fields()[1:20]:
         if str(i) != 'mainpage.Terminal.ddatan' and str(i) != 'mainpage.Terminal.czona':
             count_repair_terminal_attribute(str(i).replace('mainpage.Terminal.', ''), context)
-            
+    context['google_api_key'] = os.getenv('GOOGLE_API')
     return render(request, 'mainpage/terminals_for_repair.html', context)
 
 
@@ -685,6 +685,7 @@ def one_terminal(request):
     context['lng'] = one_terminal[0].lng
     context['display'] = 'none'
     context['count_all_terminals'] = len(Terminal.objects.all())
+    context['google_api_key'] = os.getenv('GOOGLE_API')
     return render(request, 'mainpage/one_terminal.html', context)  
 
 def search_terminals(request):
@@ -712,6 +713,7 @@ def search_terminals(request):
     context['offices'] = search_offices.distinct().iterator()
     context['display'] = 'none'
     context['count_all_terminals'] = len(Terminal.objects.all())
+    context['google_api_key'] = os.getenv('GOOGLE_API')
     return render(request, 'mainpage/search_terminals.html', context)  
 
 def route(request):
@@ -768,6 +770,8 @@ def route(request):
     else:
         context['check'] = False
 
+
+    context['google_api_key'] = os.getenv('GOOGLE_API')
     return render(request, 'mainpage/route.html', context)
 
 
@@ -788,6 +792,7 @@ def charts(request):
     context['result'] = data['result']
     context['attributes'] = attributes
     context['count_all_terminals'] = len(Terminal.objects.all())
+    context['google_api_key'] = os.getenv('GOOGLE_API')
     return render(request, 'mainpage/charts.html', context)
 
 def add_new_marker(request):
@@ -795,6 +800,7 @@ def add_new_marker(request):
     new_lat = new_lat_lng[0]
     new_lng = new_lat_lng[1]
     tids = request.GET.get("terminals", "")
+
 
 
 
@@ -850,7 +856,6 @@ def add_new_marker(request):
         if check_for_add:
             Terminal_zona_name_and_count.objects.create(attr_name = 'Не определено', attr_count = 1)
                 
-
     return HttpResponseRedirect('/')
 
 def delete_marker(request):
