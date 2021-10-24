@@ -543,6 +543,7 @@ def search(request):
     context['terminal_parts'] = Terminal_part_name_and_count.objects.all().iterator()
     context['terminal_zones'] = Terminal_zona_name_and_count.objects.all().iterator()
     context['terminal_cpodr'] = Terminal_podr_name_and_count.objects.all().iterator()
+    context['google_api_key'] = os.getenv('GOOGLE_API')
     return render(request, 'mainpage/mainpage.html', context)
 
 def terminals_for_repair(request):
@@ -897,8 +898,8 @@ def add_terminal_to_marker(request):
                     gmaps = googlemaps.Client(key=os.getenv('GOOGLE_API'))
                     geocode_result = gmaps.geocode(query_str, language = 'ru')
                     right_components = {}
-                    for i in geocode_result[0]['address_components']:
-                        right_components[str(i['types']).replace("['","").replace("']", "").replace("political',","").replace(", 'political","").replace(" 'sublocality', ","").replace("'","")] = str(i['long_name']) 
+                    for r in geocode_result[0]['address_components']:
+                        right_components[str(r['types']).replace("['","").replace("']", "").replace("political',","").replace(", 'political","").replace(" 'sublocality', ","").replace("'","")] = str(r['long_name']) 
                     j.right_components = str(right_components)  
                     j.lat = lat
                     j.lng = lng
