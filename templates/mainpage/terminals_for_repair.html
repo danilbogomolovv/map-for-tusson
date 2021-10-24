@@ -57,3 +57,91 @@
     </div>
 {% endblock content %}
 
+
+        {% block available %}
+
+        try {
+        var availableparts = '{{ availablecparta|safe }}'.replace('[','').replace(']','').replace('"','')
+        availableparts = availableparts.split('", "')
+        } catch {
+            console.log('error availableparts')
+        }
+    
+        try {
+        var availablezones = '{{ availablezona_name|safe }}'.replace('[','').replace(']','').replace('"','')
+        availablezones = availablezones.split('", "')
+        } catch {
+            console.log('error availablezones')
+        }
+        
+        try {
+        var availablenames = '{{ availablecname|safe }}'.replace('[','').replace(']','').replace('"','')
+        availablenames = availablenames.split('", "')
+        } catch {
+            console.log('error availablenames')
+        }
+
+        try {
+        var availableinrs = '{{ availableinr|safe }}'.replace('[','').replace(']','').replace('"','')
+        availableinrs = availableinrs.split('", "')
+        } catch {
+            console.log('error availableinrs')
+        }
+
+        try {
+        var availablegorod = '{{ availablecgorod|safe }}'.replace('[','').replace(']','').replace('"','')
+        availablegorod = availablegorod.split('", "')
+        } catch {
+            console.log('error availablegorod')
+        }
+
+        try {
+        var availablectids = '{{ availablectid|safe }}'.replace('[','').replace(']','').replace('"','')
+        availablectids = availablectids.split('", "')
+        } catch {
+            console.log('error availablectids')
+        }
+
+        try {
+        var availabletypes = '{{ availablectype|safe }}'.replace('[','').replace(']','').replace('"','')
+        availabletypes = availabletypes.split('", "')
+        } catch {
+            console.log('error availabletypes')
+        }
+
+        try {
+        var availablebanks = '{{ availablecbank|safe }}'.replace('[','').replace(']','').replace('"','')
+        availablebanks = availablebanks.split('", "')
+        } catch {
+            console.log('error availablebanks')
+        }
+
+        try {
+        var availablecunns = '{{ availablecunn|safe }}'.replace('[','').replace(']','').replace('"','')
+        availablecunns = availablecunns.split('", "')
+        } catch {
+            console.log('error availableparts')
+        }
+
+        try {
+        var availablecvsobas = '{{ availablecvsoba|safe }}'.replace('[','').replace(']','').replace('"','')
+        availablecvsobas = availablecvsobas.split('", "')
+        } catch {
+            console.log('error availablecvsobas')
+        }
+
+        try {
+        var availablecpodr = '{{ availablecpodr|safe }}'.replace('[','').replace(']','').replace('"','')
+        availablecpodr = availablecpodr.split('", "')
+        } catch {
+            console.log('error availableparts')
+        }
+
+        try {
+        var availableadres = '{{ availablecadres|safe }}'.replace('[','').replace(']','').replace('"','')
+        availableadres = availableadres.split('", "')
+        } catch {
+            console.log('error availableadres')
+        }
+
+        {% endblock available %}

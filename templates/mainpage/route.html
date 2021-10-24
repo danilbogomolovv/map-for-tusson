@@ -38,6 +38,7 @@
               <td>Пункт отправки:</td>
               </tr>
               <tr>
+
               <td><input type="text" size="25" class="form-control" name="first_input" id="point_of_departure" placeholder="Введите пункт отправки" onchange="addParam('',document.getElementById('point_of_departure').value,'', false)"></td>
           </tr> 
           <tr>
@@ -74,6 +75,11 @@
     <div id="map" style="z-index: 0"></div>
 
     <script type="text/javascript">
+
+        localStorage.setItem('startpoint', '{{start_py}}')
+        localStorage.setItem('tids', '{{tids_py}}')
+        localStorage.setItem('endpoint', '{{end_py}}')
+        localStorage.setItem('time_of_departure', '{{time_of_departure_py}}')
 
         try {
        

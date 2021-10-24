@@ -719,12 +719,19 @@ def route(request):
     context = {}
     tids_and_addresses = {}
     search_ctid = request.GET.get("ctid", "")
+    context['tids_py'] = search_ctid
     if search_ctid != '':
         search_ctid = search_ctid.split(',')
     start = request.GET.get("start", "")
     end = request.GET.get("end", "")
     time_of_departure = request.GET.get("time_of_departure", "")
     time = request.GET.get("time", "")
+
+
+    
+    context['start_py'] = start
+    context['end_py'] = end
+    context['time_of_departure_py'] = time_of_departure
 
     points = []
     for i in Office.objects.all():
@@ -805,6 +812,13 @@ def add_new_marker(request):
                         i.count -= 1
                         i.terminals.remove(j)
                         i.save()
+                        query_str = str(new_lat) + ',' + str(new_lng)
+                        gmaps = googlemaps.Client(key=os.getenv('GOOGLE_API'))
+                        geocode_result = gmaps.geocode(query_str, language = 'ru')
+                        right_components = {}
+                        for i in geocode_result[0]['address_components']:
+                            right_components[str(i['types']).replace("['","").replace("']", "").replace("political',","").replace(", 'political","").replace(" 'sublocality', ","").replace("'","")] = str(i['long_name']) 
+                        j.right_components = str(right_components)  
                         j.lat = new_lat
                         j.lng = new_lng
                         j.save()
@@ -844,6 +858,10 @@ def delete_marker(request):
     del_lng = request.GET.get("lng", "")
 
     del_marker = Marker.objects.get(lat = del_lat, lng = del_lng)
+
+    for j in del_marker.terminals.all():
+        j.delete()
+
     del_mark_zone = Terminal_zona_name_and_count.objects.get(attr_name__startswith = del_marker.zona_name)
     del_mark_zone.attr_count -= 1
     del_mark_zone.save()
@@ -870,7 +888,13 @@ def add_terminal_to_marker(request):
 
                     if i.count == 0:
                         i.zona_name = 'Не определено'
-
+                    query_str = str(lat) + ',' + str(lng)
+                    gmaps = googlemaps.Client(key=os.getenv('GOOGLE_API'))
+                    geocode_result = gmaps.geocode(query_str, language = 'ru')
+                    right_components = {}
+                    for i in geocode_result[0]['address_components']:
+                        right_components[str(i['types']).replace("['","").replace("']", "").replace("political',","").replace(", 'political","").replace(" 'sublocality', ","").replace("'","")] = str(i['long_name']) 
+                    j.right_components = str(right_components)  
                     j.lat = lat
                     j.lng = lng
                     i.save()

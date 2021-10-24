@@ -105,6 +105,17 @@
 
 {% endblock content %}
 
+{% block available %}
+
+        try {
+        var availableparts = '{{ availablecparta|safe }}'.replace('[','').replace(']','').replace('"','')
+        availableparts = availableparts.split('", "')
+        } catch {
+            console.log('error availableparts')
+        }
+
+{% endblock available %}
+
 
 {% block clearbutton %}
     <a class="btn btn-outline-danger" href="javascript:clearHref();" role="button" style="float: right;">Сбросить </a>

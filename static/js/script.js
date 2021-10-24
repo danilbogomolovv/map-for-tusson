@@ -10,7 +10,7 @@ checkboxes = document.getElementsByName('zones');
   zonesChecked()
   document.getElementsByName('first_input')[0].value = localStorage.getItem('startpoint')
   document.getElementsByName('waypoints_input')[0].value = localStorage.getItem('tids')
-  document.getElementsByName('last_input')[0].value = localStorage.getItem('ednpoint')
+  document.getElementsByName('last_input')[0].value = localStorage.getItem('endpoint')
   document.getElementsByName('time_of_departure_input')[0].value = localStorage.getItem('time_of_departure')
   document.getElementById('repair_form').style.display = localStorage.getItem('repair_form')
   document.getElementById('repair_tids').style.display = localStorage.getItem('repair_tids')
@@ -140,7 +140,7 @@ function addRouteParam() {
     };
 
     if (end != '') {
-        localStorage.setItem('ednpoint', end);
+        localStorage.setItem('endpoint', end);
     };
 
     if (time_of_departure != '') {

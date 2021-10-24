@@ -4,3 +4,12 @@
     <a class="btn btn-outline-danger" href="/" role="button">Все терминалы</a>
 {% endblock nav %}
 
+{% block initcenter %}
+
+           map = new google.maps.Map(document.getElementById("map"), {
+
+                center: { lat: 53.904789501846196, lng: 27.553534868069242 },
+                zoom: 6,
+                });
+
+{% endblock initcenter %}
