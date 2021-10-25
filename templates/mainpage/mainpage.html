@@ -107,9 +107,10 @@
 
 {% block available %}
 
-        try {
-        var availableparts = '{{ availablecparta|safe }}'.replace('[','').replace(']','').replace('"','')
-        availableparts = availableparts.split('", "')
+         try {
+        var availableparts = '{{ availablecparta }}'.replace('[(&#x27;','')
+        availableparts = availableparts.split("&#x27;,), (&#x27;")
+        
         } catch {
             console.log('error availableparts')
         }

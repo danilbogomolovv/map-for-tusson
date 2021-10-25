@@ -25,8 +25,6 @@ class TerminalView(ListCreateAPIView):
 		lat = ''
 		lng = ''
 
-
-
 		if request.data.get('lat') == '-' and request.data.get('lng') == '-':
 			query_str = ''
 			if request.data.get('cobl') != '-':

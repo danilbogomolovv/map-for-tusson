@@ -57,91 +57,103 @@
     </div>
 {% endblock content %}
 
-
         {% block available %}
 
         try {
-        var availableparts = '{{ availablecparta|safe }}'.replace('[','').replace(']','').replace('"','')
-        availableparts = availableparts.split('", "')
+        var availableparts = '{{ availablecparta }}'.replace('[(&#x27;','')
+        availableparts = availableparts.split("&#x27;,), (&#x27;")
+        
         } catch {
             console.log('error availableparts')
         }
-    
+
         try {
-        var availablezones = '{{ availablezona_name|safe }}'.replace('[','').replace(']','').replace('"','')
-        availablezones = availablezones.split('", "')
+        var availablezones = '{{ availablezona_name }}'.replace('[(&#x27;','')
+        availablezones = availablezones.split("&#x27;,), (&#x27;")
+    
         } catch {
             console.log('error availablezones')
         }
-        
+
         try {
-        var availablenames = '{{ availablecname|safe }}'.replace('[','').replace(']','').replace('"','')
-        availablenames = availablenames.split('", "')
+        var availablenames = '{{ availablecname }}'.replace('[(&#x27;','')
+        availablenames = availablenames.split("&#x27;,), (&#x27;")
+        
         } catch {
             console.log('error availablenames')
-        }
+        }   
 
         try {
-        var availableinrs = '{{ availableinr|safe }}'.replace('[','').replace(']','').replace('"','')
-        availableinrs = availableinrs.split('", "')
+        var availableinrs = '{{ availableinr }}'.replace('[(&#x27;','')
+        availableinrs = availableinrs.split("&#x27;,), (&#x27;")
+        
         } catch {
-            console.log('error availableinrs')
+            console.log('error availableparts')
         }
 
         try {
-        var availablegorod = '{{ availablecgorod|safe }}'.replace('[','').replace(']','').replace('"','')
-        availablegorod = availablegorod.split('", "')
+        var availablegorod = '{{ availablecgorod }}'.replace('[(&#x27;','')
+        availablegorod = availablegorod.split("&#x27;,), (&#x27;")
+        
         } catch {
             console.log('error availablegorod')
         }
 
         try {
-        var availablectids = '{{ availablectid|safe }}'.replace('[','').replace(']','').replace('"','')
-        availablectids = availablectids.split('", "')
+        var availablectids = '{{ availablectid }}'.replace('[(&#x27;','')
+        availablectids = availablectids.split("&#x27;,), (&#x27;")
+        
         } catch {
             console.log('error availablectids')
         }
 
         try {
-        var availabletypes = '{{ availablectype|safe }}'.replace('[','').replace(']','').replace('"','')
-        availabletypes = availabletypes.split('", "')
+        var availabletypes = '{{ availablectype }}'.replace('[(&#x27;','')
+        availabletypes = availabletypes.split("&#x27;,), (&#x27;")
+     
         } catch {
             console.log('error availabletypes')
         }
 
         try {
-        var availablebanks = '{{ availablecbank|safe }}'.replace('[','').replace(']','').replace('"','')
-        availablebanks = availablebanks.split('", "')
+        var availablebanks = '{{ availablecbank }}'.replace('[(&#x27;','')
+        availablebanks = availablebanks.split("&#x27;,), (&#x27;")
+       
         } catch {
             console.log('error availablebanks')
         }
 
         try {
-        var availablecunns = '{{ availablecunn|safe }}'.replace('[','').replace(']','').replace('"','')
-        availablecunns = availablecunns.split('", "')
+        var availablecunns = '{{ availablecunn }}'.replace('[(&#x27;','')
+        availablecunns = availablecunns.split("&#x27;,), (&#x27;")
+       
         } catch {
-            console.log('error availableparts')
+            console.log('error availablecunns')
         }
 
         try {
-        var availablecvsobas = '{{ availablecvsoba|safe }}'.replace('[','').replace(']','').replace('"','')
-        availablecvsobas = availablecvsobas.split('", "')
+        var availablecvsobas = '{{ availablecvsoba }}'.replace('[(&#x27;','')
+        availablecvsobas = availablecvsobas.split("&#x27;,), (&#x27;")
+       
         } catch {
             console.log('error availablecvsobas')
         }
 
         try {
-        var availablecpodr = '{{ availablecpodr|safe }}'.replace('[','').replace(']','').replace('"','')
-        availablecpodr = availablecpodr.split('", "')
+        var availablecpodr = '{{ availablecpodr }}'.replace('[(&#x27;','')
+        availablecpodr = availablecpodr.split("&#x27;,), (&#x27;")
+       
         } catch {
-            console.log('error availableparts')
+            console.log('error availablecpodr')
         }
 
         try {
-        var availableadres = '{{ availablecadres|safe }}'.replace('[','').replace(']','').replace('"','')
-        availableadres = availableadres.split('", "')
+        var availableadres = '{{ availablecadres }}'.replace('[(&#x27;','')
+        availableadres = availableadres.split("&#x27;,), (&#x27;")
+       
         } catch {
             console.log('error availableadres')
         }
 
         {% endblock available %}
+

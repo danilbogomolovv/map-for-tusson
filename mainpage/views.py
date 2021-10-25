@@ -439,10 +439,7 @@ def index(request):
     context['terminal_zones'] = Terminal_zona_name_and_count.objects.all().iterator()
     context['terminal_cpodr'] = Terminal_podr_name_and_count.objects.all().iterator()
     
-    count_terminal_attribute('cparta', context)
-
-    if len(Marker.objects.filter(cgorod = 'Минск')) == 0:
-        print('av')
+    context['availablecparta'] = str(list(Available.objects.filter(attr_name = 'cparta').values_list('value')))
 
     # try:
         
@@ -501,18 +498,12 @@ def filter(request):
         context['filterform'] = filterform   
 
     context['count_all_terminals'] = len(Terminal.objects.all())
-    # if len(Available.objects.filter(attr_name = 'cparta')) == 0:
-    #     count_terminal_attribute('cparta', context)
-    # context['availablecparta'] = str(list(Available.objects.filter(attr_name = 'cparta').values_list('value')))
 
     for i in Terminal._meta.get_fields()[1:20]:
         if str(i) != 'mainpage.Terminal.ddatan' and str(i) != 'mainpage.Terminal.czona':
             request_str = str(i).replace('mainpage.Terminal.', '')
-            print(request_str)
             if len(Available.objects.filter(attr_name = request_str)) == 0:
                 count_terminal_attribute(request_str, context)
-                #print('df')
-            #print(list(Available.objects.filter(attr_name = request_str).values_list('value')))
             context['available' + request_str] = str(list(Available.objects.filter(attr_name = request_str).values_list('value')))
             
            
@@ -598,7 +589,9 @@ def terminals_for_repair(request):
 
     for i in Terminal._meta.get_fields()[1:20]:
         if str(i) != 'mainpage.Terminal.ddatan' and str(i) != 'mainpage.Terminal.czona':
-            count_repair_terminal_attribute(str(i).replace('mainpage.Terminal.', ''), context)
+            request_str = str(i).replace('mainpage.Terminal.', '')
+            context['available' + request_str] = str(list(Available.objects.filter(attr_name = request_str).values_list('value')))
+    
     context['google_api_key'] = os.getenv('GOOGLE_API')        
     return render(request, 'mainpage/terminals_for_repair.html', context)
 
@@ -637,7 +630,10 @@ def terminals_for_installation(request):
 
     for i in Terminal._meta.get_fields()[1:20]:
         if str(i) != 'mainpage.Terminal.ddatan' and str(i) != 'mainpage.Terminal.czona':
-            count_repair_terminal_attribute(str(i).replace('mainpage.Terminal.', ''), context)
+            request_str = str(i).replace('mainpage.Terminal.', '')
+            context['available' + request_str] = str(list(Available.objects.filter(attr_name = request_str).values_list('value')))
+   
+
     context['google_api_key'] = os.getenv('GOOGLE_API')
     return render(request, 'mainpage/terminals_for_repair.html', context)
 
