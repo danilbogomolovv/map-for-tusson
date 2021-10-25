@@ -89,5 +89,9 @@ class Terminal_podr_name_and_count(models.Model):
 	attr_name =  models.CharField(max_length = 400, null = True)
 	attr_count =  models.IntegerField(null = True)
 
+class Available(models.Model):
+	attr_name = models.CharField(max_length = 400, null = True)
+	value = models.CharField(max_length = 400, null = True)
+
 
 

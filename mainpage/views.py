@@ -85,8 +85,12 @@ def count_terminal_attribute(attr, context):
     for i in list(Terminal.objects.values_list(attr, flat=True)):
         if i not in result:
             result.append(i)
-    json_list = simplejson.dumps(result)
-    context['available' + attr] = json_list
+            res = str(i).replace(',)','').replace('(','')
+            av = Available(attr_name = attr, value = res)
+            av.save()
+    #print(result)
+    #json_list = simplejson.dumps(result)
+    #context['available' + attr] = json_list
 
 def count_repair_terminal_attribute(attr, context):
 
@@ -95,6 +99,8 @@ def count_repair_terminal_attribute(attr, context):
     result = []
     for i in list(Terminal.objects.filter(cstatus=3).values_list(attr, flat=True)):
         if i not in result:
+            # av = Available(attr_name = attr, value = i)
+            # av.save()
             result.append(i)
     json_list = simplejson.dumps(result)
     context['available' + attr] = json_list
@@ -435,6 +441,9 @@ def index(request):
     
     count_terminal_attribute('cparta', context)
 
+    if len(Marker.objects.filter(cgorod = 'Минск')) == 0:
+        print('av')
+
     # try:
         
     #     if str(get_q_objects(request)) != '(AND: )':
@@ -445,11 +454,10 @@ def index(request):
     # except Exception as e:
     #     right_terminals = Terminal.objects.filter(zona_name = 'f ').distinct().iterator()
 
-    for i in Office.objects.all():
-        print(i.zona_name)
+
     context['mark'] = Marker.objects.filter(get_q_objects(request)).distinct().iterator()
-    for i in Office.objects.filter(get_q_objects(request)).distinct().iterator():
-        print(i.cadres)
+    # for i in Office.objects.filter(get_q_objects(request)).distinct().iterator():
+    #     print(i.cadres)
     context['offices'] = Office.objects.filter(get_q_objects(request)).distinct().iterator()
     context['count_all_terminals'] = len(Terminal.objects.all())
     context['display'] = 'none'
@@ -464,6 +472,7 @@ def index(request):
     return render(request, 'mainpage/mainpage.html', context)  
 
 def filter(request):
+    #Available.objects.all().delete()
     context = {}
     context['display'] = 'none'
     context['mark'] = Marker.objects.filter(status = '10').iterator()
@@ -492,12 +501,20 @@ def filter(request):
         context['filterform'] = filterform   
 
     context['count_all_terminals'] = len(Terminal.objects.all())
-    count_terminal_attribute('cparta', context)
-
+    # if len(Available.objects.filter(attr_name = 'cparta')) == 0:
+    #     count_terminal_attribute('cparta', context)
+    # context['availablecparta'] = str(list(Available.objects.filter(attr_name = 'cparta').values_list('value')))
 
     for i in Terminal._meta.get_fields()[1:20]:
         if str(i) != 'mainpage.Terminal.ddatan' and str(i) != 'mainpage.Terminal.czona':
-            count_terminal_attribute(str(i).replace('mainpage.Terminal.', ''), context)
+            request_str = str(i).replace('mainpage.Terminal.', '')
+            print(request_str)
+            if len(Available.objects.filter(attr_name = request_str)) == 0:
+                count_terminal_attribute(request_str, context)
+                #print('df')
+            #print(list(Available.objects.filter(attr_name = request_str).values_list('value')))
+            context['available' + request_str] = str(list(Available.objects.filter(attr_name = request_str).values_list('value')))
+            
            
     context['google_api_key'] = os.getenv('GOOGLE_API')
     return render(request, 'mainpage/filterform.html', context)  
